@@ -1,0 +1,22 @@
+{
+  "name": "x-bot",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "exec": "dotenv -e .env tsx index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nangohq/node": "^0.37.24",
+    "twitter-api-v2": "^1.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "dotenv-cli": "^7.3.0",
+    "prettier": "^3.2.5",
+    "tsx": "^4.7.1"
+  }
+}
