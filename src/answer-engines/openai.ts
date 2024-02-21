@@ -3,6 +3,8 @@ import { ChatModel, Msg } from '@dexaai/dexter'
 import type * as types from '../types.js'
 import { resolveMessageThread } from '../answer-engine-utils.js'
 
+const MAX_CONTEXT_MESSAGES = 30
+
 export async function generateMessageResponseUsingOpenAI(
   message: types.Message,
   ctx: types.Context
@@ -13,16 +15,21 @@ export async function generateMessageResponseUsingOpenAI(
     }
   })
 
-  const messageThread = await resolveMessageThread(message)
+  // TODO: more intelligent compression / trucation of the input thread if it's
+  // too long
+  const messageThread = (await resolveMessageThread(message))
+    .reverse()
+    .slice(0, MAX_CONTEXT_MESSAGES)
+    .reverse()
 
-  // TODO: handle truncation / overflow
   const response = await chatModel.run({
     messages: [
       Msg.system(
         `You are a friendly, helpful twitter bot with the handle ${ctx.twitterBotHandle}. You answer concisely and creatively to tweets on twitter. You are eager to please, friendly, enthusiastic, and very passionate. You like to use emoji, but not for lists. If you are generating a list, do not have too many items. Keep the number of items short.\n\nMake sure to be **as concise as possible** since twitter has character limits.`
       ),
       ...messageThread
-    ]
+    ],
+    max_tokens: 1000
   })
 
   message.response = response.message.content!

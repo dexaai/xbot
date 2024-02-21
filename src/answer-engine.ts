@@ -24,7 +24,6 @@ export async function generateMessageResponse(
 
   validateMessageResponse(message, ctx)
 
-  // TODO: validate message.response
   if (config.disallowMentionsInBotReplies) {
     message.response = stripAtMentions(message.response!)
     validateMessageResponse(message, ctx)
