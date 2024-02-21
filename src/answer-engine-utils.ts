@@ -4,8 +4,8 @@ import * as db from './db.js'
 import type * as types from './types.js'
 
 /**
- * Resolves all of the bot messages in a single twitter thread, starting from
- * a leaf tweet, and traversing it's parents – including any previous bot
+ * Resolves all of the bot-related messages in a single twitter thread, starting
+ * from a leaf tweet, and traversing it's parents – including any previous bot
  * mentions and responses. Returns the thread in an format compatible with the
  * OpenAI chat-completions API.
  */
@@ -26,8 +26,13 @@ export async function resolveMessageThread(
     }
   } while (false)
 
+  // Reverse the messages so the oldest ones are first
   messages.reverse()
-  messages = messages.filter((m) => !m.error)
+
+  // Filter any messages which have errors, unless it's the latest message we're
+  // currently trying to resolve (which may have previously encountered an error
+  // that we're now trying to resolve)
+  messages = messages.filter((m) => !m.error || m === message)
 
   return messages.flatMap((message) =>
     [
