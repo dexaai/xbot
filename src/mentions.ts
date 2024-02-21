@@ -330,7 +330,7 @@ export function getNumMentionsInText(
   { isReply }: { isReply?: boolean } = {}
 ) {
   const prefixText = isReply
-    ? (text.match(/^(\@[a-zA-Z0-9_]+\b\s*)+/g) || [])[0]
+    ? (text.match(/^(@[a-zA-Z0-9_]+\b\s*)+/g) || [])[0]
     : text
   if (!prefixText) {
     return {
@@ -339,7 +339,7 @@ export function getNumMentionsInText(
     }
   }
 
-  const usernames = (prefixText.match(/\@[a-zA-Z0-9_]+\b/g) || []).map(
+  const usernames = (prefixText.match(/@[a-zA-Z0-9_]+\b/g) || []).map(
     (u: string) => u.trim().toLowerCase().replace(',', '')
   )
   let numMentions = 0

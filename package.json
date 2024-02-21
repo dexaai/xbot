@@ -19,7 +19,12 @@
   },
   "scripts": {
     "exec": "tsx bin/index.ts",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "run-p test:*",
+    "test:lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
+    "test:format": "prettier --check \"**/*.{js,ts,tsx}\"",
+    "test:unit": "ava",
+    "test:typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@dexaai/dexter": "^1.2.8",
@@ -38,15 +43,18 @@
     "url-regex": "^5.0.0"
   },
   "devDependencies": {
+    "@dexaai/eslint-config": "^0.4.0",
     "@total-typescript/ts-reset": "^0.5.1",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/dotenv-safe": "^8.1.6",
     "@types/node": "^20.11.19",
     "ava": "^6.1.1",
+    "eslint": "^8.56.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.8",
+    "tsimp": "^2.0.11",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   },
@@ -54,5 +62,31 @@
     "*.{ts,tsx}": [
       "prettier --ignore-unknown --write"
     ]
+  },
+  "ava": {
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--import=tsimp",
+      "--no-warnings=ExperimentalWarnings"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@dexaai/eslint-config",
+      "@dexaai/eslint-config/node"
+    ],
+    "ignorePatterns": [
+      "node_modules",
+      "dist",
+      ".next"
+    ],
+    "rules": {
+      "no-console": "off",
+      "import/order": "off",
+      "no-process-env": "off"
+    }
   }
 }

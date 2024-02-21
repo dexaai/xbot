@@ -1,0 +1,10 @@
+*.env
+*.log
+*.jsonl
+**/node_modules
+**/dist
+**/build
+**/dbschema
+**/public
+.next
+.tsimp
