@@ -51,3 +51,19 @@ export const defaultIDGeneratorFn: types.IDGeneratorFunction =
 export function createID(...prefixes: string[]): string {
   return [...prefixes, defaultIDGeneratorFn()].filter(Boolean).join(':')
 }
+
+export function getDebugMention(
+  mention: types.TweetMention
+  // ...additionalFields: (keyof types.TweetMention)[]
+): Partial<types.TweetMention> {
+  return pick(
+    mention,
+    'id',
+    'text',
+    'prompt',
+    'promptUrl',
+    'isReply',
+    'numFollowers',
+    'priorityScore'
+  )
+}

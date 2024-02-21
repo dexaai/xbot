@@ -1,6 +1,7 @@
 import KeyvRedis from '@keyv/redis'
 import { type Redis } from 'ioredis'
 import Keyv from 'keyv'
+import pMap from 'p-map'
 
 import * as config from './config.js'
 import type * as types from './types.js'
@@ -30,8 +31,12 @@ if (config.redisUrl) {
   messages = new Keyv({ store, namespace: config.redisNamespaceMessages })
   state = new Keyv({ store, namespace: config.redisNamespaceState })
 } else {
-  console.warn('Redis is disabled. All state will be stored in memory.')
+  if (config.requireRedis) {
+    console.error('Error: missing required REDIS_URL since REQUIRE_REDIS=true')
+    process.exit(1)
+  }
 
+  console.warn('Redis is disabled. All state will be stored in memory.')
   tweets = new Keyv({ namespace: config.redisNamespaceTweets })
   users = new Keyv({ namespace: config.redisNamespaceUsers })
   messages = new Keyv({ namespace: config.redisNamespaceMessages })
@@ -44,6 +49,43 @@ export async function getSinceMentionId(): Promise<string | undefined> {
 
 export async function setSinceMentionId(sinceMentionId: string | undefined) {
   return state.set('sinceMentionId', sinceMentionId)
+}
+
+export async function upsertTweets(
+  t: types.Tweet[],
+  { concurrency = 16 }: { concurrency?: number } = {}
+) {
+  return pMap(t, (tweet) => tweets.set(tweet.id, tweet), { concurrency })
+}
+
+export async function upsertTwitterUsers(
+  u: types.TwitterUser[],
+  { concurrency = 16 }: { concurrency?: number } = {}
+) {
+  return pMap(u, (user) => users.set(user.id, user), { concurrency })
+}
+
+export async function upsertMessages(
+  m: types.Message[],
+  { concurrency = 16 }: { concurrency?: number } = {}
+) {
+  return pMap(m, (message) => messages.set(message.id, message), {
+    concurrency
+  })
+}
+
+export async function upsertMessage(message: types.Message) {
+  const result = await messages.set(message.id, message)
+
+  if (message.responseTweetId) {
+    await messages.set(message.responseTweetId!, {
+      ...message,
+      id: message.responseTweetId!,
+      role: 'assistant'
+    })
+  }
+
+  return result
 }
 
 export { tweets, users, messages, state }

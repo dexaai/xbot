@@ -20,5 +20,6 @@
     "moduleResolution": "NodeNext",
     "outDir": "dist",
     "sourceMap": true
-  }
+  },
+  "include": ["src", "bin"]
 }

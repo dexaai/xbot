@@ -21,7 +21,7 @@ const rUrl = urlRegex()
 export async function getTweetMentionsBatch(
   ctx: types.Context
 ): Promise<types.TweetMentionBatch> {
-  const batch: types.TweetMentionBatch = {
+  const batch: types.PartialTweetMentionBatch = {
     mentions: [],
     numMentionsPostponed: 0,
 
@@ -30,6 +30,11 @@ export async function getTweetMentionsBatch(
 
     minSinceMentionId: undefined,
     sinceMentionId: ctx.sinceMentionId,
+
+    messages: [],
+    isRateLimitedTwitter: false,
+    isExpiredAuthTwitter: false,
+    hasNetworkError: false,
 
     updateSinceMentionId(tweetId: string) {
       batch.sinceMentionId = maxTwitterId(batch.sinceMentionId, tweetId)
@@ -198,11 +203,11 @@ export async function getTweetMentionsBatch(
     numMentionsPostponed: batch.numMentionsPostponed
   })
 
-  return batch
+  return batch as types.TweetMentionBatch
 }
 
 export async function populateTweetMentionsBatch(
-  batch: types.TweetMentionBatch,
+  batch: types.PartialTweetMentionBatch,
   ctx: types.Context
 ) {
   console.log('fetching mentions since', batch.sinceMentionId || 'forever')
@@ -327,8 +332,8 @@ export function getNumMentionsInText(
  * - https://twittercommunity.com/t/is-there-a-way-to-get-something-like-display-text-range-in-api-v2/172689/3
  */
 export function isValidMention(
-  mention: types.TweetMention,
-  batch: types.TweetMentionBatch,
+  mention: types.PartialTweetMention,
+  batch: types.PartialTweetMentionBatch,
   ctx: types.Context
 ): boolean {
   if (!mention) {
@@ -350,14 +355,18 @@ export function isValidMention(
     ? batch.tweets[repliedToTweetRef.id]
     : null
   const isReply = !!repliedToTweetRef
-  if (repliedToTweet) {
-    repliedToTweet.prompt = getPrompt(repliedToTweet.text, ctx)
+  let repliedToMention = repliedToTweet
+    ? ({ ...repliedToTweet } as types.PartialTweetMention)
+    : undefined
+
+  if (repliedToTweet && repliedToMention) {
+    repliedToMention.prompt = getPrompt(repliedToTweet.text, ctx)
     const subMentions = getNumMentionsInText(repliedToTweet.text, ctx, {
       isReply: !!repliedToTweet.referenced_tweets?.find(
         (t) => t.type === 'replied_to'
       )
     })
-    repliedToTweet.numMentions = subMentions.numMentions
+    repliedToMention.numMentions = subMentions.numMentions
   }
 
   if (isReply && !repliedToTweet) {
@@ -380,7 +389,7 @@ export function isValidMention(
   if (!mention.prompt) {
     if (isReply) {
       text = repliedToTweet!.text
-      mention.prompt = repliedToTweet!.prompt
+      mention.prompt = repliedToMention!.prompt
     }
 
     if (!mention.prompt) {
@@ -396,12 +405,12 @@ export function isValidMention(
     if (
       isReply &&
       !ctx.forceReply &&
-      (repliedToTweet?.numMentions! > numMentions ||
-        (repliedToTweet?.numMentions === numMentions &&
-          repliedToTweet?.isReply))
+      (repliedToMention?.numMentions! > numMentions ||
+        (repliedToMention?.numMentions === numMentions &&
+          repliedToMention?.isReply))
     ) {
       // console.log('ignoring mention 0', mention, {
-      //   repliedToTweet,
+      //   repliedToMention,
       //   numMentions
       // })
 
@@ -428,7 +437,7 @@ export function isValidMention(
 
   // console.log(JSON.stringify(mention, null, 2), {
   //   numMentions,
-  //   repliedToTweet
+  //   repliedToMention
   // })
   // console.log(pick(mention, 'id', 'text', 'prompt'), { numMentions })
   return true

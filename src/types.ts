@@ -1,5 +1,5 @@
 import type { Client as TwitterClient } from 'twitter-api-sdk'
-import type { AsyncReturnType, Simplify } from 'type-fest'
+import type { AsyncReturnType, SetOptional, Simplify } from 'type-fest'
 
 export type { TwitterClient }
 
@@ -28,16 +28,15 @@ export type Context = {
 }
 
 export interface Message {
-  // We use the prompt tweet id as the message id
+  // We use the tweet id as the message id
   readonly id: string
 
-  readonly role: Role
   readonly type: MessageType
-
+  readonly role: Role
   readonly prompt: string
   readonly promptTweetId: string
   readonly promptUserId: string
-  readonly promptUsername: string
+  readonly promptUsername?: string
   promptUrl?: string
   promptLikes?: number
   promptRetweets?: number
@@ -47,7 +46,7 @@ export interface Message {
   // promptLanguageScore?: number
 
   response?: string
-  responseTweetIds?: string[]
+  responseTweetId?: string
   responseMediaId?: string
   responseUrl?: string
   responseLikes?: number
@@ -64,13 +63,6 @@ export interface Message {
   priorityScore?: number
   numFollowers?: number
   isReply?: boolean
-}
-
-export type Session = {
-  messages: Message[]
-  isRateLimitedTwitter: boolean
-  isExpiredAuthTwitter: boolean
-  hasNetworkError: boolean
 }
 
 type Unpacked<T> = T extends (infer U)[] ? U : T
@@ -98,15 +90,19 @@ export type TwitterUserIdMentionsQueryOptions = Simplify<
   NonNullable<Parameters<TwitterClient['tweets']['usersIdMentions']>[1]>
 >
 
-export type TweetMention = Simplify<
-  Tweet & {
-    prompt?: string
-    numMentions?: number
-    priorityScore?: number
-    numFollowers?: number
-    promptUrl?: string
-    isReply?: boolean
-  }
+export type TweetMentionAnnotations = {
+  prompt: string
+  numMentions: number
+  priorityScore: number
+  numFollowers: number
+  promptUrl: string
+  isReply: boolean
+}
+
+export type TweetMention = Simplify<Tweet & TweetMentionAnnotations>
+export type PartialTweetMention = SetOptional<
+  TweetMention,
+  keyof TweetMentionAnnotations
 >
 
 export type TweetMentionBatch = {
@@ -114,12 +110,23 @@ export type TweetMentionBatch = {
   numMentionsPostponed: number
 
   users: Record<string, Partial<TwitterUser>>
-  tweets: Record<string, TweetMention>
+  tweets: Record<string, Tweet>
 
   minSinceMentionId?: string
   sinceMentionId?: string
 
+  // Messages generated from this batch
+  messages: Message[]
+
+  isRateLimitedTwitter: boolean
+  isExpiredAuthTwitter: boolean
+  hasNetworkError: boolean
+
   readonly updateSinceMentionId: (tweetId: string) => void
+}
+
+export type PartialTweetMentionBatch = Omit<TweetMentionBatch, 'mentions'> & {
+  mentions: PartialTweetMention[]
 }
 
 export type TweetMentionResult = {
