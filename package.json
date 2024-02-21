@@ -20,7 +20,7 @@
   "scripts": {
     "exec": "tsx bin/index.ts",
     "prepare": "husky install",
-    "test": "run-p test:*",
+    "test": "run-s test:*",
     "test:lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "test:format": "prettier --check \"**/*.{js,ts,tsx}\"",
     "test:unit": "ava",
