@@ -32,7 +32,7 @@ tsx bin/index.ts
 ## TODO
 
 - [Dexa](https://dexa.ai) answer engine
-  - handle tweet trucation of responses with URLs properly
+  - handle tweet truncation of responses with URLs properly
 - support thread context from tweets above the earliest bot mention
 - support URLs and other entity metadata (user profile info) so the answer engine has more info to work off of
 - re-add support for moderations

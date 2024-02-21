@@ -144,12 +144,6 @@ export type PartialTweetMentionBatch = Omit<TweetMentionBatch, 'mentions'> & {
 
   /** Updates the max twitter id processed this batch */
   updateSinceMentionId: (tweetId: string) => void
-
-  /** Attempts to retrieve a twitter user from the cache */
-  tryGetUserById(userId?: string): Promise<TwitterUser | undefined>
-
-  /** Attempts to retrieve a tweet from the cache */
-  tryGetTweetById(tweetId?: string): Promise<Tweet | undefined>
 }
 
 export type TweetMentionFetchResult = {

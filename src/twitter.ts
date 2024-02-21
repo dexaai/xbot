@@ -117,7 +117,7 @@ const findTweetsByIdThrottle = pThrottle(
 
 export const createTweet = createTweetThrottle(createTweetImpl)
 export const usersIdMentionsThrottleWorkaround = usersIdMentionsThrottle(
-  () => {}
+  async () => {}
 )
 export const findTweetById = findTweetByIdThrottle(findTweetByIdImpl)
 export const findTweetsById = findTweetsByIdThrottle(findTweetsByIdImpl)

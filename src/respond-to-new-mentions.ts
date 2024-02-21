@@ -110,8 +110,11 @@ export async function respondToNewMentions(ctx: types.Context) {
           // }
 
           const prevPartialMessage = await db.messages.get(promptTweetId)
+          const hasPrevMessageResponse = !!prevPartialMessage?.response
+          const bypassMessageResponseGeneration =
+            hasPrevMessageResponse && !ctx.forceReply
 
-          if (prevPartialMessage?.response) {
+          if (hasPrevMessageResponse) {
             message = {
               ...prevPartialMessage,
               ...message
@@ -121,7 +124,9 @@ export async function respondToNewMentions(ctx: types.Context) {
               ...getDebugMention(mention),
               ...pick(message as any, 'response', 'error')
             })
-          } else {
+          }
+
+          if (!bypassMessageResponseGeneration) {
             console.log('processing', getDebugMention(mention))
 
             // TODO: Re-add moderation support

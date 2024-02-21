@@ -38,32 +38,6 @@ export async function getTweetMentionsBatch(
     /** Updates the max twitter id processed this batch */
     updateSinceMentionId(tweetId: string) {
       batch.sinceMentionId = maxTwitterId(batch.sinceMentionId, tweetId)
-    },
-
-    /** Attempts to retrieve a twitter user from the cache */
-    async tryGetUserById(userId?: string) {
-      if (!userId) return
-
-      let user = batch.users[userId]
-      if (user) return user
-
-      user = await db.users.get(userId)
-      if (user) batch.users[userId] = user
-
-      return user
-    },
-
-    /** Attempts to retrieve a tweet from the cache */
-    async tryGetTweetById(tweetId?: string) {
-      if (!tweetId) return
-
-      let tweet = batch.tweets[tweetId]
-      if (tweet) return tweet
-
-      tweet = await db.tweets.get(tweetId)
-      if (tweet) return (batch.tweets[tweetId] = tweet)
-
-      return tweet
     }
   }
 
@@ -144,7 +118,7 @@ export async function getTweetMentionsBatch(
       let penalty = 10
 
       const prevMessage = prevMessages[repliedToTweetRef.id]
-      const repliedToTweet = await batch.tryGetTweetById(repliedToTweetRef.id)
+      const repliedToTweet = await db.tryGetTweetById(repliedToTweetRef.id, ctx)
 
       if (repliedToTweet?.author_id === ctx.twitterBotUserId) {
         // continuing the conversation
@@ -180,7 +154,7 @@ export async function getTweetMentionsBatch(
       score += 10000
     }
 
-    const mentionUser = await batch.tryGetUserById(mention.author_id)
+    const mentionUser = await db.tryGetUserById(mention.author_id)
     if (mentionUser) {
       mention.promptUrl = getTweetUrl({
         username: mentionUser.username,
@@ -262,7 +236,7 @@ export async function populateTweetMentionsBatch(
       ctx
     )
 
-    // console.log('debugTweet', JSON.stringify(res, null, 2))
+    console.log('debugTweet', JSON.stringify(res, null, 2))
 
     batch.mentions = batch.mentions.concat(res.data!)
 
@@ -277,6 +251,11 @@ export async function populateTweetMentionsBatch(
         batch.tweets[tweet.id] = tweet
       }
     }
+
+    console.log('tweets', Object.keys(batch.tweets))
+
+    await db.upsertTweets(Object.values(batch.tweets).concat(batch.mentions))
+    await db.upsertTwitterUsers(Object.values(batch.users))
   } else {
     const result = await getTwitterUserIdMentions(
       ctx.twitterBotUserId,
@@ -343,6 +322,8 @@ export async function isValidMention(
   batch: types.PartialTweetMentionBatch,
   ctx: types.Context
 ): Promise<boolean> {
+  console.log('mention', mention)
+
   if (!mention) {
     return false
   }
@@ -359,7 +340,7 @@ export async function isValidMention(
     (t) => t.type === 'replied_to'
   )
   const repliedToTweet = repliedToTweetRef
-    ? await batch.tryGetTweetById(repliedToTweetRef.id)
+    ? await db.tryGetTweetById(repliedToTweetRef.id, ctx)
     : null
   const isReply = !!repliedToTweetRef
   let repliedToMention = repliedToTweet

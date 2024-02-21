@@ -2,18 +2,26 @@ import KeyvRedis from '@keyv/redis'
 import { type Redis } from 'ioredis'
 import Keyv from 'keyv'
 import pMap from 'p-map'
+import QuickLRU from 'quick-lru'
 
 import * as config from './config.js'
+import * as twitter from './twitter.js'
 import type * as types from './types.js'
-import { maxTwitterId, tweetIdComparator } from './twitter-utils.js'
+import {
+  handleKnownTwitterErrors,
+  maxTwitterId,
+  tweetIdComparator
+} from './twitter-utils.js'
 
 const DEFAULT_CONCURRENCY = 16
 
 // Used for caching twitter tweet objects
 let tweets: Keyv<types.Tweet>
+const tweetsCache = new QuickLRU<string, types.Tweet>({ maxSize: 10000 })
 
 // Used for caching twitter user objects
 let users: Keyv<types.TwitterUser>
+const usersCache = new QuickLRU<string, types.TwitterUser>({ maxSize: 10000 })
 
 // Used for storing bot response messages
 let messages: Keyv<types.Message>
@@ -71,7 +79,14 @@ export async function upsertTweets(
   t: types.Tweet[],
   { concurrency = DEFAULT_CONCURRENCY }: { concurrency?: number } = {}
 ) {
-  return pMap(t, (tweet) => tweets.set(tweet.id, tweet), { concurrency })
+  return pMap(
+    t,
+    (tweet) => {
+      tweetsCache.set(tweet.id, tweet)
+      return tweets.set(tweet.id, tweet)
+    },
+    { concurrency }
+  )
 }
 
 export async function upsertTweetMentionsForUserId(
@@ -80,16 +95,30 @@ export async function upsertTweetMentionsForUserId(
   { concurrency = DEFAULT_CONCURRENCY }: { concurrency?: number } = {}
 ) {
   const mentionsDb = getTweetMentionDbForUserId(userId)
-  return pMap(m, (tweet) => mentionsDb.set(tweet.id, tweet), {
-    concurrency
-  })
+  return pMap(
+    m,
+    (tweet) => {
+      tweetsCache.set(tweet.id, tweet)
+      return mentionsDb.set(tweet.id, tweet)
+    },
+    {
+      concurrency
+    }
+  )
 }
 
 export async function upsertTwitterUsers(
   u: types.TwitterUser[],
   { concurrency = DEFAULT_CONCURRENCY }: { concurrency?: number } = {}
 ) {
-  return pMap(u, (user) => users.set(user.id, user), { concurrency })
+  return pMap(
+    u,
+    (user) => {
+      usersCache.set(user.id, user)
+      return users.set(user.id, user)
+    },
+    { concurrency }
+  )
 }
 
 export async function upsertMessages(
@@ -132,8 +161,8 @@ export async function getCachedUserMentionsForUserSince({
 
   const mentionDb = getTweetMentionDbForUserId(userId)
 
-  // TODO: do this the right way using some redis magic instead of naively
-  // iterating across all keys
+  // TODO: Do this the right way using some redis magic instead of naively
+  // iterating across all keys. This is going to get very slow over time.
   for await (const tweet of mentionDb.iterator()) {
     if (tweetIdComparator(tweet, originalSinceMentionId) > 0) {
       result.mentions.push(tweet)
@@ -142,6 +171,77 @@ export async function getCachedUserMentionsForUserSince({
   }
 
   return result
+}
+
+/** Attempts to retrieve a twitter user from the cache */
+export async function tryGetUserById(
+  userId?: string
+): Promise<types.TwitterUser | undefined> {
+  if (!userId) return
+
+  let user = usersCache.get(userId)
+  if (user) return user
+
+  user = await users.get(userId)
+  if (user) {
+    usersCache.set(userId, user)
+    return user
+  }
+
+  return undefined
+}
+
+/** Attempts to retrieve a tweet from the cache */
+export async function tryGetTweetById(
+  tweetId: string,
+  ctx: types.Context,
+  {
+    // If true, will force a fetch from the twitter API
+    force = false
+  }: {
+    force?: boolean
+  } = {}
+): Promise<types.Tweet | undefined> {
+  if (!tweetId) return
+
+  let tweet = tweetsCache.get(tweetId)
+  if (tweet) return tweet
+
+  tweet = await tweets.get(tweetId)
+  if (tweet) {
+    tweetsCache.set(tweetId, tweet)
+    return tweet
+  }
+
+  if (force) {
+    try {
+      tweet = await twitter.findTweetById(tweetId, ctx)
+
+      if (tweet) {
+        tweetsCache.set(tweetId, tweet)
+        await tweets.set(tweetId, tweet)
+        return tweet
+      }
+    } catch (err: any) {
+      try {
+        handleKnownTwitterErrors(err, { label: `fetching tweet ${tweetId}` })
+
+        // Silently ignore
+        console.warn(
+          'ignoring error',
+          [err.status, err.type, err.toString()].filter(Boolean).join(' ')
+        )
+      } catch (err2: any) {
+        // Silently ignore
+        console.warn(
+          'ignoring error',
+          [err.status, err.type, err.toString()].filter(Boolean).join(' ')
+        )
+      }
+    }
+  }
+
+  return tweet
 }
 
 export { tweets, users, messages, state }

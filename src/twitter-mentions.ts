@@ -1,5 +1,3 @@
-import delay from 'delay'
-
 import * as db from './db.js'
 import * as twitter from './twitter.js'
 import type * as types from './types.js'
@@ -111,6 +109,7 @@ export async function getTwitterUserIdMentions(
             result.tweets[tweet.id] = tweet
           }
         }
+
         await twitter.usersIdMentionsThrottleWorkaround()
       }
 
@@ -138,9 +137,6 @@ export async function getTwitterUserIdMentions(
         )
       }
     }
-
-    console.log('pausing for twitter...')
-    await delay(5000)
   } while (true)
 
   await db.upsertTweets(Object.values(result.tweets))

@@ -15,17 +15,25 @@ export async function generateMessageResponseUsingOpenAI(
     }
   })
 
-  // TODO: more intelligent compression / trucation of the input thread if it's
+  // TODO: more intelligent compression / truncation of the input thread if it's
   // too long
-  const messageThread = (await resolveMessageThread(message))
+  const messageThread = (await resolveMessageThread(message, ctx))
     .reverse()
     .slice(0, MAX_CONTEXT_MESSAGES)
     .reverse()
 
+  console.log('messageThread', messageThread)
+
   const response = await chatModel.run({
     messages: [
       Msg.system(
-        `You are a friendly, helpful twitter bot with the handle ${ctx.twitterBotHandle}. You answer concisely and creatively to tweets on twitter. You are friendly and enthusiastic. You may use emoji but only very sparingly and never for lists.\n\nMake sure to be **as concise as possible** since twitter has character limits.\n\nDO NOT use hashtags.`
+        `You are a friendly, helpful twitter bot with the handle ${ctx.twitterBotHandle}.
+You answer concisely and creatively to tweets on twitter.
+You are very concise and informal.
+You can sometimes be a bit sassy and sarcastic, but not rude.
+Don't use emoji very often.
+Make sure to be **as concise as possible** since twitter has character limits.
+DO NOT use hashtags.`
       ),
       ...messageThread
     ],
