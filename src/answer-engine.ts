@@ -1,8 +1,6 @@
-import { ChatModel, Msg, type Prompt } from '@dexaai/dexter'
-
 import * as config from '../src/config.js'
-import * as db from '../src/db.js'
 import type * as types from './types.js'
+import { generateMessageResponseUsingOpenAI } from './answer-engines/openai.js'
 import { BotError } from './bot-error.js'
 import { stripAtMentions } from './utils.js'
 
@@ -39,6 +37,24 @@ export async function generateMessageResponse(
   }
 }
 
+export function validateAnswerEngine(answerEngine: string) {
+  switch (answerEngine) {
+    case 'openai':
+      if (!process.env.OPENAI_API_KEY) {
+        throw new Error(
+          'OPENAI_API_KEY is required for the "openai" answer engine'
+        )
+      }
+      break
+
+    case 'dexa':
+      throw new Error('TODO: Dexa answer engine not yet implemented')
+
+    default:
+      throw new Error(`Unknown answer engine: ${answerEngine}`)
+  }
+}
+
 function validateMessageResponse(message: types.Message, ctx: types.Context) {
   message.response = message.response?.trim()
   if (!message.response) {
@@ -50,63 +66,4 @@ function validateMessageResponse(message: types.Message, ctx: types.Context) {
       }
     )
   }
-}
-
-export async function generateMessageResponseUsingOpenAI(
-  message: types.Message,
-  ctx: types.Context
-) {
-  const chatModel = new ChatModel({
-    params: {
-      model: 'gpt-4-0125-preview'
-    }
-  })
-
-  const threadMessages = await resolveMessageThread(message, ctx)
-
-  // TODO: handle truncation / overflow
-  const response = await chatModel.run({
-    messages: [
-      Msg.system(
-        `You are a friendly, helpful twitter bot with the handle ${ctx.twitterBotHandle}. You answer concisely and creatively to tweets on twitter. You are eager to please, friendly, enthusiastic, and very passionate. You like to use emoji, but not for lists. If you are generating a list, do not have too many items. Keep the number of items short.\n\nMake sure to be **as concise as possible** since twitter has character limits.`
-      ),
-      ...threadMessages
-    ]
-  })
-
-  message.response = response.message.content!
-}
-
-/**
- * Resolves all of the bot messages in a twitter thread, including any previous
- * parent bot mentions and responses. Returns the thread in an OpenAI chat-
- * completions format.
- */
-async function resolveMessageThread(
-  message: types.Message,
-  ctx: types.Context
-): Promise<Prompt.Msg[]> {
-  let messages: types.Message[] = []
-
-  do {
-    messages.push(message)
-
-    if (message.parentMessageId) {
-      const parentMessage = await db.messages.get(message.parentMessageId)
-      if (parentMessage) {
-        message = parentMessage
-        continue
-      }
-    }
-  } while (false)
-
-  messages.reverse()
-  messages = messages.filter((m) => !m.error)
-
-  return messages.flatMap((message) =>
-    [
-      Msg.user(message.prompt),
-      message.response ? Msg.assistant(message.response!) : null
-    ].filter(Boolean)
-  )
 }

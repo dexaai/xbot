@@ -3,6 +3,7 @@ import delay from 'delay'
 import * as config from '../src/config.js'
 import * as db from '../src/db.js'
 import type * as types from '../src/types.js'
+import { validateAnswerEngine } from '../src/answer-engine.js'
 import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
 import { getTwitterClient } from '../src/twitter-client.js'
 import { maxTwitterId } from '../src/twitter-utils.js'
@@ -24,6 +25,7 @@ async function main() {
   )
   const answerEngine: types.AnswerEngineType =
     (process.env.ANSWER_ENGINE as types.AnswerEngineType) ?? 'openai'
+  validateAnswerEngine(answerEngine)
 
   let twitterClient = await getTwitterClient()
   const { data: user } = await twitterClient.users.findMyUser()
