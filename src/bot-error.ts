@@ -14,15 +14,15 @@ export class BotError extends Error {
   constructor(
     message: string,
     {
-      type = 'unknown',
+      type,
       isFinal = false,
       status,
       ...opts
     }: ErrorOptions & {
-      type?: BotErrorType
+      type: BotErrorType
       isFinal?: boolean
       status?: number
-    } = {}
+    }
   ) {
     super(message, opts)
 

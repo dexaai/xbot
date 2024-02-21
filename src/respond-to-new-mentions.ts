@@ -14,8 +14,8 @@ import {
 import { assert, getDebugMention, pick } from './utils.js'
 
 /**
- * Fetches new unanswered mentions, generates response messages to each of them
- * via the answer engine, and tweets the responses.
+ * Fetches a batch of unanswered mentions, generates response messages to each
+ * of them via the answer engine, and tweets the responses.
  */
 export async function respondToNewMentions(ctx: types.Context) {
   console.log('respond to new mentions since', ctx.sinceMentionId || 'forever')
@@ -101,21 +101,24 @@ export async function respondToNewMentions(ctx: types.Context) {
             )
 
             if (!promptTweet?.data) {
-              const error = new BotError(
-                `Tweet not found (possibly deleted): ${promptTweetId}`
+              throw new BotError(
+                `Tweet not found (possibly deleted): ${promptTweetId}`,
+                {
+                  type: 'twitter:forbidden',
+                  isFinal: true
+                }
               )
-              error.type = 'twitter:forbidden'
-              error.isFinal = true
-              throw error
             }
           } catch (err: any) {
             const reason = err.toString().toLowerCase()
+
             if (reason.includes('fetcherror') || reason.includes('enotfound')) {
-              throw new BotError(err.toString(), { type: 'network' })
+              throw new BotError(err.toString(), { type: 'network', case: err })
             } else {
               throw new BotError(err.toString(), {
                 type: 'twitter:forbidden',
-                isFinal: true
+                isFinal: true,
+                cause: err
               })
             }
           }
