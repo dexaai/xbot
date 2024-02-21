@@ -26,8 +26,6 @@ export async function getTwitterUserIdMentions(
     sinceMentionId: originalSinceMentionId
   }
 
-  let cachedMaxMentionId: string | undefined = '0'
-
   if (!ctx.noCache) {
     const cachedResult = await db.getCachedUserMentionsForUserSince({
       userId,
@@ -49,8 +47,6 @@ export async function getTwitterUserIdMentions(
         result.sinceMentionId,
         cachedResult.sinceMentionId
       )
-
-      cachedMaxMentionId = result.sinceMentionId
 
       console.log('twitter.tweets.userIdMentions CACHE HIT', {
         originalSinceMentionId,

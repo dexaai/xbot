@@ -269,11 +269,15 @@ export async function populateTweetMentionsBatch(
  *
  * Strips usernames at the front of a tweet and URLs (like for embedding images).
  */
-export function getPrompt(text: string = '', ctx: types.Context): string {
+export function getPrompt(text: string = '', ctx?: types.Context): string {
+  if (ctx) {
+    text = text
+      .replace(ctx.twitterBotHandleL, '')
+      .replace(ctx.twitterBotHandle, '')
+  }
+
   // strip usernames
   let prompt = text
-    .replace(ctx.twitterBotHandleL, '')
-    .replace(ctx.twitterBotHandle, '')
     .trim()
     .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
     .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
