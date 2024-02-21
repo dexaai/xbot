@@ -129,5 +129,8 @@ export async function getTwitterUserIdMentions(
     await delay(2000)
   } while (true)
 
+  await db.upsertTweets(Object.values(result.tweets))
+  await db.upsertTwitterUsers(Object.values(result.users))
+
   return result
 }

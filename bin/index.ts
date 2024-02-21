@@ -110,12 +110,6 @@ async function main() {
         batch.messages
       )
 
-      await db.upsertTweets(Object.values(batch.tweets))
-      await db.upsertTwitterUsers(Object.values(batch.users))
-
-      // This shouldn't be necessary, since we upsert them one-by-one as we go
-      // await db.upsertMessages(batch.messages)
-
       if (debugTweetIds?.length) {
         break
       }
