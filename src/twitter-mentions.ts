@@ -32,7 +32,7 @@ export async function getTwitterUserIdMentions(
       sinceMentionId: originalSinceMentionId || '0'
     })
 
-    if (cachedResult?.mentions.length) {
+    if (cachedResult?.mentions.length > 0) {
       result.mentions = result.mentions.concat(cachedResult.mentions)
       result.users = {
         ...cachedResult.users,
@@ -48,20 +48,20 @@ export async function getTwitterUserIdMentions(
         cachedResult.sinceMentionId
       )
 
-      console.log('twitter.tweets.userIdMentions CACHE HIT', {
+      console.log('tweets.userIdMentions CACHE HIT', {
         originalSinceMentionId,
         sinceMentionId: result.sinceMentionId,
         numMentions: result.mentions.length
       })
     } else {
-      console.log('twitter.tweets.userIdMentions CACHE MISS', {
+      console.log('tweets.userIdMentions CACHE MISS', {
         originalSinceMentionId
       })
     }
   }
 
   do {
-    console.log('twitterClient.tweets.usersIdMentions', {
+    console.log('tweets.usersIdMentions', {
       sinceMentionId: result.sinceMentionId
     })
 
@@ -73,6 +73,7 @@ export async function getTwitterUserIdMentions(
 
       let numMentionsInQuery = 0
       let numPagesInQuery = 0
+
       for await (const page of mentionsQuery) {
         numPagesInQuery++
 
@@ -110,7 +111,10 @@ export async function getTwitterUserIdMentions(
         break
       }
     } catch (err: any) {
-      console.error('twitter API error fetching user mentions', err)
+      console.error(
+        'twitter error fetching user mentions:',
+        err.status || err.error?.detail || err.toString()
+      )
 
       if (result.mentions.length) {
         break

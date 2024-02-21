@@ -2,7 +2,6 @@ import pThrottle from 'p-throttle'
 import type { Simplify } from 'type-fest'
 
 import type * as types from './types.js'
-import { BotError } from './bot-error.js'
 import { handleKnownTwitterErrors } from './twitter-utils.js'
 import { assert } from './utils.js'
 
