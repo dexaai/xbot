@@ -7,7 +7,7 @@
 
 # X Bot <!-- omit from toc -->
 
-> Twitter / X bot which responds to user mentions with AI-generated answers.
+> Twitter / X bot for responding to user mentions with AI-generated answers.
 
 ## Configuring the bot
 
@@ -32,8 +32,10 @@ tsx bin/index.ts
 ## TODO
 
 - [Dexa](https://dexa.ai) answer engine
+- support thread context from tweets above the earliest bot mention
+- support URLs and other entity metadata (user profile info) so the answer engine has more info to work off of
 - re-add support for moderations
-- re-add support for generating images to support longer responses
+- re-add support for generating images to support longer responses w/ the openai answer engine
 
 ## License
 
