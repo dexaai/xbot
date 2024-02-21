@@ -19,8 +19,6 @@ const defaultRequiredTwitterOAuthScopes = new Set<string>([
   'tweet.write'
 ])
 
-// NOTE: these should be global to ensure that they persists across serverless
-// function invocations (if deployed in a serverless setting)
 let _nango: Nango | null = null
 
 function getNango(): Nango {

@@ -6,7 +6,7 @@ import type * as types from './types.js'
 /**
  * Resolves all of the bot-related messages from a twitter thread, starting
  * from a leaf tweet, and traversing its parents – including any previous bot
- * mentions and responses. Returns the thread in an format compatible with the
+ * mentions and responses. Returns the thread in a format compatible with the
  * OpenAI chat-completions API.
  */
 export async function resolveMessageThread(
@@ -31,7 +31,7 @@ export async function resolveMessageThread(
 
   // Filter any messages which have errors, unless it's the latest message we're
   // currently trying to resolve (which may have previously encountered an error
-  // that we're now trying to resolve)
+  // that we're currently retrying to process)
   messages = messages.filter((m) => !m.error || m === message)
 
   return messages.flatMap((message) =>
