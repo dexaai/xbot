@@ -2,7 +2,6 @@ import { Nango } from '@nangohq/node'
 import { Client as TwitterClient, auth } from 'twitter-api-sdk'
 
 import * as config from './config.js'
-import { assert } from './utils.js'
 
 // The Twitter+Nango client auth connection key
 const nangoTwitterProviderConfigKey = 'twitter-v2'
@@ -41,7 +40,7 @@ async function getTwitterAuth({
     config.nangoConnectionId
   )
 
-  console.log(connection)
+  console.debug('nango twitter connection', connection)
   // connection.credentials.raw
   // {
   //   token_type: 'bearer',
@@ -81,21 +80,15 @@ async function getTwitterAuth({
     })
   }
 
-  await refreshTwitterAuth()
   return _twitterAuth
 }
 
-export async function getTwitterClient(): Promise<TwitterClient> {
-  const twitterAuth = await getTwitterAuth()
+export async function getTwitterClient({
+  scopes = defaultRequiredTwitterOAuthScopes
+}: { scopes?: Set<string> } = {}): Promise<TwitterClient> {
+  // NOTE: Nango handles refreshing the oauth access token for us
+  const twitterAuth = await getTwitterAuth({ scopes })
 
   // Twitter API v2 using OAuth 2.0
   return new TwitterClient(twitterAuth)
-}
-
-export async function refreshTwitterAuth() {
-  assert(_twitterAuth)
-
-  const { token } = await _twitterAuth!.refreshAccessToken()
-  console.log('refreshed token', token)
-  return token
 }

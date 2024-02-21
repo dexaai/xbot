@@ -4,13 +4,9 @@ import * as db from '../src/db.js'
 import * as types from './types.js'
 import { generateMessageResponse } from './answer-engine.js'
 import { BotError } from './bot-error.js'
+import { createTweet } from './create-tweet.js'
 import { getTweetMentionsBatch } from './mentions.js'
-import {
-  createTweet,
-  getTweetUrl,
-  maxTwitterId,
-  minTwitterId
-} from './twitter-utils.js'
+import { getTweetUrl, maxTwitterId, minTwitterId } from './twitter-utils.js'
 import { assert, getDebugMention, pick } from './utils.js'
 
 /**

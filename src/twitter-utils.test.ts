@@ -27,6 +27,8 @@ test('minTwitterId', (t) => {
 })
 
 test('tweetIdComparator', (t) => {
+  t.is(tweetIdComparator('100', '0'), 1)
+  t.is(tweetIdComparator('0', '100009898'), -1)
   t.is(tweetIdComparator('100', '200'), -1)
   t.is(tweetIdComparator('3000', '999'), 1)
   t.is(tweetIdComparator('3001', '3001'), 0)

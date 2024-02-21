@@ -5,6 +5,7 @@ import * as db from '../src/db.js'
 import type * as types from '../src/types.js'
 import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
 import { getTwitterClient, refreshTwitterAuth } from '../src/twitter-client.js'
+import { maxTwitterId } from '../src/twitter-utils.js'
 
 async function main() {
   const debug = !!process.env.DEBUG
@@ -22,11 +23,15 @@ async function main() {
     10
   )
 
-  const twitterClient = await getTwitterClient()
+  let twitterClient = await getTwitterClient()
   const { data: user } = await twitterClient.users.findMyUser()
 
   if (!user?.id) {
     throw new Error('twitter error unable to fetch current user')
+  }
+
+  async function refreshTwitterAuth() {
+    twitterClient = await getTwitterClient()
   }
 
   console.log('automating user', user.username)
@@ -35,14 +40,14 @@ async function main() {
     ? config.defaultMaxNumMentionsToProcessPerBatch
     : overrideMaxNumMentionsToProcess
 
-  let sinceMentionId =
+  let initialSinceMentionId =
     (resolveAllMentions
       ? undefined
       : overrideSinceMentionId || (await db.getSinceMentionId())) ?? '0'
 
   const ctx: types.Context = {
     // Dynamic a state which gets persisted to the db
-    sinceMentionId,
+    sinceMentionId: initialSinceMentionId,
 
     // Services
     twitterClient,
@@ -61,46 +66,50 @@ async function main() {
     twitterBotUserId: user.id
   }
 
-  let messages: types.Message[] = []
-  let loopNum = 0
+  const batches: types.TweetMentionBatch[] = []
 
   do {
     try {
       console.log()
       const batch = await respondToNewMentions(ctx)
+      batches.push(batch)
 
-      if (session.sinceMentionId && !debugTweet) {
-        sinceMentionId = maxTwitterId(sinceMentionId, session.sinceMentionId)
+      if (batch.sinceMentionId && !ctx.debugTweetIds?.length) {
+        ctx.sinceMentionId = maxTwitterId(
+          ctx.sinceMentionId,
+          batch.sinceMentionId
+        )
 
-        if (!defaultSinceMentionId && !resolveAllMentions) {
+        if (!overrideMaxNumMentionsToProcess && !resolveAllMentions) {
           // Make sure it's in sync in case other processes are writing to the store
-          // as well. Note: this still has a classic potential as a race condition,
-          // but it's not enough to worry about for our use case.
-          const recentSinceMentionId = config.get('sinceMentionId')
-          sinceMentionId = maxTwitterId(sinceMentionId, recentSinceMentionId)
+          // as well. Note: this still has the potential for a race condition, but
+          // it's not enough to worry about for our use case.
+          const recentSinceMentionId = await db.getSinceMentionId()
+          ctx.sinceMentionId = maxTwitterId(
+            ctx.sinceMentionId,
+            recentSinceMentionId
+          )
 
-          if (sinceMentionId && !dryRun) {
-            config.set('sinceMentionId', sinceMentionId)
+          if (ctx.sinceMentionId && !dryRun) {
+            await db.setSinceMentionId(ctx.sinceMentionId)
           }
         }
       }
 
-      if (earlyExit) {
+      if (ctx.earlyExit) {
         break
       }
 
       console.log(
-        `processed ${session.messages?.length ?? 0} messages`,
-        session.messages
+        `processed ${batch.messages?.length ?? 0} messages`,
+        batch.messages
       )
-      if (session.messages?.length) {
-        messages = messages.concat(session.messages)
-      }
 
-      // TODO: make this incremental
-      await db.upsertTweets(session.tweets)
-      await db.upsertTwitterUsers(session.users)
-      // TODO: upsert mentions and messages
+      await db.upsertTweets(Object.values(batch.tweets))
+      await db.upsertTwitterUsers(Object.values(batch.users))
+
+      // This shouldn't be necessary, since we upsert them one-by-one as we go
+      // await db.upsertMessages(batch.messages)
 
       if (debugTweetIds?.length) {
         break
@@ -111,8 +120,6 @@ async function main() {
       await refreshTwitterAuth()
     }
   } while (true)
-
-  return messages
 }
 
 main()

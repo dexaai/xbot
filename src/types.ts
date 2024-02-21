@@ -113,7 +113,7 @@ export type TweetMentionBatch = {
   mentions: TweetMention[]
   numMentionsPostponed: number
 
-  users: Record<string, Partial<TwitterUser>>
+  users: Record<string, TwitterUser>
   tweets: Record<string, Tweet>
 
   minSinceMentionId?: string
@@ -133,11 +133,11 @@ export type PartialTweetMentionBatch = Omit<TweetMentionBatch, 'mentions'> & {
   mentions: PartialTweetMention[]
 }
 
-export type TweetMentionResult = {
-  mentions: TweetMention[]
-  users: Record<string, Partial<TwitterUser>>
-  tweets: Record<string, TweetMention>
-  sinceMentionId: string
+export type TweetMentionFetchResult = {
+  mentions: Tweet[]
+  users: Record<string, TwitterUser>
+  tweets: Record<string, Tweet>
+  sinceMentionId?: string
 }
 
 export type IDGeneratorFunction = () => string

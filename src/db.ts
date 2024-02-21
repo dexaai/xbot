@@ -5,6 +5,9 @@ import pMap from 'p-map'
 
 import * as config from './config.js'
 import type * as types from './types.js'
+import { maxTwitterId, tweetIdComparator } from './twitter-utils.js'
+
+const DEFAULT_CONCURRENCY = 16
 
 // Used for caching twitter tweet objects
 let tweets: Keyv<types.Tweet>
@@ -21,6 +24,8 @@ let state: Keyv
 // NOTE: this should be a global to ensure it persists across serverless
 // function invocations (if deployed in a serverless setting)
 let redis: Redis
+
+const userIdToMentionDbMap: Record<string, Keyv<types.Tweet>> = {}
 
 if (config.redisUrl) {
   const store = new KeyvRedis(config.redisUrl)
@@ -51,23 +56,45 @@ export async function setSinceMentionId(sinceMentionId: string | undefined) {
   return state.set('sinceMentionId', sinceMentionId)
 }
 
+export function getTweetMentionDbForUserId(userId: string) {
+  if (!userIdToMentionDbMap[userId]) {
+    userIdToMentionDbMap[userId] = new Keyv({
+      store: redis ? new KeyvRedis(redis) : undefined,
+      namespace: `${config.redisNamespaceMentionsPrefix}:${userId}`
+    })
+  }
+
+  return userIdToMentionDbMap[userId]!
+}
+
 export async function upsertTweets(
   t: types.Tweet[],
-  { concurrency = 16 }: { concurrency?: number } = {}
+  { concurrency = DEFAULT_CONCURRENCY }: { concurrency?: number } = {}
 ) {
   return pMap(t, (tweet) => tweets.set(tweet.id, tweet), { concurrency })
 }
 
+export async function upsertTweetMentionsForUserId(
+  userId: string,
+  m: types.Tweet[],
+  { concurrency = DEFAULT_CONCURRENCY }: { concurrency?: number } = {}
+) {
+  const mentionsDb = getTweetMentionDbForUserId(userId)
+  return pMap(m, (tweet) => mentionsDb.set(tweet.id, tweet), {
+    concurrency
+  })
+}
+
 export async function upsertTwitterUsers(
   u: types.TwitterUser[],
-  { concurrency = 16 }: { concurrency?: number } = {}
+  { concurrency = DEFAULT_CONCURRENCY }: { concurrency?: number } = {}
 ) {
   return pMap(u, (user) => users.set(user.id, user), { concurrency })
 }
 
 export async function upsertMessages(
   m: types.Message[],
-  { concurrency = 16 }: { concurrency?: number } = {}
+  { concurrency = DEFAULT_CONCURRENCY }: { concurrency?: number } = {}
 ) {
   return pMap(m, (message) => messages.set(message.id, message), {
     concurrency
@@ -83,6 +110,35 @@ export async function upsertMessage(message: types.Message) {
       id: message.responseTweetId!,
       role: 'assistant'
     })
+  }
+
+  return result
+}
+
+export async function getCachedUserMentionsForUserSince({
+  userId,
+  sinceMentionId
+}: {
+  userId: string
+  sinceMentionId: string
+}): Promise<types.TweetMentionFetchResult> {
+  const originalSinceMentionId = sinceMentionId
+  const result: types.TweetMentionFetchResult = {
+    mentions: [],
+    users: {},
+    tweets: {},
+    sinceMentionId
+  }
+
+  const mentionDb = getTweetMentionDbForUserId(userId)
+
+  // TODO: do this the right way using some redis magic instead of naively
+  // iterating across all keys
+  for await (const tweet of mentionDb.iterator()) {
+    if (tweetIdComparator(tweet, originalSinceMentionId) > 0) {
+      result.mentions.push(tweet)
+      result.sinceMentionId = maxTwitterId(result.sinceMentionId, tweet.id)
+    }
   }
 
   return result

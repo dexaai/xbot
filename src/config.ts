@@ -42,4 +42,6 @@ export const redisNamespaceTweets = process.env.REDIS_NAMESPACE_TWEETS ?? 'xt'
 export const redisNamespaceUsers = process.env.REDIS_NAMESPACE_USERS ?? 'xu'
 export const redisNamespaceMessages =
   process.env.REDIS_NAMESPACE_MESSAGES ?? 'xm'
+export const redisNamespaceMentionsPrefix =
+  process.env.REDIS_NAMESPACE_MENTIONS_PREFIX ?? 'xmn'
 export const redisNamespaceState = process.env.REDIS_NAMESPACE_STATE ?? 'xs'
