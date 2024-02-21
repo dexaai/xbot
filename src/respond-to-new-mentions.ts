@@ -113,7 +113,10 @@ export async function respondToNewMentions(ctx: types.Context) {
             const reason = err.toString().toLowerCase()
 
             if (reason.includes('fetcherror') || reason.includes('enotfound')) {
-              throw new BotError(err.toString(), { type: 'network', case: err })
+              throw new BotError(err.toString(), {
+                type: 'network',
+                cause: err
+              })
             } else {
               throw new BotError(err.toString(), {
                 type: 'twitter:forbidden',
