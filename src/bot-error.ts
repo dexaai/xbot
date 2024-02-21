@@ -18,7 +18,7 @@ export class BotError extends Error {
       type = 'unknown',
       isFinal = false,
       status,
-      ...opts,
+      ...opts
     }: ErrorOptions & {
       type?: BotErrorType
       isFinal?: boolean
