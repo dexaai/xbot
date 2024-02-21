@@ -5,7 +5,6 @@ export type BotErrorType =
   | 'twitter:unknown'
   | 'network'
   | 'moderation'
-  | 'unknown'
 
 export class BotError extends Error {
   type: BotErrorType

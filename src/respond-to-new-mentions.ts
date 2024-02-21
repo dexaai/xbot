@@ -258,9 +258,6 @@ export async function respondToNewMentions(ctx: types.Context) {
                   err2.toString()
                 )
               }
-            } else if (err.type === 'unknown') {
-              // Unknown application error; bail out
-              throw err
             }
 
             return message
