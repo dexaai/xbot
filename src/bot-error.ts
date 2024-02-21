@@ -3,6 +3,7 @@ export type BotErrorType =
   | 'twitter:auth'
   | 'twitter:rate-limit'
   | 'twitter:unknown'
+  | 'answer-engine:invalid-response'
   | 'network'
   | 'moderation'
 

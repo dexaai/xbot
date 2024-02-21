@@ -1,7 +1,7 @@
 import pThrottle from 'p-throttle'
 import type { Simplify } from 'type-fest'
 
-import * as types from './types.js'
+import type * as types from './types.js'
 import { BotError } from './bot-error.js'
 import { assert } from './utils.js'
 

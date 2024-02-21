@@ -7,6 +7,7 @@ export type { TwitterClient }
 
 export type MessageType = 'tweet' | 'dm'
 export type Role = 'user' | 'assistant'
+export type AnswerEngineType = 'openai' | 'dexa'
 
 export type Context = {
   // Dynamic a state which gets persisted to the db
@@ -27,6 +28,7 @@ export type Context = {
   readonly twitterBotHandle: string
   readonly twitterBotHandleL: string
   readonly twitterBotUserId: string
+  readonly answerEngine: AnswerEngineType
 }
 
 export interface Message {
@@ -57,6 +59,7 @@ export interface Message {
   responseRetweets?: number
   responseReplies?: number
   responseDate?: string
+  readonly answerEngine: AnswerEngineType
 
   // If this message is in response to a tweet which responded to a previous
   // message, then keep track of the parent message id so we can reconstruct

@@ -13,6 +13,10 @@ export const nangoCallbackUrl =
 export const twitterClientId = process.env.TWITTER_CLIENT_ID!
 export const twitterClientSecret = process.env.TWITTER_CLIENT_SECRET!
 
+// Twitter really doesn't like bots that tag other users in automatd replies.
+// @ChatGPTBot has been suspended a few times for this in previous verisons.
+export const disallowMentionsInBotReplies = true
+
 // tweets that try to break the bot...
 export const tweetIgnoreList = new Set<string>([
   // empty for now

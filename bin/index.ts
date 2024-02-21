@@ -22,6 +22,8 @@ async function main() {
     process.env.MAX_NUM_MENTIONS_TO_PROCESS ?? '',
     10
   )
+  const answerEngine: types.AnswerEngineType =
+    (process.env.ANSWER_ENGINE as types.AnswerEngineType) ?? 'openai'
 
   let twitterClient = await getTwitterClient()
   const { data: user } = await twitterClient.users.findMyUser()
@@ -63,7 +65,8 @@ async function main() {
     debugTweetIds,
     twitterBotHandle: `@${user.username}`,
     twitterBotHandleL: `@${user.username.toLowerCase()}`,
-    twitterBotUserId: user.id
+    twitterBotUserId: user.id,
+    answerEngine
   }
 
   const batches: types.TweetMentionBatch[] = []

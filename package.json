@@ -22,6 +22,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@dexaai/dexter": "^1.2.8",
     "@keyv/redis": "^2.8.4",
     "@nangohq/node": "^0.37.24",
     "delay": "^6.0.0",
@@ -29,7 +30,6 @@
     "ioredis": "^5.3.2",
     "keyv": "^4.5.4",
     "nanoid": "^5.0.6",
-    "openai-fetch": "^2.0.1",
     "p-map": "^7.0.1",
     "p-throttle": "^6.1.0",
     "sorted-btree": "^1.8.1",

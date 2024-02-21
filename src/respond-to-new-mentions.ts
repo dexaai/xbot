@@ -1,7 +1,7 @@
 import pMap from 'p-map'
 
 import * as db from '../src/db.js'
-import * as types from './types.js'
+import type * as types from './types.js'
 import { generateMessageResponse } from './answer-engine.js'
 import { BotError } from './bot-error.js'
 import { createTweet } from './create-tweet.js'
@@ -51,6 +51,7 @@ export async function respondToNewMentions(ctx: types.Context) {
           id: promptTweetId,
           type: 'tweet',
           role: 'user',
+          answerEngine: ctx.answerEngine,
           promptTweetId,
           promptUserId,
           promptUsername,
