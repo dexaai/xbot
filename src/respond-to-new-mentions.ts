@@ -43,6 +43,10 @@ export async function respondToNewMentions(ctx: types.Context) {
         const promptUser = batch.users[mention.author_id!]
         const promptUsername = promptUser?.username
 
+        assert(promptTweetId, 'missing promptTweetId')
+        assert(promptUser, 'missing promptUser')
+        assert(promptUsername, 'missing promptUsername')
+
         let message: types.Message = {
           id: promptTweetId,
           type: 'tweet',
@@ -68,6 +72,12 @@ export async function respondToNewMentions(ctx: types.Context) {
           })
         }
 
+        if (!prompt) {
+          message.error = 'empty prompt'
+          message.isErrorFinal = true
+          return message
+        }
+
         if (batch.hasNetworkError) {
           message.error = 'network error'
           return message
@@ -80,12 +90,6 @@ export async function respondToNewMentions(ctx: types.Context) {
 
         if (batch.hasTwitterAuthError) {
           message.error = 'Twitter auth expired'
-          return message
-        }
-
-        if (!prompt) {
-          message.error = 'empty prompt'
-          message.isErrorFinal = true
           return message
         }
 
@@ -270,6 +274,7 @@ export async function respondToNewMentions(ctx: types.Context) {
         } finally {
           try {
             if (!ctx.dryRun) {
+              // Ensure that updates to this message are persisted to the db
               await db.upsertMessage(message)
             }
           } catch (err: any) {
@@ -283,22 +288,25 @@ export async function respondToNewMentions(ctx: types.Context) {
     )
   ).filter(Boolean)
 
-  for (const res of batch.messages) {
-    if (!res.error || res.isErrorFinal) {
+  // Update sinceMentionId to the most recent tweet mention processed
+  for (const message of batch.messages) {
+    if (!message.error || message.isErrorFinal) {
       batch.sinceMentionId = maxTwitterId(
         batch.sinceMentionId,
-        res.promptTweetId
+        message.promptTweetId
       )
     } else {
       batch.minSinceMentionId = minTwitterId(
         batch.minSinceMentionId,
-        res.promptTweetId
+        message.promptTweetId
       )
     }
   }
 
   if (batch.minSinceMentionId) {
-    // Rollback to the earliest tweet which wasn't processed successfully
+    // Rollback to the earliest tweet which wasn't processed successfully.
+    // We want to make sure that we don't skip past any tweets which were
+    // either skipped over or which failed to process.
     batch.sinceMentionId = minTwitterId(
       batch.minSinceMentionId,
       batch.sinceMentionId

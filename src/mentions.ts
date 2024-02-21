@@ -407,12 +407,17 @@ export async function isValidMention(
 
   let { text } = mention
   mention.prompt = getPrompt(text, ctx)
+  if (!mention.prompt) {
+    // Ignore tweets where the sanitized prompt is empty
+    return false
+  }
 
   if (
     mention.prompt.startsWith('(human) ') &&
     config.priorityUsersList.has(mention.author_id!)
   ) {
-    // ignore tweets where the author is responding to people
+    // Ignore tweets where one of the authors is responding to people directly
+    // using the bot account
     return false
   }
 

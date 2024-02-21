@@ -44,6 +44,8 @@ export interface Message {
   promptRetweets?: number
   promptReplies?: number
   promptDate?: string
+
+  // TODO: Re-add prompt language detection or remove these
   // promptLanguage?: string
   // promptLanguageScore?: number
 
@@ -56,7 +58,9 @@ export interface Message {
   responseReplies?: number
   responseDate?: string
 
-  conversationId?: string
+  // If this message is in response to a tweet which responded to a previous
+  // message, then keep track of the parent message id so we can reconstruct
+  // the conversation thread.
   parentMessageId?: string
 
   error?: string

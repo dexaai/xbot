@@ -1,5 +1,3 @@
-import { spawn } from 'child_process'
-
 import * as types from './types.js'
 import { BotError } from './bot-error.js'
 
@@ -10,5 +8,6 @@ export async function generateMessageResponse(
   // TODO
   throw new Error('not implemented')
 
+  // TODO: validate the response length
   return message
 }

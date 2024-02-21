@@ -26,6 +26,9 @@ dependencies:
   nanoid:
     specifier: ^5.0.6
     version: 5.0.6
+  openai-fetch:
+    specifier: ^2.0.1
+    version: 2.0.1
   p-map:
     specifier: ^7.0.1
     version: 7.0.1
@@ -1813,6 +1816,11 @@ packages:
       json-buffer: 3.0.1
     dev: false
 
+  /ky@1.2.0:
+    resolution: {integrity: sha512-dnPW+T78MuJ9tLAiF/apJV7bP7RRRCARXQxsCmsWiKLXqGtMBOgDVOFRYzCAfNe/OrRyFyor5ESgvvC+QWEqOA==}
+    engines: {node: '>=18'}
+    dev: false
+
   /lilconfig@3.0.0:
     resolution: {integrity: sha512-K2U4W2Ff5ibV7j7ydLr+zLAkIg5JJ4lPn1Ltsdt+Tz/IjQ8buJ55pZAxoP34lqIiwtF9iAvtLv3JGv7CAyAg+g==}
     engines: {node: '>=14'}
@@ -2133,6 +2141,13 @@ packages:
     dependencies:
       mimic-fn: 4.0.0
     dev: true
+
+  /openai-fetch@2.0.1:
+    resolution: {integrity: sha512-3oM+iu51yrwIA3U6tKd4LVEM3ff9olXJD0GvOcucmgvC2G8PDPQdFDP8j//9baxswB0GIQiIe1GDokyLK5FYjQ==}
+    engines: {node: '>=18'}
+    dependencies:
+      ky: 1.2.0
+    dev: false
 
   /p-map@7.0.1:
     resolution: {integrity: sha512-2wnaR0XL/FDOj+TgpDuRb2KTjLnu3Fma6b1ZUwGY7LcqenMcvP/YFpjpbPKY6WVGsbuJZRuoUz8iPrt8ORnAFw==}
