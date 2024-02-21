@@ -1,6 +1,6 @@
 {
   "name": "x-bot",
-  "description": "Twitter / X Bot for responding to mentions with AI-generated answers.",
+  "description": "Twitter / X bot for responding to mentions with AI-generated answers.",
   "private": true,
   "type": "module",
   "license": "MIT",
