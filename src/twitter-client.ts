@@ -5,12 +5,18 @@ import * as config from './config.js'
 import { assert } from './utils.js'
 
 // The Twitter+Nango client auth connection key
-const NANGO_TWITTER_PROVIDER_CONFIG_KEY = 'twitter-v2'
+const nangoTwitterProviderConfigKey = 'twitter-v2'
 
-// NOTE: this should be a global to ensure it persists across serverless
+const defaultRequiredTwitterOAuthScopes = new Set<string>([
+  'tweet.read',
+  'users.read',
+  'offline.access',
+  'tweet.write'
+])
+
+// NOTE: these should be global to ensure that they persists across serverless
 // function invocations (if deployed in a serverless setting)
 let _nango: Nango | null = null
-
 let _twitterAuth: auth.OAuth2User | null = null
 
 function getNango(): Nango {
@@ -26,13 +32,16 @@ function getNango(): Nango {
   return _nango
 }
 
-async function getTwitterAuth(): Promise<auth.OAuth2User> {
+async function getTwitterAuth({
+  scopes = defaultRequiredTwitterOAuthScopes
+}: { scopes?: Set<string> } = {}): Promise<auth.OAuth2User> {
   const nango = getNango()
   const connection = await nango.getConnection(
-    NANGO_TWITTER_PROVIDER_CONFIG_KEY,
+    nangoTwitterProviderConfigKey,
     config.nangoConnectionId
   )
 
+  console.log(connection)
   // connection.credentials.raw
   // {
   //   token_type: 'bearer',
@@ -41,23 +50,41 @@ async function getTwitterAuth(): Promise<auth.OAuth2User> {
   //   scope: string
   //   expires_at: string
   // }
+  const connectionScopes = new Set<string>(
+    connection.credentials.raw.scope.split(' ')
+  )
+  const missingScopes = new Set<string>()
+
+  for (const scope of scopes) {
+    if (!connectionScopes.has(scope)) {
+      missingScopes.add(scope)
+    }
+  }
+
+  if (missingScopes.size > 0) {
+    throw new Error(
+      `Nango connection ${
+        config.nangoConnectionId
+      } is missing required OAuth scopes: ${[...missingScopes.values()].join(
+        ', '
+      )}`
+    )
+  }
 
   if (!_twitterAuth) {
     _twitterAuth = new auth.OAuth2User({
       client_id: config.twitterClientId,
       client_secret: config.twitterClientSecret,
-      callback: config.nangoCallbackURL,
-      scopes: ['tweet.read', 'users.read', 'offline.access', 'tweet.write'],
+      callback: config.nangoCallbackUrl,
+      scopes: [...scopes.values()] as any,
       token: connection.credentials.raw.access_token
     })
-  } else {
-    refreshTwitterAuth()
   }
 
+  await refreshTwitterAuth()
   return _twitterAuth
 }
 
-/** Get an authenticated TWitterClient */
 export async function getTwitterClient(): Promise<TwitterClient> {
   const twitterAuth = await getTwitterAuth()
 
@@ -65,15 +92,10 @@ export async function getTwitterClient(): Promise<TwitterClient> {
   return new TwitterClient(twitterAuth)
 }
 
-async function refreshTwitterAuth() {
+export async function refreshTwitterAuth() {
   assert(_twitterAuth)
 
-  console.log('refreshing twitter access token')
-  try {
-    const { token } = await _twitterAuth!.refreshAccessToken()
-    return token
-  } catch (err) {
-    console.error('error refreshing twitter access token', err)
-    return null
-  }
+  const { token } = await _twitterAuth!.refreshAccessToken()
+  console.log('refreshed token', token)
+  return token
 }

@@ -3,32 +3,48 @@ import type { AsyncReturnType, Simplify } from 'type-fest'
 
 export type { TwitterClient }
 
-export type Config = {
-  accessToken?: string
-  refreshToken?: string
-  sinceMentionId?: string
-}
-
-export type InteractionType = 'tweet' | 'dm'
+export type MessageType = 'tweet' | 'dm'
 export type Role = 'user' | 'assistant'
 
-export interface Interaction {
-  // id: string // TODO
+export type Context = {
+  // Dynamic a state which gets persisted to the db
+  sinceMentionId: string | undefined
 
-  role?: Role
-  type?: InteractionType
+  // Services
+  readonly twitterClient: TwitterClient
 
-  prompt: string
-  promptTweetId: string
-  promptUserId: string
-  promptUsername: string
+  // Constant app runtime config
+  readonly debug: boolean
+  readonly dryRun: boolean
+  readonly noCache: boolean
+  readonly earlyExit: boolean
+  readonly forceReply: boolean
+  readonly resolveAllMentions: boolean
+  readonly maxNumMentionsToProcess: number
+  readonly debugTweetIds?: string[]
+  readonly twitterBotHandle: string
+  readonly twitterBotHandleL: string
+  readonly twitterBotUserId: string
+}
+
+export interface Message {
+  // We use the prompt tweet id as the message id
+  readonly id: string
+
+  readonly role: Role
+  readonly type: MessageType
+
+  readonly prompt: string
+  readonly promptTweetId: string
+  readonly promptUserId: string
+  readonly promptUsername: string
   promptUrl?: string
   promptLikes?: number
   promptRetweets?: number
   promptReplies?: number
   promptDate?: string
-  promptLanguage?: string
-  promptLanguageScore?: number
+  // promptLanguage?: string
+  // promptLanguageScore?: number
 
   response?: string
   responseTweetIds?: string[]
@@ -50,11 +66,10 @@ export interface Interaction {
   isReply?: boolean
 }
 
-export interface Session {
-  interactions: Interaction[]
+export type Session = {
+  messages: Message[]
   isRateLimitedTwitter: boolean
   isExpiredAuthTwitter: boolean
-  sinceMentionId?: string
   hasNetworkError: boolean
 }
 
@@ -79,26 +94,32 @@ export type TweetsQueryOptions = Simplify<
   >
 >
 
-export type TwitterUserIdMentionsQueryOptions = Parameters<
-  TwitterClient['tweets']['usersIdMentions']
->[1]
+export type TwitterUserIdMentionsQueryOptions = Simplify<
+  NonNullable<Parameters<TwitterClient['tweets']['usersIdMentions']>[1]>
+>
 
-export type TweetMention = Tweet & {
-  prompt?: string
-  numMentions?: number
-  priorityScore?: number
-  numFollowers?: number
-  promptUrl?: string
-  isReply?: boolean
-}
+export type TweetMention = Simplify<
+  Tweet & {
+    prompt?: string
+    numMentions?: number
+    priorityScore?: number
+    numFollowers?: number
+    promptUrl?: string
+    isReply?: boolean
+  }
+>
 
 export type TweetMentionBatch = {
   mentions: TweetMention[]
+  numMentionsPostponed: number
+
   users: Record<string, Partial<TwitterUser>>
   tweets: Record<string, TweetMention>
+
   minSinceMentionId?: string
   sinceMentionId?: string
-  numMentionsPostponed: number
+
+  readonly updateSinceMentionId: (tweetId: string) => void
 }
 
 export type TweetMentionResult = {
@@ -107,3 +128,5 @@ export type TweetMentionResult = {
   tweets: Record<string, TweetMention>
   sinceMentionId: string
 }
+
+export type IDGeneratorFunction = () => string

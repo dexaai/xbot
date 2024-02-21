@@ -1,4 +1,7 @@
+import { customAlphabet, urlAlphabet } from 'nanoid'
 import invariant from 'tiny-invariant'
+
+import type * as types from './types.js'
 
 export { invariant as assert }
 
@@ -37,3 +40,14 @@ export const pick = <T extends Record<any, unknown>, K extends keyof T>(
   Object.fromEntries(
     Object.entries(obj).filter(([k]) => keys.includes(k as any))
   ) as any
+
+/**
+ * A default ID generator function that uses a custom alphabet based on
+ * URL-safe symbols.
+ */
+export const defaultIDGeneratorFn: types.IDGeneratorFunction =
+  customAlphabet(urlAlphabet)
+
+export function createID(...prefixes: string[]): string {
+  return [...prefixes, defaultIDGeneratorFn()].filter(Boolean).join(':')
+}

@@ -3,15 +3,16 @@ import { type Redis } from 'ioredis'
 import Keyv from 'keyv'
 
 import * as config from './config.js'
+import type * as types from './types.js'
 
 // Used for caching twitter tweet objects
-let tweets: Keyv
+let tweets: Keyv<types.Tweet>
 
 // Used for caching twitter user objects
-let users: Keyv
+let users: Keyv<types.TwitterUser>
 
 // Used for storing bot response messages
-let messages: Keyv
+let messages: Keyv<types.Message>
 
 // Used for storing general bot state (e.g. most recent tweet id processed)
 let state: Keyv
@@ -35,6 +36,14 @@ if (config.redisUrl) {
   users = new Keyv({ namespace: config.redisNamespaceUsers })
   messages = new Keyv({ namespace: config.redisNamespaceMessages })
   state = new Keyv({ namespace: config.redisNamespaceState })
+}
+
+export async function getSinceMentionId(): Promise<string | undefined> {
+  return state.get('sinceMentionId')
+}
+
+export async function setSinceMentionId(sinceMentionId: string | undefined) {
+  return state.set('sinceMentionId', sinceMentionId)
 }
 
 export { tweets, users, messages, state }

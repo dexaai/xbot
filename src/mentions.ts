@@ -1,17 +1,9 @@
 import pMap from 'p-map'
 import urlRegex from 'url-regex'
 
+import * as config from './config.js'
 import * as db from './db.js'
 import type * as types from './types.js'
-import {
-  defaultMaxNumMentionsToProcessPerBatch,
-  priorityUsersList,
-  tweetIgnoreList,
-  twitterBotHandle,
-  twitterBotHandleL,
-  twitterBotUserId,
-  twitterUsersIgnoreList
-} from './config.js'
 import { getTwitterUserIdMentions } from './twitter-mentions.js'
 import {
   getTweetUrl,
@@ -26,80 +18,63 @@ const rUrl = urlRegex()
  * Fetches new unanswered mentions, preprocesses them, and sorts them by a
  * priority heuristic.
  */
-export async function getTweetMentionsBatch({
-  twitter,
-  noCache = false,
-  forceReply = false,
-  resolveAllMentions = false,
-  debugTweet,
-  sinceMentionId,
-  maxNumMentionsToProcess = defaultMaxNumMentionsToProcessPerBatch
-}: {
-  twitter: types.TwitterClient
-  noCache?: boolean
-  forceReply?: boolean
-  resolveAllMentions?: boolean
-  debugTweet?: string
-  sinceMentionId?: string
-  maxNumMentionsToProcess?: number
-}): Promise<types.TweetMentionBatch> {
+export async function getTweetMentionsBatch(
+  ctx: types.Context
+): Promise<types.TweetMentionBatch> {
   const batch: types.TweetMentionBatch = {
     mentions: [],
+    numMentionsPostponed: 0,
+
     users: {},
     tweets: {},
+
     minSinceMentionId: undefined,
-    sinceMentionId,
-    numMentionsPostponed: 0
+    sinceMentionId: ctx.sinceMentionId,
+
+    updateSinceMentionId(tweetId: string) {
+      batch.sinceMentionId = maxTwitterId(batch.sinceMentionId, tweetId)
+    }
   }
 
-  function updateSinceMentionId(tweetId: string) {
-    batch.sinceMentionId = maxTwitterId(batch.sinceMentionId, tweetId)
-  }
-
-  await populateTweetMentionsBatch({
-    batch,
-    noCache,
-    debugTweet,
-    resolveAllMentions,
-    twitter
-  })
+  await populateTweetMentionsBatch(batch, ctx)
 
   const numMentionsFetched = batch.mentions.length
 
   // Filter out invalid mentions
   batch.mentions = batch.mentions.filter((mention) =>
-    isValidMention(mention, {
-      batch,
-      forceReply,
-      updateSinceMentionId
-    })
+    isValidMention(mention, batch, ctx)
   )
 
   const numMentionsValid = batch.mentions.length
 
   // Sort the oldest mentions first
   batch.mentions = batch.mentions.sort(tweetComparator)
-  const prevInteractions: Record<string, types.Interaction> = {}
+  const prevMessages: Record<string, types.Message> = {}
 
   // Filter any mentions which we've already replied to
-  if (!forceReply) {
+  if (!ctx.forceReply) {
     batch.mentions = (
       await pMap(
         batch.mentions,
         async (mention) => {
-          const res: types.Interaction = await db.messages.get(mention.id)
-          if (res && (!res.error || res.isErrorFinal)) {
-            updateSinceMentionId(mention.id)
+          const message = await db.messages.get(mention.id)
+
+          if (message && (!message.error || message.isErrorFinal)) {
+            batch.updateSinceMentionId(mention.id)
             return undefined
           } else {
             const repliedToTweetRef = mention.referenced_tweets?.find(
               (t) => t.type === 'replied_to'
             )
+
             if (repliedToTweetRef?.id) {
               try {
-                const repliedToInteraction: types.Interaction =
-                  await db.messages.get(repliedToTweetRef.id)
-                prevInteractions[repliedToTweetRef.id] = repliedToInteraction
+                const repliedToMessage = await db.messages.get(
+                  repliedToTweetRef.id
+                )
+                if (repliedToMessage) {
+                  prevMessages[repliedToTweetRef.id] = repliedToMessage
+                }
               } catch (err) {}
             }
 
@@ -136,27 +111,27 @@ export async function getTweetMentionsBatch({
     if (isReply) {
       let penalty = 10
 
-      const prevInteraction = prevInteractions[repliedToTweetRef.id]
+      const prevMessage = prevMessages[repliedToTweetRef.id]
       const repliedToTweet = batch.tweets[repliedToTweetRef.id]
 
-      if (repliedToTweet?.author_id === twitterBotUserId) {
+      if (repliedToTweet?.author_id === ctx.twitterBotUserId) {
         // continuing the conversation
         penalty /= 3
-      } else if (!prevInteraction) {
+      } else if (!prevMessage) {
         penalty *= 5
       }
 
-      if (prevInteraction) {
-        if (prevInteraction.promptUserId === mention.author_id) {
+      if (prevMessage) {
+        if (prevMessage.promptUserId === mention.author_id) {
           // continuing the conversation
           penalty /= 2
         } else {
           penalty *= 10
         }
 
-        if (prevInteraction.responseUrl && !prevInteraction.error) {
+        if (prevMessage.responseUrl && !prevMessage.error) {
           // continuing the conversation normally
-        } else if (prevInteraction.error && !prevInteraction.isErrorFinal) {
+        } else if (prevMessage.error && !prevMessage.isErrorFinal) {
           penalty *= 1000
         } else {
           penalty *= 10
@@ -169,7 +144,7 @@ export async function getTweetMentionsBatch({
       score -= penalty
     }
 
-    if (priorityUsersList.has(mention.author_id!)) {
+    if (config.priorityUsersList.has(mention.author_id!)) {
       score += 10000
     }
 
@@ -198,7 +173,7 @@ export async function getTweetMentionsBatch({
   // console.log('SORTED (first 50)', batch.mentions.slice(0, 50))
 
   // Loop through all of the mentions we won't be processing in this batch
-  for (let i = maxNumMentionsToProcess; i < numMentionsCandidates; ++i) {
+  for (let i = ctx.maxNumMentionsToProcess; i < numMentionsCandidates; ++i) {
     const mention = batch.mentions[i]!
 
     // make sure we don't skip past these mentions on the next batch
@@ -207,11 +182,11 @@ export async function getTweetMentionsBatch({
 
   batch.numMentionsPostponed = Math.max(
     0,
-    numMentionsCandidates - maxNumMentionsToProcess
+    numMentionsCandidates - ctx.maxNumMentionsToProcess
   )
 
   // Limit the number of mentions to process in this batch
-  batch.mentions = batch.mentions.slice(0, maxNumMentionsToProcess)
+  batch.mentions = batch.mentions.slice(0, ctx.maxNumMentionsToProcess)
 
   const numMentionsInBatch = batch.mentions.length
 
@@ -226,19 +201,10 @@ export async function getTweetMentionsBatch({
   return batch
 }
 
-export async function populateTweetMentionsBatch({
-  batch,
-  twitter,
-  noCache,
-  resolveAllMentions,
-  debugTweet
-}: {
-  batch: types.TweetMentionBatch
-  twitter: types.TwitterClient
-  noCache?: boolean
-  resolveAllMentions?: boolean
-  debugTweet?: string
-}) {
+export async function populateTweetMentionsBatch(
+  batch: types.TweetMentionBatch,
+  ctx: types.Context
+) {
   console.log('fetching mentions since', batch.sinceMentionId || 'forever')
 
   const tweetQueryOptions: types.TweetsQueryOptions = {
@@ -254,12 +220,11 @@ export async function populateTweetMentionsBatch({
     'user.fields': ['profile_image_url', 'public_metrics']
   }
 
-  if (debugTweet) {
+  if (ctx.debugTweetIds?.length) {
     // Debug specific tweets instead of fetching mentions
-    const ids = debugTweet.split(',').map((id) => id.trim())
-    const res = await twitter.tweets.findTweetsById({
+    const res = await ctx.twitterClient.tweets.findTweetsById({
       ...tweetQueryOptions,
-      ids: ids
+      ids: ctx.debugTweetIds
     })
 
     // console.log('debugTweet', JSON.stringify(res, null, 2))
@@ -279,17 +244,13 @@ export async function populateTweetMentionsBatch({
     }
   } else {
     const result = await getTwitterUserIdMentions(
-      twitterBotUserId,
+      ctx.twitterBotUserId,
       {
         ...tweetQueryOptions,
         max_results: 100,
         since_id: batch.sinceMentionId
       },
-      {
-        twitter,
-        noCache,
-        resolveAllMentions
-      }
+      ctx
     )
 
     batch.mentions = result.mentions
@@ -303,11 +264,11 @@ export async function populateTweetMentionsBatch({
  *
  * Strips usernames at the front of a tweet and URLs (like for embedding images).
  */
-export function getPrompt(text: string = ''): string {
+export function getPrompt(text: string = '', ctx: types.Context): string {
   // strip usernames
   let prompt = text
-    .replace(twitterBotHandleL, '')
-    .replace(twitterBotHandle, '')
+    .replace(ctx.twitterBotHandleL, '')
+    .replace(ctx.twitterBotHandle, '')
     .trim()
     .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
     .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
@@ -328,6 +289,7 @@ export function getPrompt(text: string = ''): string {
  */
 export function getNumMentionsInText(
   text: string = '',
+  ctx: types.Context,
   { isReply }: { isReply?: boolean } = {}
 ) {
   const prefixText = isReply
@@ -346,7 +308,7 @@ export function getNumMentionsInText(
   let numMentions = 0
 
   for (const username of usernames) {
-    if (username === twitterBotHandleL) {
+    if (username === ctx.twitterBotHandleL) {
       numMentions++
     }
   }
@@ -366,25 +328,18 @@ export function getNumMentionsInText(
  */
 export function isValidMention(
   mention: types.TweetMention,
-  {
-    batch,
-    forceReply,
-    updateSinceMentionId
-  }: {
-    batch: types.TweetMentionBatch
-    forceReply?: boolean
-    updateSinceMentionId: (tweetId: string) => void
-  }
+  batch: types.TweetMentionBatch,
+  ctx: types.Context
 ): boolean {
   if (!mention) {
     return false
   }
 
-  if (tweetIgnoreList.has(mention.id!)) {
+  if (config.tweetIgnoreList.has(mention.id!)) {
     return false
   }
 
-  if (twitterUsersIgnoreList.has(mention.author_id!)) {
+  if (config.twitterUsersIgnoreList.has(mention.author_id!)) {
     return false
   }
 
@@ -396,8 +351,8 @@ export function isValidMention(
     : null
   const isReply = !!repliedToTweetRef
   if (repliedToTweet) {
-    repliedToTweet.prompt = getPrompt(repliedToTweet.text)
-    const subMentions = getNumMentionsInText(repliedToTweet.text, {
+    repliedToTweet.prompt = getPrompt(repliedToTweet.text, ctx)
+    const subMentions = getNumMentionsInText(repliedToTweet.text, ctx, {
       isReply: !!repliedToTweet.referenced_tweets?.find(
         (t) => t.type === 'replied_to'
       )
@@ -409,18 +364,18 @@ export function isValidMention(
     return false
   }
 
-  let text = mention.text
-  mention.prompt = getPrompt(text)
+  let { text } = mention
+  mention.prompt = getPrompt(text, ctx)
 
   if (
     mention.prompt.startsWith('(human) ') &&
-    priorityUsersList.has(mention.author_id!)
+    config.priorityUsersList.has(mention.author_id!)
   ) {
-    // ignore tweets where I'm responding to people
+    // ignore tweets where the author is responding to people
     return false
   }
 
-  const { numMentions, usernames } = getNumMentionsInText(text)
+  const { numMentions, usernames } = getNumMentionsInText(text, ctx)
 
   if (!mention.prompt) {
     if (isReply) {
@@ -435,12 +390,12 @@ export function isValidMention(
 
   if (
     numMentions > 0 &&
-    (usernames[usernames.length - 1] === twitterBotHandleL ||
+    (usernames[usernames.length - 1] === ctx.twitterBotHandleL ||
       (numMentions === 1 && !isReply))
   ) {
     if (
       isReply &&
-      !forceReply &&
+      !ctx.forceReply &&
       (repliedToTweet?.numMentions! > numMentions ||
         (repliedToTweet?.numMentions === numMentions &&
           repliedToTweet?.isReply))
@@ -450,7 +405,7 @@ export function isValidMention(
       //   numMentions
       // })
 
-      updateSinceMentionId?.(mention.id!)
+      batch.updateSinceMentionId?.(mention.id!)
       return false
     } else if (numMentions === 1) {
       // TODO: I don't think this is necessary anymore
@@ -458,7 +413,7 @@ export function isValidMention(
       //   console.log('ignoring mention 1', mention, {
       //     numMentions
       //   })
-      //   updateSinceMentionId?.(mention.id)
+      //   batch.updateSinceMentionId?.(mention.id)
       //   return false
       // }
     }
@@ -467,7 +422,7 @@ export function isValidMention(
     //   numMentions
     // })
 
-    updateSinceMentionId?.(mention.id!)
+    batch.updateSinceMentionId?.(mention.id!)
     return false
   }
 

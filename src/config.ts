@@ -7,15 +7,11 @@ export const defaultMaxNumMentionsToProcessPerBatch = 10
 // Conntection ID for the Twitter account that is authed with Nango.
 // Auth new accounts here: https://app.nango.dev/connections
 export const nangoConnectionId = process.env.NANGO_CONNECTION_ID!
-export const nangoCallbackURL =
+export const nangoCallbackUrl =
   process.env.NANGO_CALLBACK_URL ?? 'https://api.nango.dev/oauth/callback'
 
 export const twitterClientId = process.env.TWITTER_CLIENT_ID!
 export const twitterClientSecret = process.env.TWITTER_CLIENT_SECRET!
-
-export const twitterBotHandle = '@samrcharles'
-export const twitterBotHandleL = twitterBotHandle.toLowerCase()
-export const twitterBotUserId = '1386021646906048515'
 
 // tweets that try to break the bot...
 export const tweetIgnoreList = new Set<string>([
