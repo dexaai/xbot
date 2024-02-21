@@ -4,8 +4,8 @@ import * as db from './db.js'
 import type * as types from './types.js'
 
 /**
- * Resolves all of the bot-related messages in a single twitter thread, starting
- * from a leaf tweet, and traversing it's parents – including any previous bot
+ * Resolves all of the bot-related messages from a twitter thread, starting
+ * from a leaf tweet, and traversing its parents – including any previous bot
  * mentions and responses. Returns the thread in an format compatible with the
  * OpenAI chat-completions API.
  */
