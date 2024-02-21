@@ -29,7 +29,7 @@ export async function generateMessageResponse(
     validateMessageResponse(message, ctx)
   }
 
-  // TODO: handle trucation with URLs properly
+  // TODO: handle truncation with URLs properly
   if (message.response!.length >= MAX_TWEET_LENGTH) {
     message.response =
       message.response!.slice(0, MAX_TWEET_LENGTH - 3).trim() + '...'
