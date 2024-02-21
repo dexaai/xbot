@@ -1,7 +1,10 @@
 import { customAlphabet, urlAlphabet } from 'nanoid'
 import invariant from 'tiny-invariant'
+import urlRegex from 'url-regex'
 
 import type * as types from './types.js'
+
+const rUrl = urlRegex()
 
 export { invariant as assert }
 
@@ -66,4 +69,31 @@ export function getDebugMention(
     'numFollowers',
     'priorityScore'
   )
+}
+
+/**
+ * Converts a Tweet text string to a prompt ready for input to the answer engine.
+ *
+ * Strips usernames at the front of a tweet and URLs (like for embedding images).
+ */
+export function getPrompt(text: string = '', ctx?: types.Context): string {
+  if (ctx) {
+    text = text
+      .replace(ctx.twitterBotHandleL, '')
+      .replace(ctx.twitterBotHandle, '')
+  }
+
+  // strip usernames
+  let prompt = text
+    .trim()
+    .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
+    .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
+    .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
+    .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
+    .replace(rUrl, '')
+    .trim()
+    .replace(/^,\s*/, '')
+    .trim()
+
+  return prompt
 }

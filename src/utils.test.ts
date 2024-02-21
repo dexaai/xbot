@@ -1,6 +1,6 @@
 import test from 'ava'
 
-import { getPrompt } from './mentions.js'
+import { getPrompt } from './utils.js'
 
 test('getPrompt', (t) => {
   t.is(getPrompt('@transitive_bs This is a test.'), 'This is a test.')

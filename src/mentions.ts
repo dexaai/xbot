@@ -1,5 +1,4 @@
 import pMap from 'p-map'
-import urlRegex from 'url-regex'
 
 import * as config from './config.js'
 import * as db from './db.js'
@@ -11,8 +10,7 @@ import {
   minTwitterId,
   tweetComparator
 } from './twitter-utils.js'
-
-const rUrl = urlRegex()
+import { getPrompt } from './utils.js'
 
 /**
  * Fetches new unanswered mentions, preprocesses them, and sorts them by a
@@ -290,33 +288,6 @@ export async function populateTweetMentionsBatch(
     batch.users = result.users
     batch.tweets = result.tweets
   }
-}
-
-/**
- * Converts a Tweet text string to a prompt ready for input to the answer engine.
- *
- * Strips usernames at the front of a tweet and URLs (like for embedding images).
- */
-export function getPrompt(text: string = '', ctx?: types.Context): string {
-  if (ctx) {
-    text = text
-      .replace(ctx.twitterBotHandleL, '')
-      .replace(ctx.twitterBotHandle, '')
-  }
-
-  // strip usernames
-  let prompt = text
-    .trim()
-    .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
-    .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
-    .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
-    .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
-    .replace(rUrl, '')
-    .trim()
-    .replace(/^,\s*/, '')
-    .trim()
-
-  return prompt
 }
 
 /**
