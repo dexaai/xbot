@@ -103,7 +103,7 @@ const createTweetThrottle = pThrottle(
   twitterApiRateLimitsByPlan[config.twitterApiPlan].createTweet
 )
 
-const userIdMentionsThrottle = pThrottle(
+const usersIdMentionsThrottle = pThrottle(
   twitterApiRateLimitsByPlan[config.twitterApiPlan].usersIdMentions
 )
 
@@ -116,7 +116,9 @@ const findTweetsByIdThrottle = pThrottle(
 )
 
 export const createTweet = createTweetThrottle(createTweetImpl)
-export const userIdMentions = userIdMentionsThrottle(usersIdMentionsImpl)
+export const usersIdMentionsThrottleWorkaround = usersIdMentionsThrottle(
+  () => {}
+)
 export const findTweetById = findTweetByIdThrottle(findTweetByIdImpl)
 export const findTweetsById = findTweetsByIdThrottle(findTweetsByIdImpl)
 
@@ -158,7 +160,7 @@ async function createTweetImpl(
   }
 }
 
-function usersIdMentionsImpl(
+export function usersIdMentions(
   userId: string,
   params: UsersIdMentionsParams,
   ctx: types.Context

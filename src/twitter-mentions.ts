@@ -49,13 +49,13 @@ export async function getTwitterUserIdMentions(
         cachedResult.sinceMentionId
       )
 
-      console.log('tweets.userIdMentions CACHE HIT', {
+      console.log('tweets.usersIdMentions CACHE HIT', {
         originalSinceMentionId,
         sinceMentionId: result.sinceMentionId,
         numMentions: result.mentions.length
       })
     } else {
-      console.log('tweets.userIdMentions CACHE MISS', {
+      console.log('tweets.usersIdMentions CACHE MISS', {
         originalSinceMentionId
       })
     }
@@ -67,7 +67,9 @@ export async function getTwitterUserIdMentions(
     })
 
     try {
-      const mentionsQuery = twitter.userIdMentions(
+      await twitter.usersIdMentionsThrottleWorkaround()
+
+      const mentionsQuery = twitter.usersIdMentions(
         userId,
         {
           ...opts,
@@ -109,6 +111,7 @@ export async function getTwitterUserIdMentions(
             result.tweets[tweet.id] = tweet
           }
         }
+        await twitter.usersIdMentionsThrottleWorkaround()
       }
 
       console.log({ numMentionsInQuery, numPagesInQuery })
