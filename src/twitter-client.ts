@@ -2,9 +2,15 @@ import { Nango } from '@nangohq/node'
 import { Client as TwitterClient, auth } from 'twitter-api-sdk'
 
 import * as config from './config.js'
+import { assert } from './utils.js'
 
 // The Twitter+Nango client auth connection key
 const nangoTwitterProviderConfigKey = 'twitter-v2'
+
+// The Twitter OAuth2User class requires a client id, which we don't have
+// since we're using Nango for auth, so instead we just pass a dummy value
+// and allow Nango to handle all auth/refresh/access token management.
+const twitterClientId = 'xbot'
 
 const defaultRequiredTwitterOAuthScopes = new Set<string>([
   'tweet.read',
@@ -16,7 +22,6 @@ const defaultRequiredTwitterOAuthScopes = new Set<string>([
 // NOTE: these should be global to ensure that they persists across serverless
 // function invocations (if deployed in a serverless setting)
 let _nango: Nango | null = null
-let _twitterAuth: auth.OAuth2User | null = null
 
 function getNango(): Nango {
   if (!_nango) {
@@ -70,17 +75,15 @@ async function getTwitterAuth({
     )
   }
 
-  if (!_twitterAuth) {
-    _twitterAuth = new auth.OAuth2User({
-      client_id: config.twitterClientId,
-      client_secret: config.twitterClientSecret,
-      callback: config.nangoCallbackUrl,
-      scopes: [...scopes.values()] as any,
-      token: connection.credentials.raw.access_token
-    })
-  }
+  const token = connection.credentials.raw
+  assert(token)
 
-  return _twitterAuth
+  return new auth.OAuth2User({
+    client_id: twitterClientId,
+    callback: config.nangoCallbackUrl,
+    scopes: [...scopes.values()] as any,
+    token
+  })
 }
 
 export async function getTwitterClient({
