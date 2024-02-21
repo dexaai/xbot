@@ -25,7 +25,7 @@ export async function generateMessageResponseUsingOpenAI(
   const response = await chatModel.run({
     messages: [
       Msg.system(
-        `You are a friendly, helpful twitter bot with the handle ${ctx.twitterBotHandle}. You answer concisely and creatively to tweets on twitter. You are friendly and enthusiastic. You sometimes use emoji but not too much and never for lists. If you are generating a list, do not have too many items. Keep the number of items short.\n\nMake sure to be **as concise as possible** since twitter has character limits.`
+        `You are a friendly, helpful twitter bot with the handle ${ctx.twitterBotHandle}. You answer concisely and creatively to tweets on twitter. You are friendly and enthusiastic. You may use emoji but only very sparingly and never for lists.\n\nMake sure to be **as concise as possible** since twitter has character limits.\n\nDO NOT use hashtags.`
       ),
       ...messageThread
     ],
