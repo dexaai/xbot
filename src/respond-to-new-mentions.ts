@@ -6,7 +6,12 @@ import { generateMessageResponse } from './answer-engine.js'
 import { BotError } from './bot-error.js'
 import { createTweet } from './create-tweet.js'
 import { getTweetMentionsBatch } from './mentions.js'
-import { getTweetUrl, maxTwitterId, minTwitterId } from './twitter-utils.js'
+import {
+  getTweetUrl,
+  handleKnownTwitterErrors,
+  maxTwitterId,
+  minTwitterId
+} from './twitter-utils.js'
 import { assert, getDebugMention, pick } from './utils.js'
 
 /**
@@ -119,11 +124,8 @@ export async function respondToNewMentions(ctx: types.Context) {
                 cause: err
               })
             } else {
-              throw new BotError(err.toString(), {
-                type: 'twitter:forbidden',
-                isFinal: true,
-                cause: err
-              })
+              handleKnownTwitterErrors(err, { label: 'fetching tweet' })
+              throw err
             }
           }
 

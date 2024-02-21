@@ -3,7 +3,7 @@ import delay from 'delay'
 import * as db from './db.js'
 import type * as types from './types.js'
 import { BotError } from './bot-error.js'
-import { maxTwitterId } from './twitter-utils.js'
+import { handleKnownTwitterErrors, maxTwitterId } from './twitter-utils.js'
 
 /**
  * Fetches the latest mentions of the given `userId` on Twitter.
@@ -32,7 +32,7 @@ export async function getTwitterUserIdMentions(
       sinceMentionId: originalSinceMentionId || '0'
     })
 
-    if (cachedResult) {
+    if (cachedResult?.mentions.length) {
       result.mentions = result.mentions.concat(cachedResult.mentions)
       result.users = {
         ...cachedResult.users,
@@ -115,6 +115,8 @@ export async function getTwitterUserIdMentions(
       if (result.mentions.length) {
         break
       } else {
+        handleKnownTwitterErrors(err, { label: 'fetching tweet mentions' })
+
         throw new BotError(
           `Error fetching twitter user mentions: ${err.message}`,
           {
@@ -126,7 +128,7 @@ export async function getTwitterUserIdMentions(
     }
 
     console.log('pausing for twitter...')
-    await delay(2000)
+    await delay(5000)
   } while (true)
 
   await db.upsertTweets(Object.values(result.tweets))

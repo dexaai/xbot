@@ -3,6 +3,7 @@ import type { Simplify } from 'type-fest'
 
 import type * as types from './types.js'
 import { BotError } from './bot-error.js'
+import { handleKnownTwitterErrors } from './twitter-utils.js'
 import { assert } from './utils.js'
 
 // TODO: verify updated twitter rate limits
@@ -35,58 +36,7 @@ async function createTweetImpl(
   } catch (err: any) {
     console.error('error creating tweet', JSON.stringify(err, null, 2))
 
-    if (err.status === 403) {
-      // user may have deleted the tweet we're trying to respond to
-      throw new BotError(
-        err.error?.detail || `error creating tweet: 403 forbidden`,
-        {
-          type: 'twitter:forbidden',
-          isFinal: true,
-          cause: err
-        }
-      )
-    } else if (err.status === 400) {
-      if (
-        /value passed for the token was invalid/i.test(
-          err.error?.error_description
-        )
-      ) {
-        throw new BotError(`error creating tweet: invalid auth token`, {
-          type: 'twitter:auth',
-          cause: err
-        })
-      }
-    } else if (err.status === 429) {
-      throw new BotError(`error creating tweet: too many requests`, {
-        type: 'twitter:rate-limit',
-        cause: err
-      })
-    }
-
-    if (err.status >= 400 && err.status < 500) {
-      throw new BotError(
-        `error creating tweet: ${err.status} ${
-          err.error?.description || err.toString()
-        }`,
-        {
-          type: 'twitter:unknown',
-          isFinal: true,
-          cause: err
-        }
-      )
-    } else if (err.status >= 500) {
-      throw new BotError(
-        `error creating tweet: ${err.status} ${
-          err.error?.description || err.toString()
-        }`,
-        {
-          type: 'twitter:unknown',
-          isFinal: false,
-          cause: err
-        }
-      )
-    }
-
+    handleKnownTwitterErrors(err, { label: 'creating tweet' })
     throw err
   }
 }
