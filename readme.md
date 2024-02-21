@@ -1,5 +1,5 @@
 <p>
-  <a href="https://twitter.com/AskDexa"><img alt="@AskDexa on Twitter" src="https://img.shields.io/badge/twitter-blue" /></a>
+  <a href="https://twitter.com/AskDexa"><img alt="@AskDexa on Twitter" src="https://img.shields.io/badge/twitter-@AskDexa-blue" /></a>
   <a href="https://github.com/dexaai/xbot/actions/workflows/test.yml"><img alt="Build Status" src="https://github.com/dexaai/xbot/actions/workflows/main.yml/badge.svg" /></a>
   <a href="https://github.com/dexaai/xbot/blob/main/license"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-blue" /></a>
   <a href="https://prettier.io"><img alt="Prettier Code Formatting" src="https://img.shields.io/badge/code_style-prettier-brightgreen.svg" /></a>
@@ -11,7 +11,7 @@
 
 ## Configuring the bot
 
-You'll need a Twitter developer account and a Twitter an app with OAuth 2.0 enabled. You must have at least the basic Twitter API plan in order to run this bot; **the free tier is not supported** (it doesn't support fetching tweets which is required for this bot to work).
+You'll need a Twitter developer account and a Twitter v2 app with OAuth 2.0 enabled. You'll need to subscribe to at least the basic Twitter API plan in order to run this bot; **the free tier is not supported** since it doesn't support fetching tweets which is required for this bot to work.
 
 Set up a `.env` file by copying `.env.example` and initializing all required environment variables.
 
