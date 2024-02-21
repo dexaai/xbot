@@ -164,4 +164,16 @@ export function handleKnownTwitterErrors(
       }
     )
   }
+
+  const reason = err.toString().toLowerCase()
+
+  if (reason.includes('fetcherror') || reason.includes('enotfound')) {
+    throw new BotError(err.toString(), {
+      type: 'network',
+      cause: err
+    })
+  }
+
+  // Otherwise, propagate the error
+  throw err
 }

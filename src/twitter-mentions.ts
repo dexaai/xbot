@@ -1,6 +1,7 @@
 import delay from 'delay'
 
 import * as db from './db.js'
+import * as twitter from './twitter.js'
 import type * as types from './types.js'
 import { BotError } from './bot-error.js'
 import { handleKnownTwitterErrors, maxTwitterId } from './twitter-utils.js'
@@ -66,10 +67,14 @@ export async function getTwitterUserIdMentions(
     })
 
     try {
-      const mentionsQuery = ctx.twitterClient.tweets.usersIdMentions(userId, {
-        ...opts,
-        since_id: result.sinceMentionId
-      })
+      const mentionsQuery = twitter.userIdMentions(
+        userId,
+        {
+          ...opts,
+          since_id: result.sinceMentionId
+        },
+        ctx
+      )
 
       let numMentionsInQuery = 0
       let numPagesInQuery = 0

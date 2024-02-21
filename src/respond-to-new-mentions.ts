@@ -1,10 +1,10 @@
 import pMap from 'p-map'
 
 import * as db from '../src/db.js'
+import * as twitter from './twitter.js'
 import type * as types from './types.js'
 import { generateMessageResponse } from './answer-engine.js'
 import { BotError } from './bot-error.js'
-import { createTweet } from './create-tweet.js'
 import { getTweetMentionsBatch } from './mentions.js'
 import {
   getTweetUrl,
@@ -12,6 +12,7 @@ import {
   maxTwitterId,
   minTwitterId
 } from './twitter-utils.js'
+import { createTweet } from './twitter.js'
 import { assert, getDebugMention, pick } from './utils.js'
 
 /**
@@ -100,34 +101,19 @@ export async function respondToNewMentions(ctx: types.Context) {
         }
 
         try {
+          // NOTE: Disabling this check for now because the GET tweets endpoint
+          // is severely rate-limited.
           // Double-check that the tweet still exists before resolving it
-          try {
-            const promptTweet = await ctx.twitterClient.tweets.findTweetById(
-              promptTweetId
-            )
-
-            if (!promptTweet?.data) {
-              throw new BotError(
-                `Tweet not found (possibly deleted): ${promptTweetId}`,
-                {
-                  type: 'twitter:forbidden',
-                  isFinal: true
-                }
-              )
-            }
-          } catch (err: any) {
-            const reason = err.toString().toLowerCase()
-
-            if (reason.includes('fetcherror') || reason.includes('enotfound')) {
-              throw new BotError(err.toString(), {
-                type: 'network',
-                cause: err
-              })
-            } else {
-              handleKnownTwitterErrors(err, { label: 'fetching tweet' })
-              throw err
-            }
-          }
+          // const promptTweet = await twitter.findTweetById(promptTweetId, ctx)
+          // if (!promptTweet) {
+          //   throw new BotError(
+          //     `Tweet not found (possibly deleted): ${promptTweetId}`,
+          //     {
+          //       type: 'twitter:forbidden',
+          //       isFinal: true
+          //     }
+          //   )
+          // }
 
           const prevPartialMessage = await db.messages.get(promptTweetId)
 

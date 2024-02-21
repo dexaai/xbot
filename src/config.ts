@@ -1,5 +1,7 @@
 import dotenv from 'dotenv-safe'
 
+import type * as types from './types.js'
+
 dotenv.config()
 
 export const defaultMaxNumMentionsToProcessPerBatch = 10
@@ -9,6 +11,9 @@ export const defaultMaxNumMentionsToProcessPerBatch = 10
 export const nangoConnectionId = process.env.NANGO_CONNECTION_ID!
 export const nangoCallbackUrl =
   process.env.NANGO_CALLBACK_URL ?? 'https://api.nango.dev/oauth/callback'
+
+export const twitterApiPlan: types.TwitterApiPlan =
+  (process.env.TWITTER_API_PLAN as types.TwitterApiPlan) ?? 'free'
 
 // Twitter really doesn't like bots that tag other users in automatd replies.
 // @ChatGPTBot has been suspended a few times for this in previous verisons.

@@ -2,6 +2,7 @@ import pMap from 'p-map'
 
 import * as config from './config.js'
 import * as db from './db.js'
+import * as twitter from './twitter.js'
 import type * as types from './types.js'
 import { getTwitterUserIdMentions } from './twitter-mentions.js'
 import {
@@ -253,10 +254,13 @@ export async function populateTweetMentionsBatch(
 
   if (ctx.debugTweetIds?.length) {
     // Debug specific tweets instead of fetching mentions
-    const res = await ctx.twitterClient.tweets.findTweetsById({
-      ...tweetQueryOptions,
-      ids: ctx.debugTweetIds
-    })
+    const res = await twitter.findTweetsById(
+      {
+        ...tweetQueryOptions,
+        ids: ctx.debugTweetIds
+      },
+      ctx
+    )
 
     // console.log('debugTweet', JSON.stringify(res, null, 2))
 

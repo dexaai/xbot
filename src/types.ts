@@ -8,6 +8,7 @@ export type { TwitterClient }
 export type MessageType = 'tweet' | 'dm'
 export type Role = 'user' | 'assistant'
 export type AnswerEngineType = 'openai' | 'dexa'
+export type TwitterApiPlan = 'free' | 'basic' | 'pro' | 'enterprise'
 
 export type Context = {
   // Dynamic a state which gets persisted to the db
