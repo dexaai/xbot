@@ -23,7 +23,6 @@
     "test": "run-s test:*",
     "test:lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "test:format": "prettier --check \"**/*.{js,ts,tsx}\"",
-    "test:unit": "ava",
     "test:typecheck": "tsc --noEmit"
   },
   "dependencies": {
