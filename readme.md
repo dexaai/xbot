@@ -10,7 +10,7 @@
 
 ## Configuring the bot
 
-You'll need a Twitter developer account, an app with OAuth 2.0
+You'll need a Twitter developer account and a Twitter an app with OAuth 2.0 enabled.
 
 Set up a `.env` file by copying `.env.example` and initializing all required environment variables.
 
