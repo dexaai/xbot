@@ -38,17 +38,28 @@ export async function getTweetMentionsBatch(
 
     updateSinceMentionId(tweetId: string) {
       batch.sinceMentionId = maxTwitterId(batch.sinceMentionId, tweetId)
+    },
+
+    async tryGetUserById(userId?: string) {
+      if (!userId) return
+      return batch.users[userId] ?? db.users.get(userId)
+    },
+
+    async tryGetTweetById(tweetId?: string) {
+      if (!tweetId) return
+      return batch.tweets[tweetId] ?? db.tweets.get(tweetId)
     }
   }
 
   await populateTweetMentionsBatch(batch, ctx)
-
   const numMentionsFetched = batch.mentions.length
 
   // Filter out invalid mentions
-  batch.mentions = batch.mentions.filter((mention) =>
-    isValidMention(mention, batch, ctx)
-  )
+  batch.mentions = (
+    await pMap(batch.mentions, async (mention) =>
+      (await isValidMention(mention, batch, ctx)) ? mention : null
+    )
+  ).filter(Boolean)
 
   const numMentionsValid = batch.mentions.length
 
@@ -117,7 +128,7 @@ export async function getTweetMentionsBatch(
       let penalty = 10
 
       const prevMessage = prevMessages[repliedToTweetRef.id]
-      const repliedToTweet = batch.tweets[repliedToTweetRef.id]
+      const repliedToTweet = await batch.tryGetTweetById(repliedToTweetRef.id)
 
       if (repliedToTweet?.author_id === ctx.twitterBotUserId) {
         // continuing the conversation
@@ -153,7 +164,7 @@ export async function getTweetMentionsBatch(
       score += 10000
     }
 
-    const mentionUser = batch.users[mention.author_id!]
+    const mentionUser = await batch.tryGetUserById(mention.author_id)
     if (mentionUser) {
       mention.promptUrl = getTweetUrl({
         username: mentionUser.username,
@@ -335,11 +346,11 @@ export function getNumMentionsInText(
  * - https://twittercommunity.com/t/display-text-range-not-included-in-api-v2-tweet-lookup-or-statuses-user-timeline/161896/4
  * - https://twittercommunity.com/t/is-there-a-way-to-get-something-like-display-text-range-in-api-v2/172689/3
  */
-export function isValidMention(
+export async function isValidMention(
   mention: types.PartialTweetMention,
   batch: types.PartialTweetMentionBatch,
   ctx: types.Context
-): boolean {
+): Promise<boolean> {
   if (!mention) {
     return false
   }
@@ -356,7 +367,7 @@ export function isValidMention(
     (t) => t.type === 'replied_to'
   )
   const repliedToTweet = repliedToTweetRef
-    ? batch.tweets[repliedToTweetRef.id]
+    ? await batch.tryGetTweetById(repliedToTweetRef.id)
     : null
   const isReply = !!repliedToTweetRef
   let repliedToMention = repliedToTweet
@@ -418,7 +429,7 @@ export function isValidMention(
       //   numMentions
       // })
 
-      batch.updateSinceMentionId?.(mention.id!)
+      batch.updateSinceMentionId(mention.id!)
       return false
     } else if (numMentions === 1) {
       // TODO: I don't think this is necessary anymore
@@ -426,7 +437,7 @@ export function isValidMention(
       //   console.log('ignoring mention 1', mention, {
       //     numMentions
       //   })
-      //   batch.updateSinceMentionId?.(mention.id)
+      //   batch.updateSinceMentionId(mention.id)
       //   return false
       // }
     }
@@ -435,7 +446,7 @@ export function isValidMention(
     //   numMentions
     // })
 
-    batch.updateSinceMentionId?.(mention.id!)
+    batch.updateSinceMentionId(mention.id!)
     return false
   }
 
