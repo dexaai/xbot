@@ -45,7 +45,7 @@ async function getTwitterAuth({
     config.nangoConnectionId
   )
 
-  console.debug('nango twitter connection', connection)
+  // console.debug('nango twitter connection', connection)
   // connection.credentials.raw
   // {
   //   token_type: 'bearer',

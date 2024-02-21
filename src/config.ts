@@ -23,7 +23,8 @@ export const tweetIgnoreList = new Set<string>([
 export const twitterUsersIgnoreList = new Set<string>([
   '1598922281434103808', // ChatGPTBot
   '1506967793409065000', // ReplyGPT
-  '1607692579243687936' // ChatSonicAI
+  '1607692579243687936', // ChatSonicAI
+  '2308326482' // dustyplaylist
 ])
 
 // Used by the author(s) for faster testing and feedback
