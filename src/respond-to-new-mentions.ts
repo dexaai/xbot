@@ -64,17 +64,25 @@ export async function respondToNewMentions(ctx: types.Context) {
           isReply: mention.isReply
         }
 
+        function setResponseTweet(tweet: types.CreatedTweet) {
+          message.responseTweetId = tweet.id
+          message.responseUrl = getTweetUrl({
+            username: ctx.twitterBotHandle.replace('@', ''),
+            id: message.responseTweetId
+          })
+        }
+
         if (batch.hasNetworkError) {
           message.error = 'network error'
           return message
         }
 
-        if (batch.isRateLimitedTwitter) {
+        if (batch.hasTwitterRateLimitError) {
           message.error = 'Twitter rate limited'
           return message
         }
 
-        if (batch.isExpiredAuthTwitter) {
+        if (batch.hasTwitterAuthError) {
           message.error = 'Twitter auth expired'
           return message
         }
@@ -195,36 +203,78 @@ export async function respondToNewMentions(ctx: types.Context) {
               ctx
             )
 
-            message.responseTweetId = tweet.id
-            message.responseUrl = getTweetUrl({
-              username: ctx.twitterBotHandle.replace('@', ''),
-              id: message.responseTweetId
-            })
+            setResponseTweet(tweet)
           }
 
-          // Remove any previous error processing this message
+          // Remove any previous error state from processing this message
           delete message.error
+          delete message.errorType
+          delete message.errorStatus
+          delete message.isErrorFinal
 
           console.log('message', message)
           console.log()
 
-          if (!ctx.dryRun) {
-            await db.upsertMessage(message)
-          }
-
           return message
         } catch (err: any) {
-          console.warn('error', err)
+          message.error = err.toString()
 
           if (err instanceof BotError) {
-            message.error = err.toString()
+            console.warn('bot error', err.toString(), {
+              type: err.type,
+              isFinal: err.isFinal,
+              status: err.status
+            })
+
+            message.errorType = err.type
+            message.errorStatus = err.status
             message.isErrorFinal = !!err.isFinal
 
             if (err.type === 'network') {
               batch.hasNetworkError = true
+            } else if (err.type === 'twitter:auth') {
+              batch.hasTwitterAuthError = true
+            } else if (err.type === 'twitter:rate-limit') {
+              batch.hasTwitterRateLimitError = true
+            } else if (err.type === 'moderation') {
+              try {
+                if (!ctx.dryRun) {
+                  const tweet = await createTweet(
+                    {
+                      text: `Your tweet may violate our usage policy. ${err.toString()}\n\nRef: ${promptTweetId}`,
+                      reply: {
+                        in_reply_to_tweet_id: promptTweetId
+                      }
+                    },
+                    ctx
+                  )
+
+                  setResponseTweet(tweet)
+                  await db.upsertMessage(message)
+                }
+              } catch (err2: any) {
+                console.warn(
+                  `warning: twitter error responding to tweet after ${err.type} error`,
+                  err2.toString()
+                )
+              }
+            } else if (err.type === 'unknown') {
+              // Unknown application error; bail out
+              throw err
             }
 
             return message
+          }
+
+          // Unknown application error; bail out
+          throw err
+        } finally {
+          try {
+            if (!ctx.dryRun) {
+              await db.upsertMessage(message)
+            }
+          } catch (err: any) {
+            console.warn('ignoring message upsert error', err.toString())
           }
         }
       },

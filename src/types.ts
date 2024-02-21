@@ -1,6 +1,8 @@
 import type { Client as TwitterClient } from 'twitter-api-sdk'
 import type { AsyncReturnType, SetOptional, Simplify } from 'type-fest'
 
+import type { BotErrorType } from './bot-error.js'
+
 export type { TwitterClient }
 
 export type MessageType = 'tweet' | 'dm'
@@ -58,6 +60,8 @@ export interface Message {
   parentMessageId?: string
 
   error?: string
+  errorType?: BotErrorType
+  errorStatus?: number
   isErrorFinal?: boolean
 
   priorityScore?: number
@@ -118,8 +122,8 @@ export type TweetMentionBatch = {
   // Messages generated from this batch
   messages: Message[]
 
-  isRateLimitedTwitter: boolean
-  isExpiredAuthTwitter: boolean
+  hasTwitterRateLimitError: boolean
+  hasTwitterAuthError: boolean
   hasNetworkError: boolean
 
   readonly updateSinceMentionId: (tweetId: string) => void

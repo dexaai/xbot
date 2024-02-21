@@ -65,9 +65,23 @@ async function createTweetImpl(
 
     if (err.status >= 400 && err.status < 500) {
       throw new BotError(
-        `error creating tweet: ${err.status} ${err.error?.description || ''}`,
+        `error creating tweet: ${err.status} ${
+          err.error?.description || err.toString()
+        }`,
         {
           type: 'twitter:unknown',
+          isFinal: true,
+          cause: err
+        }
+      )
+    } else if (err.status >= 500) {
+      throw new BotError(
+        `error creating tweet: ${err.status} ${
+          err.error?.description || err.toString()
+        }`,
+        {
+          type: 'twitter:unknown',
+          isFinal: false,
           cause: err
         }
       )

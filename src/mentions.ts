@@ -32,8 +32,8 @@ export async function getTweetMentionsBatch(
     sinceMentionId: ctx.sinceMentionId,
 
     messages: [],
-    isRateLimitedTwitter: false,
-    isExpiredAuthTwitter: false,
+    hasTwitterAuthError: false,
+    hasTwitterRateLimitError: false,
     hasNetworkError: false,
 
     updateSinceMentionId(tweetId: string) {
