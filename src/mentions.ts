@@ -126,7 +126,7 @@ export async function getTweetMentionsBatch(
   //    - top-level tweets are ranked higher than replies
   //    - accounts with lots of followers are prioritized because they have a
   //      larger surface area for exposure
-  //    - a fixed set of "priority users" is prioritized highest for testing
+  //    - a fixed set of "priority users" are prioritized highest for testing
   //      purposes; this includes me and my test accounts
   //    - older tweets that we haven't responded to yet get a small boost
   for (let i = 0; i < numMentionsCandidates; ++i) {

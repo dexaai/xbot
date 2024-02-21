@@ -80,7 +80,8 @@
     "ignorePatterns": [
       "node_modules",
       "dist",
-      ".next"
+      ".next",
+      ".tsimp"
     ],
     "rules": {
       "no-console": "off",
