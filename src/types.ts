@@ -128,8 +128,13 @@ export type TweetMentionBatch = {
 }
 
 export type PartialTweetMentionBatch = Omit<TweetMentionBatch, 'mentions'> & {
+  /**
+   * Partial tweet mentions to process this batch, which get converted to full
+   * `TweetMention` objects after population and validation.
+   */
   mentions: PartialTweetMention[]
 
+  /** Updates the max twitter id processed this batch */
   updateSinceMentionId: (tweetId: string) => void
 
   /** Attempts to retrieve a twitter user from the cache */

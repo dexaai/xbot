@@ -36,18 +36,35 @@ export async function getTweetMentionsBatch(
     hasTwitterRateLimitError: false,
     hasNetworkError: false,
 
+    /** Updates the max twitter id processed this batch */
     updateSinceMentionId(tweetId: string) {
       batch.sinceMentionId = maxTwitterId(batch.sinceMentionId, tweetId)
     },
 
+    /** Attempts to retrieve a twitter user from the cache */
     async tryGetUserById(userId?: string) {
       if (!userId) return
-      return batch.users[userId] ?? db.users.get(userId)
+
+      let user = batch.users[userId]
+      if (user) return user
+
+      user = await db.users.get(userId)
+      if (user) batch.users[userId] = user
+
+      return user
     },
 
+    /** Attempts to retrieve a tweet from the cache */
     async tryGetTweetById(tweetId?: string) {
       if (!tweetId) return
-      return batch.tweets[tweetId] ?? db.tweets.get(tweetId)
+
+      let tweet = batch.tweets[tweetId]
+      if (tweet) return tweet
+
+      tweet = await db.tweets.get(tweetId)
+      if (tweet) return (batch.tweets[tweetId] = tweet)
+
+      return tweet
     }
   }
 

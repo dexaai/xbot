@@ -4,7 +4,7 @@ import * as config from '../src/config.js'
 import * as db from '../src/db.js'
 import type * as types from '../src/types.js'
 import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
-import { getTwitterClient, refreshTwitterAuth } from '../src/twitter-client.js'
+import { getTwitterClient } from '../src/twitter-client.js'
 import { maxTwitterId } from '../src/twitter-utils.js'
 
 async function main() {
@@ -113,6 +113,21 @@ async function main() {
 
       if (debugTweetIds?.length) {
         break
+      }
+
+      if (batch.hasNetworkError) {
+        console.warn('network error; sleeping...')
+        await delay(10_000)
+      }
+
+      if (batch.hasTwitterRateLimitError) {
+        console.warn('twitter rate limit error; sleeping...')
+        await delay(30_000)
+      }
+
+      if (batch.hasTwitterAuthError) {
+        console.warn('twitter auth error; refreshing...')
+        await refreshTwitterAuth()
       }
     } catch (err) {
       console.error('top-level error', err)
