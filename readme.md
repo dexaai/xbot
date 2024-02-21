@@ -11,7 +11,7 @@
 
 ## Configuring the bot
 
-You'll need a Twitter developer account and a Twitter an app with OAuth 2.0 enabled.
+You'll need a Twitter developer account and a Twitter an app with OAuth 2.0 enabled. You must have at least the basic Twitter API plan in order to run this bot; **the free tier is not supported** (it doesn't support fetching tweets which is required for this bot to work).
 
 Set up a `.env` file by copying `.env.example` and initializing all required environment variables.
 

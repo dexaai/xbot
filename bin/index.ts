@@ -27,6 +27,12 @@ async function main() {
     (process.env.ANSWER_ENGINE as types.AnswerEngineType) ?? 'openai'
   validateAnswerEngine(answerEngine)
 
+  if (config.twitterApiPlan === 'free') {
+    throw new Error(
+      `This bot does not support the "free" twitter API plan. You'll need to upgrade to at least the "basic" plan in order to run this bot.`
+    )
+  }
+
   let twitterClient = await getTwitterClient()
   const { data: user } = await twitterClient.users.findMyUser()
 

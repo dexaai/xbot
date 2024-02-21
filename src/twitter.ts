@@ -44,15 +44,15 @@ const twitterApiRateLimitsByPlan: Record<
 
     // TODO: according to the twitter docs, this shouldn't be allowed on the
     // free plan, but it seems to work...
-    usersIdMentions: { limit: 180, interval: FIFTEEN_MINUTES_MS },
+    usersIdMentions: { limit: 1, interval: FIFTEEN_MINUTES_MS },
 
     // TODO: according to the twitter docs, this shouldn't be allowed on the
     // free plan, but it seems to work...
-    findTweetById: { limit: 15, interval: FIFTEEN_MINUTES_MS },
+    findTweetById: { limit: 1, interval: FIFTEEN_MINUTES_MS },
 
     // TODO: according to the twitter docs, this shouldn't be allowed on the
     // free plan, but it seems to work...
-    findTweetsById: { limit: 15, interval: FIFTEEN_MINUTES_MS }
+    findTweetsById: { limit: 1, interval: FIFTEEN_MINUTES_MS }
   },
 
   basic: {
