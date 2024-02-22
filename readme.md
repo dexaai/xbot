@@ -37,7 +37,7 @@ tsx bin/index.ts
 
 - support quote tweet and retweet context
 - support URLs and other entity metadata (user profile info) so the answer engine has more info to work off of
-- re-add support for generating images to support longer responses w/ the openai answer engine
+- consider re-adding support for generating images to support longer responses w/ the openai answer engine
 
 ## License
 

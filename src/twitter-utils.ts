@@ -116,9 +116,9 @@ export function getTweetUrl({
 export function sanitizeTweetText(
   text: string,
   {
-    label,
+    label = '',
     errorType = 'answer-engine:invalid-response'
-  }: { label: string; errorType?: BotErrorType }
+  }: { label?: string; errorType?: BotErrorType } = {}
 ): string {
   text = text.trim()
 
@@ -145,20 +145,34 @@ export function sanitizeTweetText(
 
   const maxTweetLengthSansUrls = Math.max(
     3,
-    maxTweetLength - twitterUrlCharacterCount * urlsWithIndices.length
+    maxTweetLength - 1 - twitterUrlCharacterCount * urlsWithIndices.length
   )
 
   // Truncate text to fit within the max tweet length
-  text = text.slice(0, maxTweetLengthSansUrls - 3).trim() + '...'
+  text = text.slice(0, maxTweetLengthSansUrls - 3).trim() + '... '
 
   const textWithoutUrls =
-    text.slice(0, maxTweetLengthSansUrls - 3).trim() + '...'
+    text.slice(0, maxTweetLengthSansUrls - 3).trim() + '... '
 
   // Re-add urls
   for (let i = urlsWithIndices.length; i--; ) {
     const { url, indices } = urlsWithIndices[i]!
-    text = text.slice(0, indices[0]) + url + text.slice(indices[1])
+    const suffixOffset = Math.max(indices[1] - url.length, 0)
+    const suffix =
+      suffixOffset < maxTweetLengthSansUrls ? text.slice(suffixOffset) : ''
+
+    // console.log('1', text, {
+    //   url,
+    //   indices,
+    //   maxTweetLengthSansUrls,
+    //   suffixOffset,
+    //   suffix
+    // })
+
+    text = text.slice(0, indices[0]) + url + suffix
   }
+
+  text = text.trim()
 
   if (!twitterText.isInvalidTweet(text)) {
     return text
