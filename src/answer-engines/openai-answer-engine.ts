@@ -6,14 +6,16 @@ import { AnswerEngine } from '../answer-engine.js'
 export class OpenAIAnswerEngine extends AnswerEngine {
   protected readonly _chatModel: ChatModel
 
-  constructor() {
-    super({ type: 'openai' })
-
-    this._chatModel = new ChatModel({
+  constructor({
+    chatModel = new ChatModel({
       params: {
         model: 'gpt-4-0125-preview'
       }
     })
+  }: { chatModel?: ChatModel } = {}) {
+    super({ type: 'openai' })
+
+    this._chatModel = chatModel
   }
 
   protected override async _generateMessageResponse(
