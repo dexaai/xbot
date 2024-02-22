@@ -3,11 +3,18 @@ import delay from 'delay'
 import * as config from '../src/config.js'
 import * as db from '../src/db.js'
 import type * as types from '../src/types.js'
-import { validateAnswerEngine } from '../src/answer-engine.js'
+import { createAnswerEngine } from '../src/answer-engine-utils.js'
+import { openaiClient } from '../src/openai-client.js'
 import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
 import { getTwitterClient } from '../src/twitter-client.js'
 import { maxTwitterId } from '../src/twitter-utils.js'
 
+/**
+ * This is the main bot entrypoint. The bot boils down to a big while loop,
+ * where for each iteration, it fetches a batch of new mentions, processes them,
+ * generates responses using the configured answer engine, and then tweets the
+ * responses to twitter.
+ */
 async function main() {
   const debug = !!process.env.DEBUG
   const dryRun = !!process.env.DRY_RUN
@@ -23,9 +30,9 @@ async function main() {
     process.env.MAX_NUM_MENTIONS_TO_PROCESS ?? '',
     10
   )
-  const answerEngine: types.AnswerEngineType =
+  const answerEngineType: types.AnswerEngineType =
     (process.env.ANSWER_ENGINE as types.AnswerEngineType) ?? 'openai'
-  validateAnswerEngine(answerEngine)
+  const answerEngine = createAnswerEngine(answerEngineType)
 
   if (config.twitterApiPlan === 'free') {
     throw new Error(
@@ -35,8 +42,9 @@ async function main() {
 
   let twitterClient = await getTwitterClient()
   const { data: user } = await twitterClient.users.findMyUser()
+  const twitterBotUserId = user?.id
 
-  if (!user?.id) {
+  if (!twitterBotUserId) {
     throw new Error('twitter error unable to fetch current user')
   }
 
@@ -53,7 +61,10 @@ async function main() {
   let initialSinceMentionId =
     (resolveAllMentions
       ? undefined
-      : overrideSinceMentionId || (await db.getSinceMentionId())) ?? '0'
+      : overrideSinceMentionId ||
+        (await db.getSinceMentionId({
+          twitterBotUserId
+        }))) ?? '0'
 
   const ctx: types.Context = {
     // Dynamic a state which gets persisted to the db
@@ -61,6 +72,7 @@ async function main() {
 
     // Services
     twitterClient,
+    openaiClient,
 
     // Constant app runtime config
     debug,
@@ -73,7 +85,7 @@ async function main() {
     debugTweetIds,
     twitterBotHandle: `@${user.username}`,
     twitterBotHandleL: `@${user.username.toLowerCase()}`,
-    twitterBotUserId: user.id,
+    twitterBotUserId,
     answerEngine
   }
 
@@ -95,14 +107,14 @@ async function main() {
           // Make sure it's in sync in case other processes are writing to the store
           // as well. Note: this still has the potential for a race condition, but
           // it's not enough to worry about for our use case.
-          const recentSinceMentionId = await db.getSinceMentionId()
+          const recentSinceMentionId = await db.getSinceMentionId(ctx)
           ctx.sinceMentionId = maxTwitterId(
             ctx.sinceMentionId,
             recentSinceMentionId
           )
 
-          if (ctx.sinceMentionId && !dryRun) {
-            await db.setSinceMentionId(ctx.sinceMentionId)
+          if (ctx.sinceMentionId && !ctx.dryRun) {
+            await db.setSinceMentionId(ctx.sinceMentionId, ctx)
           }
         }
       }

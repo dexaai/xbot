@@ -213,30 +213,10 @@ export async function populateTweetMentionsBatch(
 ) {
   console.log('fetching mentions since', batch.sinceMentionId || 'forever')
 
-  const tweetQueryOptions: types.TweetsQueryOptions = {
-    expansions: ['author_id', 'in_reply_to_user_id', 'referenced_tweets.id'],
-    'tweet.fields': [
-      'created_at',
-      'public_metrics',
-      'conversation_id',
-      'in_reply_to_user_id',
-      'referenced_tweets',
-      'text'
-    ],
-    'user.fields': ['profile_image_url', 'public_metrics']
-  }
-
   if (ctx.debugTweetIds?.length) {
     // Debug specific tweets instead of fetching mentions
-    const res = await twitter.findTweetsById(
-      {
-        ...tweetQueryOptions,
-        ids: ctx.debugTweetIds
-      },
-      ctx
-    )
-
-    console.log('debugTweet', JSON.stringify(res, null, 2))
+    const res = await twitter.findTweetsById(ctx.debugTweetIds, ctx)
+    // console.log('debugTweet', JSON.stringify(res, null, 2))
 
     batch.mentions = batch.mentions.concat(res.data!)
 
@@ -252,15 +232,12 @@ export async function populateTweetMentionsBatch(
       }
     }
 
-    console.log('tweets', Object.keys(batch.tweets))
-
     await db.upsertTweets(Object.values(batch.tweets).concat(batch.mentions))
     await db.upsertTwitterUsers(Object.values(batch.users))
   } else {
     const result = await getTwitterUserIdMentions(
       ctx.twitterBotUserId,
       {
-        ...tweetQueryOptions,
         max_results: 100,
         since_id: batch.sinceMentionId
       },
@@ -322,7 +299,7 @@ export async function isValidMention(
   batch: types.PartialTweetMentionBatch,
   ctx: types.Context
 ): Promise<boolean> {
-  console.log('mention', mention)
+  // console.log('mention', mention)
 
   if (!mention) {
     return false

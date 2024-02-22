@@ -2,6 +2,7 @@ import KeyvRedis from '@keyv/redis'
 import { type Redis } from 'ioredis'
 import Keyv from 'keyv'
 import pMap from 'p-map'
+import pMemoize from 'p-memoize'
 import QuickLRU from 'quick-lru'
 
 import * as config from './config.js'
@@ -56,12 +57,19 @@ if (config.redisUrl) {
   state = new Keyv({ namespace: config.redisNamespaceState })
 }
 
-export async function getSinceMentionId(): Promise<string | undefined> {
-  return state.get('sinceMentionId')
+export async function getSinceMentionId(
+  ctx: Pick<types.Context, 'twitterBotUserId'>
+): Promise<string | undefined> {
+  const key = `${ctx.twitterBotUserId}:sinceMentionId`
+  return state.get(key)
 }
 
-export async function setSinceMentionId(sinceMentionId: string | undefined) {
-  return state.set('sinceMentionId', sinceMentionId)
+export async function setSinceMentionId(
+  sinceMentionId: string | undefined,
+  ctx: Pick<types.Context, 'twitterBotUserId'>
+) {
+  const key = `${ctx.twitterBotUserId}:sinceMentionId`
+  return state.set(key, sinceMentionId)
 }
 
 export function getTweetMentionDbForUserId(userId: string) {
@@ -75,18 +83,25 @@ export function getTweetMentionDbForUserId(userId: string) {
   return userIdToMentionDbMap[userId]!
 }
 
+async function cacheTweet(tweet: types.Tweet) {
+  pruneTweet(tweet)
+  // console.log('caching tweet', tweet)
+  tweetsCache.set(tweet.id, tweet)
+  return tweets.set(tweet.id, tweet)
+}
+
+async function cacheTwitterUser(user: types.TwitterUser) {
+  pruneTwitterUser(user)
+  // console.log('caching user', user)
+  usersCache.set(user.id, user)
+  return users.set(user.id, user)
+}
+
 export async function upsertTweets(
   t: types.Tweet[],
   { concurrency = DEFAULT_CONCURRENCY }: { concurrency?: number } = {}
 ) {
-  return pMap(
-    t,
-    (tweet) => {
-      tweetsCache.set(tweet.id, tweet)
-      return tweets.set(tweet.id, tweet)
-    },
-    { concurrency }
-  )
+  return pMap(t, cacheTweet, { concurrency })
 }
 
 export async function upsertTweetMentionsForUserId(
@@ -98,6 +113,8 @@ export async function upsertTweetMentionsForUserId(
   return pMap(
     m,
     (tweet) => {
+      // We're not using `cacheTweet` here because we want to use a diff mentionsDb
+      pruneTweet(tweet)
       tweetsCache.set(tweet.id, tweet)
       return mentionsDb.set(tweet.id, tweet)
     },
@@ -111,14 +128,7 @@ export async function upsertTwitterUsers(
   u: types.TwitterUser[],
   { concurrency = DEFAULT_CONCURRENCY }: { concurrency?: number } = {}
 ) {
-  return pMap(
-    u,
-    (user) => {
-      usersCache.set(user.id, user)
-      return users.set(user.id, user)
-    },
-    { concurrency }
-  )
+  return pMap(u, cacheTwitterUser, { concurrency })
 }
 
 export async function upsertMessages(
@@ -194,12 +204,12 @@ export async function tryGetUserById(
 /** Attempts to retrieve a tweet from the cache */
 export async function tryGetTweetById(
   tweetId: string,
-  ctx: types.Context,
+  ctx: Pick<types.Context, 'twitterClient'>,
   {
-    // If true, will force a fetch from the twitter API
-    force = false
+    fetchFromTwitter = false
   }: {
-    force?: boolean
+    // Whether or not to fetch tweets from twitter if they're missing from the cache
+    fetchFromTwitter?: boolean
   } = {}
 ): Promise<types.Tweet | undefined> {
   if (!tweetId) return
@@ -213,13 +223,23 @@ export async function tryGetTweetById(
     return tweet
   }
 
-  if (force) {
+  if (fetchFromTwitter) {
     try {
-      tweet = await twitter.findTweetById(tweetId, ctx)
+      const { data: tweet, includes } = await twitter.findTweetById(
+        tweetId,
+        ctx
+      )
 
       if (tweet) {
-        tweetsCache.set(tweetId, tweet)
-        await tweets.set(tweetId, tweet)
+        if (includes?.users) {
+          await upsertTwitterUsers(Object.values(includes.users))
+        }
+
+        if (includes?.tweets) {
+          await upsertTweets(Object.values(includes.tweets))
+        }
+
+        await cacheTweet(tweet)
         return tweet
       }
     } catch (err: any) {
@@ -242,6 +262,56 @@ export async function tryGetTweetById(
   }
 
   return tweet
+}
+
+/**
+ * Prune most tweet entities since they're verbose and can be recomputed easily.
+ *
+ * We still want to fetch `entities` because some of them are useful, but the
+ * twitter api doesn't allow us to only fetch certain entities.
+ */
+function pruneTweet(tweet: types.Tweet) {
+  if (tweet.entities) {
+    if (tweet.entities.urls) {
+      tweet.entities = { urls: tweet.entities?.urls }
+    } else {
+      delete tweet.entities
+    }
+  }
+}
+
+/**
+ * Prune most user entities since they're verbose and can be recomputed easily.
+ *
+ * We still want to fetch `entities` because some of them are useful, but the
+ * twitter api doesn't allow us to only fetch certain entities.
+ */
+function pruneTwitterUser(user: types.TwitterUser) {
+  if (user.entities) {
+    if (user.entities.description?.urls) {
+      user.entities.description = {
+        urls: user.entities.description.urls
+      }
+    } else {
+      delete user.entities.description
+    }
+
+    if (!Object.keys(user.entities).length) {
+      delete user.entities
+    }
+  }
+}
+
+export const tryGetTwitterUsernameByUserId = pMemoize(
+  tryGetTwitterUsernameByUserIdImpl
+)
+
+async function tryGetTwitterUsernameByUserIdImpl(
+  userId?: string
+): Promise<string | undefined> {
+  if (!userId) return
+  const user = await tryGetUserById(userId)
+  return user?.username
 }
 
 export { tweets, users, messages, state }

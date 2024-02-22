@@ -1,6 +1,8 @@
+import type { OpenAI } from 'openai'
 import type { Client as TwitterClient } from 'twitter-api-sdk'
 import type { AsyncReturnType, SetOptional, Simplify } from 'type-fest'
 
+import type { AnswerEngine } from './answer-engine.js'
 import type { BotErrorType } from './bot-error.js'
 
 export type { TwitterClient }
@@ -16,6 +18,7 @@ export type Context = {
 
   // Services
   readonly twitterClient: TwitterClient
+  readonly openaiClient: OpenAI
 
   // Constant app runtime config
   readonly debug: boolean
@@ -29,7 +32,7 @@ export type Context = {
   readonly twitterBotHandle: string
   readonly twitterBotHandleL: string
   readonly twitterBotUserId: string
-  readonly answerEngine: AnswerEngineType
+  readonly answerEngine: AnswerEngine
 }
 
 export interface Message {
@@ -98,6 +101,16 @@ export type TweetsQueryOptions = Simplify<
   >
 >
 
+export type TwitterUserQueryOptions = Simplify<
+  Pick<
+    NonNullable<Parameters<TwitterClient['users']['findUserById']>[1]>,
+    'expansions' | 'tweet.fields' | 'user.fields'
+  >
+>
+
+export type TwitterQueryTweetFields = TweetsQueryOptions['tweet.fields']
+export type TwitterQueryUserFields = TweetsQueryOptions['user.fields']
+
 export type TwitterUserIdMentionsQueryOptions = Simplify<
   NonNullable<Parameters<TwitterClient['tweets']['usersIdMentions']>[1]>
 >
@@ -154,3 +167,9 @@ export type TweetMentionFetchResult = {
 }
 
 export type IDGeneratorFunction = () => string
+
+export type OpenAIModeration = Simplify<
+  NonNullable<
+    Unpacked<AsyncReturnType<OpenAI['moderations']['create']>['results']>
+  >
+>

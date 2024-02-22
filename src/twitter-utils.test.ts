@@ -4,6 +4,7 @@ import {
   getTweetUrl,
   maxTwitterId,
   minTwitterId,
+  sanitizeTweetText,
   tweetComparator,
   tweetIdComparator
 } from './twitter-utils.js'
@@ -74,4 +75,31 @@ test('getTweetUrl', async (t) => {
   t.is(getTweetUrl({ username: 'foo', id: '' }), undefined)
   t.is(getTweetUrl({ username: 'foo' }), undefined)
   t.is(getTweetUrl({ username: '', id: '855' }), undefined)
+})
+
+test('sanitizeTweetText', async (t) => {
+  t.is(sanitizeTweetText('hello world'), 'hello world')
+  t.is(sanitizeTweetText('https://dexa.ai'), 'https://dexa.ai')
+  t.is(
+    sanitizeTweetText(
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
+    ),
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in vo...'
+  )
+  t.is(
+    sanitizeTweetText(
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum https://example.com/foo/bar'
+    ),
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor... https://example.com/foo/bar'
+  )
+  t.is(
+    sanitizeTweetText(
+      'Lorem ipsum dolor sit amet, https://nala.ai/test consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum https://example.com/foo/bar'
+    ),
+    'Lorem ipsum dolor sit amet, https://nala.ai/test consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa... https://example.com/foo/bar'
+  )
+
+  t.throws(() => sanitizeTweetText(''))
+  t.throws(() => sanitizeTweetText('  '))
+  t.throws(() => sanitizeTweetText('\n \n'))
 })

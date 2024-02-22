@@ -7,7 +7,8 @@ import { handleKnownTwitterErrors, maxTwitterId } from './twitter-utils.js'
 /**
  * Fetches the latest mentions of the given `userId` on Twitter.
  *
- * NOTE: even with pagination, **only the 800 most recent Tweets can be retrieved**.
+ * NOTE: according to the twitter api docs, even with pagination and a paid API
+ * plan, **only the 800 most recent Tweets can be retrieved**.
  *
  * @see https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-mentions
  */
@@ -67,14 +68,10 @@ export async function getTwitterUserIdMentions(
     try {
       await twitter.usersIdMentionsThrottleWorkaround()
 
-      const mentionsQuery = twitter.usersIdMentions(
-        userId,
-        {
-          ...opts,
-          since_id: result.sinceMentionId
-        },
-        ctx
-      )
+      const mentionsQuery = twitter.usersIdMentions(userId, ctx, {
+        ...opts,
+        since_id: result.sinceMentionId
+      })
 
       let numMentionsInQuery = 0
       let numPagesInQuery = 0
@@ -98,13 +95,13 @@ export async function getTwitterUserIdMentions(
           }
         }
 
-        if (page.includes?.users?.length) {
+        if (page.includes?.users) {
           for (const user of page.includes.users) {
             result.users[user.id] = user
           }
         }
 
-        if (page.includes?.tweets?.length) {
+        if (page.includes?.tweets) {
           for (const tweet of page.includes.tweets) {
             result.tweets[tweet.id] = tweet
           }
