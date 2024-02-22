@@ -11,17 +11,20 @@
 
 ## Configuring the bot
 
-You'll need a Twitter developer account and a Twitter v2 app with OAuth 2.0 enabled. You'll need to subscribe to at least the basic Twitter API plan in order to run this bot; **the free tier is not supported** since it doesn't support fetching tweets which is required for this bot to work.
+You'll need a paid Twitter developer account and a Twitter v2 app with OAuth 2.0 enabled. You'll need to subscribe to at least the basic Twitter API plan in order to run this bot; **the free tier is not supported** since it doesn't support fetching tweets which is required for this bot to work.
 
 Set up a `.env` file by copying `.env.example` and initializing all required environment variables.
 
 Dependencies to call out:
 
 - [Nango](https://www.nango.dev) is used to simplify Twitter OAuth
-- [Dexa](https://dexa.ai) will soon become the default answer engine
 - [OpenAI](https://platform.openai.com/overview) chat completions API is used as the default answer engine for now
+- [Dexa](https://dexa.ai) is an excellent answer engine whose API is currently in private beta (otherwise it would be the default)
 - [Redis](https://redis.io) is used to persist state across runs and cache twitter objects (tweets, users, mentions) in order to maximize our use of twitter API quotas
-  - Redis is optional, and if you don't specify a redis instance, state will be "persisted" to an in-memory store. However, given twitter's quotas, using a redis instance to cache twitter objects is highly recommended.
+  - Redis is optional, and if you don't specify a redis instance, state will be "persisted" to an in-memory store
+  - However, given twitter's quotas, using a redis instance to cache twitter objects is highly recommended
+
+Note that setting `TWITTER_API_PLAN` to the correct plan is important, because all internal twitter throttling to avoid rate limits depends on your current plan.
 
 ## Running the bot
 
@@ -31,8 +34,6 @@ tsx bin/index.ts
 
 ## TODO
 
-- [Dexa](https://dexa.ai) answer engine
-  - handle tweet truncation of responses with URLs properly
 - support thread context from tweets above the earliest bot mention
 - support URLs and other entity metadata (user profile info) so the answer engine has more info to work off of
 - re-add support for moderations
