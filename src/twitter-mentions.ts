@@ -69,6 +69,7 @@ export async function getTwitterUserIdMentions(
       await twitter.usersIdMentionsThrottleWorkaround()
 
       const mentionsQuery = twitter.usersIdMentions(userId, ctx, {
+        max_results: 100,
         ...opts,
         since_id: result.sinceMentionId
       })
@@ -99,12 +100,16 @@ export async function getTwitterUserIdMentions(
           for (const user of page.includes.users) {
             result.users[user.id] = user
           }
+
+          await db.upsertTwitterUsers(Object.values(page.includes.users))
         }
 
         if (page.includes?.tweets) {
           for (const tweet of page.includes.tweets) {
             result.tweets[tweet.id] = tweet
           }
+
+          await db.upsertTweets(Object.values(page.includes.tweets))
         }
 
         await twitter.usersIdMentionsThrottleWorkaround()
@@ -135,9 +140,6 @@ export async function getTwitterUserIdMentions(
       }
     }
   } while (true)
-
-  await db.upsertTweets(Object.values(result.tweets))
-  await db.upsertTwitterUsers(Object.values(result.users))
 
   return result
 }

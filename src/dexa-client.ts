@@ -8,7 +8,7 @@ export class DexaClient {
 
   constructor({
     apiKey = process.env.DEXA_API_KEY,
-    apiBaseUrl = 'https://api.dexa.ai',
+    apiBaseUrl = process.env.DEXA_API_BASE_URL || 'https://dexa.ai',
     ky = defaultKy
   }: {
     apiKey?: string
@@ -30,7 +30,8 @@ export class DexaClient {
         json: {
           secret: this.apiKey,
           messages
-        }
+        },
+        timeout: 60000
       })
       .json<string>()
   }

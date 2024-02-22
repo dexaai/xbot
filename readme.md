@@ -35,6 +35,7 @@ tsx bin/index.ts
 
 ## TODO
 
+- add generation json ability script for specific tweet ids
 - support quote tweet and retweet context
 - support URLs and other entity metadata (user profile info) so the answer engine has more info to work off of
 - consider re-adding support for generating images to support longer responses w/ the openai answer engine

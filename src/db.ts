@@ -57,6 +57,23 @@ if (config.redisUrl) {
   state = new Keyv({ namespace: config.redisNamespaceState })
 }
 
+export async function clearCachesForUserId(userId: string) {
+  // const keys = await redis.keys('*')
+  // if (keys.length) { await redis.del(keys) }
+
+  const mentionDb = getTweetMentionDbForUserId(userId)
+  await mentionDb.clear()
+
+  await tweets.clear()
+  tweetsCache.clear()
+
+  await users.clear()
+  usersCache.clear()
+
+  await messages.clear()
+  await state.clear()
+}
+
 export async function getSinceMentionId(
   ctx: Pick<types.Context, 'twitterBotUserId'>
 ): Promise<string | undefined> {
@@ -154,6 +171,20 @@ export async function upsertMessage(message: types.Message) {
   return result
 }
 
+export async function tryGetTwitterUsersByIds(
+  userIds: string[],
+  // ctx: Pick<types.Context, 'twitterClient'>,
+  { concurrency = DEFAULT_CONCURRENCY }: { concurrency?: number } = {}
+): Promise<Record<string, types.TwitterUser>> {
+  const resolvedUsers = (
+    await pMap(userIds, (userId) => tryGetUserById(userId), {
+      concurrency
+    })
+  ).filter(Boolean)
+
+  return Object.fromEntries(resolvedUsers.map((user) => [user.id, user]))
+}
+
 export async function getCachedUserMentionsForUserSince({
   userId,
   sinceMentionId
@@ -170,15 +201,22 @@ export async function getCachedUserMentionsForUserSince({
   }
 
   const mentionDb = getTweetMentionDbForUserId(userId)
+  const userIds = new Set<string>()
 
   // TODO: Do this the right way using some redis magic instead of naively
   // iterating across all keys. This is going to get very slow over time.
-  for await (const tweet of mentionDb.iterator()) {
+  for await (const [_, tweet] of mentionDb.iterator()) {
     if (tweetIdComparator(tweet, originalSinceMentionId) > 0) {
       result.mentions.push(tweet)
       result.sinceMentionId = maxTwitterId(result.sinceMentionId, tweet.id)
+      userIds.add(tweet.author_id)
     }
   }
+
+  result.users = await tryGetTwitterUsersByIds(Array.from(userIds))
+  result.tweets = Object.fromEntries(
+    result.mentions.map((tweet) => [tweet.id, tweet])
+  )
 
   return result
 }
@@ -278,6 +316,8 @@ function pruneTweet(tweet: types.Tweet) {
       delete tweet.entities
     }
   }
+
+  delete (tweet as any)['edit_history_tweet_ids']
 }
 
 /**

@@ -29,6 +29,8 @@ export async function respondToNewMentions(ctx: types.Context) {
   if (ctx.earlyExit) {
     if (batch.mentions.length > 0) {
       console.log('mentions', JSON.stringify(batch.mentions, null, 2))
+      // console.log('users', JSON.stringify(batch.users, null, 2))
+      // console.log('tweets', JSON.stringify(batch.tweets, null, 2))
     }
 
     return batch
@@ -41,10 +43,11 @@ export async function respondToNewMentions(ctx: types.Context) {
         const { prompt, id: promptTweetId } = mention
         const promptUserId = mention.author_id!
         const promptUser = batch.users[mention.author_id!]
-        const promptUsername = promptUser?.username
+        const promptUsername =
+          promptUser?.username ??
+          (await db.tryGetTwitterUsernameByUserId(promptUserId))
 
         assert(promptTweetId, 'missing promptTweetId')
-        assert(promptUser, 'missing promptUser')
         assert(promptUsername, 'missing promptUsername')
 
         let message: types.Message = {

@@ -233,13 +233,13 @@ async function createTweetImpl(
 export function usersIdMentions(
   userId: string,
   ctx: Pick<types.Context, 'twitterClient'>,
-  params: UsersIdMentionsParams = defaultTweetQueryParams
+  params?: UsersIdMentionsParams
 ) {
   try {
-    const mentionsQuery = ctx.twitterClient.tweets.usersIdMentions(
-      userId,
-      params
-    )
+    const mentionsQuery = ctx.twitterClient.tweets.usersIdMentions(userId, {
+      ...defaultTweetQueryParams,
+      ...params
+    })
 
     return mentionsQuery
   } catch (err: any) {
@@ -255,10 +255,13 @@ export function usersIdMentions(
 async function findTweetByIdImpl(
   tweetId: string,
   ctx: Pick<types.Context, 'twitterClient'>,
-  params: FindTweetByIdParams = defaultTweetQueryParams
+  params?: FindTweetByIdParams
 ) {
   try {
-    return await ctx.twitterClient.tweets.findTweetById(tweetId, params)
+    return await ctx.twitterClient.tweets.findTweetById(tweetId, {
+      ...defaultTweetQueryParams,
+      ...params
+    })
   } catch (err: any) {
     handleKnownTwitterErrors(err, { label: `fetching tweet ${tweetId}` })
     throw err
@@ -268,10 +271,11 @@ async function findTweetByIdImpl(
 async function findTweetsByIdImpl(
   ids: string[],
   ctx: Pick<types.Context, 'twitterClient'>,
-  params: Omit<FindTweetsByIdParams, 'ids'> = defaultTweetQueryParams
+  params?: Omit<FindTweetsByIdParams, 'ids'>
 ) {
   try {
     return await ctx.twitterClient.tweets.findTweetsById({
+      ...defaultTweetQueryParams,
       ...params,
       ids
     })

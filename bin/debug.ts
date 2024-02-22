@@ -1,4 +1,4 @@
-import { tryGetTweetById } from '../src/db.js'
+import * as db from '../src/db.js'
 import { getTwitterClient } from '../src/twitter-client.js'
 
 // import { findTweetById } from '../src/twitter.js'
@@ -8,13 +8,17 @@ import { getTwitterClient } from '../src/twitter-client.js'
  */
 async function main() {
   const twitterClient = await getTwitterClient()
+
   // const { data: user } = await twitterClient.users.findUserByUsername(
   //   'dustyplaylist'
   // )
   // console.log(user)
 
+  // const lofiGrindTwitterUserId = '1235525929335689217'
+  // await clearCachesForUserId(lofiGrindTwitterUserId)
+
   const id = '1628578692707532800'
-  const res = await tryGetTweetById(id, { twitterClient })
+  const res = await db.tryGetTweetById(id, { twitterClient })
   console.log(JSON.stringify(res, null, 2))
 }
 
