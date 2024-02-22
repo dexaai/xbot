@@ -56,12 +56,19 @@ if (config.redisUrl) {
   state = new Keyv({ namespace: config.redisNamespaceState })
 }
 
-export async function getSinceMentionId(): Promise<string | undefined> {
-  return state.get('sinceMentionId')
+export async function getSinceMentionId(
+  ctx: Pick<types.Context, 'twitterBotUserId'>
+): Promise<string | undefined> {
+  const key = `${ctx.twitterBotUserId}:sinceMentionId`
+  return state.get(key)
 }
 
-export async function setSinceMentionId(sinceMentionId: string | undefined) {
-  return state.set('sinceMentionId', sinceMentionId)
+export async function setSinceMentionId(
+  sinceMentionId: string | undefined,
+  ctx: Pick<types.Context, 'twitterBotUserId'>
+) {
+  const key = `${ctx.twitterBotUserId}:sinceMentionId`
+  return state.set(key, sinceMentionId)
 }
 
 export function getTweetMentionDbForUserId(userId: string) {

@@ -42,8 +42,9 @@ async function main() {
 
   let twitterClient = await getTwitterClient()
   const { data: user } = await twitterClient.users.findMyUser()
+  const twitterBotUserId = user?.id
 
-  if (!user?.id) {
+  if (!twitterBotUserId) {
     throw new Error('twitter error unable to fetch current user')
   }
 
@@ -60,7 +61,10 @@ async function main() {
   let initialSinceMentionId =
     (resolveAllMentions
       ? undefined
-      : overrideSinceMentionId || (await db.getSinceMentionId())) ?? '0'
+      : overrideSinceMentionId ||
+        (await db.getSinceMentionId({
+          twitterBotUserId
+        }))) ?? '0'
 
   const ctx: types.Context = {
     // Dynamic a state which gets persisted to the db
@@ -81,7 +85,7 @@ async function main() {
     debugTweetIds,
     twitterBotHandle: `@${user.username}`,
     twitterBotHandleL: `@${user.username.toLowerCase()}`,
-    twitterBotUserId: user.id,
+    twitterBotUserId,
     answerEngine
   }
 
@@ -103,14 +107,14 @@ async function main() {
           // Make sure it's in sync in case other processes are writing to the store
           // as well. Note: this still has the potential for a race condition, but
           // it's not enough to worry about for our use case.
-          const recentSinceMentionId = await db.getSinceMentionId()
+          const recentSinceMentionId = await db.getSinceMentionId(ctx)
           ctx.sinceMentionId = maxTwitterId(
             ctx.sinceMentionId,
             recentSinceMentionId
           )
 
-          if (ctx.sinceMentionId && !dryRun) {
-            await db.setSinceMentionId(ctx.sinceMentionId)
+          if (ctx.sinceMentionId && !ctx.dryRun) {
+            await db.setSinceMentionId(ctx.sinceMentionId, ctx)
           }
         }
       }
