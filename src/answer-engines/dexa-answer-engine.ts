@@ -23,6 +23,6 @@ export class DexaAnswerEngine extends AnswerEngine {
     },
     ctx: types.Context
   ): Promise<string> {
-    return this._dexaClient.run({ messages: messageThread })
+    return this._dexaClient.generateResponse({ messages: messageThread })
   }
 }
