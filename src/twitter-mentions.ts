@@ -7,7 +7,8 @@ import { handleKnownTwitterErrors, maxTwitterId } from './twitter-utils.js'
 /**
  * Fetches the latest mentions of the given `userId` on Twitter.
  *
- * NOTE: even with pagination, **only the 800 most recent Tweets can be retrieved**.
+ * NOTE: according to the twitter api docs, even with pagination and a paid API
+ * plan, **only the 800 most recent Tweets can be retrieved**.
  *
  * @see https://developer.twitter.com/en/docs/twitter-api/tweets/timelines/api-reference/get-users-id-mentions
  */
