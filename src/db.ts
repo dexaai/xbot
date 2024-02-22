@@ -57,11 +57,13 @@ if (config.redisUrl) {
   state = new Keyv({ namespace: config.redisNamespaceState })
 }
 
-export async function clearCachesForUserId(userId: string) {
+export async function clearAllDataForUserId(twitterBotUserId: string) {
+  console.warn('WARNING: clearing all data for user', twitterBotUserId)
+
   // const keys = await redis.keys('*')
   // if (keys.length) { await redis.del(keys) }
 
-  const mentionDb = getTweetMentionDbForUserId(userId)
+  const mentionDb = getTweetMentionDbForUserId(twitterBotUserId)
   await mentionDb.clear()
 
   await tweets.clear()
@@ -71,7 +73,7 @@ export async function clearCachesForUserId(userId: string) {
   usersCache.clear()
 
   await messages.clear()
-  await state.clear()
+  await setSinceMentionId('0', { twitterBotUserId })
 }
 
 export async function getSinceMentionId(
