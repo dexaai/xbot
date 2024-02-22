@@ -1,7 +1,11 @@
-import type * as types from '../src/types.js'
+import { tryGetTweetById } from '../src/db.js'
 import { getTwitterClient } from '../src/twitter-client.js'
-import { findTweetById } from '../src/twitter.js'
 
+// import { findTweetById } from '../src/twitter.js'
+
+/**
+ * This is just a scratchpad / playground for running quick tests.
+ */
 async function main() {
   const twitterClient = await getTwitterClient()
   // const { data: user } = await twitterClient.users.findUserByUsername(
@@ -9,21 +13,8 @@ async function main() {
   // )
   // console.log(user)
 
-  const tweetQueryOptions: types.TweetsQueryOptions = {
-    expansions: ['author_id', 'in_reply_to_user_id', 'referenced_tweets.id'],
-    'tweet.fields': [
-      'created_at',
-      'public_metrics',
-      'conversation_id',
-      'in_reply_to_user_id',
-      'referenced_tweets',
-      'text'
-    ],
-    'user.fields': ['profile_image_url', 'public_metrics']
-  }
-
   const id = '1628578692707532800'
-  const res = await findTweetById(id, { twitterClient }, tweetQueryOptions)
+  const res = await tryGetTweetById(id, { twitterClient }, { force: true })
   console.log(JSON.stringify(res, null, 2))
 }
 

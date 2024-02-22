@@ -138,18 +138,73 @@ export type FindTweetsByIdParams = Simplify<
   Parameters<types.TwitterClient['tweets']['findTweetsById']>[0]
 >
 
+const defaultTwitterQueryTweetFields: types.TwitterQueryTweetFields = [
+  'attachments',
+  'author_id',
+  'conversation_id',
+  'created_at',
+  'entities',
+  'geo',
+  'id',
+  'in_reply_to_user_id',
+  'lang',
+  'public_metrics',
+  'possibly_sensitive',
+  'referenced_tweets',
+  'text'
+  // 'context_annotations', // not needed (way too verbose and noisy)
+  // 'edit_controls', / not needed
+  // 'non_public_metrics', // don't have access to
+  // 'organic_metrics', // don't have access to
+  // 'promoted_metrics, // don't have access to
+  // 'reply_settings', / not needed
+  // 'source', // not needed
+  // 'withheld' // not needed
+]
+
+const defaultTwitterQueryUserFields: types.TwitterQueryUserFields = [
+  'created_at',
+  'description',
+  'entities',
+  'id',
+  'location',
+  'name',
+  'pinned_tweet_id',
+  'profile_image_url',
+  'protected',
+  'public_metrics',
+  'url',
+  'username',
+  'verified'
+  // 'most_recent_tweet_id',
+  // 'verified_type',
+  // 'withheld'
+]
+
 const defaultTweetQueryParams: types.TweetsQueryOptions = {
-  expansions: ['author_id', 'in_reply_to_user_id', 'referenced_tweets.id'],
-  'tweet.fields': [
-    'created_at',
-    'public_metrics',
-    'conversation_id',
+  // https://developer.twitter.com/en/docs/twitter-api/expansions
+  expansions: [
+    'author_id',
     'in_reply_to_user_id',
-    'referenced_tweets',
-    'text'
+    'referenced_tweets.id',
+    'referenced_tweets.id.author_id',
+    'entities.mentions.username',
+    // TODO
+    'attachments.media_keys',
+    'geo.place_id',
+    'attachments.poll_ids'
   ],
-  'user.fields': ['profile_image_url', 'public_metrics']
+  'tweet.fields': defaultTwitterQueryTweetFields,
+  'user.fields': defaultTwitterQueryUserFields
 }
+
+// TODO
+// const defaultUserQueryParams: types.TwitterUserQueryOptions = {
+//   // https://developer.twitter.com/en/docs/twitter-api/expansions
+//   expansions: ['pinned_tweet_id'],
+//   'tweet.fields': defaultTwitterQueryTweetFields,
+//   'user.fields': defaultTwitterQueryUserFields
+// }
 
 async function createTweetImpl(
   params: CreateTweetParams,

@@ -101,6 +101,16 @@ export type TweetsQueryOptions = Simplify<
   >
 >
 
+export type TwitterUserQueryOptions = Simplify<
+  Pick<
+    NonNullable<Parameters<TwitterClient['users']['findUserById']>[1]>,
+    'expansions' | 'tweet.fields' | 'user.fields'
+  >
+>
+
+export type TwitterQueryTweetFields = TweetsQueryOptions['tweet.fields']
+export type TwitterQueryUserFields = TweetsQueryOptions['user.fields']
+
 export type TwitterUserIdMentionsQueryOptions = Simplify<
   NonNullable<Parameters<TwitterClient['tweets']['usersIdMentions']>[1]>
 >

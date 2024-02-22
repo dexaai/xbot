@@ -9,6 +9,9 @@ import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
 import { getTwitterClient } from '../src/twitter-client.js'
 import { maxTwitterId } from '../src/twitter-utils.js'
 
+/**
+ * This is the main bot entrypoint.
+ */
 async function main() {
   const debug = !!process.env.DEBUG
   const dryRun = !!process.env.DRY_RUN

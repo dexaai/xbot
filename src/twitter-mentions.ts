@@ -94,13 +94,13 @@ export async function getTwitterUserIdMentions(
           }
         }
 
-        if (page.includes?.users?.length) {
+        if (page.includes?.users) {
           for (const user of page.includes.users) {
             result.users[user.id] = user
           }
         }
 
-        if (page.includes?.tweets?.length) {
+        if (page.includes?.tweets) {
           for (const tweet of page.includes.tweets) {
             result.tweets[tweet.id] = tweet
           }
