@@ -85,7 +85,7 @@ export abstract class AnswerEngine {
     // Resolve any previous non-bot-related tweets in the thread
     if (resolvePrevTweetsInThread) {
       let tweet = await db.tryGetTweetById(message.promptTweetId, ctx, {
-        force: true
+        fetchFromTwitter: true
       })
 
       while (tweet) {
@@ -98,7 +98,7 @@ export abstract class AnswerEngine {
           repliedToTweetRef.id,
           ctx,
           {
-            force: true
+            fetchFromTwitter: true
           }
         )
         if (!repliedToTweet) break

@@ -198,10 +198,10 @@ export async function tryGetTweetById(
   tweetId: string,
   ctx: Pick<types.Context, 'twitterClient'>,
   {
-    force = false
+    fetchFromTwitter = false
   }: {
-    // If true, will fetch the tweet from twitter if it's not found in the cache
-    force?: boolean
+    // Whether or not to fetch tweets from twitter if they're missing from the cache
+    fetchFromTwitter?: boolean
   } = {}
 ): Promise<types.Tweet | undefined> {
   if (!tweetId) return
@@ -215,7 +215,7 @@ export async function tryGetTweetById(
     return tweet
   }
 
-  if (force) {
+  if (fetchFromTwitter) {
     try {
       const { data: tweet, includes } = await twitter.findTweetById(
         tweetId,
@@ -256,8 +256,13 @@ export async function tryGetTweetById(
   return tweet
 }
 
+/**
+ * Prune most tweet entities since they're verbose and can be recomputed easily.
+ *
+ * We still want to fetch `entities` because some mof them are useful, but the
+ * twitter api doesn't allow us to only fetch some entities.
+ */
 function pruneTweet(tweet: types.Tweet) {
-  // Prune most tweet entities since they're verbose and can be recomputed easily
   if (tweet.entities) {
     if (tweet.entities.urls) {
       tweet.entities = { urls: tweet.entities?.urls }
@@ -267,8 +272,13 @@ function pruneTweet(tweet: types.Tweet) {
   }
 }
 
+/**
+ * Prune most user entities since they're verbose and can be recomputed easily.
+ *
+ * We still want to fetch `entities` because some mof them are useful, but the
+ * twitter api doesn't allow us to only fetch some entities.
+ */
 function pruneTwitterUser(user: types.TwitterUser) {
-  // Prune most user entities since they're verbose and can be recomputed easily
   if (user.entities) {
     if (user.entities.description?.urls) {
       user.entities.description = {

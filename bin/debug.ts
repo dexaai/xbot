@@ -14,7 +14,7 @@ async function main() {
   // console.log(user)
 
   const id = '1628578692707532800'
-  const res = await tryGetTweetById(id, { twitterClient }, { force: true })
+  const res = await tryGetTweetById(id, { twitterClient })
   console.log(JSON.stringify(res, null, 2))
 }
 
