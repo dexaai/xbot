@@ -244,7 +244,7 @@ export async function respondToNewMentions(ctx: types.Context) {
                 if (!ctx.dryRun) {
                   const tweet = await createTweet(
                     {
-                      // NOTE: We're including the tweet id here, because the twitter API doesn't allow us to create multiple tweets with the same content, so this allows us to bypass that restriction.
+                      // NOTE: We're including the tweet id here, because the twitter API doesn't allow us to create multiple tweets with the same content, and this allows us to bypass that restriction.
                       text: `Your tweet may violate our usage policy. ${err.toString()}\n\nRef: ${promptTweetId}`,
                       reply: {
                         in_reply_to_tweet_id: promptTweetId
