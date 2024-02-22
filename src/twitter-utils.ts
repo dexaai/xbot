@@ -196,6 +196,12 @@ export function sanitizeTweetText(
   })
 }
 
+/**
+ * Error handler which takes in an unknown Error object and converts it to a
+ * structured BotError object for a set of common Twitter API errors.
+ *
+ * Re-throws the error and will never return.
+ */
 export function handleKnownTwitterErrors(
   err: any,
   { label }: { label: string }
@@ -264,6 +270,6 @@ export function handleKnownTwitterErrors(
     })
   }
 
-  // Otherwise, propagate the error
+  // Otherwise, propagate the original error
   throw err
 }
