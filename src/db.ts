@@ -266,8 +266,8 @@ export async function tryGetTweetById(
 /**
  * Prune most tweet entities since they're verbose and can be recomputed easily.
  *
- * We still want to fetch `entities` because some mof them are useful, but the
- * twitter api doesn't allow us to only fetch some entities.
+ * We still want to fetch `entities` because some of them are useful, but the
+ * twitter api doesn't allow us to only fetch certain entities.
  */
 function pruneTweet(tweet: types.Tweet) {
   if (tweet.entities) {
@@ -282,8 +282,8 @@ function pruneTweet(tweet: types.Tweet) {
 /**
  * Prune most user entities since they're verbose and can be recomputed easily.
  *
- * We still want to fetch `entities` because some mof them are useful, but the
- * twitter api doesn't allow us to only fetch some entities.
+ * We still want to fetch `entities` because some of them are useful, but the
+ * twitter api doesn't allow us to only fetch certain entities.
  */
 function pruneTwitterUser(user: types.TwitterUser) {
   if (user.entities) {
