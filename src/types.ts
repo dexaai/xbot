@@ -1,6 +1,7 @@
 import type { Client as TwitterClient } from 'twitter-api-sdk'
 import type { AsyncReturnType, SetOptional, Simplify } from 'type-fest'
 
+import type { AnswerEngine } from './answer-engine.js'
 import type { BotErrorType } from './bot-error.js'
 
 export type { TwitterClient }
@@ -29,7 +30,7 @@ export type Context = {
   readonly twitterBotHandle: string
   readonly twitterBotHandleL: string
   readonly twitterBotUserId: string
-  readonly answerEngine: AnswerEngineType
+  readonly answerEngine: AnswerEngine
 }
 
 export interface Message {

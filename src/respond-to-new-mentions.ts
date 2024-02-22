@@ -2,7 +2,6 @@ import pMap from 'p-map'
 
 import * as db from '../src/db.js'
 import type * as types from './types.js'
-import { generateMessageResponse } from './answer-engine.js'
 import { BotError } from './bot-error.js'
 import { getTweetMentionsBatch } from './mentions.js'
 import { getTweetUrl, maxTwitterId, minTwitterId } from './twitter-utils.js'
@@ -51,7 +50,7 @@ export async function respondToNewMentions(ctx: types.Context) {
           id: promptTweetId,
           type: 'tweet',
           role: 'user',
-          answerEngine: ctx.answerEngine,
+          answerEngine: ctx.answerEngine.type,
           promptTweetId,
           promptUserId,
           promptUsername,
@@ -166,7 +165,7 @@ export async function respondToNewMentions(ctx: types.Context) {
               }
             }
 
-            await generateMessageResponse(message, ctx)
+            await ctx.answerEngine.populateMessageResponse(message, ctx)
 
             // TODO: Re-add moderation support
             // const responseModerationResult = await checkModeration(message.response)

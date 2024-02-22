@@ -4,7 +4,7 @@ import urlRegex from 'url-regex'
 
 import type * as types from './types.js'
 
-const rUrl = urlRegex()
+export const rUrl = urlRegex()
 
 export { invariant as assert }
 
