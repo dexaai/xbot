@@ -19,6 +19,7 @@ Dependencies to call out:
 
 - [Nango](https://www.nango.dev) is used to simplify Twitter OAuth
 - [OpenAI](https://platform.openai.com/overview) chat completions API is used as the default answer engine for now
+  - OpenAI's [moderations endpoint](https://platform.openai.com/docs/guides/moderation) is also used to filter out inappropriate tweets
 - [Dexa](https://dexa.ai) is an excellent answer engine whose API is currently in private beta (otherwise it would be the default)
 - [Redis](https://redis.io) is used to persist state across runs and cache twitter objects (tweets, users, mentions) in order to maximize our use of twitter API quotas
   - Redis is optional, and if you don't specify a redis instance, state will be "persisted" to an in-memory store
@@ -34,9 +35,8 @@ tsx bin/index.ts
 
 ## TODO
 
-- support thread context from tweets above the earliest bot mention
+- support quote tweet and retweet context
 - support URLs and other entity metadata (user profile info) so the answer engine has more info to work off of
-- re-add support for moderations
 - re-add support for generating images to support longer responses w/ the openai answer engine
 
 ## License

@@ -1,3 +1,4 @@
+import type { OpenAI } from 'openai'
 import type { Client as TwitterClient } from 'twitter-api-sdk'
 import type { AsyncReturnType, SetOptional, Simplify } from 'type-fest'
 
@@ -17,6 +18,7 @@ export type Context = {
 
   // Services
   readonly twitterClient: TwitterClient
+  readonly openaiClient: OpenAI
 
   // Constant app runtime config
   readonly debug: boolean
@@ -155,3 +157,9 @@ export type TweetMentionFetchResult = {
 }
 
 export type IDGeneratorFunction = () => string
+
+export type OpenAIModeration = Simplify<
+  NonNullable<
+    Unpacked<AsyncReturnType<OpenAI['moderations']['create']>['results']>
+  >
+>

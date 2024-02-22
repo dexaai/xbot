@@ -4,6 +4,7 @@ import * as db from '../src/db.js'
 import type * as types from './types.js'
 import { BotError } from './bot-error.js'
 import { getTweetMentionsBatch } from './mentions.js'
+import { checkModeration } from './moderations.js'
 import { getTweetUrl, maxTwitterId, minTwitterId } from './twitter-utils.js'
 import { createTweet } from './twitter.js'
 import { assert, getDebugMention, pick } from './utils.js'
@@ -128,22 +129,23 @@ export async function respondToNewMentions(ctx: types.Context) {
           if (!bypassMessageResponseGeneration) {
             console.log('processing', getDebugMention(mention))
 
-            // TODO: Re-add moderation support
-            // const promptModerationResult = await checkModeration(prompt)
-            // if (promptModerationResult.flagged) {
-            //   const reason = Object.keys(promptModerationResult.categories)
-            //     .filter((key) => promptModerationResult.categories[key])
-            //     .join(', ')
-            //   const error = new BotError(
-            //     `Error prompt flagged for moderation: ${reason}`,
-            //     {
-            //       type: 'moderation',
-            //       isFinal: true
-            //     }
-            //   )
-            //   console.error(error.toString(), prompt, promptModerationResult)
-            //   throw error
-            // }
+            const promptModerationResult = await checkModeration(prompt, ctx)
+            if (promptModerationResult.flagged) {
+              const reason = Object.keys(promptModerationResult.categories)
+                .filter(
+                  (key: any) => (promptModerationResult.categories as any)[key]
+                )
+                .join(', ')
+              const error = new BotError(
+                `Error prompt flagged for moderation: ${reason}`,
+                {
+                  type: 'moderation',
+                  isFinal: true
+                }
+              )
+              console.error(error.toString(), prompt, promptModerationResult)
+              throw error
+            }
 
             const repliedToTweetRef = mention.referenced_tweets?.find(
               (t) => t.type === 'replied_to'
@@ -167,22 +169,30 @@ export async function respondToNewMentions(ctx: types.Context) {
 
             await ctx.answerEngine.populateMessageResponse(message, ctx)
 
-            // TODO: Re-add moderation support
-            // const responseModerationResult = await checkModeration(message.response)
-            // if (responseModerationResult.flagged) {
-            //   const reason = Object.keys(responseModerationResult.categories)
-            //     .filter((key) => responseModerationResult.categories[key])
-            //     .join(', ')
-            //   const error = new BotError(
-            //     `Error response flagged for moderation: ${reason}`,
-            //     {
-            //       type: 'moderation',
-            //       isFinal: true
-            //     }
-            //   )
-            //   console.error(error.toString(), message.response, responseModerationResult)
-            //   throw error
-            // }
+            const responseModerationResult = await checkModeration(
+              message.response,
+              ctx
+            )
+            if (responseModerationResult.flagged) {
+              const reason = Object.keys(responseModerationResult.categories)
+                .filter(
+                  (key) => (responseModerationResult.categories as any)[key]
+                )
+                .join(', ')
+              const error = new BotError(
+                `Error ${ctx.answerEngine.type} response flagged for moderation: ${reason}`,
+                {
+                  type: 'moderation',
+                  isFinal: true
+                }
+              )
+              console.error(
+                error.toString(),
+                message.response,
+                responseModerationResult
+              )
+              throw error
+            }
           }
 
           if (!ctx.dryRun) {
