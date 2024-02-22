@@ -1,5 +1,5 @@
 import pThrottle from 'p-throttle'
-import type { Simplify } from 'type-fest'
+import type { SetOptional, Simplify } from 'type-fest'
 
 import * as config from './config.js'
 import type * as types from './types.js'
@@ -131,16 +131,31 @@ export type UsersIdMentionsParams = Simplify<
 >
 
 export type FindTweetByIdParams = Simplify<
-  Parameters<types.TwitterClient['tweets']['findTweetById']>[0]
+  Parameters<types.TwitterClient['tweets']['findTweetById']>[1]
 >
 
 export type FindTweetsByIdParams = Simplify<
   Parameters<types.TwitterClient['tweets']['findTweetsById']>[0]
 >
 
+const defaultTweetQueryParams: types.TweetsQueryOptions = {
+  expansions: ['author_id', 'in_reply_to_user_id', 'referenced_tweets.id'],
+  'tweet.fields': [
+    'created_at',
+    'public_metrics',
+    'conversation_id',
+    'in_reply_to_user_id',
+    'referenced_tweets',
+    'text'
+  ],
+  'user.fields': ['profile_image_url', 'public_metrics']
+}
+
 async function createTweetImpl(
   params: CreateTweetParams,
-  ctx: types.Context
+  ctx: Simplify<
+    SetOptional<Pick<types.Context, 'twitterClient' | 'dryRun'>, 'dryRun'>
+  >
 ): Promise<types.CreatedTweet> {
   assert(!ctx.dryRun)
 
@@ -162,8 +177,8 @@ async function createTweetImpl(
 
 export function usersIdMentions(
   userId: string,
-  params: UsersIdMentionsParams,
-  ctx: types.Context
+  ctx: Pick<types.Context, 'twitterClient'>,
+  params: UsersIdMentionsParams = defaultTweetQueryParams
 ) {
   try {
     const mentionsQuery = ctx.twitterClient.tweets.usersIdMentions(
@@ -175,41 +190,38 @@ export function usersIdMentions(
   } catch (err: any) {
     console.error('error fetching user mentions', err)
 
-    handleKnownTwitterErrors(err, { label: 'fetching user mentions' })
+    handleKnownTwitterErrors(err, {
+      label: `fetching user mentions for user "${userId}"`
+    })
     throw err
   }
 }
 
 async function findTweetByIdImpl(
-  params: FindTweetByIdParams,
-  ctx: types.Context
-): Promise<types.Tweet> {
+  tweetId: string,
+  ctx: Pick<types.Context, 'twitterClient'>,
+  params: FindTweetByIdParams = defaultTweetQueryParams
+) {
   try {
-    const { data: tweet } = await ctx.twitterClient.tweets.findTweetById(params)
-
-    if (!tweet?.id) {
-      throw new Error('invalid findTweetById response')
-    }
-
-    return tweet
+    return await ctx.twitterClient.tweets.findTweetById(tweetId, params)
   } catch (err: any) {
-    console.error('error creating tweet', err)
-
-    handleKnownTwitterErrors(err, { label: 'creating tweet' })
+    handleKnownTwitterErrors(err, { label: `fetching tweet ${tweetId}` })
     throw err
   }
 }
 
 async function findTweetsByIdImpl(
-  params: FindTweetsByIdParams,
-  ctx: types.Context
+  ids: string[],
+  ctx: Pick<types.Context, 'twitterClient'>,
+  params: Omit<FindTweetsByIdParams, 'ids'> = defaultTweetQueryParams
 ) {
   try {
-    return await ctx.twitterClient.tweets.findTweetsById(params)
+    return await ctx.twitterClient.tweets.findTweetsById({
+      ...params,
+      ids
+    })
   } catch (err: any) {
-    console.error('error creating tweet', err)
-
-    handleKnownTwitterErrors(err, { label: 'creating tweet' })
+    handleKnownTwitterErrors(err, { label: `fetching ${ids.length} tweets` })
     throw err
   }
 }

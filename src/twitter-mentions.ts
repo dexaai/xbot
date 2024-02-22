@@ -67,14 +67,10 @@ export async function getTwitterUserIdMentions(
     try {
       await twitter.usersIdMentionsThrottleWorkaround()
 
-      const mentionsQuery = twitter.usersIdMentions(
-        userId,
-        {
-          ...opts,
-          since_id: result.sinceMentionId
-        },
-        ctx
-      )
+      const mentionsQuery = twitter.usersIdMentions(userId, ctx, {
+        ...opts,
+        since_id: result.sinceMentionId
+      })
 
       let numMentionsInQuery = 0
       let numPagesInQuery = 0

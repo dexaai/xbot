@@ -215,9 +215,26 @@ export async function tryGetTweetById(
 
   if (force) {
     try {
-      tweet = await twitter.findTweetById(tweetId, ctx)
+      const { data: tweet, includes } = await twitter.findTweetById(
+        tweetId,
+        ctx
+      )
 
       if (tweet) {
+        if (includes?.users) {
+          for (const u of includes.users) {
+            usersCache.set(u.id, u)
+            await users.set(u.id, u)
+          }
+        }
+
+        if (includes?.tweets) {
+          for (const t of includes.tweets) {
+            tweetsCache.set(t.id, t)
+            await tweets.set(t.id, t)
+          }
+        }
+
         tweetsCache.set(tweetId, tweet)
         await tweets.set(tweetId, tweet)
         return tweet
