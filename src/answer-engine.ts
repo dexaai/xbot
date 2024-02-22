@@ -87,6 +87,7 @@ export abstract class AnswerEngine {
       let tweet = await db.tryGetTweetById(message.promptTweetId, ctx, {
         force: true
       })
+
       while (tweet) {
         const repliedToTweetRef = tweet.referenced_tweets?.find(
           (t) => t.type === 'replied_to'
