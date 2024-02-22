@@ -216,7 +216,7 @@ export async function populateTweetMentionsBatch(
   if (ctx.debugTweetIds?.length) {
     // Debug specific tweets instead of fetching mentions
     const res = await twitter.findTweetsById(ctx.debugTweetIds, ctx)
-    console.log('debugTweet', JSON.stringify(res, null, 2))
+    // console.log('debugTweet', JSON.stringify(res, null, 2))
 
     batch.mentions = batch.mentions.concat(res.data!)
 
@@ -231,8 +231,6 @@ export async function populateTweetMentionsBatch(
         batch.tweets[tweet.id] = tweet
       }
     }
-
-    console.log('tweets', Object.keys(batch.tweets))
 
     await db.upsertTweets(Object.values(batch.tweets).concat(batch.mentions))
     await db.upsertTwitterUsers(Object.values(batch.users))
@@ -301,7 +299,7 @@ export async function isValidMention(
   batch: types.PartialTweetMentionBatch,
   ctx: types.Context
 ): Promise<boolean> {
-  console.log('mention', mention)
+  // console.log('mention', mention)
 
   if (!mention) {
     return false

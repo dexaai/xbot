@@ -2,6 +2,7 @@ import KeyvRedis from '@keyv/redis'
 import { type Redis } from 'ioredis'
 import Keyv from 'keyv'
 import pMap from 'p-map'
+import pMemoize from 'p-memoize'
 import QuickLRU from 'quick-lru'
 
 import * as config from './config.js'
@@ -84,14 +85,14 @@ export function getTweetMentionDbForUserId(userId: string) {
 
 async function cacheTweet(tweet: types.Tweet) {
   pruneTweet(tweet)
-  console.log('caching tweet', tweet)
+  // console.log('caching tweet', tweet)
   tweetsCache.set(tweet.id, tweet)
   return tweets.set(tweet.id, tweet)
 }
 
 async function cacheTwitterUser(user: types.TwitterUser) {
   pruneTwitterUser(user)
-  console.log('caching user', user)
+  // console.log('caching user', user)
   usersCache.set(user.id, user)
   return users.set(user.id, user)
 }
@@ -300,4 +301,17 @@ function pruneTwitterUser(user: types.TwitterUser) {
     }
   }
 }
+
+export const tryGetTwitterUsernameByUserId = pMemoize(
+  tryGetTwitterUsernameByUserIdImpl
+)
+
+async function tryGetTwitterUsernameByUserIdImpl(
+  userId?: string
+): Promise<string | undefined> {
+  if (!userId) return
+  const user = await tryGetUserById(userId)
+  return user?.username
+}
+
 export { tweets, users, messages, state }

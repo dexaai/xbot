@@ -3,7 +3,7 @@ import delay from 'delay'
 import * as config from '../src/config.js'
 import * as db from '../src/db.js'
 import type * as types from '../src/types.js'
-import { AnswerEngine } from '../src/answer-engine.js'
+import { createAnswerEngine } from '../src/answer-engine-utils.js'
 import { openaiClient } from '../src/openai-client.js'
 import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
 import { getTwitterClient } from '../src/twitter-client.js'
@@ -32,7 +32,7 @@ async function main() {
   )
   const answerEngineType: types.AnswerEngineType =
     (process.env.ANSWER_ENGINE as types.AnswerEngineType) ?? 'openai'
-  const answerEngine = AnswerEngine.create(answerEngineType)
+  const answerEngine = createAnswerEngine(answerEngineType)
 
   if (config.twitterApiPlan === 'free') {
     throw new Error(
