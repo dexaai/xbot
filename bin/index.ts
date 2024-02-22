@@ -10,7 +10,10 @@ import { getTwitterClient } from '../src/twitter-client.js'
 import { maxTwitterId } from '../src/twitter-utils.js'
 
 /**
- * This is the main bot entrypoint.
+ * This is the main bot entrypoint. The bot boils down to a big while loop,
+ * where for each iteration, it fetches a batch of new mentions, processes them,
+ * generates responses using the configured answer engine, and then tweets the
+ * responses to twitter.
  */
 async function main() {
   const debug = !!process.env.DEBUG
