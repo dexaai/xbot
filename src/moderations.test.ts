@@ -16,24 +16,22 @@ const nonFlaggedInputs = [
   'Hallo , wie heißt die Fette von den Grünen?'
 ]
 
-if (!process.env.CI) {
-  for (const input of flaggedInputs) {
-    test(`checkModeration input should be flagged: ${input}`, async () => {
-      const res = await checkModeration(input, { openaiClient })
-      if (!res.flagged) {
-        console.log(res)
-      }
-      assert.isTrue(res.flagged)
-    })
-  }
+for (const input of flaggedInputs) {
+  test(`checkModeration input should be flagged: ${input}`, async () => {
+    const res = await checkModeration(input, { openaiClient })
+    if (!res.flagged) {
+      console.log(res)
+    }
+    assert.isTrue(res.flagged)
+  })
+}
 
-  for (const input of nonFlaggedInputs) {
-    test(`checkModeration input should not be flagged: ${input}`, async () => {
-      const res = await checkModeration(input, { openaiClient })
-      if (res.flagged) {
-        console.log(res)
-      }
-      assert.isFalse(res.flagged)
-    })
-  }
+for (const input of nonFlaggedInputs) {
+  test(`checkModeration input should not be flagged: ${input}`, async () => {
+    const res = await checkModeration(input, { openaiClient })
+    if (res.flagged) {
+      console.log(res)
+    }
+    assert.isFalse(res.flagged)
+  })
 }
