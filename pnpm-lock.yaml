@@ -56,9 +56,6 @@ dependencies:
   twitter-api-sdk:
     specifier: ^1.2.1
     version: 1.2.1
-  twitter-text:
-    specifier: ^3.1.0
-    version: 3.1.0
   twitter-utils:
     specifier: ^0.4.0
     version: 0.4.0
