@@ -1,4 +1,4 @@
-import test from 'ava'
+import { assert, test } from 'vitest'
 
 import { checkModeration } from './moderations.js'
 import { openaiClient } from './openai-client.js'
@@ -16,22 +16,24 @@ const nonFlaggedInputs = [
   'Hallo , wie heißt die Fette von den Grünen?'
 ]
 
-for (const input of flaggedInputs) {
-  test(`checkModeration input should be flagged: ${input}`, async (t) => {
-    const res = await checkModeration(input, { openaiClient })
-    if (!res.flagged) {
-      console.log(res)
-    }
-    t.true(res.flagged)
-  })
-}
+if (!process.env.CI) {
+  for (const input of flaggedInputs) {
+    test(`checkModeration input should be flagged: ${input}`, async () => {
+      const res = await checkModeration(input, { openaiClient })
+      if (!res.flagged) {
+        console.log(res)
+      }
+      assert.isTrue(res.flagged)
+    })
+  }
 
-for (const input of nonFlaggedInputs) {
-  test(`checkModeration input should not be flagged: ${input}`, async (t) => {
-    const res = await checkModeration(input, { openaiClient })
-    if (res.flagged) {
-      console.log(res)
-    }
-    t.false(res.flagged)
-  })
+  for (const input of nonFlaggedInputs) {
+    test(`checkModeration input should not be flagged: ${input}`, async () => {
+      const res = await checkModeration(input, { openaiClient })
+      if (res.flagged) {
+        console.log(res)
+      }
+      assert.isFalse(res.flagged)
+    })
+  }
 }

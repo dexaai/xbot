@@ -207,7 +207,7 @@ export async function getCachedUserMentionsForUserSince({
 
   // TODO: Do this the right way using some redis magic instead of naively
   // iterating across all keys. This is going to get very slow over time.
-  for await (const [_, tweet] of mentionDb.iterator()) {
+  for await (const [, tweet] of mentionDb.iterator()) {
     if (tweetIdComparator(tweet, originalSinceMentionId) > 0) {
       result.mentions.push(tweet)
       result.sinceMentionId = maxTwitterId(result.sinceMentionId, tweet.id)
