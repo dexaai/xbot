@@ -4,8 +4,7 @@ import * as config from '../src/config.js'
 import * as db from './db.js'
 import type * as types from './types.js'
 import { BotError } from './bot-error.js'
-import { sanitizeTweetText } from './twitter-utils.js'
-import { stripAtMentions } from './utils.js'
+import { sanitizeTweetText, stripUserMentions } from './twitter-utils.js'
 
 export abstract class AnswerEngine {
   readonly type: types.AnswerEngineType
@@ -28,7 +27,7 @@ export abstract class AnswerEngine {
     let response = rawResponse
 
     if (config.disallowMentionsInBotReplies) {
-      response = stripAtMentions(response).trim()
+      response = stripUserMentions(response).trim()
     }
 
     try {

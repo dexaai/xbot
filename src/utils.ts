@@ -8,10 +8,6 @@ export const rUrl = urlRegex()
 
 export { invariant as assert }
 
-export function stripAtMentions(text: string) {
-  return text.replaceAll(/\b@([a-zA-Z0-9_]+\b)/g, '$1').trim()
-}
-
 /**
  * From `obj`, create a new object that does not include `keys`.
  *
