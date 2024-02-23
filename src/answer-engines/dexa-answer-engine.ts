@@ -16,8 +16,6 @@ export class DexaAnswerEngine extends AnswerEngine {
     ctx: types.Context
   ): Promise<string> {
     return this._dexaClient.generateResponse({
-      // TODO: Dexa API is throwing 500 if we pass entities
-      // messages: query.answerEngineMessages.map(({ entities, ...msg }) => msg)
       messages: query.answerEngineMessages,
       entityMap: query.entityMap
     })
