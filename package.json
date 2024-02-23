@@ -42,9 +42,8 @@
     "quick-lru": "^7.0.0",
     "tiny-invariant": "^1.3.1",
     "twitter-api-sdk": "^1.2.1",
-    "twitter-text": "^3.1.0",
-    "type-fest": "^4.10.2",
-    "url-regex": "^5.0.0"
+    "twitter-utils": "^0.4.0",
+    "type-fest": "^4.10.2"
   },
   "devDependencies": {
     "@dexaai/eslint-config": "^0.4.0",
