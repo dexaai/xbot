@@ -54,10 +54,6 @@ export interface Message {
   promptReplies?: number
   promptDate?: string
 
-  // TODO: Re-add prompt language detection or remove these
-  // promptLanguage?: string
-  // promptLanguageScore?: number
-
   response?: string
   responseTweetId?: string
   responseMediaId?: string
