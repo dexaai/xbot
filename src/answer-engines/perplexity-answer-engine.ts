@@ -54,7 +54,7 @@ Current date: ${currentDate}.`
         ),
         ...query.answerEngineMessages.map(({ entities, ...msg }) => msg)
       ],
-      max_tokens: 80
+      max_tokens: 50
       // model: query.answerEngineMessages.length > 1
       //   ? 'pplx-70b-chat'
       //   : 'pplx-70b-online'
