@@ -76,10 +76,6 @@
       "@dexaai/eslint-config",
       "@dexaai/eslint-config/node"
     ],
-    "ignorePatterns": [
-      "node_modules",
-      "dist"
-    ],
     "rules": {
       "no-console": "off",
       "import/order": "off",
