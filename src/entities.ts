@@ -178,7 +178,7 @@ export async function convertTweetToEntitiesMap(
 }
 
 export function mergeEntityMaps(...entityMaps: EntitiesMap[]): EntitiesMap {
-  const result: EntitiesMap = {
+  const result: Required<EntitiesMap> = {
     users: {},
     tweets: {},
     // TODO: currently not resolving media entities
@@ -186,7 +186,9 @@ export function mergeEntityMaps(...entityMaps: EntitiesMap[]): EntitiesMap {
   }
 
   for (const entityMap of entityMaps) {
-    Object.assign(result, entityMap)
+    Object.assign(result.users, entityMap.users)
+    Object.assign(result.tweets, entityMap.tweets)
+    Object.assign(result.media, entityMap.media)
   }
 
   return result

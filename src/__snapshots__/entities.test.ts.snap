@@ -1,0 +1,75 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`mergeEntityMaps 1`] = `
+{
+  "media": {},
+  "tweets": {
+    "1760384146004996333": {
+      "authorId": "1235525929335689217",
+      "id": "1760384146004996333",
+      "lang": "en",
+      "numImpressions": 16,
+      "numLikes": 0,
+      "numQuoteTweets": 0,
+      "numReplies": 6,
+      "numRetweets": 0,
+      "repliedToTweetId": "1734782745799282820",
+      "repliedToUserId": "327034465",
+      "text": "@transitive_bs @LofiGrind explain this 👀",
+      "type": "tweet",
+    },
+  },
+  "users": {
+    "1235525929335689217": {
+      "name": "Lofi Grind",
+      "twitterBio": "Chill ambient beats for when you wanna relax / study / grind.",
+      "twitterId": "1235525929335689217",
+      "twitterLocation": "Brooklyn, NY",
+      "twitterNumFollowers": 16,
+      "twitterNumFollowing": 35,
+      "twitterNumLikes": 16,
+      "twitterNumTweets": 436,
+      "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
+      "twitterUsername": "LofiGrind",
+      "type": "user",
+      "urls": [],
+    },
+    "327034465": {
+      "name": "Travis Fischer",
+      "twitterBio": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕",
+      "twitterId": "327034465",
+      "twitterLocation": "HF0",
+      "twitterNumFollowers": 17775,
+      "twitterNumFollowing": 701,
+      "twitterNumLikes": 17775,
+      "twitterNumTweets": 7203,
+      "twitterPinnedTweetId": "1643017583917174784",
+      "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
+      "twitterUrl": "https://transitivebullsh.it",
+      "twitterUsername": "transitive_bs",
+      "type": "user",
+      "urls": [
+        {
+          "shortUrl": "https://t.co/U7qFLMXw8R",
+          "type": "url",
+          "url": "https://transitivebullsh.it",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`mergeEntityMaps 2`] = `
+{
+  "media": {},
+  "tweets": {
+    "1760384146004996333": {},
+    "test": {},
+  },
+  "users": {
+    "1235525929335689217": {},
+    "327034465": {},
+  },
+}
+`;
