@@ -2,7 +2,7 @@ import { cli } from 'cleye'
 
 import * as config from './config.js'
 
-export function resolveCLIArgs(
+export function parseCLIArgs(
   overrides?: Record<string, any>,
   argv: string[] = process.argv
 ) {
