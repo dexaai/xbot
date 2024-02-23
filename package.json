@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "transitive-bullshit/slay-the-spire"
+    "url": "dexaai/xbot"
   },
   "packageManager": "pnpm@8.15.3",
   "engines": {
