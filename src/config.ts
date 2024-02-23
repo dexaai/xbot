@@ -15,6 +15,12 @@ export const nangoCallbackUrl =
 export const twitterApiPlan: types.TwitterApiPlan =
   (process.env.TWITTER_API_PLAN as types.TwitterApiPlan) ?? 'free'
 
+if (twitterApiPlan === 'free') {
+  throw new Error(
+    `This bot does not support the "free" twitter API plan. You'll need to upgrade to at least the "basic" plan in order to run this bot.`
+  )
+}
+
 // Twitter really doesn't like bots that tag other users in automatd replies.
 // @ChatGPTBot has been suspended a few times for this in previous verisons.
 export const disallowMentionsInBotReplies = false

@@ -34,15 +34,9 @@ async function main() {
     (process.env.ANSWER_ENGINE as types.AnswerEngineType) ?? 'openai'
   const answerEngine = createAnswerEngine(answerEngineType)
 
-  if (config.twitterApiPlan === 'free') {
-    throw new Error(
-      `This bot does not support the "free" twitter API plan. You'll need to upgrade to at least the "basic" plan in order to run this bot.`
-    )
-  }
-
   let twitterClient = await getTwitterClient()
-  const { data: user } = await twitterClient.users.findMyUser()
-  const twitterBotUserId = user?.id
+  const { data: twitterBotUsaer } = await twitterClient.users.findMyUser()
+  const twitterBotUserId = twitterBotUsaer?.id
 
   if (!twitterBotUserId) {
     throw new Error('twitter error unable to fetch current user')
@@ -52,7 +46,7 @@ async function main() {
     twitterClient = await getTwitterClient()
   }
 
-  console.log('automating user', user.username)
+  console.log('automating user', twitterBotUsaer.username)
 
   const maxNumMentionsToProcess = isNaN(overrideMaxNumMentionsToProcess)
     ? config.defaultMaxNumMentionsToProcessPerBatch
@@ -76,6 +70,7 @@ async function main() {
 
     // Constant app runtime config
     debug,
+    debugAnswerEngine: false,
     dryRun,
     noCache,
     earlyExit,
@@ -83,8 +78,8 @@ async function main() {
     resolveAllMentions,
     maxNumMentionsToProcess,
     debugTweetIds,
-    twitterBotHandle: `@${user.username}`,
-    twitterBotHandleL: `@${user.username.toLowerCase()}`,
+    twitterBotHandle: `@${twitterBotUsaer.username}`,
+    twitterBotHandleL: `@${twitterBotUsaer.username.toLowerCase()}`,
     twitterBotUserId,
     answerEngine
   }
@@ -93,7 +88,6 @@ async function main() {
 
   do {
     try {
-      console.log()
       const batch = await respondToNewMentions(ctx)
       batches.push(batch)
 

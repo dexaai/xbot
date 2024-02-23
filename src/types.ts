@@ -22,6 +22,7 @@ export type Context = {
 
   // Constant app runtime config
   readonly debug: boolean
+  readonly debugAnswerEngine: boolean
   readonly dryRun: boolean
   readonly noCache: boolean
   readonly earlyExit: boolean

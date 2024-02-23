@@ -14,7 +14,7 @@ export abstract class AnswerEngine {
   }
 
   async populateMessageResponse(message: types.Message, ctx: types.Context) {
-    const messageThread = await this._resolveMessageThread(message, ctx)
+    const messageThread = await this.resolveMessageThread(message, ctx)
     console.log(`>>> ${this.type} answer engine`, { message, messageThread })
 
     const rawResponse = await this._generateMessageResponse(
@@ -65,7 +65,7 @@ export abstract class AnswerEngine {
    * mentions and responses. Returns the thread in a format compatible with the
    * OpenAI chat-completions API.
    */
-  protected async _resolveMessageThread(
+  async resolveMessageThread(
     message: types.Message,
     ctx: types.Context,
     {

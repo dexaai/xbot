@@ -14,6 +14,7 @@ import { assert, getDebugMention, pick } from './utils.js'
  * of them via the answer engine, and tweets the responses.
  */
 export async function respondToNewMentions(ctx: types.Context) {
+  console.log()
   console.log('respond to new mentions since', ctx.sinceMentionId || 'forever')
 
   // Fetch the mentions to process in this batch
@@ -168,6 +169,10 @@ export async function respondToNewMentions(ctx: types.Context) {
                 assert(prevMessage.role === 'assistant')
                 message.parentMessageId = prevMessage.id
               }
+            }
+
+            if (ctx.debugAnswerEngine) {
+              return message
             }
 
             await ctx.answerEngine.populateMessageResponse(message, ctx)
