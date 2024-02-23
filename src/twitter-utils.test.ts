@@ -13,6 +13,8 @@ test('maxTwitterId', (t) => {
   t.is(maxTwitterId('123', '456'), '456')
   t.is(maxTwitterId('1230', '999'), '1230')
   t.is(maxTwitterId('', '999'), '999')
+  t.is(maxTwitterId('0', '1'), '1')
+  t.is(maxTwitterId('123', '0'), '123')
   t.is(maxTwitterId('999', ''), '999')
   t.is(maxTwitterId('', undefined), undefined)
   t.is(maxTwitterId('948392', '948392'), '948392')
@@ -23,6 +25,8 @@ test('minTwitterId', (t) => {
   t.is(minTwitterId('1230', '999'), '999')
   t.is(minTwitterId('', '999'), '999')
   t.is(minTwitterId('999', ''), '999')
+  t.is(minTwitterId('0', '1'), '0')
+  t.is(minTwitterId('123', '0'), '0')
   t.is(minTwitterId('', undefined), undefined)
   t.is(minTwitterId('948392', '948392'), '948392')
 })
@@ -33,6 +37,10 @@ test('tweetIdComparator', (t) => {
   t.is(tweetIdComparator('100', '200'), -1)
   t.is(tweetIdComparator('3000', '999'), 1)
   t.is(tweetIdComparator('3001', '3001'), 0)
+  t.is(tweetIdComparator('0', '1'), -1)
+  t.is(tweetIdComparator('123', '0'), 1)
+  t.is(tweetIdComparator('0', '0'), 0)
+  t.is(tweetIdComparator(undefined, undefined), 0)
 })
 
 test('tweetComparator', (t) => {

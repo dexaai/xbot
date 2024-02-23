@@ -35,7 +35,6 @@ tsx bin/index.ts
 
 ## TODO
 
-- add generation json ability script for specific tweet ids
 - move twitter utils to isolated npm package
 - switch ava to vitest
 - support quote tweet and retweet context
