@@ -35,7 +35,8 @@ async function main() {
         type: Boolean,
         description:
           'Enables dry run mode, which will not tweet or make any POST requests to twitter',
-        default: false
+        default: false,
+        alias: 'd'
       },
       noMentionsCache: {
         type: Boolean,
@@ -47,40 +48,46 @@ async function main() {
         type: Boolean,
         description:
           'Exits the program after resolving the first batch of mentions, but without actually processing them or tweeting anything',
-        default: false
+        default: false,
+        alias: 'e'
       },
       forceReply: {
         type: Boolean,
         description:
           'Forces twitter mention validation to succeed, even if the bot has already responded to a mention; very useful in combination with --debug-tweet-ids',
-        default: false
+        default: false,
+        alias: 'f'
       },
       resolveAllMentions: {
         type: Boolean,
         description:
           'Bypasses the tweet mention cache and since mention id state to fetch all mentions from the twitter api',
-        default: false
+        default: false,
+        alias: 'R'
       },
       debugTweetIds: {
         type: [String],
-        alias: 't',
         description:
-          'Specifies a tweet to process instead of responding to mentions with the default behavior. Multiple tweets ids can be specified (-t id1 -t id2 -t id3). Exits after processing the specified tweets.'
+          'Specifies a tweet to process instead of responding to mentions with the default behavior. Multiple tweets ids can be specified (-t id1 -t id2 -t id3). Exits after processing the specified tweets.',
+        alias: 't'
       },
       sinceMentionId: {
         type: String,
         description: 'Overrides the default since mention id',
-        default: undefined
+        default: undefined,
+        alias: 's'
       },
       maxNumMentionsToProcess: {
         type: Number,
         description: 'Number of mentions to process per batch',
-        default: config.defaultMaxNumMentionsToProcessPerBatch
+        default: config.defaultMaxNumMentionsToProcessPerBatch,
+        alias: 'n'
       },
       answerEngine: {
         type: String,
         description: 'Answer engine to use (openai of dexa)',
-        default: defaultAnswerEngineType
+        default: defaultAnswerEngineType,
+        alias: 'a'
       }
     }
   })
