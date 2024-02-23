@@ -18,7 +18,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "exec": "tsx bin/index.ts",
+    "exec": "tsx bin/xbot.ts",
     "prepare": "husky install",
     "test": "run-s test:*",
     "test:format": "prettier --check \"**/*.{js,ts,tsx}\"",
