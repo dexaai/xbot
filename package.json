@@ -38,6 +38,7 @@
     "ky": "^1.2.0",
     "nanoid": "^5.0.6",
     "openai": "^4.28.0",
+    "openai-fetch": "^2.0.1",
     "p-map": "^7.0.1",
     "p-memoize": "^7.1.1",
     "p-throttle": "^6.1.0",

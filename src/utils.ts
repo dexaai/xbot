@@ -93,3 +93,11 @@ export function getPrompt(text: string = '', ctx?: types.Context): string {
 
   return prompt
 }
+
+const currentDateFormatter = new Intl.DateTimeFormat('en-US', {
+  dateStyle: 'full'
+})
+
+export function getCurrentDate(): string {
+  return currentDateFormatter.format(new Date())
+}

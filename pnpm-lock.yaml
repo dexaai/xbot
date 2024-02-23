@@ -38,6 +38,9 @@ dependencies:
   openai:
     specifier: ^4.28.0
     version: 4.28.0
+  openai-fetch:
+    specifier: ^2.0.1
+    version: 2.0.1
   p-map:
     specifier: ^7.0.1
     version: 7.0.1

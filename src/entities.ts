@@ -181,7 +181,6 @@ export function mergeEntityMaps(...entityMaps: EntitiesMap[]): EntitiesMap {
   const result: Required<EntitiesMap> = {
     users: {},
     tweets: {},
-    // TODO: currently not resolving media entities
     media: {}
   }
 

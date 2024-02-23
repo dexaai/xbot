@@ -1,20 +1,33 @@
 import { ChatModel, Msg } from '@dexaai/dexter'
+import { OpenAIClient } from 'openai-fetch'
 
 import type * as types from '../types.js'
 import { AnswerEngine } from '../answer-engine.js'
 import { getCurrentDate } from '../utils.js'
 
-export class OpenAIAnswerEngine extends AnswerEngine {
+export class PerplexityAnswerEngine extends AnswerEngine {
   protected readonly _chatModel: ChatModel
 
-  constructor({
-    chatModel = new ChatModel({
-      params: {
-        model: 'gpt-4-0125-preview'
+  constructor({ chatModel }: { chatModel?: ChatModel } = {}) {
+    super({ type: 'perplexity' })
+
+    if (!chatModel) {
+      if (!process.env.PERPLEXITY_API_KEY) {
+        throw new Error(
+          'PerplexityAnswerEngine missing required "PERPLEXITY_API_KEY"'
+        )
       }
-    })
-  }: { chatModel?: ChatModel } = {}) {
-    super({ type: 'openai' })
+
+      chatModel = new ChatModel({
+        client: new OpenAIClient({
+          apiKey: process.env.PERPLEXITY_API_KEY,
+          baseUrl: 'https://api.perplexity.ai'
+        }),
+        params: {
+          model: 'pplx-70b-chat'
+        }
+      })
+    }
 
     this._chatModel = chatModel
   }
@@ -42,6 +55,9 @@ Current date: ${currentDate}.`
         ...query.answerEngineMessages.map(({ entities, ...msg }) => msg)
       ],
       max_tokens: 80
+      // model: query.answerEngineMessages.length > 1
+      //   ? 'pplx-70b-chat'
+      //   : 'pplx-70b-online'
     })
 
     return response.message.content!
