@@ -41,9 +41,12 @@ async function main() {
     twitterClient,
     openaiClient,
 
+    // This is the key field for this script which causes processing to return
+    // before having the answer engine generates a response normally
+    debugAnswerEngine: true,
+
     // Constant app runtime config
     debug,
-    debugAnswerEngine: true,
     dryRun: true,
     noCache,
     earlyExit: false,
