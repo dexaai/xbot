@@ -7,7 +7,7 @@ import { getTwitterClient } from '../src/twitter-client.js'
 import { assert } from '../src/utils.js'
 
 /**
- * Generates test data for testing an answer engine for a given tweet.
+ * Generates input data for testing an answer engine on a given tweet.
  *
  * ```sh
  * tsx bin/debug-answer-engine.ts -t '1760384146004996333'
