@@ -1,5 +1,5 @@
 import type * as types from '../src/types.js'
-import { createAnswerEngine } from '../src/answer-engine-utils.js'
+import { createAnswerEngine } from '../src/create-answer-engine.js'
 import { openaiClient } from '../src/openai-client.js'
 import { parseCLIArgs } from '../src/parse-cli-args.js'
 import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
