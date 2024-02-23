@@ -1,5 +1,6 @@
 import type * as types from '../src/types.js'
 import { createAnswerEngine } from '../src/answer-engine-utils.js'
+import { resolveCLIArgs } from '../src/cli-utils.js'
 import { openaiClient } from '../src/openai-client.js'
 import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
 import { getTwitterClient } from '../src/twitter-client.js'
@@ -9,16 +10,19 @@ import { assert } from '../src/utils.js'
  * Generates test data for testing an answer engine for a given tweet.
  *
  * ```sh
- * tsx bin/debug-answer-engine.ts <tweet-id>
+ * tsx bin/debug-answer-engine.ts -t '1760384146004996333'
  * ```
  */
 async function main() {
-  const debug = !!process.env.DEBUG
-  const noMentionsCache = !!process.env.NO_CACHE
-  const debugTweetId = process.argv[2]?.trim()
+  const argv = resolveCLIArgs({
+    name: 'debug-answer-engine',
+    forceReply: true
+  })
 
-  if (!debugTweetId) {
-    throw new Error('Must provide at least one tweet id to debug')
+  if (!argv.flags.debugTweetIds.length) {
+    console.log('Must provide at least one tweet id to debug via -t <tweet-id>')
+    argv.showHelp()
+    process.exit(1)
   }
 
   const answerEngineType: types.AnswerEngineType =
@@ -46,14 +50,14 @@ async function main() {
     debugAnswerEngine: true,
 
     // Constant app runtime config
-    debug,
-    dryRun: true,
-    noMentionsCache,
-    earlyExit: false,
-    forceReply: true,
-    resolveAllMentions: false,
-    maxNumMentionsToProcess: 1,
-    debugTweetIds: [debugTweetId],
+    debug: argv.flags.debug,
+    dryRun: argv.flags.dryRun,
+    noMentionsCache: argv.flags.noMentionsCache,
+    earlyExit: argv.flags.earlyExit,
+    forceReply: argv.flags.forceReply,
+    resolveAllMentions: argv.flags.resolveAllMentions,
+    maxNumMentionsToProcess: argv.flags.debugTweetIds.length,
+    debugTweetIds: argv.flags.debugTweetIds,
     twitterBotHandle: `@${twitterBotUsaer.username}`,
     twitterBotHandleL: `@${twitterBotUsaer.username.toLowerCase()}`,
     twitterBotUserId,
@@ -62,12 +66,16 @@ async function main() {
 
   const batch = await respondToNewMentions(ctx)
   if (!batch.mentions.length) {
-    throw new Error(`No valid mentions found for tweet id: ${debugTweetId}`)
+    throw new Error(
+      `No valid mentions found for debug tweet ids: ${ctx.debugTweetIds?.join(
+        ', '
+      )}`
+    )
   }
 
   const message = batch.messages[0]
   assert(message)
-  assert(message.id === debugTweetId)
+  assert(ctx.debugTweetIds!.includes(message.id))
 
   return answerEngine.resolveMessageThread(message, ctx)
 }

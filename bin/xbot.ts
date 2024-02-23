@@ -1,10 +1,9 @@
-import { cli } from 'cleye'
 import delay from 'delay'
 
-import * as config from '../src/config.js'
 import * as db from '../src/db.js'
 import type * as types from '../src/types.js'
 import { createAnswerEngine } from '../src/answer-engine-utils.js'
+import { resolveCLIArgs } from '../src/cli-utils.js'
 import { openaiClient } from '../src/openai-client.js'
 import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
 import { getTwitterClient } from '../src/twitter-client.js'
@@ -17,82 +16,7 @@ import { maxTwitterId } from '../src/twitter-utils.js'
  * responses to twitter.
  */
 async function main() {
-  const defaultAnswerEngineType: types.AnswerEngineType =
-    (process.env.ANSWER_ENGINE as types.AnswerEngineType) ?? 'openai'
-
-  const argv = cli({
-    name: 'xbot',
-
-    parameters: [],
-
-    flags: {
-      debug: {
-        type: Boolean,
-        description: 'Enables debug logging',
-        default: false
-      },
-      dryRun: {
-        type: Boolean,
-        description:
-          'Enables dry run mode, which will not tweet or make any POST requests to twitter',
-        default: false,
-        alias: 'd'
-      },
-      noMentionsCache: {
-        type: Boolean,
-        description:
-          'Disables loading twitter mentions from the cache (which will always hit the twitter api)',
-        default: false
-      },
-      earlyExit: {
-        type: Boolean,
-        description:
-          'Exits the program after resolving the first batch of mentions, but without actually processing them or tweeting anything',
-        default: false,
-        alias: 'e'
-      },
-      forceReply: {
-        type: Boolean,
-        description:
-          'Forces twitter mention validation to succeed, even if the bot has already responded to a mention; very useful in combination with --debug-tweet-ids',
-        default: false,
-        alias: 'f'
-      },
-      resolveAllMentions: {
-        type: Boolean,
-        description:
-          'Bypasses the tweet mention cache and since mention id state to fetch all mentions from the twitter api',
-        default: false,
-        alias: 'R'
-      },
-      debugTweetIds: {
-        type: [String],
-        description:
-          'Specifies a tweet to process instead of responding to mentions with the default behavior. Multiple tweets ids can be specified (-t id1 -t id2 -t id3). Exits after processing the specified tweets.',
-        alias: 't'
-      },
-      sinceMentionId: {
-        type: String,
-        description: 'Overrides the default since mention id',
-        default: undefined,
-        alias: 's'
-      },
-      maxNumMentionsToProcess: {
-        type: Number,
-        description: 'Number of mentions to process per batch',
-        default: config.defaultMaxNumMentionsToProcessPerBatch,
-        alias: 'n'
-      },
-      answerEngine: {
-        type: String,
-        description: 'Answer engine to use (openai of dexa)',
-        default: defaultAnswerEngineType,
-        alias: 'a'
-      }
-    }
-  })
-
-  const debugTweetIds = argv.flags.debugTweetIds.map((id) => id.trim())
+  const argv = resolveCLIArgs()
   const answerEngine = createAnswerEngine(
     argv.flags.answerEngine as types.AnswerEngineType
   )
@@ -136,7 +60,7 @@ async function main() {
     forceReply: argv.flags.forceReply,
     resolveAllMentions: argv.flags.resolveAllMentions,
     maxNumMentionsToProcess: argv.flags.maxNumMentionsToProcess,
-    debugTweetIds,
+    debugTweetIds: argv.flags.debugTweetIds,
     twitterBotHandle: `@${twitterBotUsaer.username}`,
     twitterBotHandleL: `@${twitterBotUsaer.username.toLowerCase()}`,
     twitterBotUserId,
@@ -181,7 +105,7 @@ async function main() {
         batch.messages
       )
 
-      if (debugTweetIds?.length) {
+      if (ctx.debugTweetIds?.length) {
         break
       }
 

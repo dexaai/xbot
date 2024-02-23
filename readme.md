@@ -38,7 +38,7 @@ Usage:
   xbot [flags...]
 
 Flags:
-  -a, --answer-engine <string>                      Answer engine to use (openai of dexa) (default: "dexa")
+  -a, --answer-engine <string>                      Answer engine to use (openai of dexa) (default: "openai")
       --debug                                       Enables debug logging
   -t, --debug-tweet-ids <string>                    Specifies a tweet to process instead of responding to mentions with
                                                     the default behavior. Multiple tweets ids can be specified (-t id1
@@ -61,7 +61,6 @@ Flags:
 
 ## TODO
 
-- convert `bin` scripts to use a CLI package instead of customizing everything via env vars
 - support quote tweet and retweet context
 - support user entity context
 - support blank tweet responses
