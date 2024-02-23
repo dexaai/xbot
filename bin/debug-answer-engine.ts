@@ -14,7 +14,7 @@ import { assert } from '../src/utils.js'
  */
 async function main() {
   const debug = !!process.env.DEBUG
-  const noCache = !!process.env.NO_CACHE
+  const noMentionsCache = !!process.env.NO_CACHE
   const debugTweetId = process.argv[2]?.trim()
 
   if (!debugTweetId) {
@@ -48,7 +48,7 @@ async function main() {
     // Constant app runtime config
     debug,
     dryRun: true,
-    noCache,
+    noMentionsCache,
     earlyExit: false,
     forceReply: true,
     resolveAllMentions: false,

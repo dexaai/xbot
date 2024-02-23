@@ -26,7 +26,7 @@ export async function getTwitterUserIdMentions(
     sinceMentionId: originalSinceMentionId
   }
 
-  if (!ctx.noCache) {
+  if (!ctx.noMentionsCache) {
     const cachedResult = await db.getCachedUserMentionsForUserSince({
       userId,
       sinceMentionId: originalSinceMentionId || '0'
@@ -84,7 +84,7 @@ export async function getTwitterUserIdMentions(
           numMentionsInQuery += page.data?.length
           result.mentions = result.mentions.concat(page.data)
 
-          if (!ctx.noCache) {
+          if (!ctx.noMentionsCache) {
             await db.upsertTweetMentionsForUserId(userId, page.data)
           }
 

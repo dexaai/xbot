@@ -30,11 +30,38 @@ Note that setting `TWITTER_API_PLAN` to the correct plan is important, because a
 ## Running the bot
 
 ```bash
-tsx bin/index.ts
+tsx bin/xbot.ts --help
+```
+
+```sh
+Usage:
+  xbot [flags...]
+
+Flags:
+      --answer-engine <string>                      Answer engine to use (openai of dexa) (default: "dexa")
+      --debug                                       Enables debug logging
+  -t, --debug-tweet-ids <string>                    Specifies a tweet to process instead of responding to mentions with
+                                                    the default behavior. Multiple tweets ids can be specified (-t id1
+                                                    -t id2 -t id3). Exits after processing the specified tweets.
+      --dry-run                                     Enables dry run mode, which will not tweet or make any POST requests
+                                                    to twitter
+      --early-exit                                  Exits the program after resolving the first batch of mentions, but
+                                                    without actually processing them or tweeting anything
+      --force-reply                                 Forces twitter mention validation to succeed, even if the bot has
+                                                    already responded to a mention; very useful in combination with
+                                                    --debug-tweet-ids
+  -h, --help                                        Show help
+      --max-num-mentions-to-process <number>        Number of mentions to process per batch (default: 10)
+      --no-mentions-cache                           Disables loading twitter mentions from the cache (which will always
+                                                    hit the twitter api)
+      --resolve-all-mentions                        Bypasses the tweet mention cache and since mention id state to fetch
+                                                    all mentions from the twitter api
+      --since-mention-id <string>                   Overrides the default since mention id
 ```
 
 ## TODO
 
+- convert `bin` scripts to use a CLI package instead of customizing everything via env vars
 - support quote tweet and retweet context
 - support user entity context
 - support blank tweet responses
@@ -43,7 +70,6 @@ tsx bin/index.ts
 - support URLs and other entity metadata (user profile info) so the answer engine has more info to work off of
 - consider re-adding support for generating images to support longer responses w/ the openai answer engine
   - could use a binary classifier to determine whether or not to render the response as an image
-- convert `bin` scripts to use a CLI package instead of customizing everything via env vars
 
 ## License
 

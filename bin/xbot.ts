@@ -1,3 +1,4 @@
+import { cli } from 'cleye'
 import delay from 'delay'
 
 import * as config from '../src/config.js'
@@ -16,23 +17,78 @@ import { maxTwitterId } from '../src/twitter-utils.js'
  * responses to twitter.
  */
 async function main() {
-  const debug = !!process.env.DEBUG
-  const dryRun = !!process.env.DRY_RUN
-  const noCache = !!process.env.NO_CACHE
-  const earlyExit = !!process.env.EARLY_EXIT
-  const forceReply = !!process.env.FORCE_REPLY
-  const resolveAllMentions = !!process.env.RESOLVE_ALL_MENTIONS
-  const debugTweetIds = process.env.DEBUG_TWEET_IDS?.split(',').map((id) =>
-    id.trim()
-  )
-  const overrideSinceMentionId = process.env.SINCE_MENTION_ID
-  const overrideMaxNumMentionsToProcess = parseInt(
-    process.env.MAX_NUM_MENTIONS_TO_PROCESS ?? '',
-    10
-  )
-  const answerEngineType: types.AnswerEngineType =
+  const defaultAnswerEngineType: types.AnswerEngineType =
     (process.env.ANSWER_ENGINE as types.AnswerEngineType) ?? 'openai'
-  const answerEngine = createAnswerEngine(answerEngineType)
+
+  const argv = cli({
+    name: 'xbot',
+
+    parameters: [],
+
+    flags: {
+      debug: {
+        type: Boolean,
+        description: 'Enables debug logging',
+        default: false
+      },
+      dryRun: {
+        type: Boolean,
+        description:
+          'Enables dry run mode, which will not tweet or make any POST requests to twitter',
+        default: false
+      },
+      noMentionsCache: {
+        type: Boolean,
+        description:
+          'Disables loading twitter mentions from the cache (which will always hit the twitter api)',
+        default: false
+      },
+      earlyExit: {
+        type: Boolean,
+        description:
+          'Exits the program after resolving the first batch of mentions, but without actually processing them or tweeting anything',
+        default: false
+      },
+      forceReply: {
+        type: Boolean,
+        description:
+          'Forces twitter mention validation to succeed, even if the bot has already responded to a mention; very useful in combination with --debug-tweet-ids',
+        default: false
+      },
+      resolveAllMentions: {
+        type: Boolean,
+        description:
+          'Bypasses the tweet mention cache and since mention id state to fetch all mentions from the twitter api',
+        default: false
+      },
+      debugTweetIds: {
+        type: [String],
+        alias: 't',
+        description:
+          'Specifies a tweet to process instead of responding to mentions with the default behavior. Multiple tweets ids can be specified (-t id1 -t id2 -t id3). Exits after processing the specified tweets.'
+      },
+      sinceMentionId: {
+        type: String,
+        description: 'Overrides the default since mention id',
+        default: undefined
+      },
+      maxNumMentionsToProcess: {
+        type: Number,
+        description: 'Number of mentions to process per batch',
+        default: config.defaultMaxNumMentionsToProcessPerBatch
+      },
+      answerEngine: {
+        type: String,
+        description: 'Answer engine to use (openai of dexa)',
+        default: defaultAnswerEngineType
+      }
+    }
+  })
+
+  const debugTweetIds = argv.flags.debugTweetIds.map((id) => id.trim())
+  const answerEngine = createAnswerEngine(
+    argv.flags.answerEngine as types.AnswerEngineType
+  )
 
   let twitterClient = await getTwitterClient()
   const { data: twitterBotUsaer } = await twitterClient.users.findMyUser()
@@ -48,14 +104,10 @@ async function main() {
 
   console.log('automating user', twitterBotUsaer.username)
 
-  const maxNumMentionsToProcess = isNaN(overrideMaxNumMentionsToProcess)
-    ? config.defaultMaxNumMentionsToProcessPerBatch
-    : overrideMaxNumMentionsToProcess
-
   let initialSinceMentionId =
-    (resolveAllMentions
+    (argv.flags.resolveAllMentions
       ? undefined
-      : overrideSinceMentionId ||
+      : argv.flags.sinceMentionId ||
         (await db.getSinceMentionId({
           twitterBotUserId
         }))) ?? '0'
@@ -69,14 +121,14 @@ async function main() {
     openaiClient,
 
     // Constant app runtime config
-    debug,
+    debug: argv.flags.debug,
     debugAnswerEngine: false,
-    dryRun,
-    noCache,
-    earlyExit,
-    forceReply,
-    resolveAllMentions,
-    maxNumMentionsToProcess,
+    dryRun: argv.flags.dryRun,
+    noMentionsCache: argv.flags.noMentionsCache,
+    earlyExit: argv.flags.earlyExit,
+    forceReply: argv.flags.forceReply,
+    resolveAllMentions: argv.flags.resolveAllMentions,
+    maxNumMentionsToProcess: argv.flags.maxNumMentionsToProcess,
     debugTweetIds,
     twitterBotHandle: `@${twitterBotUsaer.username}`,
     twitterBotHandleL: `@${twitterBotUsaer.username.toLowerCase()}`,
@@ -97,7 +149,7 @@ async function main() {
           batch.sinceMentionId
         )
 
-        if (!overrideMaxNumMentionsToProcess && !resolveAllMentions) {
+        if (!ctx.resolveAllMentions) {
           // Make sure it's in sync in case other processes are writing to the store
           // as well. Note: this still has the potential for a race condition, but
           // it's not enough to worry about for our use case.

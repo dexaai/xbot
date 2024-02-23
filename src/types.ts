@@ -24,7 +24,7 @@ export type Context = {
   readonly debug: boolean
   readonly debugAnswerEngine: boolean
   readonly dryRun: boolean
-  readonly noCache: boolean
+  readonly noMentionsCache: boolean
   readonly earlyExit: boolean
   readonly forceReply: boolean
   readonly resolveAllMentions: boolean
