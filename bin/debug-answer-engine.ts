@@ -33,9 +33,9 @@ async function main() {
     process.exit(1)
   }
 
-  const answerEngineType: types.AnswerEngineType =
-    (process.env.ANSWER_ENGINE as types.AnswerEngineType) ?? 'openai'
-  const answerEngine = createAnswerEngine(answerEngineType)
+  const answerEngine = createAnswerEngine(
+    argv.flags.answerEngine as types.AnswerEngineType
+  )
 
   let twitterClient = await getTwitterClient()
   const { data: twitterBotUsaer } = await twitterClient.users.findMyUser()

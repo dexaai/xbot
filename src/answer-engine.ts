@@ -1,9 +1,14 @@
-import { Msg, type Prompt } from '@dexaai/dexter'
+import { Msg } from '@dexaai/dexter'
 
 import * as config from '../src/config.js'
 import * as db from './db.js'
 import type * as types from './types.js'
 import { BotError } from './bot-error.js'
+import {
+  type EntitiesMap,
+  convertTweetToEntitiesMap,
+  mergeEntityMaps
+} from './entities.js'
 import { sanitizeTweetText, stripUserMentions } from './twitter-utils.js'
 
 export abstract class AnswerEngine {
@@ -14,16 +19,10 @@ export abstract class AnswerEngine {
   }
 
   async populateMessageResponse(message: types.Message, ctx: types.Context) {
-    const messageThread = await this.resolveMessageThread(message, ctx)
-    console.log(`>>> ${this.type} answer engine`, { message, messageThread })
+    const query = await this.resolveMessageThread(message, ctx)
+    console.log(`>>> ${this.type} answer engine`, query)
 
-    const rawResponse = await this._generateMessageResponse(
-      {
-        message,
-        messageThread
-      },
-      ctx
-    )
+    const rawResponse = await this._generateMessageResponse(query, ctx)
     let response = rawResponse
 
     if (config.disallowMentionsInBotReplies) {
@@ -47,23 +46,17 @@ export abstract class AnswerEngine {
         ...message,
         ...(rawResponse === response ? {} : { rawResponse })
       },
-      messageThread
+      answerEngineMessages: query.answerEngineMessages
     })
   }
 
   /**
-   * Takes in a source bot `message`, a converted array of Prompt.Msg objects
-   * representing the source twitter thread, and uses the underlying answer
-   * engine to generate a response as a plaintext string.
+   * Takes in a source bot `message`, a converted array of AnswerEngineMessage
+   * objects representing the source twitter thread, and uses the underlying
+   * answer engine to generate a response as a plaintext string.
    */
   protected abstract _generateMessageResponse(
-    {
-      message,
-      messageThread
-    }: {
-      message: types.Message
-      messageThread: Prompt.Msg[]
-    },
+    query: types.AnswerEngineQuery,
     ctx: types.Context
   ): Promise<string>
 
@@ -83,7 +76,7 @@ export abstract class AnswerEngine {
       resolvePrevTweetsInThread?: boolean
       maxChatMessages?: number
     } = {}
-  ): Promise<Prompt.Msg[]> {
+  ): Promise<types.AnswerEngineQuery> {
     const prevTweetsInThread: types.Tweet[] = []
     const leafMessage = message
     let messages: types.Message[] = [message]
@@ -149,38 +142,91 @@ export abstract class AnswerEngine {
       }
     }
 
-    const chatMessagesForPrevTweets = prevTweetsInThread.map<Prompt.Msg>(
-      (tweet) =>
+    const answerEngineMessagesForPrevTweets =
+      prevTweetsInThread.map<types.AnswerEngineMessage>((tweet) =>
         // TODO: sanitize this tweet text to handle t.co links and @mentions
         // TODO: unfurl quote tweets and retweets which likely have valuable
         // context
-        Msg.user(tweet.text, { name: userIdToUsernameMap[tweet.author_id!] })
-    )
+        ({
+          ...Msg.user(tweet.text, {
+            name: userIdToUsernameMap[tweet.author_id!]
+          }),
 
-    const chatMessagesForBotMessages = messages.flatMap<Prompt.Msg>((message) =>
-      [
-        Msg.user(message.prompt, {
-          name: userIdToUsernameMap[message.promptUserId]
-        }),
+          entities: {
+            tweetIds: [tweet.id]
+          }
+        })
+      )
 
-        message.response && message !== leafMessage
-          ? Msg.assistant(message.response!, {
-              name: userIdToUsernameMap[ctx.twitterBotUserId]
-            })
-          : null
-      ].filter(Boolean)
-    )
+    const answerEngineMessagesForBotMessages =
+      messages.flatMap<types.AnswerEngineMessage>((message) =>
+        [
+          {
+            ...Msg.user(message.prompt, {
+              name: userIdToUsernameMap[message.promptUserId]
+            }),
 
-    const chatMessages = chatMessagesForPrevTweets.concat(
-      chatMessagesForBotMessages
+            entities: {
+              tweetIds: [message.promptTweetId]
+            }
+          },
+
+          message.response && message !== leafMessage
+            ? {
+                ...Msg.assistant(message.response!, {
+                  name: userIdToUsernameMap[ctx.twitterBotUserId]
+                }),
+
+                entities: {
+                  tweetIds: message.responseTweetId
+                    ? [message.responseTweetId!]
+                    : []
+                }
+              }
+            : null
+        ].filter(Boolean)
+      )
+
+    let answerEngineMessages = answerEngineMessagesForPrevTweets.concat(
+      answerEngineMessagesForBotMessages
     )
 
     if (maxChatMessages > 0) {
       // TODO: more intelligent compression / truncation of the input thread if it's
       // too long
-      return chatMessages.reverse().slice(0, maxChatMessages).reverse()
-    } else {
-      return chatMessages
+      answerEngineMessages = answerEngineMessages
+        .reverse()
+        .slice(0, maxChatMessages)
+        .reverse()
+    }
+
+    // Resolve all entity maps for the tweets and messages in the thread and then
+    // condense them into a single, normalized enitity map
+    let entityMap: EntitiesMap = {}
+
+    for (const answerEngineMessage of answerEngineMessages) {
+      if (!answerEngineMessage.entities?.tweetIds) continue
+
+      for (const tweetId of answerEngineMessage.entities.tweetIds) {
+        if (entityMap.tweets?.[tweetId]) continue
+
+        const tweet = await db.tryGetTweetById(tweetId, ctx, {
+          fetchFromTwitter: false
+        })
+        if (!tweet) continue
+
+        const tweetEntityMap = await convertTweetToEntitiesMap(tweet, ctx, {
+          fetchMissingEntities: false
+        })
+
+        entityMap = mergeEntityMaps(entityMap, tweetEntityMap)
+      }
+    }
+
+    return {
+      message,
+      answerEngineMessages,
+      entityMap
     }
   }
 }

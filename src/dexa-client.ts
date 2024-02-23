@@ -1,5 +1,7 @@
-import type { Prompt } from '@dexaai/dexter'
 import defaultKy, { type KyInstance } from 'ky'
+
+import type { EntitiesMap } from './entities.js'
+import type { AnswerEngineMessage } from './types.js'
 
 export class DexaClient {
   readonly apiKey: string
@@ -24,12 +26,19 @@ export class DexaClient {
     this.ky = ky.extend({ prefixUrl: this.apiBaseUrl })
   }
 
-  async generateResponse({ messages }: { messages: Prompt.Msg[] }) {
+  async generateResponse({
+    messages,
+    entityMap
+  }: {
+    messages: AnswerEngineMessage[]
+    entityMap?: EntitiesMap
+  }) {
     return this.ky
       .post('api/ask-dexa', {
         json: {
           secret: this.apiKey,
-          messages
+          messages,
+          entityMap
         },
         timeout: 60000
       })

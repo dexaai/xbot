@@ -2,24 +2,17 @@ import { z } from 'zod'
 
 import * as db from './db.js'
 import type * as types from './types.js'
-import type { AnswerEngine } from './answer-engine.js'
-import { DexaAnswerEngine } from './answer-engines/dexa-answer-engine.js'
-import { OpenAIAnswerEngine } from './answer-engines/openai-answer-engine.js'
 
-export function createAnswerEngine(
-  answerEngineType: types.AnswerEngineType
-): AnswerEngine {
-  switch (answerEngineType) {
-    case 'openai':
-      return new OpenAIAnswerEngine()
-
-    case 'dexa':
-      return new DexaAnswerEngine()
-
-    default:
-      throw new Error(`Unknown answer engine: ${answerEngineType}`)
-  }
-}
+export const URLEntitySchema = z.object({
+  type: z.literal('url'),
+  // Expanded URL
+  url: z.string(),
+  // Twitter's short url which will be included in the tweet text
+  shortUrl: z.string().optional(),
+  // Will only exist if this URL references a known media entity
+  mediaId: z.string().optional()
+})
+export type URLEntity = z.infer<typeof URLEntitySchema>
 
 export const UserEntitySchema = z.object({
   type: z.literal('user'),
@@ -34,7 +27,8 @@ export const UserEntitySchema = z.object({
   twitterNumFollowers: z.number().optional(),
   twitterNumFollowing: z.number().optional(),
   twitterNumTweets: z.number().optional(),
-  twitterNumLikes: z.number().optional()
+  twitterNumLikes: z.number().optional(),
+  urls: z.array(URLEntitySchema).optional()
 })
 export type UserEntity = z.infer<typeof UserEntitySchema>
 
@@ -52,28 +46,19 @@ export const TweetEntitySchema = z.object({
   numRetweets: z.number().optional(),
   numQuoteTweets: z.number().optional(),
   numReplies: z.number().optional(),
-  numImpressions: z.number().optional()
+  numImpressions: z.number().optional(),
+  mediaIds: z.array(z.string()).optional(),
+  urls: z.array(URLEntitySchema).optional()
 })
 export type TweetEntity = z.infer<typeof TweetEntitySchema>
 
 export const MediaEntitySchema = z.object({
   type: z.literal('media'),
   id: z.string(),
-  subtype: z.enum(['image', 'video', 'gif', 'audio', 'other']).optional(),
-  url: z.string()
+  url: z.string(),
+  subtype: z.enum(['image', 'video', 'gif', 'audio', 'other']).optional()
 })
 export type MediaEntity = z.infer<typeof MediaEntitySchema>
-
-export const URLEntitySchema = z.object({
-  type: z.literal('url'),
-  // Expanded URL
-  url: z.string(),
-  // Twitter's short url which will be included in the tweet text
-  shortUrl: z.string().optional(),
-  // Will only exist if this URL references a known media entity
-  mediaId: z.string().optional()
-})
-export type URLEntity = z.infer<typeof URLEntitySchema>
 
 /**
  * Map from entity type to a `Record<string, Entity>` where the string key is
@@ -89,11 +74,31 @@ export type URLEntity = z.infer<typeof URLEntitySchema>
  *
  * Tweet entities are necessarily platform-specific, but they are an important
  * enough global, shareable entity that they warrant their own dedicated support.
+ *
+ * Entity references include string IDs which can be used to look up the full
+ * entity in this entities map. This is intended to reduce duplicate entities in
+ * cases where multiple messages reference the same entity.
  */
-export const EntitiesSchema = z.object({
+export const EntitiesMapSchema = z.object({
   users: z.record(UserEntitySchema).optional(),
   tweets: z.record(TweetEntitySchema).optional(),
-  media: z.record(MediaEntitySchema).optional(),
+  media: z.record(MediaEntitySchema).optional()
+})
+export type EntitiesMap = z.infer<typeof EntitiesMapSchema>
+
+/**
+ * References to specific entities (users, tweets, and media objects) which may
+ * be attached to a Message in order to provide additional, structured context.
+ *
+ * These entity referencers may be looked up in an accompanying `EntitiesMap`.
+ *
+ * URLs are handled as local-only because they generally don't have platform-
+ * specific IDs.
+ */
+export const EntitiesSchema = z.object({
+  userIds: z.array(z.string()).optional(),
+  tweetIds: z.array(z.string()).optional(),
+  mediaIds: z.array(z.string()).optional(),
   urls: z.array(URLEntitySchema).optional()
 })
 export type Entities = z.infer<typeof EntitiesSchema>
@@ -117,15 +122,15 @@ export async function convertTweetToEntitiesMap(
     // missing from the cache
     fetchMissingEntities?: boolean
   } = {}
-): Promise<Entities> {
-  const entities: Required<Entities> = {
+): Promise<EntitiesMap> {
+  const entitiesMap: Required<EntitiesMap> = {
     users: {},
     tweets: {},
-    media: {},
-    urls: []
+    // TODO: currently not resolving media entities
+    media: {}
   }
   const tweetEntity = convertTweetToEntity(tweet)
-  entities.tweets[tweetEntity.id] = tweetEntity
+  entitiesMap.tweets[tweetEntity.id] = tweetEntity
 
   const referencedUserIds = new Set<string>()
   const referencedTweetIds = new Set<string>()
@@ -137,19 +142,19 @@ export async function convertTweetToEntitiesMap(
   if (tweetEntity.retweetedTweetId)
     referencedUserIds.add(tweetEntity.retweetedTweetId)
 
-  for (const tweet of Object.values(entities.tweets)) {
+  for (const tweet of Object.values(entitiesMap.tweets)) {
     if (tweet.repliedToUserId) referencedUserIds.add(tweet.repliedToUserId)
     if (tweet.authorId) referencedUserIds.add(tweet.authorId)
   }
 
   // Attempt to resolve any referenced users
   for (const userId of referencedUserIds) {
-    if (entities.users[userId]) continue
+    if (entitiesMap.users[userId]) continue
 
     const user = await db.tryGetUserById(userId)
     if (!user) continue
 
-    const userEntity = (entities.users[user.id] =
+    const userEntity = (entitiesMap.users[user.id] =
       convertTwitterUserToEntity(user))
     if (userEntity.twitterPinnedTweetId) {
       referencedTweetIds.add(userEntity.twitterPinnedTweetId)
@@ -158,17 +163,33 @@ export async function convertTweetToEntitiesMap(
 
   // Attempt to resolve any referenced tweets
   for (const tweetId of referencedTweetIds) {
-    if (entities.users[tweetId]) continue
+    if (entitiesMap.users[tweetId]) continue
 
     const referencedTweet = await db.tryGetTweetById(tweetId, ctx, {
       fetchFromTwitter: !!fetchMissingEntities
     })
     if (!referencedTweet) continue
 
-    entities.tweets[referencedTweet.id] = convertTweetToEntity(referencedTweet)
+    entitiesMap.tweets[referencedTweet.id] =
+      convertTweetToEntity(referencedTweet)
   }
 
-  return entities
+  return entitiesMap
+}
+
+export function mergeEntityMaps(...entityMaps: EntitiesMap[]): EntitiesMap {
+  const result: EntitiesMap = {
+    users: {},
+    tweets: {},
+    // TODO: currently not resolving media entities
+    media: {}
+  }
+
+  for (const entityMap of entityMaps) {
+    Object.assign(result, entityMap)
+  }
+
+  return result
 }
 
 export function convertTweetToEntity(tweet: types.Tweet): TweetEntity {
@@ -191,7 +212,9 @@ export function convertTweetToEntity(tweet: types.Tweet): TweetEntity {
     numRetweets: tweet.public_metrics?.retweet_count,
     numQuoteTweets: tweet.public_metrics?.quote_count,
     numReplies: tweet.public_metrics?.reply_count,
-    numImpressions: (tweet.public_metrics as any)?.impression_count
+    numImpressions: (tweet.public_metrics as any)?.impression_count,
+    urls: tweet.entities?.urls?.map(convertTwitterUrlToEntity),
+    mediaIds: tweet.attachments?.media_keys
   }
 }
 
@@ -211,6 +234,20 @@ export function convertTwitterUserToEntity(
     twitterNumFollowers: user.public_metrics?.followers_count,
     twitterNumFollowing: user.public_metrics?.following_count,
     twitterNumTweets: user.public_metrics?.tweet_count,
-    twitterNumLikes: user.public_metrics?.followers_count
+    twitterNumLikes: user.public_metrics?.followers_count,
+    urls: [
+      ...(user.entities?.url?.urls?.map(convertTwitterUrlToEntity) ?? []),
+      ...(user.entities?.description?.urls?.map(convertTwitterUrlToEntity) ??
+        [])
+    ].filter(Boolean)
+  }
+}
+
+export function convertTwitterUrlToEntity(url: types.TwitterUrl): URLEntity {
+  return {
+    type: 'url',
+    url: url.expanded_url ?? url.url,
+    shortUrl: url.url,
+    mediaId: url.media_key
   }
 }

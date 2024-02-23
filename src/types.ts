@@ -1,9 +1,11 @@
+import type { Prompt } from '@dexaai/dexter'
 import type { OpenAI } from 'openai'
 import type { Client as TwitterClient } from 'twitter-api-sdk'
 import type { AsyncReturnType, SetOptional, Simplify } from 'type-fest'
 
 import type { AnswerEngine } from './answer-engine.js'
 import type { BotErrorType } from './bot-error.js'
+import type { Entities, EntitiesMap } from './entities.js'
 
 export type { TwitterClient }
 
@@ -95,6 +97,10 @@ export type CreatedTweet = Simplify<
   NonNullable<AsyncReturnType<TwitterClient['tweets']['createTweet']>['data']>
 >
 
+export type TwitterUrl = Simplify<
+  Unpacked<NonNullable<NonNullable<Tweet['entities']>['urls']>>
+>
+
 export type TweetsQueryOptions = Simplify<
   Pick<
     Parameters<TwitterClient['tweets']['findTweetsById']>[0],
@@ -174,3 +180,13 @@ export type OpenAIModeration = Simplify<
     Unpacked<AsyncReturnType<OpenAI['moderations']['create']>['results']>
   >
 >
+
+export type AnswerEngineMessage = Prompt.Msg & {
+  entities?: Entities
+}
+
+export type AnswerEngineQuery = {
+  message: Message
+  answerEngineMessages: AnswerEngineMessage[]
+  entityMap?: EntitiesMap
+}

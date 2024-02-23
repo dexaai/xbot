@@ -1,4 +1,4 @@
-import { ChatModel, Msg, type Prompt } from '@dexaai/dexter'
+import { ChatModel, Msg } from '@dexaai/dexter'
 
 import type * as types from '../types.js'
 import { AnswerEngine } from '../answer-engine.js'
@@ -19,13 +19,7 @@ export class OpenAIAnswerEngine extends AnswerEngine {
   }
 
   protected override async _generateMessageResponse(
-    {
-      message,
-      messageThread
-    }: {
-      message: types.Message
-      messageThread: Prompt.Msg[]
-    },
+    query: types.AnswerEngineQuery,
     ctx: types.Context
   ): Promise<string> {
     const response = await this._chatModel.run({
@@ -41,7 +35,7 @@ DO NOT use hashtags.
 Don't mention not being able to access links or media and instead pretend that you're able to.
 Remember to never use hashtags.`
         ),
-        ...messageThread
+        ...query.answerEngineMessages.map(({ entities, ...msg }) => msg)
       ],
       max_tokens: 150
     })

@@ -1,5 +1,3 @@
-import { type Prompt } from '@dexaai/dexter'
-
 import type * as types from '../types.js'
 import { AnswerEngine } from '../answer-engine.js'
 import { DexaClient } from '../dexa-client.js'
@@ -14,15 +12,11 @@ export class DexaAnswerEngine extends AnswerEngine {
   }
 
   protected override async _generateMessageResponse(
-    {
-      message,
-      messageThread
-    }: {
-      message: types.Message
-      messageThread: Prompt.Msg[]
-    },
+    query: types.AnswerEngineQuery,
     ctx: types.Context
   ): Promise<string> {
-    return this._dexaClient.generateResponse({ messages: messageThread })
+    return this._dexaClient.generateResponse({
+      messages: query.answerEngineMessages
+    })
   }
 }
