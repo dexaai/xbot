@@ -25,6 +25,14 @@ async function main() {
     process.exit(1)
   }
 
+  if (argv.flags.debugTweetIds.length > 1) {
+    console.log(
+      'This script only supports debugging a single tweet via -t <tweet-id>'
+    )
+    argv.showHelp()
+    process.exit(1)
+  }
+
   const answerEngineType: types.AnswerEngineType =
     (process.env.ANSWER_ENGINE as types.AnswerEngineType) ?? 'openai'
   const answerEngine = createAnswerEngine(answerEngineType)
@@ -83,6 +91,7 @@ async function main() {
 main()
   .then((res) => {
     if (res) {
+      console.log()
       console.log(JSON.stringify(res, null, 2))
     }
 
