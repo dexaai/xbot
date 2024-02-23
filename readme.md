@@ -25,7 +25,7 @@ Dependencies to call out:
   - Redis is optional, and if you don't specify a redis instance, state will be "persisted" to an in-memory store
   - However, given twitter's quotas, using a redis instance to cache twitter objects is highly recommended
 
-Note that setting `TWITTER_API_PLAN` to the correct plan is important, because all internal twitter throttling to avoid rate limits depends on your current plan.
+Setting `TWITTER_API_PLAN` to the correct plan is important, because this is used to determine the bot's internal twitter API throttling in order to avoid rate limits and maximize quota usage.
 
 ## Running the bot
 
