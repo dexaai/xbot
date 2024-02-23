@@ -38,7 +38,7 @@ Usage:
   xbot [flags...]
 
 Flags:
-  -a, --answer-engine <string>                      Answer engine to use (openai of dexa) (default: "openai")
+  -a, --answer-engine <string>                      Answer engine to use (openai, dexa, or perplexity) (default: "openai")
       --debug                                       Enables debug logging
   -t, --debug-tweet-ids <string>                    Specifies a tweet to process instead of responding to mentions with
                                                     the default behavior. Multiple tweets ids can be specified (-t id1

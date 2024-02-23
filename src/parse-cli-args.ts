@@ -72,7 +72,7 @@ export function parseCLIArgs(
         },
         answerEngine: {
           type: String,
-          description: 'Answer engine to use (openai of dexa)',
+          description: 'Answer engine to use (openai, dexa, or perplexity)',
           alias: 'a',
           default: overrides?.answerEngine ?? config.defaultAnswerEngineType
         }
