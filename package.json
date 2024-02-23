@@ -47,7 +47,8 @@
     "twitter-text": "^3.1.0",
     "twitter-utils": "^0.4.0",
     "type-fest": "^4.10.2",
-    "url-regex": "^5.0.0"
+    "url-regex": "^5.0.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@dexaai/eslint-config": "^0.4.0",

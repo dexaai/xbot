@@ -30,7 +30,7 @@ Note that setting `TWITTER_API_PLAN` to the correct plan is important, because a
 ## Running the bot
 
 ```bash
-tsx bin/xbot.ts --help
+tsx bin/xbot.ts
 ```
 
 ```sh
@@ -67,6 +67,7 @@ Flags:
   - eg, a user responds to somebody else's question with just `@AskDexa` and no other text
   - we currently ignore these as invalid, empty mentions, but if they're in response to another tweet that's valid, then we should handle them appropriately
 - support URLs and other entity metadata (user profile info) so the answer engine has more info to work off of
+- support use case of answering questions about linked podcast episodes
 - consider re-adding support for generating images to support longer responses w/ the openai answer engine
   - could use a binary classifier to determine whether or not to render the response as an image
 

@@ -265,10 +265,8 @@ export async function tryGetTweetById(
 
   if (fetchFromTwitter) {
     try {
-      const { data: tweet, includes } = await twitter.findTweetById(
-        tweetId,
-        ctx
-      )
+      const { data, includes } = await twitter.findTweetById(tweetId, ctx)
+      tweet = data
 
       if (tweet) {
         if (includes?.users) {
