@@ -36,8 +36,13 @@ tsx bin/index.ts
 ## TODO
 
 - support quote tweet and retweet context
+- support user entity context
+- support blank tweet responses
+  - eg, a user responds to somebody else's question with just `@AskDexa` and no other text
+  - we currently ignore these as invalid, empty mentions, but if they're in response to another tweet that's valid, then we should handle them appropriately
 - support URLs and other entity metadata (user profile info) so the answer engine has more info to work off of
 - consider re-adding support for generating images to support longer responses w/ the openai answer engine
+  - could use a binary classifier to determine whether or not to render the response as an image
 
 ## License
 
