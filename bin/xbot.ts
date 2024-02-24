@@ -25,7 +25,7 @@ async function main() {
     argv.flags.answerEngine as types.AnswerEngineType
   )
 
-  let twitterClient = await getTwitterClient()
+  const twitterClient = await getTwitterClient()
   const { data: twitterBotUser } = await twitterClient.users.findMyUser()
   const twitterBotUserId = twitterBotUser?.id
 

@@ -369,14 +369,6 @@ export async function isValidMention(
 
   let { text } = mention
   mention.prompt = getPrompt(text, ctx)
-  if (!mention.prompt) {
-    // Ignore tweets where the sanitized prompt is empty
-    if (isDebugTweet) {
-      console.log('ignoring mention empty prompt', getDebugMention(mention))
-    }
-
-    return false
-  }
 
   if (
     mention.prompt.startsWith('(human) ') &&
