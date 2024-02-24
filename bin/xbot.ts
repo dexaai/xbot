@@ -109,23 +109,34 @@ async function main() {
         break
       }
 
-      if (batch.hasNetworkError) {
-        console.warn('network error; sleeping...')
+      const batchHasError =
+        batch.hasNetworkError ||
+        batch.hasTwitterRateLimitError ||
+        batch.hasTwitterAuthError
+
+      if (batchHasError) {
+        if (batch.hasNetworkError) {
+          console.warn('network error; sleeping for 10s...')
+          await delay(10_000)
+        }
+
+        if (batch.hasTwitterRateLimitError) {
+          console.warn('twitter rate limit error; sleeping for 30s...')
+          await delay(30_000)
+        }
+
+        if (batch.hasTwitterAuthError) {
+          console.warn('twitter auth error; refreshing after 5s...')
+          await delay(5_000)
+          await refreshTwitterAuth()
+        }
+      } else if (!batch.mentions.length) {
+        console.warn('no tweet mentions found; sleeping for 10s...')
         await delay(10_000)
       }
-
-      if (batch.hasTwitterRateLimitError) {
-        console.warn('twitter rate limit error; sleeping...')
-        await delay(30_000)
-      }
-
-      if (batch.hasTwitterAuthError) {
-        console.warn('twitter auth error; refreshing...')
-        await refreshTwitterAuth()
-      }
-    } catch (err) {
-      console.error('top-level error', err)
-      await delay(5000)
+    } catch (err: any) {
+      console.error('top-level error; pausing for 5s...', err.toString(), err)
+      await delay(5_000)
       await refreshTwitterAuth()
     }
   } while (true)
