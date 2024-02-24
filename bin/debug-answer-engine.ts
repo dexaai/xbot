@@ -1,3 +1,5 @@
+import pMap from 'p-map'
+
 import type * as types from '../src/types.js'
 import { createAnswerEngine } from '../src/create-answer-engine.js'
 import { openaiClient } from '../src/openai-client.js'
@@ -21,14 +23,6 @@ async function main() {
 
   if (!argv.flags.debugTweetIds.length) {
     console.log('Must provide at least one tweet id to debug via -t <tweet-id>')
-    argv.showHelp()
-    process.exit(1)
-  }
-
-  if (argv.flags.debugTweetIds.length > 1) {
-    console.log(
-      'This script only supports debugging a single tweet via -t <tweet-id>'
-    )
     argv.showHelp()
     process.exit(1)
   }
@@ -81,20 +75,27 @@ async function main() {
     )
   }
 
-  const message = batch.messages[0]
-  assert(message)
-  assert(ctx.debugTweetIds!.includes(message.id))
+  for (const message of batch.messages) {
+    assert(ctx.debugTweetIds!.includes(message.id))
+  }
 
-  return answerEngine.resolveMessageThread(message, ctx)
+  console.log()
+  console.log(`resolving ${batch.messages.length} message threads...`)
+
+  const answerEngineQueries = await pMap(
+    batch.messages,
+    (message) => answerEngine.resolveMessageThread(message, ctx),
+    {
+      concurrency: 4
+    }
+  )
+
+  console.log()
+  console.log(JSON.stringify(answerEngineQueries, null, 2))
 }
 
 main()
-  .then((res) => {
-    if (res) {
-      console.log()
-      console.log(JSON.stringify(res, null, 2))
-    }
-
+  .then(() => {
     process.exit(0)
   })
   .catch((err) => {
