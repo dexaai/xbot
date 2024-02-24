@@ -412,7 +412,8 @@ export async function isValidMention(
   if (
     numMentions > 0 &&
     (usernames[usernames.length - 1] === ctx.twitterBotHandleL ||
-      (numMentions === 1 && !isReply))
+      (numMentions === 1 && !isReply) ||
+      (isReply && repliedToTweet?.author_id === ctx.twitterBotUserId))
   ) {
     if (
       isReply &&
