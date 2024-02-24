@@ -4,7 +4,7 @@ import * as config from './config.js'
 import * as db from './db.js'
 import * as twitter from './twitter.js'
 import type * as types from './types.js'
-import { isKnownTwitterBot } from './twitter-known-bots.js'
+import { isKnownTwitterBotUsername } from './twitter-known-bots.js'
 import { getTwitterUserIdMentions } from './twitter-mentions.js'
 import {
   getTweetUrl,
@@ -310,9 +310,14 @@ export async function isValidMention(
     return false
   }
 
-  // Ignore known bots; we don't want them endlessly replying to each other
-  if (isKnownTwitterBot(mention.author_id!)) {
-    return false
+  if (mention.author_id !== ctx.twitterBotUserId) {
+    const user = await db.tryGetUserById(mention.author_id)
+
+    // Ignore mentions from known bots; we don't want them endlessly replying
+    // to each other
+    if (user?.username && isKnownTwitterBotUsername(user.username)) {
+      return false
+    }
   }
 
   const repliedToTweetRef = mention.referenced_tweets?.find(

@@ -1,5 +1,5 @@
 // These are stored as case-insensitive, lowercase strings
-export const twitterKnownBots = new Set<string>(
+export const knownTwitterBotUsernames = new Set(
   [
     'threadreaderapp',
     'SaveToNotion',
@@ -91,14 +91,14 @@ export const twitterKnownBots = new Set<string>(
   ].map((s) => s.toLowerCase())
 )
 
-export function isKnownTwitterBot(username: string) {
-  return twitterKnownBots.has(username.toLowerCase())
+export function isKnownTwitterBotUsername(username: string) {
+  return knownTwitterBotUsernames.has(username.toLowerCase())
 }
 
-export function isLikelyTwitterBot(username: string) {
+export function isLikelyTwitterBotUsername(username: string) {
   username = username.toLowerCase()
 
-  if (isKnownTwitterBot(username)) return true
+  if (isKnownTwitterBotUsername(username)) return true
   if (/bot$/.test(username)) return true
   if (/gpt$/.test(username)) return true
   if (/status$/.test(username)) return true
