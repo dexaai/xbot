@@ -33,14 +33,6 @@ export const tweetIgnoreList = new Set<string>([
   // empty for now
 ])
 
-// ignore known bots; we don't want them endlessly replying to each other
-export const twitterUsersIgnoreList = new Set<string>([
-  '1598922281434103808', // ChatGPTBot
-  '1506967793409065000', // ReplyGPT
-  '1607692579243687936', // ChatSonicAI
-  '2308326482' // dustyplaylist
-])
-
 // Used by the author(s) for faster testing and feedback
 export const priorityUsersList = new Set<string>([
   '327034465', // transitive_bs

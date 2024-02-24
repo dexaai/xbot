@@ -4,6 +4,7 @@ import * as config from './config.js'
 import * as db from './db.js'
 import * as twitter from './twitter.js'
 import type * as types from './types.js'
+import { isKnownTwitterBot } from './twitter-known-bots.js'
 import { getTwitterUserIdMentions } from './twitter-mentions.js'
 import {
   getTweetUrl,
@@ -309,7 +310,8 @@ export async function isValidMention(
     return false
   }
 
-  if (config.twitterUsersIgnoreList.has(mention.author_id!)) {
+  // Ignore known bots; we don't want them endlessly replying to each other
+  if (isKnownTwitterBot(mention.author_id!)) {
     return false
   }
 
