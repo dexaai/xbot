@@ -173,8 +173,10 @@ async function main() {
       const delayMs = calculateRetryDelay(numConsecutiveBatchesWithErrors, {
         jitter: true
       })
+      const errorLabel =
+        err instanceof BotError ? err.message : 'top-level error'
       console.error(
-        `\ntop-level error; pausing for ${ms(delayMs)}...`,
+        `\n${errorLabel}; pausing for ${ms(delayMs)}...`,
         err.message,
         ...[err instanceof BotError ? pick(err as any, 'type', 'status') : err]
       )
@@ -188,7 +190,7 @@ function calculateRetryDelay(
   numRetries: number,
   {
     delayMs = 5_000, // 5 seconds
-    maxDelayMs = 1_000 * 60 * 10, // 10 minutes
+    maxDelayMs = 1_000 * 60 * 5, // 5 minutes
     jitter = false
   }: { delayMs?: number; maxDelayMs?: number; jitter?: boolean } = {}
 ) {

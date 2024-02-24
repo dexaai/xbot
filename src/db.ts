@@ -37,8 +37,24 @@ let redis: Redis
 const userIdToMentionDbMap: Record<string, Keyv<types.Tweet>> = {}
 
 if (config.redisUrl) {
-  const store = new KeyvRedis(config.redisUrl)
+  const store = new KeyvRedis(config.redisUrl, {
+    options: {
+      tls: {
+        rejectUnauthorized: false
+      }
+    }
+  })
   redis = store.redis as Redis
+
+  redis.on('error', (err: any) => {
+    if (err.code === 'ECONNRESET') {
+      console.warn('redis connection timed out', err.code, err.message)
+    } else if (err.code === 'ECONNREFUSED') {
+      console.warn('redis connection refused', err.code, err.message)
+    } else {
+      console.error('redis error', err.code, err.message)
+    }
+  })
 
   tweets = new Keyv({ store, namespace: config.redisNamespaceTweets })
   users = new Keyv({ store, namespace: config.redisNamespaceUsers })
