@@ -19,6 +19,11 @@ export function handleKnownTwitterErrors(
       isFinal: true,
       cause: err
     })
+  } else if (err.status === 401) {
+    throw new BotError(`error ${label}: unauthorized`, {
+      type: 'twitter:auth',
+      cause: err
+    })
   } else if (err.status === 400) {
     if (
       /value passed for the token was invalid/i.test(

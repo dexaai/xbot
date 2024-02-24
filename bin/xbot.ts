@@ -33,10 +33,6 @@ async function main() {
     throw new Error('twitter error unable to fetch current user')
   }
 
-  async function refreshTwitterAuth() {
-    twitterClient = await getTwitterClient()
-  }
-
   const dbSinceMentionId = await db.getSinceMentionId({ twitterBotUserId })
   let initialSinceMentionId =
     (argv.flags.resolveAllMentions
@@ -76,6 +72,10 @@ async function main() {
       ? undefined
       : { dbSinceMentionId })
   })
+
+  async function refreshTwitterAuth() {
+    ctx.twitterClient = await getTwitterClient()
+  }
 
   const batches: types.TweetMentionBatch[] = []
   let numConsecutiveBatchesWithoutMentions = 0

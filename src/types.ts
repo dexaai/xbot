@@ -19,7 +19,7 @@ export type Context = {
   sinceMentionId: string | undefined
 
   // Services
-  readonly twitterClient: TwitterClient
+  twitterClient: TwitterClient
   readonly openaiClient: OpenAI
 
   // Constant app runtime config

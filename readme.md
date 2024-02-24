@@ -26,6 +26,7 @@
   - referencing content from embedded media (images, gifs, video; polls not yet supported)
 - uses a scoring heuristic for prioritizing which tweets to respond to when the bot goes viral
 - ignores known bot accounts to prevent them from endlessly replying to each other
+- supports running multiple bots w/ the same redis instance
 - thoroughly tested in production
 
 ## Configuring the bot
