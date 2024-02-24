@@ -310,7 +310,8 @@ export async function isValidMention(
     return false
   }
 
-  const isDebugTweet = ctx.debugTweetIds?.includes(mention.id)
+  const isDebugTweet =
+    !ctx.debugAnswerEngine && ctx.debugTweetIds?.includes(mention.id)
   if (isDebugTweet) {
     console.log('isValidMention', getDebugMention(mention))
   }
@@ -410,6 +411,10 @@ export async function isValidMention(
 
       return false
     }
+  }
+
+  if (ctx.debugAnswerEngine) {
+    return true
   }
 
   if (
