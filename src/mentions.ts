@@ -197,13 +197,18 @@ export async function getTweetMentionsBatch(
 
   const numMentionsInBatch = batch.mentions.length
 
-  console.log(`fetched mentions batch`, {
-    numMentionsFetched,
-    numMentionsValid,
-    numMentionsCandidates,
-    numMentionsInBatch,
-    numMentionsPostponed: batch.numMentionsPostponed
-  })
+  console.log(
+    `fetched mentions batch`,
+    numMentionsFetched
+      ? {
+          numMentionsFetched,
+          numMentionsValid,
+          numMentionsCandidates,
+          numMentionsInBatch,
+          numMentionsPostponed: batch.numMentionsPostponed
+        }
+      : 'empty'
+  )
 
   return batch as types.TweetMentionBatch
 }

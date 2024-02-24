@@ -35,15 +35,11 @@ async function main() {
     twitterClient = await getTwitterClient()
   }
 
-  console.log('automating user', twitterBotUser.username, twitterBotUser.id)
-
+  const dbSinceMentionId = await db.getSinceMentionId({ twitterBotUserId })
   let initialSinceMentionId =
     (argv.flags.resolveAllMentions
       ? undefined
-      : argv.flags.sinceMentionId ||
-        (await db.getSinceMentionId({
-          twitterBotUserId
-        }))) ?? '0'
+      : argv.flags.sinceMentionId || dbSinceMentionId) ?? '0'
 
   const ctx: types.Context = {
     // Dynamic a state which gets persisted to the db
@@ -69,12 +65,23 @@ async function main() {
     answerEngine
   }
 
+  console.log('automating user', {
+    username: twitterBotUser.username,
+    name: twitterBotUser.name,
+    id: twitterBotUser.id,
+    sinceMentionId: ctx.sinceMentionId,
+    ...(dbSinceMentionId === ctx.sinceMentionId
+      ? undefined
+      : { dbSinceMentionId })
+  })
+
   const batches: types.TweetMentionBatch[] = []
   let numConsecutiveBatchesWithoutMentions = 0
   let numConsecutiveBatchesWithErrors = 0
 
   do {
     try {
+      console.log()
       const batch = await respondToNewMentions(ctx)
       batches.push(batch)
 
@@ -104,10 +111,14 @@ async function main() {
         break
       }
 
-      console.log(
-        `processed ${batch.messages?.length ?? 0} messages`,
-        batch.messages
-      )
+      const isEmptyBatch = !batch.mentions.length
+
+      if (!isEmptyBatch) {
+        console.log(
+          `processed ${batch.messages?.length ?? 0} messages`,
+          batch.messages
+        )
+      }
 
       if (ctx.debugTweetIds?.length) {
         break
@@ -122,7 +133,7 @@ async function main() {
         numConsecutiveBatchesWithErrors = 0
       }
 
-      if (!batch.mentions.length) {
+      if (isEmptyBatch) {
         numConsecutiveBatchesWithoutMentions++
       } else {
         numConsecutiveBatchesWithoutMentions = 0
@@ -130,25 +141,27 @@ async function main() {
 
       if (batchHasError) {
         if (batch.hasNetworkError) {
-          console.warn('network error; sleeping for 10s...')
+          console.warn('\nnetwork error; sleeping for 10s...')
           await delay(10_000)
         }
 
         if (batch.hasTwitterRateLimitError) {
-          console.warn('twitter rate limit error; sleeping for 30s...')
+          console.warn('\ntwitter rate limit error; sleeping for 30s...')
           await delay(30_000)
         }
 
         if (batch.hasTwitterAuthError) {
-          console.warn('twitter auth error; refreshing after 5s...')
+          console.warn('\ntwitter auth error; refreshing after 5s...')
           await delay(5_000)
           await refreshTwitterAuth()
         }
-      } else if (!batch.mentions.length) {
+      } else if (isEmptyBatch) {
         const delayMs = calculateRetryDelay(
           numConsecutiveBatchesWithoutMentions
         )
-        console.warn(`no tweet mentions found; sleeping for ${ms(delayMs)}...`)
+        console.warn(
+          `\nno tweet mentions found; sleeping for ${ms(delayMs)}...`
+        )
         await delay(delayMs)
       }
     } catch (err: any) {
@@ -159,7 +172,7 @@ async function main() {
         jitter: true
       })
       console.error(
-        `top-level error; pausing for ${ms(delayMs)}...`,
+        `\ntop-level error; pausing for ${ms(delayMs)}...`,
         err.toString(),
         err
       )
@@ -172,16 +185,18 @@ async function main() {
 function calculateRetryDelay(
   numRetries: number,
   {
-    delayMs = 5_000,
+    delayMs = 5_000, // 5 seconds
+    maxDelayMs = 1_000 * 60 * 2, // 2 minutes
     jitter = false
-  }: { delayMs?: number; jitter?: boolean } = {}
+  }: { delayMs?: number; maxDelayMs?: number; jitter?: boolean } = {}
 ) {
-  return (
+  const delay =
     delayMs *
     2 **
-      (Math.max(1, Math.min(numRetries, 4)) +
+      (Math.max(1, Math.min(numRetries, 5)) +
         (jitter ? random.float(0, 0.5) : 0))
-  )
+
+  return Math.max(Math.min(delay, maxDelayMs), 0)
 }
 
 main()

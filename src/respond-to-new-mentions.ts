@@ -14,11 +14,17 @@ import { assert, getDebugMention, pick } from './utils.js'
  * of them via the answer engine, and tweets the responses.
  */
 export async function respondToNewMentions(ctx: types.Context) {
-  console.log()
-  console.log('respond to new mentions since', ctx.sinceMentionId || 'forever')
+  console.log(
+    'responding to new mentions since',
+    ctx.sinceMentionId || 'forever'
+  )
 
   // Fetch the mentions to process in this batch
   const batch = await getTweetMentionsBatch(ctx)
+
+  if (!batch.mentions.length) {
+    return batch
+  }
 
   console.log(
     `processing ${batch.mentions.length} tweet mentions`,
