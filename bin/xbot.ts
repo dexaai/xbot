@@ -171,10 +171,13 @@ async function main() {
 
 function calculateRetryDelay(
   numRetries: number,
-  { jitter = false }: { jitter?: boolean } = {}
+  {
+    delayMs = 5_000,
+    jitter = false
+  }: { delayMs?: number; jitter?: boolean } = {}
 ) {
   return (
-    5_000 *
+    delayMs *
     2 **
       (Math.max(1, Math.min(numRetries, 4)) +
         (jitter ? random.float(0, 0.5) : 0))
