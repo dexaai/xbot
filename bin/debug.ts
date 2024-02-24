@@ -10,12 +10,13 @@ import { getTwitterClient } from '../src/twitter-client.js'
 async function main() {
   const twitterClient = await getTwitterClient()
 
-  const namespace = db.getTweetMentionDbNamespaceForUserId(
-    '1757989045383106560' // AskDexa
-  )
-  const keys = await db.redis.keys(`${namespace}:*`)
-  console.log(keys)
-  return
+  // const namespace = db.getTweetMentionDbNamespaceForUserId(
+  //   '1757989045383106560' // AskDexa
+  // )
+  // const keys = await db.redis.keys(`${namespace}:*`)
+  // console.log(keys)
+  // return
+
   // if (keys.length) {
   //   await redis.del(keys)
   // }
