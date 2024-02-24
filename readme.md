@@ -9,6 +9,24 @@
 
 > Twitter / X bot for responding to user mentions with AI-generated answers.
 
+## Features
+
+- extremely robust (used on an acct w/ 150k+ followers)
+- supports multiple AI answer engines: openai, dexa, and perplexity
+- persists state to redis and caches all twitter objects to maximize quota usage
+- maximizes twitter api throughput w/ plan-dependent throttling
+- includes structured entity data for answer engines for additional, non-text context
+  - includes things like links, twitter user profile info, quote tweets, etc
+- handles tricky bot interactions such as:
+  - follow-up questions
+  - referencing quote tweets and retweets
+  - referencing user profile info
+  - referencing content from links
+  - referencing content from embedded media (images, gifs, video; polls not yet supported)
+- using a scoring heuristic for prioritizing which tweets to respond to when the bot goes viral
+- ignores known bot accounts to prevent them from endlessly replying to each other
+- thoroughly tested in production
+
 ## Configuring the bot
 
 You'll need a paid Twitter developer account and a Twitter v2 app with OAuth 2.0 enabled. You'll need to subscribe to at least the basic Twitter API plan in order to run this bot; **the free tier is not supported** since it doesn't support fetching tweets which is required for this bot to work.
@@ -18,7 +36,7 @@ Set up a `.env` file by copying `.env.example` and initializing all required env
 Dependencies to call out:
 
 - [Nango](https://www.nango.dev) is used to simplify Twitter OAuth
-- [OpenAI](https://platform.openai.com/overview) chat completions API is used as the default answer engine for now
+- [OpenAI](https://platform.openai.com/overview) chat completions API is used as the default answer engine
   - OpenAI's [moderations endpoint](https://platform.openai.com/docs/guides/moderation) is also used to filter out inappropriate tweets
 - [Dexa](https://dexa.ai) is an excellent answer engine whose API is currently in private beta (otherwise it would be the default)
 - [Redis](https://redis.io) is used to persist state across runs and cache twitter objects (tweets, users, mentions) in order to maximize our use of twitter API quotas
