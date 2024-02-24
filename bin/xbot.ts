@@ -4,12 +4,14 @@ import random from 'random'
 
 import * as db from '../src/db.js'
 import type * as types from '../src/types.js'
+import { BotError } from '../src/bot-error.js'
 import { createAnswerEngine } from '../src/create-answer-engine.js'
 import { openaiClient } from '../src/openai-client.js'
 import { parseCLIArgs } from '../src/parse-cli-args.js'
 import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
 import { getTwitterClient } from '../src/twitter-client.js'
 import { maxTwitterId } from '../src/twitter-utils.js'
+import { pick } from '../src/utils.js'
 
 /**
  * This is the main bot entrypoint. The bot boils down to a big while loop,
@@ -173,8 +175,8 @@ async function main() {
       })
       console.error(
         `\ntop-level error; pausing for ${ms(delayMs)}...`,
-        err.toString(),
-        err
+        err.message,
+        ...[err instanceof BotError ? pick(err as any, 'type', 'status') : err]
       )
       await delay(delayMs)
       await refreshTwitterAuth()
@@ -186,14 +188,14 @@ function calculateRetryDelay(
   numRetries: number,
   {
     delayMs = 5_000, // 5 seconds
-    maxDelayMs = 1_000 * 60 * 2, // 2 minutes
+    maxDelayMs = 1_000 * 60 * 10, // 10 minutes
     jitter = false
   }: { delayMs?: number; maxDelayMs?: number; jitter?: boolean } = {}
 ) {
   const delay =
     delayMs *
     2 **
-      (Math.max(1, Math.min(numRetries, 5)) +
+      (Math.max(1, Math.min(numRetries, 10)) +
         (jitter ? random.float(0, 0.5) : 0))
 
   return Math.max(Math.min(delay, maxDelayMs), 0)

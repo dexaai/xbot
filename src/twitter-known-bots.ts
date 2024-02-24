@@ -3,12 +3,14 @@ export const knownTwitterBotUsernames = new Set(
   [
     'threadreaderapp',
     'SaveToNotion',
+    'readwiseio',
+    'unrollthread',
     'ChatGPTBot',
     'AskDexa',
+    'BigTechAlert',
+    'TrumpsAlert',
     'PingThread',
-    'readwiseio',
     'threader',
-    'unrollthread',
     'ReplyGPT',
     'ChatSonicAI',
     'dustyplaylist',
@@ -87,7 +89,12 @@ export const knownTwitterBotUsernames = new Set(
     'teololstoy',
     'trumpretruth',
     'UnrollHelper',
-    'bot4thread'
+    'bot4thread',
+    'everylotnyc',
+    '_restaurant_bot',
+    '_weather_bot_',
+    'everygoodfella',
+    'ca_dmv_bot'
   ].map((s) => s.toLowerCase())
 )
 
