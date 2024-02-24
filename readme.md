@@ -15,15 +15,16 @@
 - supports multiple AI answer engines: openai, dexa, and perplexity
 - persists state to redis and caches all twitter objects to maximize quota usage
 - maximizes twitter api throughput w/ plan-dependent throttling
-- includes structured entity data for answer engines for additional, non-text context
+- resolves structured entity data to give answer engines additional context
   - includes things like links, twitter user profile info, quote tweets, etc
-- handles tricky bot interactions such as:
+- handles bot interactions such as:
+  - basic @mentions
   - follow-up questions
   - referencing quote tweets and retweets
-  - referencing user profile info
+  - referencing mentioned users
   - referencing content from links
   - referencing content from embedded media (images, gifs, video; polls not yet supported)
-- using a scoring heuristic for prioritizing which tweets to respond to when the bot goes viral
+- uses a scoring heuristic for prioritizing which tweets to respond to when the bot goes viral
 - ignores known bot accounts to prevent them from endlessly replying to each other
 - thoroughly tested in production
 
