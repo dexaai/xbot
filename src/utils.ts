@@ -52,7 +52,7 @@ export function createID(...prefixes: string[]): string {
 }
 
 export function getDebugMention(
-  mention: types.TweetMention
+  mention: types.TweetMention | types.PartialTweetMention
   // ...additionalFields: (keyof types.TweetMention)[]
 ): Partial<types.TweetMention> {
   return pick(

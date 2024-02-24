@@ -40,7 +40,8 @@ export const priorityUsersList = new Set<string>([
   '1611066692330786819', // dexa_ai
   '1235525929335689217', // LofiGrind (test acct)
   '1386021646906048515', // samrcharles (test acct)
-  '1598922281434103808' // ChatGPTBot
+  '1598922281434103808', // ChatGPTBot
+  '1757989045383106560' // AskDexa
 ])
 
 // If Redis is disabled, all state will be stored in memory

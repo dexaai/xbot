@@ -1,4 +1,6 @@
 import delay from 'delay'
+import ms from 'ms'
+import random from 'random'
 
 import * as db from '../src/db.js'
 import type * as types from '../src/types.js'
@@ -22,8 +24,8 @@ async function main() {
   )
 
   let twitterClient = await getTwitterClient()
-  const { data: twitterBotUsaer } = await twitterClient.users.findMyUser()
-  const twitterBotUserId = twitterBotUsaer?.id
+  const { data: twitterBotUser } = await twitterClient.users.findMyUser()
+  const twitterBotUserId = twitterBotUser?.id
 
   if (!twitterBotUserId) {
     throw new Error('twitter error unable to fetch current user')
@@ -33,7 +35,7 @@ async function main() {
     twitterClient = await getTwitterClient()
   }
 
-  console.log('automating user', twitterBotUsaer.username)
+  console.log('automating user', twitterBotUser.username, twitterBotUser.id)
 
   let initialSinceMentionId =
     (argv.flags.resolveAllMentions
@@ -61,13 +63,15 @@ async function main() {
     resolveAllMentions: argv.flags.resolveAllMentions,
     maxNumMentionsToProcess: argv.flags.maxNumMentionsToProcess,
     debugTweetIds: argv.flags.debugTweetIds,
-    twitterBotHandle: `@${twitterBotUsaer.username}`,
-    twitterBotHandleL: `@${twitterBotUsaer.username.toLowerCase()}`,
+    twitterBotHandle: `@${twitterBotUser.username}`,
+    twitterBotHandleL: `@${twitterBotUser.username.toLowerCase()}`,
     twitterBotUserId,
     answerEngine
   }
 
   const batches: types.TweetMentionBatch[] = []
+  let numConsecutiveBatchesWithoutMentions = 0
+  let numConsecutiveBatchesWithErrors = 0
 
   do {
     try {
@@ -114,6 +118,16 @@ async function main() {
         batch.hasTwitterRateLimitError ||
         batch.hasTwitterAuthError
 
+      if (!batchHasError) {
+        numConsecutiveBatchesWithErrors = 0
+      }
+
+      if (!batch.mentions.length) {
+        numConsecutiveBatchesWithoutMentions++
+      } else {
+        numConsecutiveBatchesWithoutMentions = 0
+      }
+
       if (batchHasError) {
         if (batch.hasNetworkError) {
           console.warn('network error; sleeping for 10s...')
@@ -131,15 +145,40 @@ async function main() {
           await refreshTwitterAuth()
         }
       } else if (!batch.mentions.length) {
-        console.warn('no tweet mentions found; sleeping for 10s...')
-        await delay(10_000)
+        const delayMs = calculateRetryDelay(
+          numConsecutiveBatchesWithoutMentions
+        )
+        console.warn(`no tweet mentions found; sleeping for ${ms(delayMs)}...`)
+        await delay(delayMs)
       }
     } catch (err: any) {
-      console.error('top-level error; pausing for 5s...', err.toString(), err)
-      await delay(5_000)
+      numConsecutiveBatchesWithErrors++
+      numConsecutiveBatchesWithoutMentions = 0
+
+      const delayMs = calculateRetryDelay(numConsecutiveBatchesWithErrors, {
+        jitter: true
+      })
+      console.error(
+        `top-level error; pausing for ${ms(delayMs)}...`,
+        err.toString(),
+        err
+      )
+      await delay(delayMs)
       await refreshTwitterAuth()
     }
   } while (true)
+}
+
+function calculateRetryDelay(
+  numRetries: number,
+  { jitter = false }: { jitter?: boolean } = {}
+) {
+  return (
+    5_000 *
+    2 **
+      (Math.max(1, Math.min(numRetries, 4)) +
+        (jitter ? random.float(0, 0.5) : 0))
+  )
 }
 
 main()

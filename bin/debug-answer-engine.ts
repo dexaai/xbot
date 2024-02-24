@@ -38,8 +38,8 @@ async function main() {
   )
 
   let twitterClient = await getTwitterClient()
-  const { data: twitterBotUsaer } = await twitterClient.users.findMyUser()
-  const twitterBotUserId = twitterBotUsaer?.id
+  const { data: twitterBotUser } = await twitterClient.users.findMyUser()
+  const twitterBotUserId = twitterBotUser?.id
 
   if (!twitterBotUserId) {
     throw new Error('twitter error unable to fetch current user')
@@ -66,8 +66,8 @@ async function main() {
     resolveAllMentions: argv.flags.resolveAllMentions,
     maxNumMentionsToProcess: argv.flags.debugTweetIds.length,
     debugTweetIds: argv.flags.debugTweetIds,
-    twitterBotHandle: `@${twitterBotUsaer.username}`,
-    twitterBotHandleL: `@${twitterBotUsaer.username.toLowerCase()}`,
+    twitterBotHandle: `@${twitterBotUser.username}`,
+    twitterBotHandleL: `@${twitterBotUser.username.toLowerCase()}`,
     twitterBotUserId,
     answerEngine
   }

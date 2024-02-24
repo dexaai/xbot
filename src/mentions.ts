@@ -12,7 +12,7 @@ import {
   minTwitterId,
   tweetComparator
 } from './twitter-utils.js'
-import { getPrompt } from './utils.js'
+import { getDebugMention, getPrompt } from './utils.js'
 
 /**
  * Fetches new unanswered mentions, preprocesses them, and sorts them by a
@@ -256,7 +256,7 @@ export async function populateTweetMentionsBatch(
  *
  * @TODO Add unit tests for this
  */
-export function getNumMentionsInText(
+export function getPrefixMentionsInText(
   text: string = '',
   ctx: types.Context,
   { isReply }: { isReply?: boolean } = {}
@@ -282,6 +282,7 @@ export function getNumMentionsInText(
     }
   }
 
+  // console.log({ numMentions, usernames, text, prefixText })
   return {
     numMentions,
     usernames
@@ -300,10 +301,13 @@ export async function isValidMention(
   batch: types.PartialTweetMentionBatch,
   ctx: types.Context
 ): Promise<boolean> {
-  // console.log('mention', mention)
-
   if (!mention) {
     return false
+  }
+
+  const isDebugTweet = ctx.debugTweetIds?.includes(mention.id)
+  if (isDebugTweet) {
+    console.log('isValidMention', getDebugMention(mention))
   }
 
   if (config.tweetIgnoreList.has(mention.id!)) {
@@ -316,6 +320,14 @@ export async function isValidMention(
     // Ignore mentions from known bots; we don't want them endlessly replying
     // to each other
     if (user?.username && isKnownTwitterBotUsername(user.username)) {
+      if (isDebugTweet) {
+        console.log(
+          'ignoring mention from known bot',
+          user.username,
+          getDebugMention(mention)
+        )
+      }
+
       return false
     }
   }
@@ -333,7 +345,7 @@ export async function isValidMention(
 
   if (repliedToTweet && repliedToMention) {
     repliedToMention.prompt = getPrompt(repliedToTweet.text, ctx)
-    const subMentions = getNumMentionsInText(repliedToTweet.text, ctx, {
+    const subMentions = getPrefixMentionsInText(repliedToTweet.text, ctx, {
       isReply: !!repliedToTweet.referenced_tweets?.find(
         (t) => t.type === 'replied_to'
       )
@@ -342,6 +354,10 @@ export async function isValidMention(
   }
 
   if (isReply && !repliedToTweet) {
+    if (isDebugTweet) {
+      console.log('ignoring mention 1', getDebugMention(mention))
+    }
+
     return false
   }
 
@@ -349,6 +365,10 @@ export async function isValidMention(
   mention.prompt = getPrompt(text, ctx)
   if (!mention.prompt) {
     // Ignore tweets where the sanitized prompt is empty
+    if (isDebugTweet) {
+      console.log('ignoring mention empty prompt', getDebugMention(mention))
+    }
+
     return false
   }
 
@@ -358,10 +378,16 @@ export async function isValidMention(
   ) {
     // Ignore tweets where one of the authors is responding to people directly
     // using the bot account
+    if (isDebugTweet) {
+      console.log('ignoring mention from human moderator', mention)
+    }
+
     return false
   }
 
-  const { numMentions, usernames } = getNumMentionsInText(text, ctx)
+  const { numMentions, usernames } = getPrefixMentionsInText(text, ctx, {
+    isReply
+  })
 
   if (!mention.prompt) {
     if (isReply) {
@@ -370,6 +396,13 @@ export async function isValidMention(
     }
 
     if (!mention.prompt) {
+      if (isDebugTweet) {
+        console.log(
+          'ignoring mention reply with empty source tweet',
+          getDebugMention(mention)
+        )
+      }
+
       return false
     }
   }
@@ -386,36 +419,51 @@ export async function isValidMention(
         (repliedToMention?.numMentions === numMentions &&
           repliedToMention?.isReply))
     ) {
-      // console.log('ignoring mention 0', mention, {
-      //   repliedToMention,
-      //   numMentions
-      // })
+      if (isDebugTweet) {
+        console.log(
+          'ignoring mention due to reply logic 0',
+          getDebugMention(mention),
+          {
+            isReply,
+            numMentions,
+            usernames
+          }
+        )
+      }
 
       batch.updateSinceMentionId(mention.id!)
       return false
     } else if (numMentions === 1) {
       // TODO: I don't think this is necessary anymore
       // if (isReply && mention.in_reply_to_user_id !== twitterBotUserId) {
-      //   console.log('ignoring mention 1', mention, {
-      //     numMentions
-      //   })
       //   batch.updateSinceMentionId(mention.id)
       //   return false
       // }
     }
   } else {
-    // console.log('ignoring mention 2', pick(mention, 'text', 'id'), {
-    //   numMentions
-    // })
+    if (isDebugTweet) {
+      console.log(
+        'ignoring mention due to reply logic 1',
+        getDebugMention(mention),
+        {
+          isReply,
+          numMentions,
+          usernames
+        }
+      )
+    }
 
     batch.updateSinceMentionId(mention.id!)
     return false
   }
 
-  // console.log(JSON.stringify(mention, null, 2), {
-  //   numMentions,
-  //   repliedToMention
-  // })
-  // console.log(pick(mention, 'id', 'text', 'prompt'), { numMentions })
+  if (isDebugTweet) {
+    console.log('valid mention', getDebugMention(mention), {
+      numMentions,
+      isReply,
+      usernames
+    })
+  }
+
   return true
 }

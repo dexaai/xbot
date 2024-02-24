@@ -41,13 +41,11 @@ export abstract class AnswerEngine {
       })
     }
 
-    console.log(`<<< ${this.type} answer engine response`, {
-      message: {
-        ...message,
-        ...(rawResponse === response ? {} : { rawResponse })
-      },
-      answerEngineMessages: query.answerEngineMessages
-    })
+    console.log(
+      `<<< ${this.type} answer engine response for message ${message.id}`,
+      message.response,
+      ...(rawResponse === response ? [{}] : [{ rawResponse }])
+    )
   }
 
   /**

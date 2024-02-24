@@ -57,6 +57,8 @@ if (config.redisUrl) {
   state = new Keyv({ namespace: config.redisNamespaceState })
 }
 
+export { tweets, users, messages, state, redis }
+
 export async function clearAllDataForUserId(twitterBotUserId: string) {
   console.warn('WARNING: clearing all data for user', twitterBotUserId)
 
@@ -91,11 +93,15 @@ export async function setSinceMentionId(
   return state.set(key, sinceMentionId)
 }
 
+export function getTweetMentionDbNamespaceForUserId(userId: string) {
+  return `${config.redisNamespaceMentionsPrefix}:${userId}`
+}
+
 export function getTweetMentionDbForUserId(userId: string) {
   if (!userIdToMentionDbMap[userId]) {
     userIdToMentionDbMap[userId] = new Keyv({
       store: redis ? new KeyvRedis(redis) : undefined,
-      namespace: `${config.redisNamespaceMentionsPrefix}:${userId}`
+      namespace: getTweetMentionDbNamespaceForUserId(userId)
     })
   }
 
@@ -205,10 +211,15 @@ export async function getCachedUserMentionsForUserSince({
   const mentionDb = getTweetMentionDbForUserId(userId)
   const userIds = new Set<string>()
 
+  // TODO: get the batch version working
+  // const namespace = getTweetMentionDbNamespaceForUserId(userId)
+  // const keys = await redis.keys(`${namespace}:*`)
+  // console.log(keys)
+
   // TODO: Do this the right way using some redis magic instead of naively
   // iterating across all keys. This is going to get very slow over time.
   for await (const [, tweet] of mentionDb.iterator()) {
-    if (tweetIdComparator(tweet, originalSinceMentionId) > 0) {
+    if (tweetIdComparator(tweet.id, originalSinceMentionId) > 0) {
       result.mentions.push(tweet)
       result.sinceMentionId = maxTwitterId(result.sinceMentionId, tweet.id)
       userIds.add(tweet.author_id)
@@ -353,5 +364,3 @@ async function tryGetTwitterUsernameByUserIdImpl(
   const user = await tryGetUserById(userId)
   return user?.username
 }
-
-export { tweets, users, messages, state }
