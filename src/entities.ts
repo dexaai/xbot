@@ -1,7 +1,10 @@
+import pMap from 'p-map'
+import pMemoize from 'p-memoize'
 import { z } from 'zod'
 
 import * as db from './db.js'
 import type * as types from './types.js'
+import { ScraperClient } from './services/scraper-client.js'
 
 export const URLEntitySchema = z.object({
   type: z.literal('url'),
@@ -12,7 +15,10 @@ export const URLEntitySchema = z.object({
   // Will only exist if this URL references a known media entity
   mediaId: z.string().optional(),
   title: z.string().optional(),
-  description: z.string().optional()
+  description: z.string().optional(),
+  markdownContent: z.string().optional(),
+  siteName: z.string().optional(),
+  author: z.string().optional()
 })
 export type URLEntity = z.infer<typeof URLEntitySchema>
 
@@ -86,7 +92,8 @@ export type MediaEntity = z.infer<typeof MediaEntitySchema>
 export const EntityMapSchema = z.object({
   users: z.record(UserEntitySchema).optional(),
   tweets: z.record(TweetEntitySchema).optional(),
-  media: z.record(MediaEntitySchema).optional()
+  media: z.record(MediaEntitySchema).optional(),
+  urls: z.record(URLEntitySchema).optional()
 })
 export type EntityMap = z.infer<typeof EntityMapSchema>
 
@@ -127,70 +134,94 @@ export async function convertTweetToEntityMap(
     fetchMissingEntities?: boolean
   } = {}
 ): Promise<EntityMap> {
-  const EntityMap: Required<EntityMap> = {
+  const entityMap: Required<EntityMap> = {
     users: {},
     tweets: {},
     // TODO: currently not resolving media entities
-    media: {}
+    media: {},
+    urls: {}
   }
   const tweetEntity = convertTweetToEntity(tweet)
-  EntityMap.tweets[tweetEntity.id] = tweetEntity
+  entityMap.tweets[tweetEntity.id] = tweetEntity
 
+  const urls: Record<string, URLEntity> = {}
   const referencedUserIds = new Set<string>()
   const referencedTweetIds = new Set<string>()
 
-  if (tweetEntity.repliedToUserId)
+  if (tweetEntity.repliedToUserId) {
     referencedUserIds.add(tweetEntity.repliedToUserId)
-  if (tweetEntity.quotedTweetId)
+  }
+
+  if (tweetEntity.quotedTweetId) {
     referencedTweetIds.add(tweetEntity.quotedTweetId)
-  if (tweetEntity.retweetedTweetId)
+  }
+
+  if (tweetEntity.retweetedTweetId) {
     referencedTweetIds.add(tweetEntity.retweetedTweetId)
+  }
 
   // Attempt to resolve any referenced tweets
   for (const tweetId of referencedTweetIds) {
-    if (EntityMap.tweets[tweetId]) continue
+    if (entityMap.tweets[tweetId]) continue
 
     const referencedTweet = await db.tryGetTweetById(tweetId, ctx, {
       fetchFromTwitter: !!fetchMissingEntities
     })
     if (!referencedTweet) continue
 
-    EntityMap.tweets[referencedTweet.id] = convertTweetToEntity(referencedTweet)
+    entityMap.tweets[referencedTweet.id] = convertTweetToEntity(referencedTweet)
   }
 
-  for (const tweet of Object.values(EntityMap.tweets)) {
+  for (const tweet of Object.values(entityMap.tweets)) {
     if (tweet.repliedToUserId) referencedUserIds.add(tweet.repliedToUserId)
     if (tweet.authorId) referencedUserIds.add(tweet.authorId)
   }
 
   // Attempt to resolve any referenced users
   for (const userId of referencedUserIds) {
-    if (EntityMap.users[userId]) continue
+    if (entityMap.users[userId]) continue
 
     const user = await db.tryGetUserById(userId)
     if (!user) continue
 
-    const userEntity = (EntityMap.users[user.id] =
+    const userEntity = (entityMap.users[user.id] =
       convertTwitterUserToEntity(user))
     if (userEntity.twitterPinnedTweetId) {
       referencedTweetIds.add(userEntity.twitterPinnedTweetId)
     }
   }
 
-  return EntityMap
+  for (const tweetEntity of Object.values(entityMap.tweets)) {
+    if (!tweetEntity.urls) continue
+    for (const urlEntity of tweetEntity.urls) {
+      urls[urlEntity.url] = urlEntity
+    }
+  }
+
+  for (const userEntity of Object.values(entityMap.users)) {
+    if (!userEntity.urls) continue
+    for (const urlEntity of userEntity.urls) {
+      urls[urlEntity.url] = urlEntity
+    }
+  }
+
+  entityMap.urls = await enrichEntityUrls(Object.values(urls))
+  return entityMap
 }
 
 export function mergeEntityMaps(...entityMaps: EntityMap[]): EntityMap {
   const result: Required<EntityMap> = {
     users: {},
     tweets: {},
-    media: {}
+    media: {},
+    urls: {}
   }
 
   for (const entityMap of entityMaps) {
     Object.assign(result.users, entityMap.users)
     Object.assign(result.tweets, entityMap.tweets)
     Object.assign(result.media, entityMap.media)
+    Object.assign(result.urls, entityMap.urls)
   }
 
   return result
@@ -270,5 +301,51 @@ export function convertTwitterUrlToEntity(url: types.TwitterUrl): URLEntity {
     url: url.expanded_url ?? url.url,
     shortUrl: url.url,
     mediaId: url.media_key
+  }
+}
+
+export async function enrichEntityUrls(
+  urls: URLEntity[],
+  {
+    concurrency = 5
+  }: {
+    concurrency?: number
+  } = {}
+): Promise<Record<string, URLEntity>> {
+  const enrichedUrls: Record<string, URLEntity> = {}
+
+  await pMap(
+    urls,
+    async (urlEntity) => {
+      if (urlEntity.mediaId) return
+
+      const scrapedUrl = await scrapeUrl(urlEntity.url)
+      if (!scrapedUrl) return
+
+      urlEntity.title = scrapedUrl.title
+      urlEntity.description = scrapedUrl.description
+      urlEntity.author = scrapedUrl.author
+      urlEntity.siteName = scrapedUrl.siteName
+      // urlEntity.markdownContent = scrapedUrl.markdownContent
+
+      enrichedUrls[urlEntity.url] = urlEntity
+    },
+    {
+      concurrency
+    }
+  )
+
+  return enrichedUrls
+}
+
+const scraperClient = new ScraperClient()
+export const scrapeUrl = pMemoize(scrapeUrlImpl)
+
+async function scrapeUrlImpl(url: string) {
+  try {
+    return await scraperClient.scrapeUrl(url)
+  } catch (err: any) {
+    console.warn('error scraping url', url, err.message)
+    return null
   }
 }

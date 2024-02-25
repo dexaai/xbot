@@ -16,7 +16,7 @@ import {
   sanitizeTweetText,
   stripUserMentions
 } from './twitter-utils.js'
-import { assert } from './utils.js'
+import { assert, pick } from './utils.js'
 
 export abstract class AnswerEngine {
   readonly type: types.AnswerEngineType
@@ -30,7 +30,10 @@ export abstract class AnswerEngine {
     ctx: types.AnswerEngineContext
   ) {
     const query = await this.resolveMessageThread(message, ctx)
-    console.log(`>>> ${this.type} answer engine`, query)
+    console.log(
+      `\n>>> ${this.type} answer engine`,
+      pick(query, 'message', 'chatMessages', 'tweets', 'entityMap')
+    )
 
     message.response = await this.generateResponseForQuery(query, ctx)
 
@@ -255,7 +258,8 @@ export abstract class AnswerEngine {
 
     const rawEntityMap: types.RawEntityMap = {
       users: {},
-      tweets: {}
+      tweets: {},
+      urls: entityMap.urls ?? {}
     }
 
     if (entityMap?.users) {

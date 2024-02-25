@@ -65,8 +65,9 @@ export async function getTweetMentionsBatch(
         batch.mentions,
         async (mention) => {
           const message = await db.messages.get(mention.id)
+          // console.log('mention', { mention, message })
 
-          if (message && (!message.error || message.isErrorFinal)) {
+          if (message && (message.response || message.isErrorFinal)) {
             const isDebugTweet =
               !ctx.debugAnswerEngine && ctx.debugTweetIds?.includes(mention.id)
 

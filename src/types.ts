@@ -5,7 +5,7 @@ import type { AsyncReturnType, SetOptional, Simplify } from 'type-fest'
 
 import type { AnswerEngine } from './answer-engine.js'
 import type { BotErrorType } from './bot-error.js'
-import type { Entities, EntityMap } from './entities.js'
+import type { Entities, EntityMap, URLEntity } from './entities.js'
 
 export type { TwitterClient }
 
@@ -204,6 +204,7 @@ export type AnswerEngineQuery = {
 export type RawEntityMap = {
   users: Record<string, Partial<TwitterUser>>
   tweets: Record<string, Partial<Tweet>>
+  urls: Record<string, URLEntity>
 }
 
 export type AnswerEngineContext = Pick<
