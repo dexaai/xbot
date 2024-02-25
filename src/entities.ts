@@ -83,18 +83,18 @@ export type MediaEntity = z.infer<typeof MediaEntitySchema>
  * entity in this entities map. This is intended to reduce duplicate entities in
  * cases where multiple messages reference the same entity.
  */
-export const EntitiesMapSchema = z.object({
+export const EntityMapSchema = z.object({
   users: z.record(UserEntitySchema).optional(),
   tweets: z.record(TweetEntitySchema).optional(),
   media: z.record(MediaEntitySchema).optional()
 })
-export type EntitiesMap = z.infer<typeof EntitiesMapSchema>
+export type EntityMap = z.infer<typeof EntityMapSchema>
 
 /**
  * References to specific entities (users, tweets, and media objects) which may
  * be attached to a Message in order to provide additional, structured context.
  *
- * These entity referencers may be looked up in an accompanying `EntitiesMap`.
+ * These entity referencers may be looked up in an accompanying `EntityMap`.
  *
  * URLs are handled as local-only because they generally don't have platform-
  * specific IDs.
@@ -116,7 +116,7 @@ export type Entities = z.infer<typeof EntitiesSchema>
  * default to not fetching missing related entities from twitter in order to
  * keep the conversion as simple and predictable as possible.
  */
-export async function convertTweetToEntitiesMap(
+export async function convertTweetToEntityMap(
   tweet: types.Tweet,
   ctx: Pick<types.Context, 'twitterClient'>,
   {
@@ -126,15 +126,15 @@ export async function convertTweetToEntitiesMap(
     // missing from the cache
     fetchMissingEntities?: boolean
   } = {}
-): Promise<EntitiesMap> {
-  const entitiesMap: Required<EntitiesMap> = {
+): Promise<EntityMap> {
+  const EntityMap: Required<EntityMap> = {
     users: {},
     tweets: {},
     // TODO: currently not resolving media entities
     media: {}
   }
   const tweetEntity = convertTweetToEntity(tweet)
-  entitiesMap.tweets[tweetEntity.id] = tweetEntity
+  EntityMap.tweets[tweetEntity.id] = tweetEntity
 
   const referencedUserIds = new Set<string>()
   const referencedTweetIds = new Set<string>()
@@ -148,41 +148,40 @@ export async function convertTweetToEntitiesMap(
 
   // Attempt to resolve any referenced tweets
   for (const tweetId of referencedTweetIds) {
-    if (entitiesMap.tweets[tweetId]) continue
+    if (EntityMap.tweets[tweetId]) continue
 
     const referencedTweet = await db.tryGetTweetById(tweetId, ctx, {
       fetchFromTwitter: !!fetchMissingEntities
     })
     if (!referencedTweet) continue
 
-    entitiesMap.tweets[referencedTweet.id] =
-      convertTweetToEntity(referencedTweet)
+    EntityMap.tweets[referencedTweet.id] = convertTweetToEntity(referencedTweet)
   }
 
-  for (const tweet of Object.values(entitiesMap.tweets)) {
+  for (const tweet of Object.values(EntityMap.tweets)) {
     if (tweet.repliedToUserId) referencedUserIds.add(tweet.repliedToUserId)
     if (tweet.authorId) referencedUserIds.add(tweet.authorId)
   }
 
   // Attempt to resolve any referenced users
   for (const userId of referencedUserIds) {
-    if (entitiesMap.users[userId]) continue
+    if (EntityMap.users[userId]) continue
 
     const user = await db.tryGetUserById(userId)
     if (!user) continue
 
-    const userEntity = (entitiesMap.users[user.id] =
+    const userEntity = (EntityMap.users[user.id] =
       convertTwitterUserToEntity(user))
     if (userEntity.twitterPinnedTweetId) {
       referencedTweetIds.add(userEntity.twitterPinnedTweetId)
     }
   }
 
-  return entitiesMap
+  return EntityMap
 }
 
-export function mergeEntityMaps(...entityMaps: EntitiesMap[]): EntitiesMap {
-  const result: Required<EntitiesMap> = {
+export function mergeEntityMaps(...entityMaps: EntityMap[]): EntityMap {
+  const result: Required<EntityMap> = {
     users: {},
     tweets: {},
     media: {}

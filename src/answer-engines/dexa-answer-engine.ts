@@ -16,7 +16,7 @@ export class DexaAnswerEngine extends AnswerEngine {
     ctx: types.AnswerEngineContext
   ): Promise<string> {
     return this._dexaClient.generateResponse({
-      messages: query.answerEngineMessages,
+      messages: query.chatMessages,
       entityMap: query.entityMap
     })
   }

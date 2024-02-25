@@ -1,4 +1,4 @@
-import { Msg } from '@dexaai/dexter'
+import { Msg, stringifyForModel } from '@dexaai/dexter'
 import pMap from 'p-map'
 
 import * as config from '../src/config.js'
@@ -6,12 +6,13 @@ import * as db from './db.js'
 import type * as types from './types.js'
 import { BotError } from './bot-error.js'
 import {
-  type EntitiesMap,
-  convertTweetToEntitiesMap,
+  type EntityMap,
+  convertTweetToEntityMap,
   mergeEntityMaps
 } from './entities.js'
 import {
   getPrunedTweet,
+  getPrunedTwitterUser,
   sanitizeTweetText,
   stripUserMentions
 } from './twitter-utils.js'
@@ -165,10 +166,7 @@ export abstract class AnswerEngine {
           ...Msg.user(tweet.text, {
             name: userIdToUsernameMap[tweet.author_id!]
           }),
-
-          entities: {
-            tweetIds: [tweet.id]
-          }
+          tweetId: tweet.id
         })
       )
 
@@ -179,10 +177,7 @@ export abstract class AnswerEngine {
             ...Msg.user(message.prompt, {
               name: userIdToUsernameMap[message.promptUserId]
             }),
-
-            entities: {
-              tweetIds: [message.promptTweetId]
-            }
+            tweetId: message.promptTweetId
           },
 
           message.response && message !== leafMessage
@@ -190,12 +185,7 @@ export abstract class AnswerEngine {
                 ...Msg.assistant(message.response!, {
                   name: userIdToUsernameMap[ctx.twitterBotUserId]
                 }),
-
-                entities: {
-                  tweetIds: message.responseTweetId
-                    ? [message.responseTweetId!]
-                    : []
-                }
+                tweetId: message.responseTweetId!
               }
             : null
         ].filter(Boolean)
@@ -214,28 +204,13 @@ export abstract class AnswerEngine {
         .reverse()
     }
 
+    const chatMessages = answerEngineMessages.map(
+      ({ tweetId, ...message }) => message
+    )
+
     // Resolve all entity maps for the tweets and messages in the thread and then
     // condense them into a single, normalized enitity map
-    let entityMap: EntitiesMap = {}
-
-    for (const answerEngineMessage of answerEngineMessages) {
-      if (!answerEngineMessage.entities?.tweetIds) continue
-
-      for (const tweetId of answerEngineMessage.entities.tweetIds) {
-        if (entityMap.tweets?.[tweetId]) continue
-
-        const tweet = await db.tryGetTweetById(tweetId, ctx, {
-          fetchFromTwitter: false
-        })
-        if (!tweet) continue
-
-        const tweetEntityMap = await convertTweetToEntitiesMap(tweet, ctx, {
-          fetchMissingEntities: true
-        })
-
-        entityMap = mergeEntityMaps(entityMap, tweetEntityMap)
-      }
-    }
+    let entityMap: EntityMap = {}
 
     // Construct a raw array of tweets to pass to the answer engine, which may
     // be easier to work with than our AnswerEngineMessage format
@@ -243,13 +218,19 @@ export abstract class AnswerEngine {
       await pMap(
         answerEngineMessages,
         async (message) => {
-          const tweetId = message.entities?.tweetIds?.[0]
+          const { tweetId } = message
           assert(tweetId)
 
           const tweet = await db.tryGetTweetById(tweetId, ctx, {
             fetchFromTwitter: true
           })
           if (!tweet) return
+
+          const tweetEntityMap = await convertTweetToEntityMap(tweet, ctx, {
+            fetchMissingEntities: true
+          })
+
+          entityMap = mergeEntityMaps(entityMap, tweetEntityMap)
 
           return getPrunedTweet(tweet)
         },
@@ -259,11 +240,46 @@ export abstract class AnswerEngine {
       )
     ).filter(Boolean)
 
+    const rawChatMessages = tweets.map((tweet) =>
+      tweet.author_id === ctx.twitterBotUserId
+        ? Msg.assistant(stringifyForModel(tweet), {
+            name: userIdToUsernameMap[tweet.author_id!]
+          })
+        : Msg.user(stringifyForModel(tweet), {
+            name: userIdToUsernameMap[tweet.author_id!]
+          })
+    )
+
+    const rawEntityMap: types.RawEntityMap = {
+      users: {},
+      tweets: {}
+    }
+
+    if (entityMap?.users) {
+      for (const user of Object.values(entityMap.users)) {
+        assert(user.twitterId)
+        const twitterUser = await db.tryGetUserById(user.twitterId)
+        if (!twitterUser) continue
+        rawEntityMap.users[user.twitterId] = getPrunedTwitterUser(twitterUser)
+      }
+    }
+
+    if (entityMap?.tweets) {
+      for (const tweet of Object.values(entityMap.tweets)) {
+        assert(tweet.id)
+        const twittertweet = await db.tryGetTweetById(tweet.id, ctx)
+        if (!twittertweet) continue
+        rawEntityMap.tweets[tweet.id] = getPrunedTweet(twittertweet)
+      }
+    }
+
     return {
       message,
-      answerEngineMessages,
+      chatMessages,
+      rawChatMessages,
       tweets,
-      entityMap
+      entityMap,
+      rawEntityMap
     }
   }
 }
