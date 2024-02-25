@@ -5,16 +5,17 @@ import { AnswerEngine } from '../answer-engine.js'
 import { getCurrentDate } from '../utils.js'
 
 export class OpenAIAnswerEngine extends AnswerEngine {
-  protected readonly _chatModel: ChatModel
+  protected _chatModel: ChatModel
 
   constructor({
+    type = 'openai',
     chatModel = new ChatModel({
       params: {
         model: 'gpt-4-0125-preview'
       }
     })
-  }: { chatModel?: ChatModel } = {}) {
-    super({ type: 'openai' })
+  }: { type?: types.AnswerEngineType; chatModel?: ChatModel } = {}) {
+    super({ type })
 
     this._chatModel = chatModel
   }
@@ -28,7 +29,7 @@ export class OpenAIAnswerEngine extends AnswerEngine {
     const response = await this._chatModel.run({
       messages: [
         Msg.system(
-          `You are a friendly, helpful twitter bot with the handle ${ctx.twitterBotHandle}.
+          `You are a friendly, expert, helpful twitter bot with the handle ${ctx.twitterBotHandle}.
 You answer concisely and creatively to tweets.
 You are very concise and informal.
 You can sometimes be a bit sassy and sarcastic, but try not to be rude.
