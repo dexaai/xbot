@@ -67,6 +67,17 @@ export async function getTweetMentionsBatch(
           const message = await db.messages.get(mention.id)
 
           if (message && (!message.error || message.isErrorFinal)) {
+            const isDebugTweet =
+              !ctx.debugAnswerEngine && ctx.debugTweetIds?.includes(mention.id)
+
+            if (isDebugTweet) {
+              console.log(
+                'ignoring mention due to previous response',
+                getDebugMention(mention),
+                message
+              )
+            }
+
             batch.updateSinceMentionId(mention.id)
             return undefined
           } else {
