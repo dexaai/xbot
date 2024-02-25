@@ -86,6 +86,7 @@ Flags:
 - support user entity context
 - fix support for empty mentions
   - currently works but duplicates the previous tweet's contents
+- populate `media` entities
 - support URLs and other entity metadata (user profile info) so the answer engine has more info to work off of
 - support use case of answering questions about linked podcast episodes
 - consider re-adding support for generating images to support longer responses w/ the openai answer engine

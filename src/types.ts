@@ -184,5 +184,6 @@ export type AnswerEngineMessage = Prompt.Msg & {
 export type AnswerEngineQuery = {
   message: Message
   answerEngineMessages: AnswerEngineMessage[]
+  tweets: Partial<Tweet>[]
   entityMap?: EntitiesMap
 }

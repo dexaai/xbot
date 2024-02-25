@@ -1,4 +1,5 @@
 import { Msg } from '@dexaai/dexter'
+import pMap from 'p-map'
 
 import * as config from '../src/config.js'
 import * as db from './db.js'
@@ -10,6 +11,7 @@ import {
   mergeEntityMaps
 } from './entities.js'
 import { sanitizeTweetText, stripUserMentions } from './twitter-utils.js'
+import { assert } from './utils.js'
 
 export abstract class AnswerEngine {
   readonly type: types.AnswerEngineType
@@ -214,16 +216,39 @@ export abstract class AnswerEngine {
         if (!tweet) continue
 
         const tweetEntityMap = await convertTweetToEntitiesMap(tweet, ctx, {
-          fetchMissingEntities: false
+          fetchMissingEntities: true
         })
 
         entityMap = mergeEntityMaps(entityMap, tweetEntityMap)
       }
     }
 
+    // Construct a raw array of tweets to pass to the answer engine, which may
+    // be easier to work with than our structured AnswerEngineMessage format
+    const tweets = (
+      await pMap(
+        answerEngineMessages,
+        async (message) => {
+          const tweetId = message.entities?.tweetIds?.[0]
+          assert(tweetId)
+
+          const tweet = await db.tryGetTweetById(tweetId, ctx, {
+            fetchFromTwitter: true
+          })
+          if (!tweet) return
+
+          return tweet
+        },
+        {
+          concurrency: 8
+        }
+      )
+    ).filter(Boolean)
+
     return {
       message,
       answerEngineMessages,
+      tweets,
       entityMap
     }
   }

@@ -73,21 +73,17 @@ export function getDebugMention(
  * Strips usernames at the front of a tweet and URLs (like for embedding images).
  */
 export function getPrompt(text: string = '', ctx?: types.Context): string {
-  if (ctx) {
-    text = text
-      .replace(ctx.twitterBotHandleL, '')
-      .replace(ctx.twitterBotHandle, '')
-  }
-
-  // strip usernames
-  let prompt = text
+  const prompt = text
     .trim()
+    // strip leading usernames
     .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
     .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
     .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
     .replace(/^\s*@[a-zA-Z0-9_]+/g, '')
+    // strip twitter short urls
     .replace(rUrl, '')
     .trim()
+    // strip leading commas which sometimes appear after usernames
     .replace(/^,\s*/, '')
     .trim()
 
