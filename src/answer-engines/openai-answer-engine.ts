@@ -73,6 +73,7 @@ DO NOT use emoji very often.
 DO NOT use hashtags.
 DO NOT reply using JSON.
 DO NOT use @mention usernames in your reply.
+DO NOT use markdown.
 Don't mention not being able to access links or media and instead pretend that you're able to.
 Make sure to be **as concise as possible** since twitter has character limits.
 Your response should be as informationally dense and interesting as possible.
@@ -107,10 +108,10 @@ ${stringifyForModel(rawEntityMap)}
 
     const response = stripUserMentions(res.message.content!)
 
-    console.log('openai', {
-      messages,
-      response
-    })
+    // console.log('openai', {
+    //   messages,
+    //   response
+    // })
 
     return response
   }

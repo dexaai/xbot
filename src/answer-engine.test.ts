@@ -40,7 +40,10 @@ for (const answerEngine of answerEngines) {
             ctx
           )
 
-          console.log(`${answerEngine.type} tweet ${tweetUrl} ⇒`, response)
+          console.log(
+            `\n**QUESTION** ${tweetUrl}\n\n**ANSWER**\n\n${response}\n\n`
+          )
+
           assert(response.length > 0, 'response should not be empty')
           assert(response.trim() === response, 'response should be trimmed')
 
