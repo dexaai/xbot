@@ -46,20 +46,23 @@ if (config.redisUrl) {
   })
   redis = store.redis as Redis
 
-  redis.on('error', (err: any) => {
+  tweets = new Keyv({ store, namespace: config.redisNamespaceTweets })
+  users = new Keyv({ store, namespace: config.redisNamespaceUsers })
+  messages = new Keyv({ store, namespace: config.redisNamespaceMessages })
+  state = new Keyv({ store, namespace: config.redisNamespaceState })
+
+  function errorHandler(err: any) {
     if (err.code === 'ECONNRESET') {
       console.warn('redis connection timed out', err.code, err.message)
     } else if (err.code === 'ECONNREFUSED') {
       console.warn('redis connection refused', err.code, err.message)
     } else {
-      console.error('redis error', err.code, err.message)
+      console.error('error', err.code ?? 'unknown', err.message, err.stack)
+      process.exit(1)
     }
-  })
+  }
 
-  tweets = new Keyv({ store, namespace: config.redisNamespaceTweets })
-  users = new Keyv({ store, namespace: config.redisNamespaceUsers })
-  messages = new Keyv({ store, namespace: config.redisNamespaceMessages })
-  state = new Keyv({ store, namespace: config.redisNamespaceState })
+  process.on('uncaughtException', errorHandler)
 } else {
   if (config.requireRedis) {
     console.error('Error: missing required REDIS_URL since REQUIRE_REDIS=true')
