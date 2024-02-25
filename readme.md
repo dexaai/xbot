@@ -87,11 +87,21 @@ Flags:
 - add test fixtures testing these different use cases
 - fix support for empty mentions
   - currently works but duplicates the previous tweet's contents
-- populate `media` entities
-- support URLs and other entity metadata (user profile info) so the answer engine has more info to work off of
+- support `media` entities
+  - populate media entities
+  - openai use gpt-4-vision-preview
+  - conditionally preprocess images using `sharp` to ensure they are supported by gpt4v
+- improve openai answer engine
+  - dalle tool
+  - code interpreter tool
+  - midjourney tool
+  - dexa tool
+  - perplexity tool
+  - serper tool
+- support URLs and other entity metadata (user profile info) so the answer engine has more context to work off of
 - support use case of answering questions about linked podcast episodes
 - consider re-adding support for generating images to support longer responses w/ the openai answer engine
-  - could use a binary classifier to determine whether or not to render the response as an image
+  - could use a binary classifier or tool to determine whether or not to render the response as an image
 
 ## License
 
