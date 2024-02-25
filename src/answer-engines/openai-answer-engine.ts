@@ -1,5 +1,6 @@
-import { ChatModel, Msg } from '@dexaai/dexter'
+import { ChatModel, Msg, stringifyForModel } from '@dexaai/dexter'
 
+import * as db from '../db.js'
 import type * as types from '../types.js'
 import { AnswerEngine } from '../answer-engine.js'
 import { getCurrentDate } from '../utils.js'
@@ -26,6 +27,15 @@ export class OpenAIAnswerEngine extends AnswerEngine {
   ): Promise<string> {
     const currentDate = getCurrentDate()
 
+    const userIdToUsernameMap: Record<string, string | undefined> = {}
+
+    for (const tweet of query.tweets) {
+      if (!userIdToUsernameMap[tweet.author_id!]) {
+        userIdToUsernameMap[tweet.author_id!] =
+          await db.tryGetTwitterUsernameByUserId(tweet.author_id)
+      }
+    }
+
     const response = await this._chatModel.run({
       messages: [
         Msg.system(
@@ -40,7 +50,24 @@ Don't mention not being able to access links or media and instead pretend that y
 Remember to never use hashtags.
 Current date: ${currentDate}.`
         ),
-        ...query.answerEngineMessages.map(({ entities, ...msg }) => msg)
+        Msg.system(`Tweets, users, and media objects referenced in this twitter thread contain the following entities:
+
+\`\`\`json
+${stringifyForModel(query.entityMap)}
+\`\`\`
+`),
+
+        ...query.tweets.map((tweet) =>
+          tweet.author_id === ctx.twitterBotUserId
+            ? Msg.assistant(stringifyForModel(tweet), {
+                name: userIdToUsernameMap[tweet.author_id!]
+              })
+            : Msg.user(stringifyForModel(tweet), {
+                name: userIdToUsernameMap[tweet.author_id!]
+              })
+        )
+
+        // ...query.answerEngineMessages.map(({ entities, ...msg }) => msg)
       ],
       max_tokens: 60
     })
