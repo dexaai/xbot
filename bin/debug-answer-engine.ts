@@ -90,6 +90,7 @@ async function main() {
     }
   )
 
+  console.log(`logging ${batch.messages.length} message threads to stderr...`)
   console.log()
   console.warn(JSON.stringify(answerEngineQueries, null, 2))
 }

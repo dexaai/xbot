@@ -10,8 +10,8 @@ import { getTwitterClient } from './services/twitter-client.js'
 import { rUrl } from './utils.js'
 
 const fixtures = fixturesData as unknown as types.AnswerEngineQuery[]
-// const answerEngines = [new OpenAIAnswerEngine(), new DexaAnswerEngine()]
-const answerEngines = [new OpenAIAnswerEngine()]
+const answerEngines = [new OpenAIAnswerEngine(), new DexaAnswerEngine()]
+// const answerEngines = [new OpenAIAnswerEngine()]
 
 for (const answerEngine of answerEngines) {
   describe(`${answerEngine.type} answer engine`, async () => {
