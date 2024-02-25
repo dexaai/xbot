@@ -1,5 +1,3 @@
-error scraping url http://krea.ai Request failed with status code 500 Internal Server Error
-error scraping url http://depue.design Request failed with status code 500 Internal Server Error
 [
   {
     "message": {
@@ -12,8 +10,8 @@ error scraping url http://depue.design Request failed with status code 500 Inter
       "promptUsername": "transitive_bs",
       "prompt": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way…",
       "promptUrl": "https://twitter.com/transitive_bs/status/1761416294530715895",
-      "priorityScore": 9968.279571428571,
-      "numFollowers": 18101,
+      "priorityScore": 9968.280571428571,
+      "numFollowers": 18102,
       "isReply": true,
       "response": "Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung",
       "responseTweetId": "1761417705503047799",
@@ -43,35 +41,32 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880\",\"lang\":\"en\",\"id\":\"1761390820630945880\",\"author_id\":\"33104659\"}",
+        "content": "{\"id\":\"1761390820630945880\",\"author_id\":\"33104659\",\"lang\":\"en\",\"text\":\"“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880\"}",
         "name": "ShaneAParrish"
       },
       {
         "role": "user",
-        "content": "{\"text\":\"@ShaneAParrish @AskDexa\",\"lang\":\"qam\",\"in_reply_to_user_id\":\"33104659\",\"id\":\"1761416294530715895\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1761390820630945880\"}],\"author_id\":\"327034465\"}",
+        "content": "{\"id\":\"1761416294530715895\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1761390820630945880\"}],\"author_id\":\"327034465\",\"lang\":\"qam\",\"in_reply_to_user_id\":\"33104659\",\"text\":\"@ShaneAParrish @AskDexa\"}",
         "name": "transitive_bs"
       },
       {
         "role": "assistant",
-        "content": "{\"text\":\"@transitive_bs @ShaneAParrish Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung\",\"lang\":\"en\",\"in_reply_to_user_id\":\"327034465\",\"id\":\"1761417705503047799\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1761416294530715895\"}],\"author_id\":\"1757989045383106560\"}"
+        "content": "{\"id\":\"1761417705503047799\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1761416294530715895\"}],\"author_id\":\"1757989045383106560\",\"lang\":\"en\",\"in_reply_to_user_id\":\"327034465\",\"text\":\"@transitive_bs @ShaneAParrish Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung\"}"
       },
       {
         "role": "user",
-        "content": "{\"text\":\"@AskDexa @ShaneAParrish What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"id\":\"1761422864870183341\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1761417705503047799\"}],\"author_id\":\"327034465\"}",
+        "content": "{\"id\":\"1761422864870183341\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1761417705503047799\"}],\"author_id\":\"327034465\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"text\":\"@AskDexa @ShaneAParrish What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?\"}",
         "name": "transitive_bs"
       }
     ],
     "tweets": [
       {
-        "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880",
-        "lang": "en",
         "id": "1761390820630945880",
-        "author_id": "33104659"
+        "author_id": "33104659",
+        "lang": "en",
+        "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880"
       },
       {
-        "text": "@ShaneAParrish @AskDexa",
-        "lang": "qam",
-        "in_reply_to_user_id": "33104659",
         "id": "1761416294530715895",
         "referenced_tweets": [
           {
@@ -79,12 +74,12 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1761390820630945880"
           }
         ],
-        "author_id": "327034465"
+        "author_id": "327034465",
+        "lang": "qam",
+        "in_reply_to_user_id": "33104659",
+        "text": "@ShaneAParrish @AskDexa"
       },
       {
-        "text": "@transitive_bs @ShaneAParrish Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung",
-        "lang": "en",
-        "in_reply_to_user_id": "327034465",
         "id": "1761417705503047799",
         "referenced_tweets": [
           {
@@ -92,12 +87,12 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1761416294530715895"
           }
         ],
-        "author_id": "1757989045383106560"
+        "author_id": "1757989045383106560",
+        "lang": "en",
+        "in_reply_to_user_id": "327034465",
+        "text": "@transitive_bs @ShaneAParrish Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung"
       },
       {
-        "text": "@AskDexa @ShaneAParrish What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?",
-        "lang": "en",
-        "in_reply_to_user_id": "1757989045383106560",
         "id": "1761422864870183341",
         "referenced_tweets": [
           {
@@ -105,7 +100,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1761417705503047799"
           }
         ],
-        "author_id": "327034465"
+        "author_id": "327034465",
+        "lang": "en",
+        "in_reply_to_user_id": "1757989045383106560",
+        "text": "@AskDexa @ShaneAParrish What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?"
       }
     ],
     "entityMap": {
@@ -119,10 +117,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "twitterUrl": "https://fs.blog/newsletter",
           "twitterLocation": "Join 600,000+ Subscribers →",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1641264347916763137/_xdzak-e_normal.jpg",
-          "twitterNumFollowers": 508275,
+          "twitterNumFollowers": 508273,
           "twitterNumFollowing": 3,
           "twitterNumTweets": 4035,
-          "twitterNumLikes": 508275,
+          "twitterNumLikes": 508273,
           "urls": [
             {
               "type": "url",
@@ -154,10 +152,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "twitterPinnedTweetId": "1643017583917174784",
           "twitterLocation": "HF0",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "twitterNumFollowers": 18101,
+          "twitterNumFollowers": 18102,
           "twitterNumFollowing": 702,
           "twitterNumTweets": 7209,
-          "twitterNumLikes": 18101,
+          "twitterNumLikes": 18102,
           "urls": [
             {
               "type": "url",
@@ -188,10 +186,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "https://dexa.ai",
               "shortUrl": "https://t.co/jz0ipgVGJf",
-              "title": "Dexa — Where Curiosity Meets Credibility",
-              "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+              "title": "",
+              "description": "",
               "author": "",
-              "siteName": "Dexa"
+              "siteName": ""
             }
           ]
         }
@@ -221,7 +219,7 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "numRetweets": 64,
           "numQuoteTweets": 5,
           "numReplies": 21,
-          "numImpressions": 51473,
+          "numImpressions": 51480,
           "urls": [
             {
               "type": "url",
@@ -233,6 +231,20 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "siteName": ""
             }
           ]
+        },
+        "1761422864870183341": {
+          "type": "tweet",
+          "id": "1761422864870183341",
+          "authorId": "327034465",
+          "text": "@AskDexa @ShaneAParrish What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?",
+          "lang": "en",
+          "repliedToTweetId": "1761417705503047799",
+          "repliedToUserId": "1757989045383106560",
+          "numLikes": 0,
+          "numRetweets": 0,
+          "numQuoteTweets": 0,
+          "numReplies": 1,
+          "numImpressions": 37
         },
         "1761417705503047799": {
           "type": "tweet",
@@ -258,39 +270,25 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "siteName": "Dexa"
             }
           ]
-        },
-        "1761422864870183341": {
-          "type": "tweet",
-          "id": "1761422864870183341",
-          "authorId": "327034465",
-          "text": "@AskDexa @ShaneAParrish What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?",
-          "lang": "en",
-          "repliedToTweetId": "1761417705503047799",
-          "repliedToUserId": "1757989045383106560",
-          "numLikes": 0,
-          "numRetweets": 0,
-          "numQuoteTweets": 0,
-          "numReplies": 1,
-          "numImpressions": 37
         }
       },
       "media": {},
       "urls": {
-        "http://fs.blog/clear/": {
-          "type": "url",
-          "url": "http://fs.blog/clear/",
-          "shortUrl": "https://t.co/qF3MFcmmS4",
-          "title": "Clear Thinking: Turning Ordinary Moments into Extraordinary Results",
-          "description": "Clear Thinking Turning Ordinary Moments into Extraordinary Results the instant worldwide bestseller Step 1: Get Your Copy of Clear Thinking … Step 2: Claim Your Free Bonuses … Order a copy of the New York Times bestseller Clear Thinking from your favorite bookseller and forward your purchase receipt to get the following bonuses. About the …",
-          "author": "",
-          "siteName": "Farnam Street"
-        },
         "https://fs.blog/newsletter": {
           "type": "url",
           "url": "https://fs.blog/newsletter",
           "shortUrl": "https://t.co/cn7tQz5016",
           "title": "Brain Food Newsletter",
           "description": "The Brain Food Newsletter is one of the most popular in the world. Every Sunday, the latest issue is sent to over 600,000. Each one contains insights you can apply to daily life and work.",
+          "author": "",
+          "siteName": "Farnam Street"
+        },
+        "http://fs.blog/clear/": {
+          "type": "url",
+          "url": "http://fs.blog/clear/",
+          "shortUrl": "https://t.co/qF3MFcmmS4",
+          "title": "Clear Thinking: Turning Ordinary Moments into Extraordinary Results",
+          "description": "Clear Thinking Turning Ordinary Moments into Extraordinary Results the instant worldwide bestseller Step 1: Get Your Copy of Clear Thinking … Step 2: Claim Your Free Bonuses … Order a copy of the New York Times bestseller Clear Thinking from your favorite bookseller and forward your purchase receipt to get the following bonuses. About the …",
           "author": "",
           "siteName": "Farnam Street"
         },
@@ -312,21 +310,21 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "author": "",
           "siteName": ""
         },
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
         "https://dexa.ai/s/15thGung": {
           "type": "url",
           "url": "https://dexa.ai/s/15thGung",
           "shortUrl": "https://t.co/ZyOIUUIhPc",
           "title": "Ask Dexa",
           "description": "Steve Jobs’ philosophy on focus is extensively discussed across various podcast episodes. One of his most famous quotes, “focus means saying no to truly phenome",
-          "author": "",
-          "siteName": "Dexa"
-        },
-        "https://dexa.ai": {
-          "type": "url",
-          "url": "https://dexa.ai",
-          "shortUrl": "https://t.co/jz0ipgVGJf",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
           "author": "",
           "siteName": "Dexa"
         }
@@ -335,36 +333,33 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawEntityMap": {
       "users": {
         "33104659": {
-          "username": "ShaneAParrish",
           "id": "33104659",
-          "location": "Join 600,000+ Subscribers →",
           "name": "Shane Parrish",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1641264347916763137/_xdzak-e_normal.jpg",
-          "description": "Sharing insights you can use in daily life & work. Author of Clear Thinking (http://fs.blog/clear/)."
+          "location": "Join 600,000+ Subscribers →",
+          "description": "Sharing insights you can use in daily life & work. Author of Clear Thinking (http://fs.blog/clear/).",
+          "username": "ShaneAParrish"
         },
         "327034465": {
-          "username": "transitive_bs",
           "id": "327034465",
-          "location": "HF0",
           "name": "Travis Fischer",
-          "pinned_tweet_id": "1643017583917174784",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕"
+          "location": "HF0",
+          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕",
+          "username": "transitive_bs",
+          "pinned_tweet_id": "1643017583917174784"
         },
         "1757989045383106560": {
-          "username": "AskDexa",
           "id": "1757989045383106560",
-          "location": "🤖",
           "name": "Ask Dexa",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
-          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts."
+          "location": "🤖",
+          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts.",
+          "username": "AskDexa"
         }
       },
       "tweets": {
         "1761416294530715895": {
-          "text": "@ShaneAParrish @AskDexa",
-          "lang": "qam",
-          "in_reply_to_user_id": "33104659",
           "id": "1761416294530715895",
           "referenced_tweets": [
             {
@@ -372,31 +367,18 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "id": "1761390820630945880"
             }
           ],
-          "author_id": "327034465"
+          "author_id": "327034465",
+          "lang": "qam",
+          "in_reply_to_user_id": "33104659",
+          "text": "@ShaneAParrish @AskDexa"
         },
         "1761390820630945880": {
-          "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880",
-          "lang": "en",
           "id": "1761390820630945880",
-          "author_id": "33104659"
-        },
-        "1761417705503047799": {
-          "text": "@transitive_bs @ShaneAParrish Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung",
+          "author_id": "33104659",
           "lang": "en",
-          "in_reply_to_user_id": "327034465",
-          "id": "1761417705503047799",
-          "referenced_tweets": [
-            {
-              "type": "replied_to",
-              "id": "1761416294530715895"
-            }
-          ],
-          "author_id": "1757989045383106560"
+          "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880"
         },
         "1761422864870183341": {
-          "text": "@AskDexa @ShaneAParrish What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?",
-          "lang": "en",
-          "in_reply_to_user_id": "1757989045383106560",
           "id": "1761422864870183341",
           "referenced_tweets": [
             {
@@ -404,25 +386,41 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "id": "1761417705503047799"
             }
           ],
-          "author_id": "327034465"
+          "author_id": "327034465",
+          "lang": "en",
+          "in_reply_to_user_id": "1757989045383106560",
+          "text": "@AskDexa @ShaneAParrish What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?"
+        },
+        "1761417705503047799": {
+          "id": "1761417705503047799",
+          "referenced_tweets": [
+            {
+              "type": "replied_to",
+              "id": "1761416294530715895"
+            }
+          ],
+          "author_id": "1757989045383106560",
+          "lang": "en",
+          "in_reply_to_user_id": "327034465",
+          "text": "@transitive_bs @ShaneAParrish Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung"
         }
       },
       "urls": {
-        "http://fs.blog/clear/": {
-          "type": "url",
-          "url": "http://fs.blog/clear/",
-          "shortUrl": "https://t.co/qF3MFcmmS4",
-          "title": "Clear Thinking: Turning Ordinary Moments into Extraordinary Results",
-          "description": "Clear Thinking Turning Ordinary Moments into Extraordinary Results the instant worldwide bestseller Step 1: Get Your Copy of Clear Thinking … Step 2: Claim Your Free Bonuses … Order a copy of the New York Times bestseller Clear Thinking from your favorite bookseller and forward your purchase receipt to get the following bonuses. About the …",
-          "author": "",
-          "siteName": "Farnam Street"
-        },
         "https://fs.blog/newsletter": {
           "type": "url",
           "url": "https://fs.blog/newsletter",
           "shortUrl": "https://t.co/cn7tQz5016",
           "title": "Brain Food Newsletter",
           "description": "The Brain Food Newsletter is one of the most popular in the world. Every Sunday, the latest issue is sent to over 600,000. Each one contains insights you can apply to daily life and work.",
+          "author": "",
+          "siteName": "Farnam Street"
+        },
+        "http://fs.blog/clear/": {
+          "type": "url",
+          "url": "http://fs.blog/clear/",
+          "shortUrl": "https://t.co/qF3MFcmmS4",
+          "title": "Clear Thinking: Turning Ordinary Moments into Extraordinary Results",
+          "description": "Clear Thinking Turning Ordinary Moments into Extraordinary Results the instant worldwide bestseller Step 1: Get Your Copy of Clear Thinking … Step 2: Claim Your Free Bonuses … Order a copy of the New York Times bestseller Clear Thinking from your favorite bookseller and forward your purchase receipt to get the following bonuses. About the …",
           "author": "",
           "siteName": "Farnam Street"
         },
@@ -444,21 +442,21 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "author": "",
           "siteName": ""
         },
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
         "https://dexa.ai/s/15thGung": {
           "type": "url",
           "url": "https://dexa.ai/s/15thGung",
           "shortUrl": "https://t.co/ZyOIUUIhPc",
           "title": "Ask Dexa",
           "description": "Steve Jobs’ philosophy on focus is extensively discussed across various podcast episodes. One of his most famous quotes, “focus means saying no to truly phenome",
-          "author": "",
-          "siteName": "Dexa"
-        },
-        "https://dexa.ai": {
-          "type": "url",
-          "url": "https://dexa.ai",
-          "shortUrl": "https://t.co/jz0ipgVGJf",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
           "author": "",
           "siteName": "Dexa"
         }
@@ -490,16 +488,16 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?\",\"lang\":\"en\",\"id\":\"1760113294054990123\",\"author_id\":\"2349038684\"}",
+        "content": "{\"id\":\"1760113294054990123\",\"author_id\":\"2349038684\",\"lang\":\"en\",\"text\":\"This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?\"}",
         "name": "rileytomasek"
       }
     ],
     "tweets": [
       {
-        "text": "This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?",
-        "lang": "en",
         "id": "1760113294054990123",
-        "author_id": "2349038684"
+        "author_id": "2349038684",
+        "lang": "en",
+        "text": "This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?"
       }
     ],
     "entityMap": {
@@ -523,10 +521,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "https://dexa.ai",
               "shortUrl": "https://t.co/mJNxmz0Phd",
-              "title": "Dexa — Where Curiosity Meets Credibility",
-              "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+              "title": "",
+              "description": "",
               "author": "",
-              "siteName": "Dexa"
+              "siteName": ""
             }
           ]
         }
@@ -551,31 +549,31 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/mJNxmz0Phd",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         }
       }
     },
     "rawEntityMap": {
       "users": {
         "2349038684": {
-          "username": "rileytomasek",
           "id": "2349038684",
-          "location": "New York",
           "name": "Riley Tomasek",
-          "pinned_tweet_id": "1754637686701244628",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1580292707917987840/5wxoPaLd_normal.jpg",
-          "description": "Founder of @dexa_ai"
+          "location": "New York",
+          "description": "Founder of @dexa_ai",
+          "username": "rileytomasek",
+          "pinned_tweet_id": "1754637686701244628"
         }
       },
       "tweets": {
         "1760113294054990123": {
-          "text": "This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?",
-          "lang": "en",
           "id": "1760113294054990123",
-          "author_id": "2349038684"
+          "author_id": "2349038684",
+          "lang": "en",
+          "text": "This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?"
         }
       },
       "urls": {
@@ -583,10 +581,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/mJNxmz0Phd",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         }
       }
     }
@@ -616,17 +614,17 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"@AskDexa what would huberman think of this article? https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"id\":\"1761404957373137052\",\"author_id\":\"1235525929335689217\"}",
+        "content": "{\"id\":\"1761404957373137052\",\"author_id\":\"1235525929335689217\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"text\":\"@AskDexa what would huberman think of this article? https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html\"}",
         "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
-        "text": "@AskDexa what would huberman think of this article? https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html",
+        "id": "1761404957373137052",
+        "author_id": "1235525929335689217",
         "lang": "en",
         "in_reply_to_user_id": "1757989045383106560",
-        "id": "1761404957373137052",
-        "author_id": "1235525929335689217"
+        "text": "@AskDexa what would huberman think of this article? https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html"
       }
     ],
     "entityMap": {
@@ -649,10 +647,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "https://dexa.ai",
               "shortUrl": "https://t.co/jz0ipgVGJf",
-              "title": "Dexa — Where Curiosity Meets Credibility",
-              "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+              "title": "",
+              "description": "",
               "author": "",
-              "siteName": "Dexa"
+              "siteName": ""
             }
           ]
         },
@@ -712,39 +710,39 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/jz0ipgVGJf",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         }
       }
     },
     "rawEntityMap": {
       "users": {
         "1757989045383106560": {
-          "username": "AskDexa",
           "id": "1757989045383106560",
-          "location": "🤖",
           "name": "Ask Dexa",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
-          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts."
+          "location": "🤖",
+          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts.",
+          "username": "AskDexa"
         },
         "1235525929335689217": {
-          "username": "LofiGrind",
           "id": "1235525929335689217",
-          "location": "Brooklyn, NY",
           "name": "Lofi Grind",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
-          "description": "Chill ambient beats for when you wanna relax / study / grind."
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
         }
       },
       "tweets": {
         "1761404957373137052": {
-          "text": "@AskDexa what would huberman think of this article? https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html",
+          "id": "1761404957373137052",
+          "author_id": "1235525929335689217",
           "lang": "en",
           "in_reply_to_user_id": "1757989045383106560",
-          "id": "1761404957373137052",
-          "author_id": "1235525929335689217"
+          "text": "@AskDexa what would huberman think of this article? https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html"
         }
       },
       "urls": {
@@ -761,10 +759,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/jz0ipgVGJf",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         }
       }
     }
@@ -794,13 +792,14 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"@AskDexa explain this image https://twitter.com/LofiGrind/status/1761405299557122132/photo/1\",\"attachments\":{\"media_keys\":[\"3_1761405270226341888\"]},\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"id\":\"1761405299557122132\",\"author_id\":\"1235525929335689217\"}",
+        "content": "{\"id\":\"1761405299557122132\",\"author_id\":\"1235525929335689217\",\"attachments\":{\"media_keys\":[\"3_1761405270226341888\"]},\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"text\":\"@AskDexa explain this image https://twitter.com/LofiGrind/status/1761405299557122132/photo/1\"}",
         "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
-        "text": "@AskDexa explain this image https://twitter.com/LofiGrind/status/1761405299557122132/photo/1",
+        "id": "1761405299557122132",
+        "author_id": "1235525929335689217",
         "attachments": {
           "media_keys": [
             "3_1761405270226341888"
@@ -808,8 +807,7 @@ error scraping url http://depue.design Request failed with status code 500 Inter
         },
         "lang": "en",
         "in_reply_to_user_id": "1757989045383106560",
-        "id": "1761405299557122132",
-        "author_id": "1235525929335689217"
+        "text": "@AskDexa explain this image https://twitter.com/LofiGrind/status/1761405299557122132/photo/1"
       }
     ],
     "entityMap": {
@@ -832,10 +830,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "https://dexa.ai",
               "shortUrl": "https://t.co/jz0ipgVGJf",
-              "title": "Dexa — Where Curiosity Meets Credibility",
-              "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+              "title": "",
+              "description": "",
               "author": "",
-              "siteName": "Dexa"
+              "siteName": ""
             }
           ]
         },
@@ -886,35 +884,36 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/jz0ipgVGJf",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         }
       }
     },
     "rawEntityMap": {
       "users": {
         "1757989045383106560": {
-          "username": "AskDexa",
           "id": "1757989045383106560",
-          "location": "🤖",
           "name": "Ask Dexa",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
-          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts."
+          "location": "🤖",
+          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts.",
+          "username": "AskDexa"
         },
         "1235525929335689217": {
-          "username": "LofiGrind",
           "id": "1235525929335689217",
-          "location": "Brooklyn, NY",
           "name": "Lofi Grind",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
-          "description": "Chill ambient beats for when you wanna relax / study / grind."
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
         }
       },
       "tweets": {
         "1761405299557122132": {
-          "text": "@AskDexa explain this image https://twitter.com/LofiGrind/status/1761405299557122132/photo/1",
+          "id": "1761405299557122132",
+          "author_id": "1235525929335689217",
           "attachments": {
             "media_keys": [
               "3_1761405270226341888"
@@ -922,8 +921,7 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           },
           "lang": "en",
           "in_reply_to_user_id": "1757989045383106560",
-          "id": "1761405299557122132",
-          "author_id": "1235525929335689217"
+          "text": "@AskDexa explain this image https://twitter.com/LofiGrind/status/1761405299557122132/photo/1"
         }
       },
       "urls": {
@@ -931,10 +929,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/jz0ipgVGJf",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         }
       }
     }
@@ -964,15 +962,12 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"@AskDexa what is HF0? https://twitter.com/davefontenot/status/1760375075537301909\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"id\":\"1761405562611216585\",\"referenced_tweets\":[{\"type\":\"quoted\",\"id\":\"1760375075537301909\"}],\"author_id\":\"1235525929335689217\"}",
+        "content": "{\"id\":\"1761405562611216585\",\"referenced_tweets\":[{\"type\":\"quoted\",\"id\":\"1760375075537301909\"}],\"author_id\":\"1235525929335689217\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"text\":\"@AskDexa what is HF0? https://twitter.com/davefontenot/status/1760375075537301909\"}",
         "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
-        "text": "@AskDexa what is HF0? https://twitter.com/davefontenot/status/1760375075537301909",
-        "lang": "en",
-        "in_reply_to_user_id": "1757989045383106560",
         "id": "1761405562611216585",
         "referenced_tweets": [
           {
@@ -980,7 +975,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1760375075537301909"
           }
         ],
-        "author_id": "1235525929335689217"
+        "author_id": "1235525929335689217",
+        "lang": "en",
+        "in_reply_to_user_id": "1757989045383106560",
+        "text": "@AskDexa what is HF0? https://twitter.com/davefontenot/status/1760375075537301909"
       }
     ],
     "entityMap": {
@@ -1043,10 +1041,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "https://dexa.ai",
               "shortUrl": "https://t.co/jz0ipgVGJf",
-              "title": "Dexa — Where Curiosity Meets Credibility",
-              "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+              "title": "",
+              "description": "",
               "author": "",
-              "siteName": "Dexa"
+              "siteName": ""
             }
           ]
         },
@@ -1101,7 +1099,7 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "numRetweets": 96,
           "numQuoteTweets": 51,
           "numReplies": 37,
-          "numImpressions": 200969,
+          "numImpressions": 200977,
           "urls": [
             {
               "type": "url",
@@ -1131,10 +1129,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
       },
       "media": {},
       "urls": {
-        "http://HF0.com": {
+        "http://latch.ai": {
           "type": "url",
-          "url": "http://HF0.com",
-          "shortUrl": "https://t.co/J1EC97zp9m",
+          "url": "http://latch.ai",
+          "shortUrl": "https://t.co/mHQInNULWw",
           "title": "",
           "description": "",
           "author": "",
@@ -1144,15 +1142,15 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/jz0ipgVGJf",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         },
-        "http://latch.ai": {
+        "https://twitter.com/i/web/status/1760375075537301909": {
           "type": "url",
-          "url": "http://latch.ai",
-          "shortUrl": "https://t.co/mHQInNULWw",
+          "url": "https://twitter.com/i/web/status/1760375075537301909",
+          "shortUrl": "https://t.co/qPBLAzmK4n",
           "title": "",
           "description": "",
           "author": "",
@@ -1167,10 +1165,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "author": "",
           "siteName": ""
         },
-        "https://twitter.com/i/web/status/1760375075537301909": {
+        "http://HF0.com": {
           "type": "url",
-          "url": "https://twitter.com/i/web/status/1760375075537301909",
-          "shortUrl": "https://t.co/qPBLAzmK4n",
+          "url": "http://HF0.com",
+          "shortUrl": "https://t.co/J1EC97zp9m",
           "title": "",
           "description": "",
           "author": "",
@@ -1181,36 +1179,33 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawEntityMap": {
       "users": {
         "470790728": {
-          "username": "davefontenot",
           "id": "470790728",
-          "location": "SF",
           "name": "Dave Font",
-          "pinned_tweet_id": "1720482520930906425",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1375085218663526404/stEt7Eso_normal.jpg",
-          "description": "🏯 building the monastery for hackers @HF0Residency \n🚀 early backer ramp, optimism, pave, crossmint, http://latch.ai, http://krea.ai and more..."
+          "location": "SF",
+          "description": "🏯 building the monastery for hackers @HF0Residency \n🚀 early backer ramp, optimism, pave, crossmint, http://latch.ai, http://krea.ai and more...",
+          "username": "davefontenot",
+          "pinned_tweet_id": "1720482520930906425"
         },
         "1757989045383106560": {
-          "username": "AskDexa",
           "id": "1757989045383106560",
-          "location": "🤖",
           "name": "Ask Dexa",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
-          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts."
+          "location": "🤖",
+          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts.",
+          "username": "AskDexa"
         },
         "1235525929335689217": {
-          "username": "LofiGrind",
           "id": "1235525929335689217",
-          "location": "Brooklyn, NY",
           "name": "Lofi Grind",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
-          "description": "Chill ambient beats for when you wanna relax / study / grind."
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
         }
       },
       "tweets": {
         "1761405562611216585": {
-          "text": "@AskDexa what is HF0? https://twitter.com/davefontenot/status/1760375075537301909",
-          "lang": "en",
-          "in_reply_to_user_id": "1757989045383106560",
           "id": "1761405562611216585",
           "referenced_tweets": [
             {
@@ -1218,25 +1213,28 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "id": "1760375075537301909"
             }
           ],
-          "author_id": "1235525929335689217"
+          "author_id": "1235525929335689217",
+          "lang": "en",
+          "in_reply_to_user_id": "1757989045383106560",
+          "text": "@AskDexa what is HF0? https://twitter.com/davefontenot/status/1760375075537301909"
         },
         "1760375075537301909": {
-          "text": "SORA. WTF!? OpenAI doesn’t stop shipping.\n\nAnd neither do we.\n\nIntroducing the program for repeat founders: http://HF0.com\n\nFive repeat unicorn founders are already starting their next startups with us. Why? (1/5) https://twitter.com/i/web/status/1760375075537301909 https://twitter.com/davefontenot/status/1760375075537301909/video/1",
+          "id": "1760375075537301909",
+          "author_id": "470790728",
           "attachments": {
             "media_keys": [
               "7_1760355108418891776"
             ]
           },
           "lang": "en",
-          "id": "1760375075537301909",
-          "author_id": "470790728"
+          "text": "SORA. WTF!? OpenAI doesn’t stop shipping.\n\nAnd neither do we.\n\nIntroducing the program for repeat founders: http://HF0.com\n\nFive repeat unicorn founders are already starting their next startups with us. Why? (1/5) https://twitter.com/i/web/status/1760375075537301909 https://twitter.com/davefontenot/status/1760375075537301909/video/1"
         }
       },
       "urls": {
-        "http://HF0.com": {
+        "http://latch.ai": {
           "type": "url",
-          "url": "http://HF0.com",
-          "shortUrl": "https://t.co/J1EC97zp9m",
+          "url": "http://latch.ai",
+          "shortUrl": "https://t.co/mHQInNULWw",
           "title": "",
           "description": "",
           "author": "",
@@ -1246,15 +1244,15 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/jz0ipgVGJf",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         },
-        "http://latch.ai": {
+        "https://twitter.com/i/web/status/1760375075537301909": {
           "type": "url",
-          "url": "http://latch.ai",
-          "shortUrl": "https://t.co/mHQInNULWw",
+          "url": "https://twitter.com/i/web/status/1760375075537301909",
+          "shortUrl": "https://t.co/qPBLAzmK4n",
           "title": "",
           "description": "",
           "author": "",
@@ -1269,10 +1267,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "author": "",
           "siteName": ""
         },
-        "https://twitter.com/i/web/status/1760375075537301909": {
+        "http://HF0.com": {
           "type": "url",
-          "url": "https://twitter.com/i/web/status/1760375075537301909",
-          "shortUrl": "https://t.co/qPBLAzmK4n",
+          "url": "http://HF0.com",
+          "shortUrl": "https://t.co/J1EC97zp9m",
           "title": "",
           "description": "",
           "author": "",
@@ -1306,17 +1304,17 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"@AskDexa What are the main takeaways from this episode? https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"id\":\"1761458959720804452\",\"author_id\":\"1235525929335689217\"}",
+        "content": "{\"id\":\"1761458959720804452\",\"author_id\":\"1235525929335689217\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"text\":\"@AskDexa What are the main takeaways from this episode? https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman\"}",
         "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
-        "text": "@AskDexa What are the main takeaways from this episode? https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman",
+        "id": "1761458959720804452",
+        "author_id": "1235525929335689217",
         "lang": "en",
         "in_reply_to_user_id": "1757989045383106560",
-        "id": "1761458959720804452",
-        "author_id": "1235525929335689217"
+        "text": "@AskDexa What are the main takeaways from this episode? https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman"
       }
     ],
     "entityMap": {
@@ -1339,10 +1337,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "https://dexa.ai",
               "shortUrl": "https://t.co/jz0ipgVGJf",
-              "title": "Dexa — Where Curiosity Meets Credibility",
-              "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+              "title": "",
+              "description": "",
               "author": "",
-              "siteName": "Dexa"
+              "siteName": ""
             }
           ]
         },
@@ -1393,10 +1391,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/jz0ipgVGJf",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         },
         "https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman": {
           "type": "url",
@@ -1412,29 +1410,29 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawEntityMap": {
       "users": {
         "1757989045383106560": {
-          "username": "AskDexa",
           "id": "1757989045383106560",
-          "location": "🤖",
           "name": "Ask Dexa",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
-          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts."
+          "location": "🤖",
+          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts.",
+          "username": "AskDexa"
         },
         "1235525929335689217": {
-          "username": "LofiGrind",
           "id": "1235525929335689217",
-          "location": "Brooklyn, NY",
           "name": "Lofi Grind",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
-          "description": "Chill ambient beats for when you wanna relax / study / grind."
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
         }
       },
       "tweets": {
         "1761458959720804452": {
-          "text": "@AskDexa What are the main takeaways from this episode? https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman",
+          "id": "1761458959720804452",
+          "author_id": "1235525929335689217",
           "lang": "en",
           "in_reply_to_user_id": "1757989045383106560",
-          "id": "1761458959720804452",
-          "author_id": "1235525929335689217"
+          "text": "@AskDexa What are the main takeaways from this episode? https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman"
         }
       },
       "urls": {
@@ -1442,10 +1440,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/jz0ipgVGJf",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         },
         "https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman": {
           "type": "url",
@@ -1470,8 +1468,8 @@ error scraping url http://depue.design Request failed with status code 500 Inter
       "promptUsername": "transitive_bs",
       "prompt": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way…",
       "promptUrl": "https://twitter.com/transitive_bs/status/1761416294530715895",
-      "priorityScore": 9968.279571428571,
-      "numFollowers": 18101,
+      "priorityScore": 9968.280571428571,
+      "numFollowers": 18102,
       "isReply": true,
       "response": "Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung",
       "responseTweetId": "1761417705503047799",
@@ -1492,26 +1490,23 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880\",\"lang\":\"en\",\"id\":\"1761390820630945880\",\"author_id\":\"33104659\"}",
+        "content": "{\"id\":\"1761390820630945880\",\"author_id\":\"33104659\",\"lang\":\"en\",\"text\":\"“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880\"}",
         "name": "ShaneAParrish"
       },
       {
         "role": "user",
-        "content": "{\"text\":\"@ShaneAParrish @AskDexa\",\"lang\":\"qam\",\"in_reply_to_user_id\":\"33104659\",\"id\":\"1761416294530715895\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1761390820630945880\"}],\"author_id\":\"327034465\"}",
+        "content": "{\"id\":\"1761416294530715895\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1761390820630945880\"}],\"author_id\":\"327034465\",\"lang\":\"qam\",\"in_reply_to_user_id\":\"33104659\",\"text\":\"@ShaneAParrish @AskDexa\"}",
         "name": "transitive_bs"
       }
     ],
     "tweets": [
       {
-        "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880",
-        "lang": "en",
         "id": "1761390820630945880",
-        "author_id": "33104659"
+        "author_id": "33104659",
+        "lang": "en",
+        "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880"
       },
       {
-        "text": "@ShaneAParrish @AskDexa",
-        "lang": "qam",
-        "in_reply_to_user_id": "33104659",
         "id": "1761416294530715895",
         "referenced_tweets": [
           {
@@ -1519,7 +1514,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1761390820630945880"
           }
         ],
-        "author_id": "327034465"
+        "author_id": "327034465",
+        "lang": "qam",
+        "in_reply_to_user_id": "33104659",
+        "text": "@ShaneAParrish @AskDexa"
       }
     ],
     "entityMap": {
@@ -1533,10 +1531,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "twitterUrl": "https://fs.blog/newsletter",
           "twitterLocation": "Join 600,000+ Subscribers →",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1641264347916763137/_xdzak-e_normal.jpg",
-          "twitterNumFollowers": 508275,
+          "twitterNumFollowers": 508273,
           "twitterNumFollowing": 3,
           "twitterNumTweets": 4035,
-          "twitterNumLikes": 508275,
+          "twitterNumLikes": 508273,
           "urls": [
             {
               "type": "url",
@@ -1568,10 +1566,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "twitterPinnedTweetId": "1643017583917174784",
           "twitterLocation": "HF0",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "twitterNumFollowers": 18101,
+          "twitterNumFollowers": 18102,
           "twitterNumFollowing": 702,
           "twitterNumTweets": 7209,
-          "twitterNumLikes": 18101,
+          "twitterNumLikes": 18102,
           "urls": [
             {
               "type": "url",
@@ -1596,7 +1594,7 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "numRetweets": 64,
           "numQuoteTweets": 5,
           "numReplies": 21,
-          "numImpressions": 51473,
+          "numImpressions": 51480,
           "urls": [
             {
               "type": "url",
@@ -1667,34 +1665,31 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawEntityMap": {
       "users": {
         "33104659": {
-          "username": "ShaneAParrish",
           "id": "33104659",
-          "location": "Join 600,000+ Subscribers →",
           "name": "Shane Parrish",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1641264347916763137/_xdzak-e_normal.jpg",
-          "description": "Sharing insights you can use in daily life & work. Author of Clear Thinking (http://fs.blog/clear/)."
+          "location": "Join 600,000+ Subscribers →",
+          "description": "Sharing insights you can use in daily life & work. Author of Clear Thinking (http://fs.blog/clear/).",
+          "username": "ShaneAParrish"
         },
         "327034465": {
-          "username": "transitive_bs",
           "id": "327034465",
-          "location": "HF0",
           "name": "Travis Fischer",
-          "pinned_tweet_id": "1643017583917174784",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕"
+          "location": "HF0",
+          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕",
+          "username": "transitive_bs",
+          "pinned_tweet_id": "1643017583917174784"
         }
       },
       "tweets": {
         "1761390820630945880": {
-          "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880",
-          "lang": "en",
           "id": "1761390820630945880",
-          "author_id": "33104659"
+          "author_id": "33104659",
+          "lang": "en",
+          "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880"
         },
         "1761416294530715895": {
-          "text": "@ShaneAParrish @AskDexa",
-          "lang": "qam",
-          "in_reply_to_user_id": "33104659",
           "id": "1761416294530715895",
           "referenced_tweets": [
             {
@@ -1702,7 +1697,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "id": "1761390820630945880"
             }
           ],
-          "author_id": "327034465"
+          "author_id": "327034465",
+          "lang": "qam",
+          "in_reply_to_user_id": "33104659",
+          "text": "@ShaneAParrish @AskDexa"
         }
       },
       "urls": {
@@ -1775,31 +1773,28 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://twitter.com/i/web/status/1759431722314158199 https://twitter.com/david_perell/status/1759431722314158199/video/1\",\"attachments\":{\"media_keys\":[\"13_1759431643134054400\"]},\"lang\":\"en\",\"id\":\"1759431722314158199\",\"author_id\":\"240049622\"}",
+        "content": "{\"id\":\"1759431722314158199\",\"author_id\":\"240049622\",\"attachments\":{\"media_keys\":[\"13_1759431643134054400\"]},\"lang\":\"en\",\"text\":\"When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://twitter.com/i/web/status/1759431722314158199 https://twitter.com/david_perell/status/1759431722314158199/video/1\"}",
         "name": "david_perell"
       },
       {
         "role": "user",
-        "content": "{\"text\":\"@david_perell @AskDexa what does he do after writing a bullet list outline?\",\"lang\":\"en\",\"in_reply_to_user_id\":\"240049622\",\"id\":\"1759444274867802206\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1759431722314158199\"}],\"author_id\":\"2349038684\"}",
+        "content": "{\"id\":\"1759444274867802206\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1759431722314158199\"}],\"author_id\":\"2349038684\",\"lang\":\"en\",\"in_reply_to_user_id\":\"240049622\",\"text\":\"@david_perell @AskDexa what does he do after writing a bullet list outline?\"}",
         "name": "rileytomasek"
       }
     ],
     "tweets": [
       {
-        "text": "When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://twitter.com/i/web/status/1759431722314158199 https://twitter.com/david_perell/status/1759431722314158199/video/1",
+        "id": "1759431722314158199",
+        "author_id": "240049622",
         "attachments": {
           "media_keys": [
             "13_1759431643134054400"
           ]
         },
         "lang": "en",
-        "id": "1759431722314158199",
-        "author_id": "240049622"
+        "text": "When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://twitter.com/i/web/status/1759431722314158199 https://twitter.com/david_perell/status/1759431722314158199/video/1"
       },
       {
-        "text": "@david_perell @AskDexa what does he do after writing a bullet list outline?",
-        "lang": "en",
-        "in_reply_to_user_id": "240049622",
         "id": "1759444274867802206",
         "referenced_tweets": [
           {
@@ -1807,7 +1802,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1759431722314158199"
           }
         ],
-        "author_id": "2349038684"
+        "author_id": "2349038684",
+        "lang": "en",
+        "in_reply_to_user_id": "240049622",
+        "text": "@david_perell @AskDexa what does he do after writing a bullet list outline?"
       }
     ],
     "entityMap": {
@@ -1822,10 +1820,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "twitterPinnedTweetId": "1709546938079515122",
           "twitterLocation": "Austin, Texas",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1759062533078495232/-79hY8EP_normal.jpg",
-          "twitterNumFollowers": 430388,
+          "twitterNumFollowers": 430382,
           "twitterNumFollowing": 787,
           "twitterNumTweets": 31892,
-          "twitterNumLikes": 430388,
+          "twitterNumLikes": 430382,
           "urls": [
             {
               "type": "url",
@@ -1849,10 +1847,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "http://perell.com",
               "shortUrl": "https://t.co/SOE9HtxXdi",
-              "title": "",
-              "description": "",
+              "title": "Hi, I’m David Perell.",
+              "description": "I write, host a podcast, and run a writing school called Write of Passage.",
               "author": "",
-              "siteName": ""
+              "siteName": "David Perell"
             }
           ]
         },
@@ -1875,10 +1873,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "https://dexa.ai",
               "shortUrl": "https://t.co/mJNxmz0Phd",
-              "title": "Dexa — Where Curiosity Meets Credibility",
-              "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+              "title": "",
+              "description": "",
               "author": "",
-              "siteName": "Dexa"
+              "siteName": ""
             }
           ]
         }
@@ -1914,10 +1912,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "https://twitter.com/i/web/status/1759431722314158199",
               "shortUrl": "https://t.co/r34osTOhDP",
-              "title": "",
-              "description": "",
+              "title": "X",
+              "description": "Did someone say … cookies?",
               "author": "",
-              "siteName": ""
+              "siteName": "X (formerly Twitter)"
             },
             {
               "type": "url",
@@ -1937,15 +1935,6 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/mJNxmz0Phd",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
-          "author": "",
-          "siteName": "Dexa"
-        },
-        "http://writeofpassage.school": {
-          "type": "url",
-          "url": "http://writeofpassage.school",
-          "shortUrl": "https://t.co/bzeQ7VVyS0",
           "title": "",
           "description": "",
           "author": "",
@@ -1955,6 +1944,15 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "http://perell.com",
           "shortUrl": "https://t.co/SOE9HtxXdi",
+          "title": "Hi, I’m David Perell.",
+          "description": "I write, host a podcast, and run a writing school called Write of Passage.",
+          "author": "",
+          "siteName": "David Perell"
+        },
+        "http://writeofpassage.school": {
+          "type": "url",
+          "url": "http://writeofpassage.school",
+          "shortUrl": "https://t.co/bzeQ7VVyS0",
           "title": "",
           "description": "",
           "author": "",
@@ -1973,39 +1971,36 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://twitter.com/i/web/status/1759431722314158199",
           "shortUrl": "https://t.co/r34osTOhDP",
-          "title": "",
-          "description": "",
+          "title": "X",
+          "description": "Did someone say … cookies?",
           "author": "",
-          "siteName": ""
+          "siteName": "X (formerly Twitter)"
         }
       }
     },
     "rawEntityMap": {
       "users": {
         "240049622": {
-          "username": "david_perell",
           "id": "240049622",
-          "location": "Austin, Texas",
           "name": "David Perell",
-          "pinned_tweet_id": "1709546938079515122",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1759062533078495232/-79hY8EP_normal.jpg",
-          "description": "\"The Writing Guy\" | Jesus-Follower | I tweet about writing and creativity | My writing school: http://writeofpassage.school | My writing: http://perell.com"
+          "location": "Austin, Texas",
+          "description": "\"The Writing Guy\" | Jesus-Follower | I tweet about writing and creativity | My writing school: http://writeofpassage.school | My writing: http://perell.com",
+          "username": "david_perell",
+          "pinned_tweet_id": "1709546938079515122"
         },
         "2349038684": {
-          "username": "rileytomasek",
           "id": "2349038684",
-          "location": "New York",
           "name": "Riley Tomasek",
-          "pinned_tweet_id": "1754637686701244628",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1580292707917987840/5wxoPaLd_normal.jpg",
-          "description": "Founder of @dexa_ai"
+          "location": "New York",
+          "description": "Founder of @dexa_ai",
+          "username": "rileytomasek",
+          "pinned_tweet_id": "1754637686701244628"
         }
       },
       "tweets": {
         "1759444274867802206": {
-          "text": "@david_perell @AskDexa what does he do after writing a bullet list outline?",
-          "lang": "en",
-          "in_reply_to_user_id": "240049622",
           "id": "1759444274867802206",
           "referenced_tweets": [
             {
@@ -2013,18 +2008,21 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "id": "1759431722314158199"
             }
           ],
-          "author_id": "2349038684"
+          "author_id": "2349038684",
+          "lang": "en",
+          "in_reply_to_user_id": "240049622",
+          "text": "@david_perell @AskDexa what does he do after writing a bullet list outline?"
         },
         "1759431722314158199": {
-          "text": "When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://twitter.com/i/web/status/1759431722314158199 https://twitter.com/david_perell/status/1759431722314158199/video/1",
+          "id": "1759431722314158199",
+          "author_id": "240049622",
           "attachments": {
             "media_keys": [
               "13_1759431643134054400"
             ]
           },
           "lang": "en",
-          "id": "1759431722314158199",
-          "author_id": "240049622"
+          "text": "When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://twitter.com/i/web/status/1759431722314158199 https://twitter.com/david_perell/status/1759431722314158199/video/1"
         }
       },
       "urls": {
@@ -2032,15 +2030,6 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/mJNxmz0Phd",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
-          "author": "",
-          "siteName": "Dexa"
-        },
-        "http://writeofpassage.school": {
-          "type": "url",
-          "url": "http://writeofpassage.school",
-          "shortUrl": "https://t.co/bzeQ7VVyS0",
           "title": "",
           "description": "",
           "author": "",
@@ -2050,6 +2039,15 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "http://perell.com",
           "shortUrl": "https://t.co/SOE9HtxXdi",
+          "title": "Hi, I’m David Perell.",
+          "description": "I write, host a podcast, and run a writing school called Write of Passage.",
+          "author": "",
+          "siteName": "David Perell"
+        },
+        "http://writeofpassage.school": {
+          "type": "url",
+          "url": "http://writeofpassage.school",
+          "shortUrl": "https://t.co/bzeQ7VVyS0",
           "title": "",
           "description": "",
           "author": "",
@@ -2068,10 +2066,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://twitter.com/i/web/status/1759431722314158199",
           "shortUrl": "https://t.co/r34osTOhDP",
-          "title": "",
-          "description": "",
+          "title": "X",
+          "description": "Did someone say … cookies?",
           "author": "",
-          "siteName": ""
+          "siteName": "X (formerly Twitter)"
         }
       }
     }
@@ -2106,26 +2104,23 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health\",\"lang\":\"en\",\"id\":\"1759568894828933159\",\"author_id\":\"4416456732\"}",
+        "content": "{\"id\":\"1759568894828933159\",\"author_id\":\"4416456732\",\"lang\":\"en\",\"text\":\"New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health\"}",
         "name": "hubermanlab"
       },
       {
         "role": "user",
-        "content": "{\"text\":\"@hubermanlab @AskDexa summarize the episode\",\"lang\":\"en\",\"in_reply_to_user_id\":\"4416456732\",\"id\":\"1759572110324670916\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1759568894828933159\"}],\"author_id\":\"2349038684\"}",
+        "content": "{\"id\":\"1759572110324670916\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1759568894828933159\"}],\"author_id\":\"2349038684\",\"lang\":\"en\",\"in_reply_to_user_id\":\"4416456732\",\"text\":\"@hubermanlab @AskDexa summarize the episode\"}",
         "name": "rileytomasek"
       }
     ],
     "tweets": [
       {
-        "text": "New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health",
-        "lang": "en",
         "id": "1759568894828933159",
-        "author_id": "4416456732"
+        "author_id": "4416456732",
+        "lang": "en",
+        "text": "New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health"
       },
       {
-        "text": "@hubermanlab @AskDexa summarize the episode",
-        "lang": "en",
-        "in_reply_to_user_id": "4416456732",
         "id": "1759572110324670916",
         "referenced_tweets": [
           {
@@ -2133,7 +2128,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1759568894828933159"
           }
         ],
-        "author_id": "2349038684"
+        "author_id": "2349038684",
+        "lang": "en",
+        "in_reply_to_user_id": "4416456732",
+        "text": "@hubermanlab @AskDexa summarize the episode"
       }
     ],
     "entityMap": {
@@ -2157,10 +2155,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "https://dexa.ai",
               "shortUrl": "https://t.co/mJNxmz0Phd",
-              "title": "Dexa — Where Curiosity Meets Credibility",
-              "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+              "title": "",
+              "description": "",
               "author": "",
-              "siteName": "Dexa"
+              "siteName": ""
             }
           ]
         },
@@ -2202,7 +2200,7 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "numRetweets": 112,
           "numQuoteTweets": 11,
           "numReplies": 50,
-          "numImpressions": 137639,
+          "numImpressions": 137645,
           "urls": [
             {
               "type": "url",
@@ -2254,45 +2252,42 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/mJNxmz0Phd",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         }
       }
     },
     "rawEntityMap": {
       "users": {
         "2349038684": {
-          "username": "rileytomasek",
           "id": "2349038684",
-          "location": "New York",
           "name": "Riley Tomasek",
-          "pinned_tweet_id": "1754637686701244628",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1580292707917987840/5wxoPaLd_normal.jpg",
-          "description": "Founder of @dexa_ai"
+          "location": "New York",
+          "description": "Founder of @dexa_ai",
+          "username": "rileytomasek",
+          "pinned_tweet_id": "1754637686701244628"
         },
         "4416456732": {
-          "username": "hubermanlab",
           "id": "4416456732",
-          "location": "Stanford, CA",
           "name": "Andrew D. Huberman, Ph.D.",
-          "pinned_tweet_id": "1759568894828933159",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1339713932085346306/jDTi4HKH_normal.jpg",
-          "description": "Professor of Neurobiology & Ophthalmology at Stanford Medicine • Host of the Huberman Lab podcast • Focused on science & health research & public education"
+          "location": "Stanford, CA",
+          "description": "Professor of Neurobiology & Ophthalmology at Stanford Medicine • Host of the Huberman Lab podcast • Focused on science & health research & public education",
+          "username": "hubermanlab",
+          "pinned_tweet_id": "1759568894828933159"
         }
       },
       "tweets": {
         "1759568894828933159": {
-          "text": "New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health",
-          "lang": "en",
           "id": "1759568894828933159",
-          "author_id": "4416456732"
+          "author_id": "4416456732",
+          "lang": "en",
+          "text": "New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health"
         },
         "1759572110324670916": {
-          "text": "@hubermanlab @AskDexa summarize the episode",
-          "lang": "en",
-          "in_reply_to_user_id": "4416456732",
           "id": "1759572110324670916",
           "referenced_tweets": [
             {
@@ -2300,7 +2295,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "id": "1759568894828933159"
             }
           ],
-          "author_id": "2349038684"
+          "author_id": "2349038684",
+          "lang": "en",
+          "in_reply_to_user_id": "4416456732",
+          "text": "@hubermanlab @AskDexa summarize the episode"
         }
       },
       "urls": {
@@ -2326,10 +2324,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/mJNxmz0Phd",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         }
       }
     }
@@ -2363,26 +2361,23 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. http://f-st.co/akeBBTG\",\"lang\":\"en\",\"id\":\"1759471230531338248\",\"author_id\":\"2735591\"}",
+        "content": "{\"id\":\"1759471230531338248\",\"author_id\":\"2735591\",\"lang\":\"en\",\"text\":\"Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. http://f-st.co/akeBBTG\"}",
         "name": "FastCompany"
       },
       {
         "role": "user",
-        "content": "{\"text\":\"@FastCompany @AskDexa what is note making?\",\"lang\":\"en\",\"in_reply_to_user_id\":\"2735591\",\"id\":\"1759685127041343626\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1759471230531338248\"}],\"author_id\":\"1386021646906048515\"}",
+        "content": "{\"id\":\"1759685127041343626\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1759471230531338248\"}],\"author_id\":\"1386021646906048515\",\"lang\":\"en\",\"in_reply_to_user_id\":\"2735591\",\"text\":\"@FastCompany @AskDexa what is note making?\"}",
         "name": "SamRCharles"
       }
     ],
     "tweets": [
       {
-        "text": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. http://f-st.co/akeBBTG",
-        "lang": "en",
         "id": "1759471230531338248",
-        "author_id": "2735591"
+        "author_id": "2735591",
+        "lang": "en",
+        "text": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. http://f-st.co/akeBBTG"
       },
       {
-        "text": "@FastCompany @AskDexa what is note making?",
-        "lang": "en",
-        "in_reply_to_user_id": "2735591",
         "id": "1759685127041343626",
         "referenced_tweets": [
           {
@@ -2390,7 +2385,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1759471230531338248"
           }
         ],
-        "author_id": "1386021646906048515"
+        "author_id": "1386021646906048515",
+        "lang": "en",
+        "in_reply_to_user_id": "2735591",
+        "text": "@FastCompany @AskDexa what is note making?"
       }
     ],
     "entityMap": {
@@ -2445,29 +2443,6 @@ error scraping url http://depue.design Request failed with status code 500 Inter
         }
       },
       "tweets": {
-        "1759471230531338248": {
-          "type": "tweet",
-          "id": "1759471230531338248",
-          "authorId": "2735591",
-          "text": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. http://f-st.co/akeBBTG",
-          "lang": "en",
-          "numLikes": 16,
-          "numRetweets": 6,
-          "numQuoteTweets": 2,
-          "numReplies": 3,
-          "numImpressions": 8096,
-          "urls": [
-            {
-              "type": "url",
-              "url": "http://f-st.co/akeBBTG",
-              "shortUrl": "https://t.co/WKrszaQ1CO",
-              "title": "",
-              "description": "",
-              "author": "",
-              "siteName": ""
-            }
-          ]
-        },
         "1759685127041343626": {
           "type": "tweet",
           "id": "1759685127041343626",
@@ -2480,7 +2455,30 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 1,
-          "numImpressions": 15
+          "numImpressions": 16
+        },
+        "1759471230531338248": {
+          "type": "tweet",
+          "id": "1759471230531338248",
+          "authorId": "2735591",
+          "text": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. http://f-st.co/akeBBTG",
+          "lang": "en",
+          "numLikes": 16,
+          "numRetweets": 6,
+          "numQuoteTweets": 2,
+          "numReplies": 3,
+          "numImpressions": 8097,
+          "urls": [
+            {
+              "type": "url",
+              "url": "http://f-st.co/akeBBTG",
+              "shortUrl": "https://t.co/WKrszaQ1CO",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
+            }
+          ]
         }
       },
       "media": {},
@@ -2494,19 +2492,19 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "author": "",
           "siteName": ""
         },
-        "http://f-st.co/akeBBTG": {
+        "http://www.fastcompany.com": {
           "type": "url",
-          "url": "http://f-st.co/akeBBTG",
-          "shortUrl": "https://t.co/WKrszaQ1CO",
+          "url": "http://www.fastcompany.com",
+          "shortUrl": "https://t.co/TnX79ODnqf",
           "title": "",
           "description": "",
           "author": "",
           "siteName": ""
         },
-        "http://www.fastcompany.com": {
+        "http://f-st.co/akeBBTG": {
           "type": "url",
-          "url": "http://www.fastcompany.com",
-          "shortUrl": "https://t.co/TnX79ODnqf",
+          "url": "http://f-st.co/akeBBTG",
+          "shortUrl": "https://t.co/WKrszaQ1CO",
           "title": "",
           "description": "",
           "author": "",
@@ -2517,33 +2515,24 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawEntityMap": {
       "users": {
         "2735591": {
-          "username": "FastCompany",
           "id": "2735591",
-          "location": "New York, NY",
           "name": "Fast Company",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1051826427837014017/v2TLU4mf_normal.jpg",
-          "description": "Inspiring readers to think beyond traditional boundaries & create the future of business. Subscribe to our daily newsletter: http://fastcompany.com/newsletters"
+          "location": "New York, NY",
+          "description": "Inspiring readers to think beyond traditional boundaries & create the future of business. Subscribe to our daily newsletter: http://fastcompany.com/newsletters",
+          "username": "FastCompany"
         },
         "1386021646906048515": {
-          "username": "SamRCharles",
           "id": "1386021646906048515",
-          "location": "San Francisco",
           "name": "Sam Charles",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1386039678395109376/yc7Pwbkx_normal.jpg",
-          "description": "Exploring LLMs and the new paradigms they enable."
+          "location": "San Francisco",
+          "description": "Exploring LLMs and the new paradigms they enable.",
+          "username": "SamRCharles"
         }
       },
       "tweets": {
-        "1759471230531338248": {
-          "text": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. http://f-st.co/akeBBTG",
-          "lang": "en",
-          "id": "1759471230531338248",
-          "author_id": "2735591"
-        },
         "1759685127041343626": {
-          "text": "@FastCompany @AskDexa what is note making?",
-          "lang": "en",
-          "in_reply_to_user_id": "2735591",
           "id": "1759685127041343626",
           "referenced_tweets": [
             {
@@ -2551,7 +2540,16 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "id": "1759471230531338248"
             }
           ],
-          "author_id": "1386021646906048515"
+          "author_id": "1386021646906048515",
+          "lang": "en",
+          "in_reply_to_user_id": "2735591",
+          "text": "@FastCompany @AskDexa what is note making?"
+        },
+        "1759471230531338248": {
+          "id": "1759471230531338248",
+          "author_id": "2735591",
+          "lang": "en",
+          "text": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. http://f-st.co/akeBBTG"
         }
       },
       "urls": {
@@ -2564,19 +2562,19 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "author": "",
           "siteName": ""
         },
-        "http://f-st.co/akeBBTG": {
+        "http://www.fastcompany.com": {
           "type": "url",
-          "url": "http://f-st.co/akeBBTG",
-          "shortUrl": "https://t.co/WKrszaQ1CO",
+          "url": "http://www.fastcompany.com",
+          "shortUrl": "https://t.co/TnX79ODnqf",
           "title": "",
           "description": "",
           "author": "",
           "siteName": ""
         },
-        "http://www.fastcompany.com": {
+        "http://f-st.co/akeBBTG": {
           "type": "url",
-          "url": "http://www.fastcompany.com",
-          "shortUrl": "https://t.co/TnX79ODnqf",
+          "url": "http://f-st.co/akeBBTG",
+          "shortUrl": "https://t.co/WKrszaQ1CO",
           "title": "",
           "description": "",
           "author": "",
@@ -2618,19 +2616,17 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"\\\"cats have weird physics\\\" 😂💯 https://twitter.com/willdepue/status/1734779147623322066\",\"lang\":\"en\",\"id\":\"1734782745799282820\",\"referenced_tweets\":[{\"type\":\"quoted\",\"id\":\"1734779147623322066\"}],\"author_id\":\"327034465\"}",
+        "content": "{\"id\":\"1734782745799282820\",\"referenced_tweets\":[{\"type\":\"quoted\",\"id\":\"1734779147623322066\"}],\"author_id\":\"327034465\",\"lang\":\"en\",\"text\":\"\\\"cats have weird physics\\\" 😂💯 https://twitter.com/willdepue/status/1734779147623322066\"}",
         "name": "transitive_bs"
       },
       {
         "role": "user",
-        "content": "{\"text\":\"@transitive_bs @LofiGrind explain this 👀\",\"lang\":\"en\",\"in_reply_to_user_id\":\"327034465\",\"id\":\"1760384146004996333\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1734782745799282820\"}],\"author_id\":\"1235525929335689217\"}",
+        "content": "{\"id\":\"1760384146004996333\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1734782745799282820\"}],\"author_id\":\"1235525929335689217\",\"lang\":\"en\",\"in_reply_to_user_id\":\"327034465\",\"text\":\"@transitive_bs @LofiGrind explain this 👀\"}",
         "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
-        "text": "\"cats have weird physics\" 😂💯 https://twitter.com/willdepue/status/1734779147623322066",
-        "lang": "en",
         "id": "1734782745799282820",
         "referenced_tweets": [
           {
@@ -2638,12 +2634,11 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1734779147623322066"
           }
         ],
-        "author_id": "327034465"
+        "author_id": "327034465",
+        "lang": "en",
+        "text": "\"cats have weird physics\" 😂💯 https://twitter.com/willdepue/status/1734779147623322066"
       },
       {
-        "text": "@transitive_bs @LofiGrind explain this 👀",
-        "lang": "en",
-        "in_reply_to_user_id": "327034465",
         "id": "1760384146004996333",
         "referenced_tweets": [
           {
@@ -2651,7 +2646,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1734782745799282820"
           }
         ],
-        "author_id": "1235525929335689217"
+        "author_id": "1235525929335689217",
+        "lang": "en",
+        "in_reply_to_user_id": "327034465",
+        "text": "@transitive_bs @LofiGrind explain this 👀"
       }
     ],
     "entityMap": {
@@ -2666,10 +2664,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "twitterPinnedTweetId": "1643017583917174784",
           "twitterLocation": "HF0",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "twitterNumFollowers": 18101,
+          "twitterNumFollowers": 18102,
           "twitterNumFollowing": 702,
           "twitterNumTweets": 7209,
-          "twitterNumLikes": 18101,
+          "twitterNumLikes": 18102,
           "urls": [
             {
               "type": "url",
@@ -2750,10 +2748,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "https://twitter.com/willdepue/status/1734779147623322066",
               "shortUrl": "https://t.co/5st3YYXKJI",
-              "title": "",
-              "description": "",
+              "title": "X",
+              "description": "Did someone say … cookies?",
               "author": "",
-              "siteName": ""
+              "siteName": "X (formerly Twitter)"
             }
           ]
         },
@@ -2785,31 +2783,31 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://twitter.com/willdepue/status/1734779147623322066",
           "shortUrl": "https://t.co/5st3YYXKJI",
-          "title": "",
-          "description": "",
+          "title": "X",
+          "description": "Did someone say … cookies?",
           "author": "",
-          "siteName": ""
+          "siteName": "X (formerly Twitter)"
         }
       }
     },
     "rawEntityMap": {
       "users": {
         "327034465": {
-          "username": "transitive_bs",
           "id": "327034465",
-          "location": "HF0",
           "name": "Travis Fischer",
-          "pinned_tweet_id": "1643017583917174784",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕"
+          "location": "HF0",
+          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕",
+          "username": "transitive_bs",
+          "pinned_tweet_id": "1643017583917174784"
         },
         "1235525929335689217": {
-          "username": "LofiGrind",
           "id": "1235525929335689217",
-          "location": "Brooklyn, NY",
           "name": "Lofi Grind",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
-          "description": "Chill ambient beats for when you wanna relax / study / grind."
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
         },
         "998575387067142144": {
           "id": "998575387067142144",
@@ -2822,9 +2820,6 @@ error scraping url http://depue.design Request failed with status code 500 Inter
       },
       "tweets": {
         "1760384146004996333": {
-          "text": "@transitive_bs @LofiGrind explain this 👀",
-          "lang": "en",
-          "in_reply_to_user_id": "327034465",
           "id": "1760384146004996333",
           "referenced_tweets": [
             {
@@ -2832,11 +2827,12 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "id": "1734782745799282820"
             }
           ],
-          "author_id": "1235525929335689217"
+          "author_id": "1235525929335689217",
+          "lang": "en",
+          "in_reply_to_user_id": "327034465",
+          "text": "@transitive_bs @LofiGrind explain this 👀"
         },
         "1734782745799282820": {
-          "text": "\"cats have weird physics\" 😂💯 https://twitter.com/willdepue/status/1734779147623322066",
-          "lang": "en",
           "id": "1734782745799282820",
           "referenced_tweets": [
             {
@@ -2844,7 +2840,9 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "id": "1734779147623322066"
             }
           ],
-          "author_id": "327034465"
+          "author_id": "327034465",
+          "lang": "en",
+          "text": "\"cats have weird physics\" 😂💯 https://twitter.com/willdepue/status/1734779147623322066"
         },
         "1734779147623322066": {
           "author_id": "998575387067142144",
@@ -2867,10 +2865,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://twitter.com/willdepue/status/1734779147623322066",
           "shortUrl": "https://t.co/5st3YYXKJI",
-          "title": "",
-          "description": "",
+          "title": "X",
+          "description": "Did someone say … cookies?",
           "author": "",
-          "siteName": ""
+          "siteName": "X (formerly Twitter)"
         }
       }
     }
@@ -2905,26 +2903,23 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?\",\"lang\":\"en\",\"id\":\"1759532018956656921\",\"author_id\":\"327034465\"}",
+        "content": "{\"id\":\"1759532018956656921\",\"author_id\":\"327034465\",\"lang\":\"en\",\"text\":\"you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?\"}",
         "name": "transitive_bs"
       },
       {
         "role": "user",
-        "content": "{\"text\":\"@transitive_bs @AskDexa\",\"lang\":\"qam\",\"in_reply_to_user_id\":\"327034465\",\"id\":\"1761406155056632088\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1759532018956656921\"}],\"author_id\":\"1235525929335689217\"}",
+        "content": "{\"id\":\"1761406155056632088\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1759532018956656921\"}],\"author_id\":\"1235525929335689217\",\"lang\":\"qam\",\"in_reply_to_user_id\":\"327034465\",\"text\":\"@transitive_bs @AskDexa\"}",
         "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
-        "text": "you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?",
-        "lang": "en",
         "id": "1759532018956656921",
-        "author_id": "327034465"
+        "author_id": "327034465",
+        "lang": "en",
+        "text": "you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?"
       },
       {
-        "text": "@transitive_bs @AskDexa",
-        "lang": "qam",
-        "in_reply_to_user_id": "327034465",
         "id": "1761406155056632088",
         "referenced_tweets": [
           {
@@ -2932,7 +2927,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1759532018956656921"
           }
         ],
-        "author_id": "1235525929335689217"
+        "author_id": "1235525929335689217",
+        "lang": "qam",
+        "in_reply_to_user_id": "327034465",
+        "text": "@transitive_bs @AskDexa"
       }
     ],
     "entityMap": {
@@ -2947,10 +2945,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "twitterPinnedTweetId": "1643017583917174784",
           "twitterLocation": "HF0",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "twitterNumFollowers": 18101,
+          "twitterNumFollowers": 18102,
           "twitterNumFollowing": 702,
           "twitterNumTweets": 7209,
-          "twitterNumLikes": 18101,
+          "twitterNumLikes": 18102,
           "urls": [
             {
               "type": "url",
@@ -3022,34 +3020,31 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawEntityMap": {
       "users": {
         "327034465": {
-          "username": "transitive_bs",
           "id": "327034465",
-          "location": "HF0",
           "name": "Travis Fischer",
-          "pinned_tweet_id": "1643017583917174784",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕"
+          "location": "HF0",
+          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕",
+          "username": "transitive_bs",
+          "pinned_tweet_id": "1643017583917174784"
         },
         "1235525929335689217": {
-          "username": "LofiGrind",
           "id": "1235525929335689217",
-          "location": "Brooklyn, NY",
           "name": "Lofi Grind",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
-          "description": "Chill ambient beats for when you wanna relax / study / grind."
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
         }
       },
       "tweets": {
         "1759532018956656921": {
-          "text": "you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?",
-          "lang": "en",
           "id": "1759532018956656921",
-          "author_id": "327034465"
+          "author_id": "327034465",
+          "lang": "en",
+          "text": "you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?"
         },
         "1761406155056632088": {
-          "text": "@transitive_bs @AskDexa",
-          "lang": "qam",
-          "in_reply_to_user_id": "327034465",
           "id": "1761406155056632088",
           "referenced_tweets": [
             {
@@ -3057,7 +3052,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "id": "1759532018956656921"
             }
           ],
-          "author_id": "1235525929335689217"
+          "author_id": "1235525929335689217",
+          "lang": "qam",
+          "in_reply_to_user_id": "327034465",
+          "text": "@transitive_bs @AskDexa"
         }
       },
       "urls": {
@@ -3103,19 +3101,17 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://twitter.com/hubermanlab/status/1731443102857245086\",\"lang\":\"en\",\"id\":\"1731503835233837261\",\"referenced_tweets\":[{\"type\":\"quoted\",\"id\":\"1731443102857245086\"}],\"author_id\":\"327034465\"}",
+        "content": "{\"id\":\"1731503835233837261\",\"referenced_tweets\":[{\"type\":\"quoted\",\"id\":\"1731443102857245086\"}],\"author_id\":\"327034465\",\"lang\":\"en\",\"text\":\"This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://twitter.com/hubermanlab/status/1731443102857245086\"}",
         "name": "transitive_bs"
       },
       {
         "role": "user",
-        "content": "{\"text\":\"@transitive_bs @AskDexa what do you think?\",\"lang\":\"en\",\"in_reply_to_user_id\":\"327034465\",\"id\":\"1761448641028370750\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1731503835233837261\"}],\"author_id\":\"1235525929335689217\"}",
+        "content": "{\"id\":\"1761448641028370750\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1731503835233837261\"}],\"author_id\":\"1235525929335689217\",\"lang\":\"en\",\"in_reply_to_user_id\":\"327034465\",\"text\":\"@transitive_bs @AskDexa what do you think?\"}",
         "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
-        "text": "This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://twitter.com/hubermanlab/status/1731443102857245086",
-        "lang": "en",
         "id": "1731503835233837261",
         "referenced_tweets": [
           {
@@ -3123,12 +3119,11 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1731443102857245086"
           }
         ],
-        "author_id": "327034465"
+        "author_id": "327034465",
+        "lang": "en",
+        "text": "This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://twitter.com/hubermanlab/status/1731443102857245086"
       },
       {
-        "text": "@transitive_bs @AskDexa what do you think?",
-        "lang": "en",
-        "in_reply_to_user_id": "327034465",
         "id": "1761448641028370750",
         "referenced_tweets": [
           {
@@ -3136,7 +3131,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
             "id": "1731503835233837261"
           }
         ],
-        "author_id": "1235525929335689217"
+        "author_id": "1235525929335689217",
+        "lang": "en",
+        "in_reply_to_user_id": "327034465",
+        "text": "@transitive_bs @AskDexa what do you think?"
       }
     ],
     "entityMap": {
@@ -3151,10 +3149,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "twitterPinnedTweetId": "1643017583917174784",
           "twitterLocation": "HF0",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "twitterNumFollowers": 18101,
+          "twitterNumFollowers": 18102,
           "twitterNumFollowing": 702,
           "twitterNumTweets": 7209,
-          "twitterNumLikes": 18101,
+          "twitterNumLikes": 18102,
           "urls": [
             {
               "type": "url",
@@ -3240,10 +3238,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "https://twitter.com/hubermanlab/status/1731443102857245086",
               "shortUrl": "https://t.co/AXRnyy7hlT",
-              "title": "",
-              "description": "",
+              "title": "X",
+              "description": "Don’t miss what’s happening",
               "author": "",
-              "siteName": ""
+              "siteName": "X (formerly Twitter)"
             }
           ]
         },
@@ -3304,47 +3302,44 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://twitter.com/hubermanlab/status/1731443102857245086",
           "shortUrl": "https://t.co/AXRnyy7hlT",
-          "title": "",
-          "description": "",
+          "title": "X",
+          "description": "Don’t miss what’s happening",
           "author": "",
-          "siteName": ""
+          "siteName": "X (formerly Twitter)"
         }
       }
     },
     "rawEntityMap": {
       "users": {
         "327034465": {
-          "username": "transitive_bs",
           "id": "327034465",
-          "location": "HF0",
           "name": "Travis Fischer",
-          "pinned_tweet_id": "1643017583917174784",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕"
+          "location": "HF0",
+          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕",
+          "username": "transitive_bs",
+          "pinned_tweet_id": "1643017583917174784"
         },
         "1235525929335689217": {
-          "username": "LofiGrind",
           "id": "1235525929335689217",
-          "location": "Brooklyn, NY",
           "name": "Lofi Grind",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
-          "description": "Chill ambient beats for when you wanna relax / study / grind."
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
         },
         "4416456732": {
-          "pinned_tweet_id": "1759568894828933159",
+          "id": "4416456732",
+          "name": "Andrew D. Huberman, Ph.D.",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1339713932085346306/jDTi4HKH_normal.jpg",
           "location": "Stanford, CA",
           "description": "Professor of Neurobiology & Ophthalmology at Stanford Medicine • Host of the Huberman Lab podcast • Focused on science & health research & public education",
-          "id": "4416456732",
-          "name": "Andrew D. Huberman, Ph.D.",
-          "username": "hubermanlab"
+          "username": "hubermanlab",
+          "pinned_tweet_id": "1759568894828933159"
         }
       },
       "tweets": {
         "1761448641028370750": {
-          "text": "@transitive_bs @AskDexa what do you think?",
-          "lang": "en",
-          "in_reply_to_user_id": "327034465",
           "id": "1761448641028370750",
           "referenced_tweets": [
             {
@@ -3352,11 +3347,12 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "id": "1731503835233837261"
             }
           ],
-          "author_id": "1235525929335689217"
+          "author_id": "1235525929335689217",
+          "lang": "en",
+          "in_reply_to_user_id": "327034465",
+          "text": "@transitive_bs @AskDexa what do you think?"
         },
         "1731503835233837261": {
-          "text": "This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://twitter.com/hubermanlab/status/1731443102857245086",
-          "lang": "en",
           "id": "1731503835233837261",
           "referenced_tweets": [
             {
@@ -3364,7 +3360,9 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "id": "1731443102857245086"
             }
           ],
-          "author_id": "327034465"
+          "author_id": "327034465",
+          "lang": "en",
+          "text": "This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://twitter.com/hubermanlab/status/1731443102857245086"
         },
         "1731443102857245086": {
           "author_id": "4416456732",
@@ -3405,10 +3403,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://twitter.com/hubermanlab/status/1731443102857245086",
           "shortUrl": "https://t.co/AXRnyy7hlT",
-          "title": "",
-          "description": "",
+          "title": "X",
+          "description": "Don’t miss what’s happening",
           "author": "",
-          "siteName": ""
+          "siteName": "X (formerly Twitter)"
         }
       }
     }
@@ -3437,17 +3435,17 @@ error scraping url http://depue.design Request failed with status code 500 Inter
     "rawChatMessages": [
       {
         "role": "user",
-        "content": "{\"text\":\"@AskDexa what is the best anime?\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"id\":\"1761430343100371122\",\"author_id\":\"1761425899994402816\"}",
+        "content": "{\"id\":\"1761430343100371122\",\"author_id\":\"1761425899994402816\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"text\":\"@AskDexa what is the best anime?\"}",
         "name": "inquisitivecat5"
       }
     ],
     "tweets": [
       {
-        "text": "@AskDexa what is the best anime?",
+        "id": "1761430343100371122",
+        "author_id": "1761425899994402816",
         "lang": "en",
         "in_reply_to_user_id": "1757989045383106560",
-        "id": "1761430343100371122",
-        "author_id": "1761425899994402816"
+        "text": "@AskDexa what is the best anime?"
       }
     ],
     "entityMap": {
@@ -3470,10 +3468,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
               "type": "url",
               "url": "https://dexa.ai",
               "shortUrl": "https://t.co/jz0ipgVGJf",
-              "title": "Dexa — Where Curiosity Meets Credibility",
-              "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+              "title": "",
+              "description": "",
               "author": "",
-              "siteName": "Dexa"
+              "siteName": ""
             }
           ]
         },
@@ -3512,38 +3510,38 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/jz0ipgVGJf",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         }
       }
     },
     "rawEntityMap": {
       "users": {
         "1757989045383106560": {
-          "username": "AskDexa",
           "id": "1757989045383106560",
-          "location": "🤖",
           "name": "Ask Dexa",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
-          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts."
+          "location": "🤖",
+          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts.",
+          "username": "AskDexa"
         },
         "1761425899994402816": {
-          "username": "inquisitivecat5",
           "id": "1761425899994402816",
           "name": "Inquisitive kitten",
           "profile_image_url": "https://pbs.twimg.com/profile_images/1761426314714624000/i6BsLoW-_normal.jpg",
-          "description": "anime 4 life"
+          "description": "anime 4 life",
+          "username": "inquisitivecat5"
         }
       },
       "tweets": {
         "1761430343100371122": {
-          "text": "@AskDexa what is the best anime?",
+          "id": "1761430343100371122",
+          "author_id": "1761425899994402816",
           "lang": "en",
           "in_reply_to_user_id": "1757989045383106560",
-          "id": "1761430343100371122",
-          "author_id": "1761425899994402816"
+          "text": "@AskDexa what is the best anime?"
         }
       },
       "urls": {
@@ -3551,10 +3549,10 @@ error scraping url http://depue.design Request failed with status code 500 Inter
           "type": "url",
           "url": "https://dexa.ai",
           "shortUrl": "https://t.co/jz0ipgVGJf",
-          "title": "Dexa — Where Curiosity Meets Credibility",
-          "description": "Explore the knowledge of trusted experts, that was previously locked in podcasts.",
+          "title": "",
+          "description": "",
           "author": "",
-          "siteName": "Dexa"
+          "siteName": ""
         }
       }
     }

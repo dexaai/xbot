@@ -345,7 +345,7 @@ async function scrapeUrlImpl(url: string) {
   try {
     return await scraperClient.scrapeUrl(url)
   } catch (err: any) {
-    console.warn('error scraping url', url, err.message)
+    console.log('error scraping url', url, err.message)
     return null
   }
 }
