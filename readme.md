@@ -87,6 +87,8 @@ Flags:
 - add test fixtures testing these different use cases
 - fix support for empty mentions
   - currently works but duplicates the previous tweet's contents
+- support `url` entities
+  - expand them with metadata
 - support `media` entities
   - populate media entities
   - openai use gpt-4-vision-preview
@@ -98,6 +100,8 @@ Flags:
   - dexa tool
   - perplexity tool
   - serper tool
+  - tweet search tool
+  - twitter user search tool
 - support URLs and other entity metadata (user profile info) so the answer engine has more context to work off of
 - support use case of answering questions about linked podcast episodes
 - consider re-adding support for generating images to support longer responses w/ the openai answer engine

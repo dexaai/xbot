@@ -1,6 +1,6 @@
 // import { OpenAIClient } from 'openai-fetch'
 import * as db from '../src/db.js'
-import { getTwitterClient } from '../src/twitter-client.js'
+import { getTwitterClient } from '../src/services/twitter-client.js'
 
 // import { findTweetById } from '../src/twitter.js'
 

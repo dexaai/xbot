@@ -6,7 +6,7 @@ import { DexaAnswerEngine } from './answer-engines/dexa-answer-engine.js'
 import { OpenAIAnswerEngine } from './answer-engines/openai-answer-engine.js'
 import './config.js'
 import fixturesData from './fixtures.json'
-import { getTwitterClient } from './twitter-client.js'
+import { getTwitterClient } from './services/twitter-client.js'
 import { rUrl } from './utils.js'
 
 const fixtures = fixturesData as unknown as types.AnswerEngineQuery[]

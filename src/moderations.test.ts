@@ -1,7 +1,7 @@
 import { assert, test } from 'vitest'
 
 import { checkModeration } from './moderations.js'
-import { openaiClient } from './openai-client.js'
+import { openaiClient } from './services/openai-client.js'
 
 // NOTE: the author does NOT condone these messages. They are strictly for testing
 // moderation purposes only.

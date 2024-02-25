@@ -2,10 +2,10 @@ import pMap from 'p-map'
 
 import type * as types from '../src/types.js'
 import { createAnswerEngine } from '../src/create-answer-engine.js'
-import { openaiClient } from '../src/openai-client.js'
 import { parseCLIArgs } from '../src/parse-cli-args.js'
 import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
-import { getTwitterClient } from '../src/twitter-client.js'
+import { openaiClient } from '../src/services/openai-client.js'
+import { getTwitterClient } from '../src/services/twitter-client.js'
 import { assert } from '../src/utils.js'
 
 /**

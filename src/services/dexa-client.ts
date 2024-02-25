@@ -1,7 +1,7 @@
 import defaultKy, { type KyInstance } from 'ky'
 
-import type { EntitiesMap } from './entities.js'
-import type { AnswerEngineMessage } from './types.js'
+import type { EntitiesMap } from '../entities.js'
+import type { AnswerEngineMessage } from '../types.js'
 
 export class DexaClient {
   readonly apiKey: string

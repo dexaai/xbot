@@ -1,5 +1,5 @@
 import { OpenAI } from 'openai'
 
-import './config.js'
+import '../config.js'
 
 export const openaiClient = new OpenAI()

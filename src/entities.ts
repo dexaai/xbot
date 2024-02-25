@@ -10,7 +10,9 @@ export const URLEntitySchema = z.object({
   // Twitter's short url which will be included in the tweet text
   shortUrl: z.string().optional(),
   // Will only exist if this URL references a known media entity
-  mediaId: z.string().optional()
+  mediaId: z.string().optional(),
+  title: z.string().optional(),
+  description: z.string().optional()
 })
 export type URLEntity = z.infer<typeof URLEntitySchema>
 
@@ -56,7 +58,9 @@ export const MediaEntitySchema = z.object({
   type: z.literal('media'),
   id: z.string(),
   url: z.string(),
-  subtype: z.enum(['image', 'video', 'gif', 'audio', 'other']).optional()
+  subtype: z.enum(['image', 'video', 'gif', 'audio', 'other']).optional(),
+  title: z.string().optional(),
+  description: z.string().optional()
 })
 export type MediaEntity = z.infer<typeof MediaEntitySchema>
 

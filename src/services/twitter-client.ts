@@ -1,8 +1,8 @@
 import { Nango } from '@nangohq/node'
 import { Client as TwitterClient, auth } from 'twitter-api-sdk'
 
-import * as config from './config.js'
-import { assert } from './utils.js'
+import * as config from '../config.js'
+import { assert } from '../utils.js'
 
 // The Twitter+Nango client auth connection key
 const nangoTwitterProviderConfigKey = 'twitter-v2'
