@@ -10,7 +10,11 @@ import {
   convertTweetToEntitiesMap,
   mergeEntityMaps
 } from './entities.js'
-import { sanitizeTweetText, stripUserMentions } from './twitter-utils.js'
+import {
+  getPrunedTweet,
+  sanitizeTweetText,
+  stripUserMentions
+} from './twitter-utils.js'
 import { assert } from './utils.js'
 
 export abstract class AnswerEngine {
@@ -234,7 +238,7 @@ export abstract class AnswerEngine {
     }
 
     // Construct a raw array of tweets to pass to the answer engine, which may
-    // be easier to work with than our structured AnswerEngineMessage format
+    // be easier to work with than our AnswerEngineMessage format
     const tweets = (
       await pMap(
         answerEngineMessages,
@@ -247,7 +251,7 @@ export abstract class AnswerEngine {
           })
           if (!tweet) return
 
-          return tweet
+          return getPrunedTweet(tweet)
         },
         {
           concurrency: 8

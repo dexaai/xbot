@@ -142,9 +142,22 @@ export async function convertTweetToEntitiesMap(
   if (tweetEntity.repliedToUserId)
     referencedUserIds.add(tweetEntity.repliedToUserId)
   if (tweetEntity.quotedTweetId)
-    referencedUserIds.add(tweetEntity.quotedTweetId)
+    referencedTweetIds.add(tweetEntity.quotedTweetId)
   if (tweetEntity.retweetedTweetId)
-    referencedUserIds.add(tweetEntity.retweetedTweetId)
+    referencedTweetIds.add(tweetEntity.retweetedTweetId)
+
+  // Attempt to resolve any referenced tweets
+  for (const tweetId of referencedTweetIds) {
+    if (entitiesMap.tweets[tweetId]) continue
+
+    const referencedTweet = await db.tryGetTweetById(tweetId, ctx, {
+      fetchFromTwitter: !!fetchMissingEntities
+    })
+    if (!referencedTweet) continue
+
+    entitiesMap.tweets[referencedTweet.id] =
+      convertTweetToEntity(referencedTweet)
+  }
 
   for (const tweet of Object.values(entitiesMap.tweets)) {
     if (tweet.repliedToUserId) referencedUserIds.add(tweet.repliedToUserId)
@@ -163,19 +176,6 @@ export async function convertTweetToEntitiesMap(
     if (userEntity.twitterPinnedTweetId) {
       referencedTweetIds.add(userEntity.twitterPinnedTweetId)
     }
-  }
-
-  // Attempt to resolve any referenced tweets
-  for (const tweetId of referencedTweetIds) {
-    if (entitiesMap.users[tweetId]) continue
-
-    const referencedTweet = await db.tryGetTweetById(tweetId, ctx, {
-      fetchFromTwitter: !!fetchMissingEntities
-    })
-    if (!referencedTweet) continue
-
-    entitiesMap.tweets[referencedTweet.id] =
-      convertTweetToEntity(referencedTweet)
   }
 
   return entitiesMap
@@ -198,11 +198,20 @@ export function mergeEntityMaps(...entityMaps: EntitiesMap[]): EntitiesMap {
 }
 
 export function convertTweetToEntity(tweet: types.Tweet): TweetEntity {
+  const urls = tweet.entities?.urls?.map(convertTwitterUrlToEntity)
+  let text = tweet.text
+
+  if (text && urls) {
+    for (const url of urls) {
+      text = text!.replaceAll(url.shortUrl!, url.url)
+    }
+  }
+
   return {
     type: 'tweet',
     id: tweet.id,
     authorId: tweet.author_id,
-    text: tweet.text,
+    text,
     lang: tweet.lang,
     repliedToTweetId: tweet.referenced_tweets?.find(
       (t) => t.type === 'replied_to'
@@ -218,7 +227,7 @@ export function convertTweetToEntity(tweet: types.Tweet): TweetEntity {
     numQuoteTweets: tweet.public_metrics?.quote_count,
     numReplies: tweet.public_metrics?.reply_count,
     numImpressions: (tweet.public_metrics as any)?.impression_count,
-    urls: tweet.entities?.urls?.map(convertTwitterUrlToEntity),
+    urls,
     mediaIds: tweet.attachments?.media_keys
   }
 }
@@ -226,12 +235,24 @@ export function convertTweetToEntity(tweet: types.Tweet): TweetEntity {
 export function convertTwitterUserToEntity(
   user: types.TwitterUser
 ): UserEntity {
+  const urls = [
+    ...(user.entities?.url?.urls?.map(convertTwitterUrlToEntity) ?? []),
+    ...(user.entities?.description?.urls?.map(convertTwitterUrlToEntity) ?? [])
+  ].filter(Boolean)
+
+  let twitterBio = user.description
+  if (twitterBio) {
+    for (const url of urls) {
+      twitterBio = twitterBio!.replaceAll(url.shortUrl!, url.url)
+    }
+  }
+
   return {
     type: 'user',
     name: user.name,
     twitterId: user.id,
     twitterUsername: user.username,
-    twitterBio: user.description,
+    twitterBio,
     twitterUrl: user.entities?.url?.urls?.[0]?.expanded_url ?? user.url,
     twitterPinnedTweetId: user.pinned_tweet_id,
     twitterLocation: user.location,
@@ -240,11 +261,7 @@ export function convertTwitterUserToEntity(
     twitterNumFollowing: user.public_metrics?.following_count,
     twitterNumTweets: user.public_metrics?.tweet_count,
     twitterNumLikes: user.public_metrics?.followers_count,
-    urls: [
-      ...(user.entities?.url?.urls?.map(convertTwitterUrlToEntity) ?? []),
-      ...(user.entities?.description?.urls?.map(convertTwitterUrlToEntity) ??
-        [])
-    ].filter(Boolean)
+    urls
   }
 }
 

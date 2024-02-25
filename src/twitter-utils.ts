@@ -1,4 +1,6 @@
+import type * as types from './types.js'
 import { BotError } from './bot-error.js'
+import { omit } from './utils.js'
 
 export * from 'twitter-utils'
 
@@ -83,4 +85,60 @@ export function handleKnownTwitterErrors(
 
   // Otherwise, propagate the original error
   throw err
+}
+
+export function getPrunedTweet(
+  tweet: Partial<types.Tweet>
+): Partial<types.Tweet> {
+  const urls = tweet.entities?.urls
+  let text = tweet.text
+  if (text && urls) {
+    for (const url of urls) {
+      if (!url.expanded_url || !url.url) continue
+      text = text!.replaceAll(url.url, url.expanded_url!)
+    }
+  }
+
+  return {
+    ...omit(
+      tweet,
+      'conversation_id',
+      'public_metrics',
+      'priorityScore' as any,
+      'numFollowers',
+      'isReply',
+      'prompt',
+      'promptUrl',
+      'created_at',
+      'entities',
+      'possibly_sensitive'
+    ),
+    text
+  }
+}
+
+export function getPrunedTwitterUser(
+  twitterUser: Partial<types.TwitterUser>
+): Partial<types.TwitterUser> {
+  const urls = twitterUser.entities?.description?.urls
+  let description = twitterUser.description
+  if (description && urls) {
+    for (const url of urls) {
+      if (!url.expanded_url || !url.url) continue
+      description = description!.replaceAll(url.url, url.expanded_url!)
+    }
+  }
+
+  return {
+    ...omit(
+      twitterUser,
+      'public_metrics',
+      'created_at',
+      'verified',
+      'protected',
+      'url',
+      'entities'
+    ),
+    description
+  }
 }

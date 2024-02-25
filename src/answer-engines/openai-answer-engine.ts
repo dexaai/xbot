@@ -4,6 +4,7 @@ import { stripUserMentions } from 'twitter-utils'
 import * as db from '../db.js'
 import type * as types from '../types.js'
 import { AnswerEngine } from '../answer-engine.js'
+import { getPrunedTweet, getPrunedTwitterUser } from '../twitter-utils.js'
 import { assert, getCurrentDate } from '../utils.js'
 
 export class OpenAIAnswerEngine extends AnswerEngine {
@@ -50,7 +51,7 @@ export class OpenAIAnswerEngine extends AnswerEngine {
         assert(user.twitterId)
         const twitterUser = await db.tryGetUserById(user.twitterId)
         if (!twitterUser) continue
-        rawEntityMap.users[user.twitterId] = twitterUser
+        rawEntityMap.users[user.twitterId] = getPrunedTwitterUser(twitterUser)
       }
     }
 
@@ -59,7 +60,7 @@ export class OpenAIAnswerEngine extends AnswerEngine {
         assert(tweet.id)
         const twittertweet = await db.tryGetTweetById(tweet.id, ctx)
         if (!twittertweet) continue
-        rawEntityMap.tweets[tweet.id] = twittertweet
+        rawEntityMap.tweets[tweet.id] = getPrunedTweet(twittertweet)
       }
     }
 
@@ -87,17 +88,17 @@ ${stringifyForModel(rawEntityMap)}
 \`\`\`
 `),
 
-      ...query.tweets.map((tweet) =>
-        tweet.author_id === ctx.twitterBotUserId
-          ? Msg.assistant(stringifyForModel(tweet), {
-              name: userIdToUsernameMap[tweet.author_id!]
-            })
-          : Msg.user(stringifyForModel(tweet), {
-              name: userIdToUsernameMap[tweet.author_id!]
-            })
-      )
+      // ...query.tweets.map((tweet) =>
+      //   tweet.author_id === ctx.twitterBotUserId
+      //     ? Msg.assistant(stringifyForModel(getPrunedTweet(tweet)), {
+      //         name: userIdToUsernameMap[tweet.author_id!]
+      //       })
+      //     : Msg.user(stringifyForModel(getPrunedTweet(tweet)), {
+      //         name: userIdToUsernameMap[tweet.author_id!]
+      //       })
+      // )
 
-      // ...query.answerEngineMessages.map(({ entities, ...msg }) => msg)
+      ...query.answerEngineMessages.map(({ entities, ...msg }) => msg)
     ]
 
     const res = await this._chatModel.run({
@@ -105,17 +106,17 @@ ${stringifyForModel(rawEntityMap)}
       max_tokens: 80
     })
 
-    const response = stripUserMentions(res.message.content!).replaceAll(
-      /^\s*-\s+/gm,
-      '• '
-    )
+    const response = stripUserMentions(res.message.content!)
+      // replace markdown lists with unicode bullet points
+      .replaceAll(/^\s*-\s+/gm, '• ')
+      // remove hashtags
+      .replace(/#\w+/g, '')
+      .trim()
 
-    // TODO: replace markdown lists with twitter bullet points
-
-    // console.log('openai', {
-    //   messages,
-    //   response
-    // })
+    console.log('openai', {
+      messages,
+      response
+    })
 
     return response
   }
