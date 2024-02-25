@@ -19,6 +19,7 @@ exports[`mergeEntityMaps 1`] = `
       "type": "tweet",
     },
   },
+  "urls": {},
   "users": {
     "1235525929335689217": {
       "name": "Lofi Grind",
@@ -67,6 +68,7 @@ exports[`mergeEntityMaps 2`] = `
     "1760384146004996333": {},
     "test": {},
   },
+  "urls": {},
   "users": {
     "1235525929335689217": {},
     "327034465": {},

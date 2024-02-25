@@ -5,7 +5,7 @@ import type { AsyncReturnType, SetOptional, Simplify } from 'type-fest'
 
 import type { AnswerEngine } from './answer-engine.js'
 import type { BotErrorType } from './bot-error.js'
-import type { Entities, EntityMap, URLEntity } from './entities.js'
+import type { EntityMap, URLEntity } from './entities.js'
 
 export type { TwitterClient }
 
