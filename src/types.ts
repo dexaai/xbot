@@ -187,3 +187,8 @@ export type AnswerEngineQuery = {
   tweets: Partial<Tweet>[]
   entityMap?: EntitiesMap
 }
+
+export type AnswerEngineContext = Pick<
+  Context,
+  'twitterClient' | 'twitterBotUserId' | 'twitterBotHandle' | 'answerEngine'
+>

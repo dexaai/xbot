@@ -11,9 +11,9 @@ export class DexaAnswerEngine extends AnswerEngine {
     this._dexaClient = new DexaClient()
   }
 
-  protected override async _generateMessageResponse(
+  protected override async _generateResponseForQuery(
     query: types.AnswerEngineQuery,
-    ctx: types.Context
+    ctx: types.AnswerEngineContext
   ): Promise<string> {
     return this._dexaClient.generateResponse({
       messages: query.answerEngineMessages,

@@ -16,7 +16,13 @@ export default defineConfig({
     // Ignore tests which rely on environment variables during CI
     // (these tests are still really useful to run locally)
     exclude: defaultExclude.concat(
-      isCI ? ['src/moderations.test.ts', 'src/entities.test.ts'] : []
+      isCI
+        ? [
+            'src/answer-engine.test.ts',
+            'src/moderations.test.ts',
+            'src/entities.test.ts'
+          ]
+        : []
     )
   }
 })

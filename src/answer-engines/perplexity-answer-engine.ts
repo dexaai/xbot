@@ -32,9 +32,9 @@ export class PerplexityAnswerEngine extends AnswerEngine {
     this._chatModel = chatModel
   }
 
-  protected override async _generateMessageResponse(
+  protected override async _generateResponseForQuery(
     query: types.AnswerEngineQuery,
-    ctx: types.Context
+    ctx: types.AnswerEngineContext
   ): Promise<string> {
     const currentDate = getCurrentDate()
 
@@ -54,7 +54,7 @@ Current date: ${currentDate}.`
         ),
         ...query.answerEngineMessages.map(({ entities, ...msg }) => msg)
       ],
-      max_tokens: 50
+      max_tokens: 60
       // model: query.answerEngineMessages.length > 1
       //   ? 'pplx-70b-chat'
       //   : 'pplx-70b-online'

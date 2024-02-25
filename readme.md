@@ -84,6 +84,7 @@ Flags:
 - understand why mentions from non-verified accounts aren't being reported by the twitter api
 - support quote tweet and retweet context
 - support user entity context
+- add test fixtures testing these different use cases
 - fix support for empty mentions
   - currently works but duplicates the previous tweet's contents
 - populate `media` entities

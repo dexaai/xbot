@@ -91,7 +91,7 @@ async function main() {
   )
 
   console.log()
-  console.log(JSON.stringify(answerEngineQueries, null, 2))
+  console.warn(JSON.stringify(answerEngineQueries, null, 2))
 }
 
 main()
