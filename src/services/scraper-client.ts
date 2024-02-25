@@ -21,6 +21,14 @@ export type ScrapeResult = {
   title: string
 }
 
+/**
+ * This is a single endpoint API for scraping websites. It returns the HTML,
+ * markdown, and plaintext for main body content of the page, as well as
+ * metadata like title and description.
+ *
+ * It tries the simplest and fastest methods first, and falls back to slower
+ * proxies and JavaScript rendering if needed.
+ */
 export class ScraperClient {
   readonly apiBaseUrl: string
   readonly ky: KyInstance
