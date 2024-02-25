@@ -61,8 +61,6 @@ ${stringifyForModel(query.rawEntityMap)}
     })
 
     const response = stripUserMentions(res.message.content!)
-      // replace markdown lists with unicode bullet points
-      .replaceAll(/^\s*-\s+/gm, '• ')
       // remove hashtags
       .replace(/#\w+/g, '')
       .trim()
