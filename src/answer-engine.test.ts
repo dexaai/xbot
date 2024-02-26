@@ -10,8 +10,8 @@ import { getTwitterClient } from './services/twitter-client.js'
 import { rUrl } from './utils.js'
 
 const fixtures = fixturesData as unknown as types.AnswerEngineQuery[]
-// const answerEngines = [new OpenAIAnswerEngine(), new DexaAnswerEngine()]
-const answerEngines = [new OpenAIAnswerEngine()]
+const answerEngines = [new OpenAIAnswerEngine(), new DexaAnswerEngine()]
+// const answerEngines = [new OpenAIAnswerEngine()]
 
 for (const answerEngine of answerEngines) {
   describe(`${answerEngine.type} answer engine`, async () => {
@@ -40,7 +40,10 @@ for (const answerEngine of answerEngines) {
             ctx
           )
 
-          console.log(`${answerEngine.type} tweet ${tweetUrl} ⇒`, response)
+          console.log(
+            `\n**QUESTION** ${tweetUrl}\n\n**ANSWER**\n\n${response}\n\n`
+          )
+
           assert(response.length > 0, 'response should not be empty')
           assert(response.trim() === response, 'response should be trimmed')
 

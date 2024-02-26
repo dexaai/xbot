@@ -65,8 +65,9 @@ export async function getTweetMentionsBatch(
         batch.mentions,
         async (mention) => {
           const message = await db.messages.get(mention.id)
+          // console.log('mention', { mention, message })
 
-          if (message && (!message.error || message.isErrorFinal)) {
+          if (message && (message.response || message.isErrorFinal)) {
             const isDebugTweet =
               !ctx.debugAnswerEngine && ctx.debugTweetIds?.includes(mention.id)
 
@@ -423,8 +424,8 @@ export async function isValidMention(
   if (
     numMentions > 0 &&
     (usernames[usernames.length - 1] === ctx.twitterBotHandleL ||
-      (numMentions === 1 && !isReply) ||
-      (isReply && repliedToTweet?.author_id === ctx.twitterBotUserId))
+      (numMentions === 1 && !isReply))
+    // (isReply && repliedToTweet?.author_id === ctx.twitterBotUserId)
   ) {
     if (
       isReply &&

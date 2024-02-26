@@ -10,191 +10,100 @@
       "promptUsername": "transitive_bs",
       "prompt": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way…",
       "promptUrl": "https://twitter.com/transitive_bs/status/1761416294530715895",
-      "priorityScore": 9968.227571428572,
-      "numFollowers": 18049,
+      "priorityScore": 9968.280571428571,
+      "numFollowers": 18102,
       "isReply": true,
       "response": "Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung",
       "responseTweetId": "1761417705503047799",
       "responseUrl": "https://twitter.com/AskDexa/status/1761417705503047799"
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://t.co/oxXQPiqYo2",
-        "name": "ShaneAParrish",
-        "entities": {
-          "tweetIds": [
-            "1761390820630945880"
-          ]
-        }
+        "name": "ShaneAParrish"
       },
       {
         "role": "user",
         "content": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way…",
-        "name": "transitive_bs",
-        "entities": {
-          "tweetIds": [
-            "1761416294530715895"
-          ]
-        }
+        "name": "transitive_bs"
       },
       {
         "role": "assistant",
-        "content": "Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung",
-        "entities": {
-          "tweetIds": [
-            "1761417705503047799"
-          ]
-        }
+        "content": "Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung"
       },
       {
         "role": "user",
         "content": "What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?",
-        "name": "transitive_bs",
-        "entities": {
-          "tweetIds": [
-            "1761422864870183341"
-          ]
-        }
+        "name": "transitive_bs"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1761390820630945880\",\"author_id\":\"33104659\",\"lang\":\"en\",\"text\":\"“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880\"}",
+        "name": "ShaneAParrish"
+      },
+      {
+        "role": "user",
+        "content": "{\"id\":\"1761416294530715895\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1761390820630945880\"}],\"author_id\":\"327034465\",\"lang\":\"qam\",\"in_reply_to_user_id\":\"33104659\",\"text\":\"@ShaneAParrish @AskDexa\"}",
+        "name": "transitive_bs"
+      },
+      {
+        "role": "assistant",
+        "content": "{\"id\":\"1761417705503047799\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1761416294530715895\"}],\"author_id\":\"1757989045383106560\",\"lang\":\"en\",\"in_reply_to_user_id\":\"327034465\",\"text\":\"@transitive_bs @ShaneAParrish Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung\"}"
+      },
+      {
+        "role": "user",
+        "content": "{\"id\":\"1761422864870183341\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1761417705503047799\"}],\"author_id\":\"327034465\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"text\":\"@AskDexa @ShaneAParrish What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?\"}",
+        "name": "transitive_bs"
       }
     ],
     "tweets": [
       {
-        "entities": {
-          "urls": [
-            {
-              "start": 280,
-              "end": 303,
-              "url": "https://t.co/oxXQPiqYo2",
-              "expanded_url": "https://twitter.com/i/web/status/1761390820630945880",
-              "display_url": "twitter.com/i/web/status/1…"
-            }
-          ]
-        },
-        "public_metrics": {
-          "retweet_count": 60,
-          "reply_count": 21,
-          "like_count": 384,
-          "quote_count": 5,
-          "bookmark_count": 178,
-          "impression_count": 48096
-        },
-        "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://t.co/oxXQPiqYo2",
-        "possibly_sensitive": false,
-        "author_id": "33104659",
-        "created_at": "2024-02-24T14:01:11.000Z",
         "id": "1761390820630945880",
+        "author_id": "33104659",
         "lang": "en",
-        "conversation_id": "1761390820630945880"
+        "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880"
       },
       {
-        "in_reply_to_user_id": "33104659",
+        "id": "1761416294530715895",
         "referenced_tweets": [
           {
             "type": "replied_to",
             "id": "1761390820630945880"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 1,
-          "like_count": 1,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 154
-        },
-        "text": "@ShaneAParrish @AskDexa",
-        "possibly_sensitive": false,
         "author_id": "327034465",
-        "created_at": "2024-02-24T15:42:24.000Z",
-        "id": "1761416294530715895",
         "lang": "qam",
-        "conversation_id": "1761390820630945880",
-        "prompt": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way…",
-        "isReply": true,
-        "promptUrl": "https://twitter.com/transitive_bs/status/1761416294530715895",
-        "numFollowers": 18049,
-        "priorityScore": 9968.227571428572
+        "in_reply_to_user_id": "33104659",
+        "text": "@ShaneAParrish @AskDexa"
       },
       {
-        "entities": {
-          "urls": [
-            {
-              "start": 279,
-              "end": 302,
-              "url": "https://t.co/ZyOIUUIhPc",
-              "expanded_url": "https://dexa.ai/s/15thGung",
-              "display_url": "dexa.ai/s/15thGung",
-              "images": [
-                {
-                  "url": "https://pbs.twimg.com/news_img/1761417717972697088/p6HNRPha?format=png&name=orig",
-                  "width": 1200,
-                  "height": 630
-                },
-                {
-                  "url": "https://pbs.twimg.com/news_img/1761417717972697088/p6HNRPha?format=png&name=150x150",
-                  "width": 150,
-                  "height": 150
-                }
-              ],
-              "status": 200,
-              "title": "Ask Dexa",
-              "description": "Steve Jobs' philosophy on focus is extensively discussed across various podcast episodes. One of his most famous quotes, \"focus means saying no to truly phenome",
-              "unwound_url": "https://dexa.ai/s/15thGung"
-            }
-          ]
-        },
-        "in_reply_to_user_id": "327034465",
+        "id": "1761417705503047799",
         "referenced_tweets": [
           {
             "type": "replied_to",
             "id": "1761416294530715895"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 1,
-          "like_count": 1,
-          "quote_count": 0,
-          "bookmark_count": 1,
-          "impression_count": 129
-        },
-        "text": "@transitive_bs @ShaneAParrish Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://t.co/ZyOIUUIhPc",
-        "possibly_sensitive": false,
         "author_id": "1757989045383106560",
-        "created_at": "2024-02-24T15:48:01.000Z",
-        "id": "1761417705503047799",
         "lang": "en",
-        "conversation_id": "1761390820630945880"
+        "in_reply_to_user_id": "327034465",
+        "text": "@transitive_bs @ShaneAParrish Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung"
       },
       {
-        "in_reply_to_user_id": "1757989045383106560",
+        "id": "1761422864870183341",
         "referenced_tweets": [
           {
             "type": "replied_to",
             "id": "1761417705503047799"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 1,
-          "like_count": 0,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 31
-        },
-        "text": "@AskDexa @ShaneAParrish What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?",
-        "possibly_sensitive": false,
         "author_id": "327034465",
-        "created_at": "2024-02-24T16:08:31.000Z",
-        "id": "1761422864870183341",
         "lang": "en",
-        "conversation_id": "1761390820630945880",
-        "prompt": "What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?",
-        "isReply": true,
-        "promptUrl": "https://twitter.com/transitive_bs/status/1761422864870183341",
-        "numFollowers": 18049,
-        "priorityScore": 10014.858523809524
+        "in_reply_to_user_id": "1757989045383106560",
+        "text": "@AskDexa @ShaneAParrish What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?"
       }
     ],
     "entityMap": {
@@ -204,24 +113,32 @@
           "name": "Shane Parrish",
           "twitterId": "33104659",
           "twitterUsername": "ShaneAParrish",
-          "twitterBio": "Sharing insights you can use in daily life & work. Author of Clear Thinking (https://t.co/qF3MFcmmS4).",
+          "twitterBio": "Sharing insights you can use in daily life & work. Author of Clear Thinking (http://fs.blog/clear/).",
           "twitterUrl": "https://fs.blog/newsletter",
           "twitterLocation": "Join 600,000+ Subscribers →",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1641264347916763137/_xdzak-e_normal.jpg",
-          "twitterNumFollowers": 508189,
+          "twitterNumFollowers": 508273,
           "twitterNumFollowing": 3,
           "twitterNumTweets": 4035,
-          "twitterNumLikes": 508189,
+          "twitterNumLikes": 508273,
           "urls": [
             {
               "type": "url",
               "url": "https://fs.blog/newsletter",
-              "shortUrl": "https://t.co/cn7tQz5016"
+              "shortUrl": "https://t.co/cn7tQz5016",
+              "title": "Brain Food Newsletter",
+              "description": "The Brain Food Newsletter is one of the most popular in the world. Every Sunday, the latest issue is sent to over 600,000. Each one contains insights you can apply to daily life and work.",
+              "author": "",
+              "siteName": "Farnam Street"
             },
             {
               "type": "url",
               "url": "http://fs.blog/clear/",
-              "shortUrl": "https://t.co/qF3MFcmmS4"
+              "shortUrl": "https://t.co/qF3MFcmmS4",
+              "title": "Clear Thinking: Turning Ordinary Moments into Extraordinary Results",
+              "description": "Clear Thinking Turning Ordinary Moments into Extraordinary Results the instant worldwide bestseller Step 1: Get Your Copy of Clear Thinking … Step 2: Claim Your Free Bonuses … Order a copy of the New York Times bestseller Clear Thinking from your favorite bookseller and forward your purchase receipt to get the following bonuses. About the …",
+              "author": "",
+              "siteName": "Farnam Street"
             }
           ]
         },
@@ -235,15 +152,19 @@
           "twitterPinnedTweetId": "1643017583917174784",
           "twitterLocation": "HF0",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "twitterNumFollowers": 18049,
+          "twitterNumFollowers": 18102,
           "twitterNumFollowing": 702,
           "twitterNumTweets": 7209,
-          "twitterNumLikes": 18049,
+          "twitterNumLikes": 18102,
           "urls": [
             {
               "type": "url",
               "url": "https://transitivebullsh.it",
-              "shortUrl": "https://t.co/U7qFLMXw8R"
+              "shortUrl": "https://t.co/U7qFLMXw8R",
+              "title": "TransitiveBullsh.it",
+              "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+              "author": "",
+              "siteName": "Transitive Bullshit"
             }
           ]
         },
@@ -258,37 +179,22 @@
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
           "twitterNumFollowers": 30,
           "twitterNumFollowing": 1,
-          "twitterNumTweets": 20,
+          "twitterNumTweets": 22,
           "twitterNumLikes": 30,
           "urls": [
             {
               "type": "url",
               "url": "https://dexa.ai",
-              "shortUrl": "https://t.co/jz0ipgVGJf"
+              "shortUrl": "https://t.co/jz0ipgVGJf",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         }
       },
       "tweets": {
-        "1761390820630945880": {
-          "type": "tweet",
-          "id": "1761390820630945880",
-          "authorId": "33104659",
-          "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://t.co/oxXQPiqYo2",
-          "lang": "en",
-          "numLikes": 384,
-          "numRetweets": 60,
-          "numQuoteTweets": 5,
-          "numReplies": 21,
-          "numImpressions": 48096,
-          "urls": [
-            {
-              "type": "url",
-              "url": "https://twitter.com/i/web/status/1761390820630945880",
-              "shortUrl": "https://t.co/oxXQPiqYo2"
-            }
-          ]
-        },
         "1761416294530715895": {
           "type": "tweet",
           "id": "1761416294530715895",
@@ -301,49 +207,28 @@
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 1,
-          "numImpressions": 154
+          "numImpressions": 176
         },
-        "1643017583917174784": {
+        "1761390820630945880": {
           "type": "tweet",
-          "id": "1643017583917174784",
-          "authorId": "327034465",
-          "text": "A practical guide on how to use LLMs effectively: https://t.co/ysv4ZnbDAU",
+          "id": "1761390820630945880",
+          "authorId": "33104659",
+          "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880",
           "lang": "en",
-          "numLikes": 732,
-          "numRetweets": 130,
-          "numQuoteTweets": 23,
-          "numReplies": 32,
-          "numImpressions": 306482,
+          "numLikes": 412,
+          "numRetweets": 64,
+          "numQuoteTweets": 5,
+          "numReplies": 21,
+          "numImpressions": 51480,
           "urls": [
             {
               "type": "url",
-              "url": "https://twitter.com/transitive_bs/status/1643017583917174784/photo/1",
-              "shortUrl": "https://t.co/ysv4ZnbDAU",
-              "mediaId": "3_1643017577881546753"
-            }
-          ],
-          "mediaIds": [
-            "3_1643017577881546753"
-          ]
-        },
-        "1761417705503047799": {
-          "type": "tweet",
-          "id": "1761417705503047799",
-          "authorId": "1757989045383106560",
-          "text": "@transitive_bs @ShaneAParrish Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://t.co/ZyOIUUIhPc",
-          "lang": "en",
-          "repliedToTweetId": "1761416294530715895",
-          "repliedToUserId": "327034465",
-          "numLikes": 1,
-          "numRetweets": 0,
-          "numQuoteTweets": 0,
-          "numReplies": 1,
-          "numImpressions": 129,
-          "urls": [
-            {
-              "type": "url",
-              "url": "https://dexa.ai/s/15thGung",
-              "shortUrl": "https://t.co/ZyOIUUIhPc"
+              "url": "https://twitter.com/i/web/status/1761390820630945880",
+              "shortUrl": "https://t.co/oxXQPiqYo2",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         },
@@ -359,10 +244,223 @@
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 1,
-          "numImpressions": 31
+          "numImpressions": 37
+        },
+        "1761417705503047799": {
+          "type": "tweet",
+          "id": "1761417705503047799",
+          "authorId": "1757989045383106560",
+          "text": "@transitive_bs @ShaneAParrish Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung",
+          "lang": "en",
+          "repliedToTweetId": "1761416294530715895",
+          "repliedToUserId": "327034465",
+          "numLikes": 1,
+          "numRetweets": 0,
+          "numQuoteTweets": 0,
+          "numReplies": 1,
+          "numImpressions": 149,
+          "urls": [
+            {
+              "type": "url",
+              "url": "https://dexa.ai/s/15thGung",
+              "shortUrl": "https://t.co/ZyOIUUIhPc",
+              "title": "Ask Dexa",
+              "description": "Steve Jobs’ philosophy on focus is extensively discussed across various podcast episodes. One of his most famous quotes, “focus means saying no to truly phenome",
+              "author": "",
+              "siteName": "Dexa"
+            }
+          ]
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "https://fs.blog/newsletter": {
+          "type": "url",
+          "url": "https://fs.blog/newsletter",
+          "shortUrl": "https://t.co/cn7tQz5016",
+          "title": "Brain Food Newsletter",
+          "description": "The Brain Food Newsletter is one of the most popular in the world. Every Sunday, the latest issue is sent to over 600,000. Each one contains insights you can apply to daily life and work.",
+          "author": "",
+          "siteName": "Farnam Street"
+        },
+        "http://fs.blog/clear/": {
+          "type": "url",
+          "url": "http://fs.blog/clear/",
+          "shortUrl": "https://t.co/qF3MFcmmS4",
+          "title": "Clear Thinking: Turning Ordinary Moments into Extraordinary Results",
+          "description": "Clear Thinking Turning Ordinary Moments into Extraordinary Results the instant worldwide bestseller Step 1: Get Your Copy of Clear Thinking … Step 2: Claim Your Free Bonuses … Order a copy of the New York Times bestseller Clear Thinking from your favorite bookseller and forward your purchase receipt to get the following bonuses. About the …",
+          "author": "",
+          "siteName": "Farnam Street"
+        },
+        "https://transitivebullsh.it": {
+          "type": "url",
+          "url": "https://transitivebullsh.it",
+          "shortUrl": "https://t.co/U7qFLMXw8R",
+          "title": "TransitiveBullsh.it",
+          "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+          "author": "",
+          "siteName": "Transitive Bullshit"
+        },
+        "https://twitter.com/i/web/status/1761390820630945880": {
+          "type": "url",
+          "url": "https://twitter.com/i/web/status/1761390820630945880",
+          "shortUrl": "https://t.co/oxXQPiqYo2",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://dexa.ai/s/15thGung": {
+          "type": "url",
+          "url": "https://dexa.ai/s/15thGung",
+          "shortUrl": "https://t.co/ZyOIUUIhPc",
+          "title": "Ask Dexa",
+          "description": "Steve Jobs’ philosophy on focus is extensively discussed across various podcast episodes. One of his most famous quotes, “focus means saying no to truly phenome",
+          "author": "",
+          "siteName": "Dexa"
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "33104659": {
+          "id": "33104659",
+          "name": "Shane Parrish",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1641264347916763137/_xdzak-e_normal.jpg",
+          "location": "Join 600,000+ Subscribers →",
+          "description": "Sharing insights you can use in daily life & work. Author of Clear Thinking (http://fs.blog/clear/).",
+          "username": "ShaneAParrish"
+        },
+        "327034465": {
+          "id": "327034465",
+          "name": "Travis Fischer",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
+          "location": "HF0",
+          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕",
+          "username": "transitive_bs",
+          "pinned_tweet_id": "1643017583917174784"
+        },
+        "1757989045383106560": {
+          "id": "1757989045383106560",
+          "name": "Ask Dexa",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
+          "location": "🤖",
+          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts.",
+          "username": "AskDexa"
+        }
+      },
+      "tweets": {
+        "1761416294530715895": {
+          "id": "1761416294530715895",
+          "referenced_tweets": [
+            {
+              "type": "replied_to",
+              "id": "1761390820630945880"
+            }
+          ],
+          "author_id": "327034465",
+          "lang": "qam",
+          "in_reply_to_user_id": "33104659",
+          "text": "@ShaneAParrish @AskDexa"
+        },
+        "1761390820630945880": {
+          "id": "1761390820630945880",
+          "author_id": "33104659",
+          "lang": "en",
+          "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880"
+        },
+        "1761422864870183341": {
+          "id": "1761422864870183341",
+          "referenced_tweets": [
+            {
+              "type": "replied_to",
+              "id": "1761417705503047799"
+            }
+          ],
+          "author_id": "327034465",
+          "lang": "en",
+          "in_reply_to_user_id": "1757989045383106560",
+          "text": "@AskDexa @ShaneAParrish What are some practical tips for maintaining this level of focus for aspiring entrepreneurs?"
+        },
+        "1761417705503047799": {
+          "id": "1761417705503047799",
+          "referenced_tweets": [
+            {
+              "type": "replied_to",
+              "id": "1761416294530715895"
+            }
+          ],
+          "author_id": "1757989045383106560",
+          "lang": "en",
+          "in_reply_to_user_id": "327034465",
+          "text": "@transitive_bs @ShaneAParrish Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung"
+        }
+      },
+      "urls": {
+        "https://fs.blog/newsletter": {
+          "type": "url",
+          "url": "https://fs.blog/newsletter",
+          "shortUrl": "https://t.co/cn7tQz5016",
+          "title": "Brain Food Newsletter",
+          "description": "The Brain Food Newsletter is one of the most popular in the world. Every Sunday, the latest issue is sent to over 600,000. Each one contains insights you can apply to daily life and work.",
+          "author": "",
+          "siteName": "Farnam Street"
+        },
+        "http://fs.blog/clear/": {
+          "type": "url",
+          "url": "http://fs.blog/clear/",
+          "shortUrl": "https://t.co/qF3MFcmmS4",
+          "title": "Clear Thinking: Turning Ordinary Moments into Extraordinary Results",
+          "description": "Clear Thinking Turning Ordinary Moments into Extraordinary Results the instant worldwide bestseller Step 1: Get Your Copy of Clear Thinking … Step 2: Claim Your Free Bonuses … Order a copy of the New York Times bestseller Clear Thinking from your favorite bookseller and forward your purchase receipt to get the following bonuses. About the …",
+          "author": "",
+          "siteName": "Farnam Street"
+        },
+        "https://transitivebullsh.it": {
+          "type": "url",
+          "url": "https://transitivebullsh.it",
+          "shortUrl": "https://t.co/U7qFLMXw8R",
+          "title": "TransitiveBullsh.it",
+          "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+          "author": "",
+          "siteName": "Transitive Bullshit"
+        },
+        "https://twitter.com/i/web/status/1761390820630945880": {
+          "type": "url",
+          "url": "https://twitter.com/i/web/status/1761390820630945880",
+          "shortUrl": "https://t.co/oxXQPiqYo2",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://dexa.ai/s/15thGung": {
+          "type": "url",
+          "url": "https://dexa.ai/s/15thGung",
+          "shortUrl": "https://t.co/ZyOIUUIhPc",
+          "title": "Ask Dexa",
+          "description": "Steve Jobs’ philosophy on focus is extensively discussed across various podcast episodes. One of his most famous quotes, “focus means saying no to truly phenome",
+          "author": "",
+          "siteName": "Dexa"
+        }
+      }
     }
   },
   {
@@ -376,44 +474,30 @@
       "promptUsername": "rileytomasek",
       "prompt": "This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?",
       "promptUrl": "https://twitter.com/rileytomasek/status/1760113294054990123",
-      "priorityScore": 10003.094857142856,
-      "numFollowers": 2702,
+      "priorityScore": 10003.093857142856,
+      "numFollowers": 2701,
       "isReply": false
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?",
-        "name": "rileytomasek",
-        "entities": {
-          "tweetIds": [
-            "1760113294054990123"
-          ]
-        }
+        "name": "rileytomasek"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1760113294054990123\",\"author_id\":\"2349038684\",\"lang\":\"en\",\"text\":\"This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?\"}",
+        "name": "rileytomasek"
       }
     ],
     "tweets": [
       {
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 1,
-          "like_count": 5,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 400
-        },
-        "text": "This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?",
-        "possibly_sensitive": false,
-        "author_id": "2349038684",
-        "created_at": "2024-02-21T01:24:45.000Z",
         "id": "1760113294054990123",
+        "author_id": "2349038684",
         "lang": "en",
-        "conversation_id": "1760113294054990123",
-        "prompt": "This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?",
-        "isReply": false,
-        "promptUrl": "https://twitter.com/rileytomasek/status/1760113294054990123",
-        "numFollowers": 2702,
-        "priorityScore": 10003.094857142856
+        "text": "This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?"
       }
     ],
     "entityMap": {
@@ -428,15 +512,19 @@
           "twitterPinnedTweetId": "1754637686701244628",
           "twitterLocation": "New York",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1580292707917987840/5wxoPaLd_normal.jpg",
-          "twitterNumFollowers": 2702,
+          "twitterNumFollowers": 2701,
           "twitterNumFollowing": 241,
-          "twitterNumTweets": 568,
-          "twitterNumLikes": 2702,
+          "twitterNumTweets": 570,
+          "twitterNumLikes": 2701,
           "urls": [
             {
               "type": "url",
               "url": "https://dexa.ai",
-              "shortUrl": "https://t.co/mJNxmz0Phd"
+              "shortUrl": "https://t.co/mJNxmz0Phd",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         }
@@ -452,30 +540,53 @@
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 1,
-          "numImpressions": 400
-        },
-        "1754637686701244628": {
-          "type": "tweet",
-          "id": "1754637686701244628",
-          "authorId": "2349038684",
-          "text": "It's been an amazing journey from my Huberman AI prototype last year to a startup partnering with @hubermanlab, @foundmyfitness, @JordanHarbinger, and many others. https://t.co/UEMMPrzHOB",
-          "lang": "en",
-          "quotedTweetId": "1754634865373217229",
-          "numLikes": 13,
-          "numRetweets": 3,
-          "numQuoteTweets": 0,
-          "numReplies": 1,
-          "numImpressions": 1849,
-          "urls": [
-            {
-              "type": "url",
-              "url": "https://twitter.com/dexa_ai/status/1754634865373217229",
-              "shortUrl": "https://t.co/UEMMPrzHOB"
-            }
-          ]
+          "numImpressions": 407
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/mJNxmz0Phd",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "2349038684": {
+          "id": "2349038684",
+          "name": "Riley Tomasek",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1580292707917987840/5wxoPaLd_normal.jpg",
+          "location": "New York",
+          "description": "Founder of @dexa_ai",
+          "username": "rileytomasek",
+          "pinned_tweet_id": "1754637686701244628"
+        }
+      },
+      "tweets": {
+        "1760113294054990123": {
+          "id": "1760113294054990123",
+          "author_id": "2349038684",
+          "lang": "en",
+          "text": "This one's for you @transitive_bs:\n\n@AskDexa Can we accurately estimate pdoom?"
+        }
+      },
+      "urls": {
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/mJNxmz0Phd",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
     }
   },
   {
@@ -493,56 +604,27 @@
       "numFollowers": 16,
       "isReply": false
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "what would huberman think of this article?",
-        "name": "LofiGrind",
-        "entities": {
-          "tweetIds": [
-            "1761404957373137052"
-          ]
-        }
+        "name": "LofiGrind"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1761404957373137052\",\"author_id\":\"1235525929335689217\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"text\":\"@AskDexa what would huberman think of this article? https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html\"}",
+        "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
-        "entities": {
-          "urls": [
-            {
-              "start": 52,
-              "end": 75,
-              "url": "https://t.co/hhlNov7kZL",
-              "expanded_url": "https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html",
-              "display_url": "nytimes.com/interactive/20…",
-              "status": 200,
-              "title": "Sleep Better at Every Age",
-              "description": "Sleep needs shift throughout the lifespan. Experts offer tips to get more rest — no matter how old you are.",
-              "unwound_url": "https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html"
-            }
-          ]
-        },
-        "in_reply_to_user_id": "1757989045383106560",
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 0,
-          "like_count": 0,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 9
-        },
-        "text": "@AskDexa what would huberman think of this article? https://t.co/hhlNov7kZL",
-        "possibly_sensitive": false,
-        "author_id": "1235525929335689217",
-        "created_at": "2024-02-24T14:57:21.000Z",
         "id": "1761404957373137052",
+        "author_id": "1235525929335689217",
         "lang": "en",
-        "conversation_id": "1761404957373137052",
-        "prompt": "what would huberman think of this article?",
-        "isReply": false,
-        "promptUrl": "https://twitter.com/LofiGrind/status/1761404957373137052",
-        "numFollowers": 16,
-        "priorityScore": 10000.337428571429
+        "in_reply_to_user_id": "1757989045383106560",
+        "text": "@AskDexa what would huberman think of this article? https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html"
       }
     ],
     "entityMap": {
@@ -558,13 +640,17 @@
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
           "twitterNumFollowers": 30,
           "twitterNumFollowing": 1,
-          "twitterNumTweets": 20,
+          "twitterNumTweets": 22,
           "twitterNumLikes": 30,
           "urls": [
             {
               "type": "url",
               "url": "https://dexa.ai",
-              "shortUrl": "https://t.co/jz0ipgVGJf"
+              "shortUrl": "https://t.co/jz0ipgVGJf",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         },
@@ -588,24 +674,97 @@
           "type": "tweet",
           "id": "1761404957373137052",
           "authorId": "1235525929335689217",
-          "text": "@AskDexa what would huberman think of this article? https://t.co/hhlNov7kZL",
+          "text": "@AskDexa what would huberman think of this article? https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html",
           "lang": "en",
           "repliedToUserId": "1757989045383106560",
           "numLikes": 0,
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 0,
-          "numImpressions": 9,
+          "numImpressions": 12,
           "urls": [
             {
               "type": "url",
               "url": "https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html",
-              "shortUrl": "https://t.co/hhlNov7kZL"
+              "shortUrl": "https://t.co/hhlNov7kZL",
+              "title": "Sleep Better at Every Age",
+              "description": "Sleep needs shift throughout the lifespan. Experts offer tips to get more rest — no matter how old you are.",
+              "author": "Dani Blum Illustrations by Petra Eriksson",
+              "siteName": "The New York Times"
             }
           ]
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html": {
+          "type": "url",
+          "url": "https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html",
+          "shortUrl": "https://t.co/hhlNov7kZL",
+          "title": "Sleep Better at Every Age",
+          "description": "Sleep needs shift throughout the lifespan. Experts offer tips to get more rest — no matter how old you are.",
+          "author": "Dani Blum Illustrations by Petra Eriksson",
+          "siteName": "The New York Times"
+        },
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "1757989045383106560": {
+          "id": "1757989045383106560",
+          "name": "Ask Dexa",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
+          "location": "🤖",
+          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts.",
+          "username": "AskDexa"
+        },
+        "1235525929335689217": {
+          "id": "1235525929335689217",
+          "name": "Lofi Grind",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
+        }
+      },
+      "tweets": {
+        "1761404957373137052": {
+          "id": "1761404957373137052",
+          "author_id": "1235525929335689217",
+          "lang": "en",
+          "in_reply_to_user_id": "1757989045383106560",
+          "text": "@AskDexa what would huberman think of this article? https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html"
+        }
+      },
+      "urls": {
+        "https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html": {
+          "type": "url",
+          "url": "https://www.nytimes.com/interactive/2023/07/07/well/live/sleep-better-age.html",
+          "shortUrl": "https://t.co/hhlNov7kZL",
+          "title": "Sleep Better at Every Age",
+          "description": "Sleep needs shift throughout the lifespan. Experts offer tips to get more rest — no matter how old you are.",
+          "author": "Dani Blum Illustrations by Petra Eriksson",
+          "siteName": "The New York Times"
+        },
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
     }
   },
   {
@@ -623,58 +782,32 @@
       "numFollowers": 16,
       "isReply": false
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "explain this image",
-        "name": "LofiGrind",
-        "entities": {
-          "tweetIds": [
-            "1761405299557122132"
-          ]
-        }
+        "name": "LofiGrind"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1761405299557122132\",\"author_id\":\"1235525929335689217\",\"attachments\":{\"media_keys\":[\"3_1761405270226341888\"]},\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"text\":\"@AskDexa explain this image https://twitter.com/LofiGrind/status/1761405299557122132/photo/1\"}",
+        "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
-        "in_reply_to_user_id": "1757989045383106560",
+        "id": "1761405299557122132",
+        "author_id": "1235525929335689217",
         "attachments": {
           "media_keys": [
             "3_1761405270226341888"
           ]
         },
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 0,
-          "like_count": 0,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 6
-        },
-        "text": "@AskDexa explain this image https://t.co/QUzfnZtIjk",
-        "entities": {
-          "urls": [
-            {
-              "start": 28,
-              "end": 51,
-              "url": "https://t.co/QUzfnZtIjk",
-              "expanded_url": "https://twitter.com/LofiGrind/status/1761405299557122132/photo/1",
-              "display_url": "pic.twitter.com/QUzfnZtIjk",
-              "media_key": "3_1761405270226341888"
-            }
-          ]
-        },
-        "possibly_sensitive": false,
-        "author_id": "1235525929335689217",
-        "created_at": "2024-02-24T14:58:43.000Z",
-        "id": "1761405299557122132",
         "lang": "en",
-        "conversation_id": "1761405299557122132",
-        "prompt": "explain this image",
-        "isReply": false,
-        "promptUrl": "https://twitter.com/LofiGrind/status/1761405299557122132",
-        "numFollowers": 16,
-        "priorityScore": 10000.301714285713
+        "in_reply_to_user_id": "1757989045383106560",
+        "text": "@AskDexa explain this image https://twitter.com/LofiGrind/status/1761405299557122132/photo/1"
       }
     ],
     "entityMap": {
@@ -690,13 +823,17 @@
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
           "twitterNumFollowers": 30,
           "twitterNumFollowing": 1,
-          "twitterNumTweets": 20,
+          "twitterNumTweets": 22,
           "twitterNumLikes": 30,
           "urls": [
             {
               "type": "url",
               "url": "https://dexa.ai",
-              "shortUrl": "https://t.co/jz0ipgVGJf"
+              "shortUrl": "https://t.co/jz0ipgVGJf",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         },
@@ -720,14 +857,14 @@
           "type": "tweet",
           "id": "1761405299557122132",
           "authorId": "1235525929335689217",
-          "text": "@AskDexa explain this image https://t.co/QUzfnZtIjk",
+          "text": "@AskDexa explain this image https://twitter.com/LofiGrind/status/1761405299557122132/photo/1",
           "lang": "en",
           "repliedToUserId": "1757989045383106560",
           "numLikes": 0,
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 0,
-          "numImpressions": 6,
+          "numImpressions": 11,
           "urls": [
             {
               "type": "url",
@@ -741,7 +878,63 @@
           ]
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "1757989045383106560": {
+          "id": "1757989045383106560",
+          "name": "Ask Dexa",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
+          "location": "🤖",
+          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts.",
+          "username": "AskDexa"
+        },
+        "1235525929335689217": {
+          "id": "1235525929335689217",
+          "name": "Lofi Grind",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
+        }
+      },
+      "tweets": {
+        "1761405299557122132": {
+          "id": "1761405299557122132",
+          "author_id": "1235525929335689217",
+          "attachments": {
+            "media_keys": [
+              "3_1761405270226341888"
+            ]
+          },
+          "lang": "en",
+          "in_reply_to_user_id": "1757989045383106560",
+          "text": "@AskDexa explain this image https://twitter.com/LofiGrind/status/1761405299557122132/photo/1"
+        }
+      },
+      "urls": {
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
     }
   },
   {
@@ -759,62 +952,77 @@
       "numFollowers": 16,
       "isReply": false
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "what is HF0?",
-        "name": "LofiGrind",
-        "entities": {
-          "tweetIds": [
-            "1761405562611216585"
-          ]
-        }
+        "name": "LofiGrind"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1761405562611216585\",\"referenced_tweets\":[{\"type\":\"quoted\",\"id\":\"1760375075537301909\"}],\"author_id\":\"1235525929335689217\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"text\":\"@AskDexa what is HF0? https://twitter.com/davefontenot/status/1760375075537301909\"}",
+        "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
-        "entities": {
-          "urls": [
-            {
-              "start": 22,
-              "end": 45,
-              "url": "https://t.co/nuBkLQHNey",
-              "expanded_url": "https://twitter.com/davefontenot/status/1760375075537301909",
-              "display_url": "x.com/davefontenot/s…"
-            }
-          ]
-        },
-        "in_reply_to_user_id": "1757989045383106560",
+        "id": "1761405562611216585",
         "referenced_tweets": [
           {
             "type": "quoted",
             "id": "1760375075537301909"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 0,
-          "like_count": 0,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 16
-        },
-        "text": "@AskDexa what is HF0? https://t.co/nuBkLQHNey",
-        "possibly_sensitive": false,
         "author_id": "1235525929335689217",
-        "created_at": "2024-02-24T14:59:46.000Z",
-        "id": "1761405562611216585",
         "lang": "en",
-        "conversation_id": "1761405562611216585",
-        "prompt": "what is HF0?",
-        "isReply": false,
-        "promptUrl": "https://twitter.com/LofiGrind/status/1761405562611216585",
-        "numFollowers": 16,
-        "priorityScore": 10000.266
+        "in_reply_to_user_id": "1757989045383106560",
+        "text": "@AskDexa what is HF0? https://twitter.com/davefontenot/status/1760375075537301909"
       }
     ],
     "entityMap": {
       "users": {
+        "470790728": {
+          "type": "user",
+          "name": "Dave Font",
+          "twitterId": "470790728",
+          "twitterUsername": "davefontenot",
+          "twitterBio": "🏯 building the monastery for hackers @HF0Residency \n🚀 early backer ramp, optimism, pave, crossmint, http://latch.ai, http://krea.ai and more...",
+          "twitterUrl": "http://HF0.com",
+          "twitterPinnedTweetId": "1720482520930906425",
+          "twitterLocation": "SF",
+          "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1375085218663526404/stEt7Eso_normal.jpg",
+          "twitterNumFollowers": 11883,
+          "twitterNumFollowing": 4902,
+          "twitterNumTweets": 17534,
+          "twitterNumLikes": 11883,
+          "urls": [
+            {
+              "type": "url",
+              "url": "http://HF0.com",
+              "shortUrl": "https://t.co/J1EC97zp9m",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
+            },
+            {
+              "type": "url",
+              "url": "http://latch.ai",
+              "shortUrl": "https://t.co/mHQInNULWw",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
+            },
+            {
+              "type": "url",
+              "url": "http://krea.ai",
+              "shortUrl": "https://t.co/UrZdMVRDO2"
+            }
+          ]
+        },
         "1757989045383106560": {
           "type": "user",
           "name": "Ask Dexa",
@@ -826,13 +1034,17 @@
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
           "twitterNumFollowers": 30,
           "twitterNumFollowing": 1,
-          "twitterNumTweets": 20,
+          "twitterNumTweets": 22,
           "twitterNumLikes": 30,
           "urls": [
             {
               "type": "url",
               "url": "https://dexa.ai",
-              "shortUrl": "https://t.co/jz0ipgVGJf"
+              "shortUrl": "https://t.co/jz0ipgVGJf",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         },
@@ -856,7 +1068,7 @@
           "type": "tweet",
           "id": "1761405562611216585",
           "authorId": "1235525929335689217",
-          "text": "@AskDexa what is HF0? https://t.co/nuBkLQHNey",
+          "text": "@AskDexa what is HF0? https://twitter.com/davefontenot/status/1760375075537301909",
           "lang": "en",
           "repliedToUserId": "1757989045383106560",
           "quotedTweetId": "1760375075537301909",
@@ -864,17 +1076,207 @@
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 0,
-          "numImpressions": 16,
+          "numImpressions": 18,
           "urls": [
             {
               "type": "url",
               "url": "https://twitter.com/davefontenot/status/1760375075537301909",
-              "shortUrl": "https://t.co/nuBkLQHNey"
+              "shortUrl": "https://t.co/nuBkLQHNey",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
+          ]
+        },
+        "1760375075537301909": {
+          "type": "tweet",
+          "id": "1760375075537301909",
+          "authorId": "470790728",
+          "text": "SORA. WTF!? OpenAI doesn’t stop shipping.\n\nAnd neither do we.\n\nIntroducing the program for repeat founders: http://HF0.com\n\nFive repeat unicorn founders are already starting their next startups with us. Why? (1/5) https://twitter.com/i/web/status/1760375075537301909 https://twitter.com/davefontenot/status/1760375075537301909/video/1",
+          "lang": "en",
+          "numLikes": 389,
+          "numRetweets": 96,
+          "numQuoteTweets": 51,
+          "numReplies": 37,
+          "numImpressions": 200977,
+          "urls": [
+            {
+              "type": "url",
+              "url": "http://HF0.com",
+              "shortUrl": "https://t.co/m9EkGblBmc"
+            },
+            {
+              "type": "url",
+              "url": "https://twitter.com/i/web/status/1760375075537301909",
+              "shortUrl": "https://t.co/qPBLAzmK4n",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
+            },
+            {
+              "type": "url",
+              "url": "https://twitter.com/davefontenot/status/1760375075537301909/video/1",
+              "shortUrl": "https://t.co/j6UPb39QwG",
+              "mediaId": "7_1760355108418891776"
+            }
+          ],
+          "mediaIds": [
+            "7_1760355108418891776"
           ]
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "http://latch.ai": {
+          "type": "url",
+          "url": "http://latch.ai",
+          "shortUrl": "https://t.co/mHQInNULWw",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://twitter.com/i/web/status/1760375075537301909": {
+          "type": "url",
+          "url": "https://twitter.com/i/web/status/1760375075537301909",
+          "shortUrl": "https://t.co/qPBLAzmK4n",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://twitter.com/davefontenot/status/1760375075537301909": {
+          "type": "url",
+          "url": "https://twitter.com/davefontenot/status/1760375075537301909",
+          "shortUrl": "https://t.co/nuBkLQHNey",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "http://HF0.com": {
+          "type": "url",
+          "url": "http://HF0.com",
+          "shortUrl": "https://t.co/J1EC97zp9m",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "470790728": {
+          "id": "470790728",
+          "name": "Dave Font",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1375085218663526404/stEt7Eso_normal.jpg",
+          "location": "SF",
+          "description": "🏯 building the monastery for hackers @HF0Residency \n🚀 early backer ramp, optimism, pave, crossmint, http://latch.ai, http://krea.ai and more...",
+          "username": "davefontenot",
+          "pinned_tweet_id": "1720482520930906425"
+        },
+        "1757989045383106560": {
+          "id": "1757989045383106560",
+          "name": "Ask Dexa",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
+          "location": "🤖",
+          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts.",
+          "username": "AskDexa"
+        },
+        "1235525929335689217": {
+          "id": "1235525929335689217",
+          "name": "Lofi Grind",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
+        }
+      },
+      "tweets": {
+        "1761405562611216585": {
+          "id": "1761405562611216585",
+          "referenced_tweets": [
+            {
+              "type": "quoted",
+              "id": "1760375075537301909"
+            }
+          ],
+          "author_id": "1235525929335689217",
+          "lang": "en",
+          "in_reply_to_user_id": "1757989045383106560",
+          "text": "@AskDexa what is HF0? https://twitter.com/davefontenot/status/1760375075537301909"
+        },
+        "1760375075537301909": {
+          "id": "1760375075537301909",
+          "author_id": "470790728",
+          "attachments": {
+            "media_keys": [
+              "7_1760355108418891776"
+            ]
+          },
+          "lang": "en",
+          "text": "SORA. WTF!? OpenAI doesn’t stop shipping.\n\nAnd neither do we.\n\nIntroducing the program for repeat founders: http://HF0.com\n\nFive repeat unicorn founders are already starting their next startups with us. Why? (1/5) https://twitter.com/i/web/status/1760375075537301909 https://twitter.com/davefontenot/status/1760375075537301909/video/1"
+        }
+      },
+      "urls": {
+        "http://latch.ai": {
+          "type": "url",
+          "url": "http://latch.ai",
+          "shortUrl": "https://t.co/mHQInNULWw",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://twitter.com/i/web/status/1760375075537301909": {
+          "type": "url",
+          "url": "https://twitter.com/i/web/status/1760375075537301909",
+          "shortUrl": "https://t.co/qPBLAzmK4n",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://twitter.com/davefontenot/status/1760375075537301909": {
+          "type": "url",
+          "url": "https://twitter.com/davefontenot/status/1760375075537301909",
+          "shortUrl": "https://t.co/nuBkLQHNey",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "http://HF0.com": {
+          "type": "url",
+          "url": "http://HF0.com",
+          "shortUrl": "https://t.co/J1EC97zp9m",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
     }
   },
   {
@@ -892,56 +1294,27 @@
       "numFollowers": 16,
       "isReply": false
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "What are the main takeaways from this episode?",
-        "name": "LofiGrind",
-        "entities": {
-          "tweetIds": [
-            "1761458959720804452"
-          ]
-        }
+        "name": "LofiGrind"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1761458959720804452\",\"author_id\":\"1235525929335689217\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"text\":\"@AskDexa What are the main takeaways from this episode? https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman\"}",
+        "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
-        "in_reply_to_user_id": "1757989045383106560",
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 0,
-          "like_count": 0,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 3
-        },
-        "text": "@AskDexa What are the main takeaways from this episode? https://t.co/wveeA0QK0v",
-        "entities": {
-          "urls": [
-            {
-              "start": 56,
-              "end": 79,
-              "url": "https://t.co/wveeA0QK0v",
-              "expanded_url": "https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman",
-              "display_url": "youtube.com/watch?v=Wcs2PF…",
-              "status": 200,
-              "title": "The Science of Making & Breaking Habits | Huberman Lab Podcast #53",
-              "description": "In this episode, I review the science of habit formation and habit elimination and how the process of neuroplasticity (brain rewiring) underlies these proces...",
-              "unwound_url": "https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman"
-            }
-          ]
-        },
-        "possibly_sensitive": false,
-        "author_id": "1235525929335689217",
-        "created_at": "2024-02-24T18:31:56.000Z",
         "id": "1761458959720804452",
+        "author_id": "1235525929335689217",
         "lang": "en",
-        "conversation_id": "1761458959720804452",
-        "prompt": "What are the main takeaways from this episode?",
-        "isReply": false,
-        "promptUrl": "https://twitter.com/LofiGrind/status/1761458959720804452",
-        "numFollowers": 16,
-        "priorityScore": 10000.051714285713
+        "in_reply_to_user_id": "1757989045383106560",
+        "text": "@AskDexa What are the main takeaways from this episode? https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman"
       }
     ],
     "entityMap": {
@@ -957,13 +1330,17 @@
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
           "twitterNumFollowers": 30,
           "twitterNumFollowing": 1,
-          "twitterNumTweets": 20,
+          "twitterNumTweets": 22,
           "twitterNumLikes": 30,
           "urls": [
             {
               "type": "url",
               "url": "https://dexa.ai",
-              "shortUrl": "https://t.co/jz0ipgVGJf"
+              "shortUrl": "https://t.co/jz0ipgVGJf",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         },
@@ -987,24 +1364,97 @@
           "type": "tweet",
           "id": "1761458959720804452",
           "authorId": "1235525929335689217",
-          "text": "@AskDexa What are the main takeaways from this episode? https://t.co/wveeA0QK0v",
+          "text": "@AskDexa What are the main takeaways from this episode? https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman",
           "lang": "en",
           "repliedToUserId": "1757989045383106560",
           "numLikes": 0,
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 0,
-          "numImpressions": 3,
+          "numImpressions": 5,
           "urls": [
             {
               "type": "url",
               "url": "https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman",
-              "shortUrl": "https://t.co/wveeA0QK0v"
+              "shortUrl": "https://t.co/wveeA0QK0v",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman": {
+          "type": "url",
+          "url": "https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman",
+          "shortUrl": "https://t.co/wveeA0QK0v",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "1757989045383106560": {
+          "id": "1757989045383106560",
+          "name": "Ask Dexa",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
+          "location": "🤖",
+          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts.",
+          "username": "AskDexa"
+        },
+        "1235525929335689217": {
+          "id": "1235525929335689217",
+          "name": "Lofi Grind",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
+        }
+      },
+      "tweets": {
+        "1761458959720804452": {
+          "id": "1761458959720804452",
+          "author_id": "1235525929335689217",
+          "lang": "en",
+          "in_reply_to_user_id": "1757989045383106560",
+          "text": "@AskDexa What are the main takeaways from this episode? https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman"
+        }
+      },
+      "urls": {
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman": {
+          "type": "url",
+          "url": "https://www.youtube.com/watch?v=Wcs2PFz5q6g&ab_channel=AndrewHuberman",
+          "shortUrl": "https://t.co/wveeA0QK0v",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
     }
   },
   {
@@ -1018,92 +1468,56 @@
       "promptUsername": "transitive_bs",
       "prompt": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way…",
       "promptUrl": "https://twitter.com/transitive_bs/status/1761416294530715895",
-      "priorityScore": 9968.227571428572,
-      "numFollowers": 18049,
+      "priorityScore": 9968.280571428571,
+      "numFollowers": 18102,
       "isReply": true,
       "response": "Steve Jobs believed focus meant saying no to great ideas to concentrate on a few. Alex Hormozi and David Senra highlight Jobs' emphasis on resource allocation and streamlining Apple's product line, assigning A-teams to fewer, quality products. Jobs\nhttps://dexa.ai/s/15thGung",
       "responseTweetId": "1761417705503047799",
       "responseUrl": "https://twitter.com/AskDexa/status/1761417705503047799"
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://t.co/oxXQPiqYo2",
-        "name": "ShaneAParrish",
-        "entities": {
-          "tweetIds": [
-            "1761390820630945880"
-          ]
-        }
+        "name": "ShaneAParrish"
       },
       {
         "role": "user",
         "content": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way…",
-        "name": "transitive_bs",
-        "entities": {
-          "tweetIds": [
-            "1761416294530715895"
-          ]
-        }
+        "name": "transitive_bs"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1761390820630945880\",\"author_id\":\"33104659\",\"lang\":\"en\",\"text\":\"“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880\"}",
+        "name": "ShaneAParrish"
+      },
+      {
+        "role": "user",
+        "content": "{\"id\":\"1761416294530715895\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1761390820630945880\"}],\"author_id\":\"327034465\",\"lang\":\"qam\",\"in_reply_to_user_id\":\"33104659\",\"text\":\"@ShaneAParrish @AskDexa\"}",
+        "name": "transitive_bs"
       }
     ],
     "tweets": [
       {
-        "entities": {
-          "urls": [
-            {
-              "start": 280,
-              "end": 303,
-              "url": "https://t.co/oxXQPiqYo2",
-              "expanded_url": "https://twitter.com/i/web/status/1761390820630945880",
-              "display_url": "twitter.com/i/web/status/1…"
-            }
-          ]
-        },
-        "public_metrics": {
-          "retweet_count": 60,
-          "reply_count": 21,
-          "like_count": 384,
-          "quote_count": 5,
-          "bookmark_count": 178,
-          "impression_count": 48096
-        },
-        "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://t.co/oxXQPiqYo2",
-        "possibly_sensitive": false,
-        "author_id": "33104659",
-        "created_at": "2024-02-24T14:01:11.000Z",
         "id": "1761390820630945880",
+        "author_id": "33104659",
         "lang": "en",
-        "conversation_id": "1761390820630945880"
+        "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880"
       },
       {
-        "in_reply_to_user_id": "33104659",
+        "id": "1761416294530715895",
         "referenced_tweets": [
           {
             "type": "replied_to",
             "id": "1761390820630945880"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 1,
-          "like_count": 1,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 154
-        },
-        "text": "@ShaneAParrish @AskDexa",
-        "possibly_sensitive": false,
         "author_id": "327034465",
-        "created_at": "2024-02-24T15:42:24.000Z",
-        "id": "1761416294530715895",
         "lang": "qam",
-        "conversation_id": "1761390820630945880",
-        "prompt": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way…",
-        "isReply": true,
-        "promptUrl": "https://twitter.com/transitive_bs/status/1761416294530715895",
-        "numFollowers": 18049,
-        "priorityScore": 9968.227571428572
+        "in_reply_to_user_id": "33104659",
+        "text": "@ShaneAParrish @AskDexa"
       }
     ],
     "entityMap": {
@@ -1113,24 +1527,32 @@
           "name": "Shane Parrish",
           "twitterId": "33104659",
           "twitterUsername": "ShaneAParrish",
-          "twitterBio": "Sharing insights you can use in daily life & work. Author of Clear Thinking (https://t.co/qF3MFcmmS4).",
+          "twitterBio": "Sharing insights you can use in daily life & work. Author of Clear Thinking (http://fs.blog/clear/).",
           "twitterUrl": "https://fs.blog/newsletter",
           "twitterLocation": "Join 600,000+ Subscribers →",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1641264347916763137/_xdzak-e_normal.jpg",
-          "twitterNumFollowers": 508189,
+          "twitterNumFollowers": 508273,
           "twitterNumFollowing": 3,
           "twitterNumTweets": 4035,
-          "twitterNumLikes": 508189,
+          "twitterNumLikes": 508273,
           "urls": [
             {
               "type": "url",
               "url": "https://fs.blog/newsletter",
-              "shortUrl": "https://t.co/cn7tQz5016"
+              "shortUrl": "https://t.co/cn7tQz5016",
+              "title": "Brain Food Newsletter",
+              "description": "The Brain Food Newsletter is one of the most popular in the world. Every Sunday, the latest issue is sent to over 600,000. Each one contains insights you can apply to daily life and work.",
+              "author": "",
+              "siteName": "Farnam Street"
             },
             {
               "type": "url",
               "url": "http://fs.blog/clear/",
-              "shortUrl": "https://t.co/qF3MFcmmS4"
+              "shortUrl": "https://t.co/qF3MFcmmS4",
+              "title": "Clear Thinking: Turning Ordinary Moments into Extraordinary Results",
+              "description": "Clear Thinking Turning Ordinary Moments into Extraordinary Results the instant worldwide bestseller Step 1: Get Your Copy of Clear Thinking … Step 2: Claim Your Free Bonuses … Order a copy of the New York Times bestseller Clear Thinking from your favorite bookseller and forward your purchase receipt to get the following bonuses. About the …",
+              "author": "",
+              "siteName": "Farnam Street"
             }
           ]
         },
@@ -1144,15 +1566,19 @@
           "twitterPinnedTweetId": "1643017583917174784",
           "twitterLocation": "HF0",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "twitterNumFollowers": 18049,
+          "twitterNumFollowers": 18102,
           "twitterNumFollowing": 702,
           "twitterNumTweets": 7209,
-          "twitterNumLikes": 18049,
+          "twitterNumLikes": 18102,
           "urls": [
             {
               "type": "url",
               "url": "https://transitivebullsh.it",
-              "shortUrl": "https://t.co/U7qFLMXw8R"
+              "shortUrl": "https://t.co/U7qFLMXw8R",
+              "title": "TransitiveBullsh.it",
+              "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+              "author": "",
+              "siteName": "Transitive Bullshit"
             }
           ]
         }
@@ -1162,18 +1588,22 @@
           "type": "tweet",
           "id": "1761390820630945880",
           "authorId": "33104659",
-          "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://t.co/oxXQPiqYo2",
+          "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880",
           "lang": "en",
-          "numLikes": 384,
-          "numRetweets": 60,
+          "numLikes": 412,
+          "numRetweets": 64,
           "numQuoteTweets": 5,
           "numReplies": 21,
-          "numImpressions": 48096,
+          "numImpressions": 51480,
           "urls": [
             {
               "type": "url",
               "url": "https://twitter.com/i/web/status/1761390820630945880",
-              "shortUrl": "https://t.co/oxXQPiqYo2"
+              "shortUrl": "https://t.co/oxXQPiqYo2",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         },
@@ -1189,33 +1619,128 @@
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 1,
-          "numImpressions": 154
-        },
-        "1643017583917174784": {
-          "type": "tweet",
-          "id": "1643017583917174784",
-          "authorId": "327034465",
-          "text": "A practical guide on how to use LLMs effectively: https://t.co/ysv4ZnbDAU",
-          "lang": "en",
-          "numLikes": 732,
-          "numRetweets": 130,
-          "numQuoteTweets": 23,
-          "numReplies": 32,
-          "numImpressions": 306482,
-          "urls": [
-            {
-              "type": "url",
-              "url": "https://twitter.com/transitive_bs/status/1643017583917174784/photo/1",
-              "shortUrl": "https://t.co/ysv4ZnbDAU",
-              "mediaId": "3_1643017577881546753"
-            }
-          ],
-          "mediaIds": [
-            "3_1643017577881546753"
-          ]
+          "numImpressions": 176
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "https://twitter.com/i/web/status/1761390820630945880": {
+          "type": "url",
+          "url": "https://twitter.com/i/web/status/1761390820630945880",
+          "shortUrl": "https://t.co/oxXQPiqYo2",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://fs.blog/newsletter": {
+          "type": "url",
+          "url": "https://fs.blog/newsletter",
+          "shortUrl": "https://t.co/cn7tQz5016",
+          "title": "Brain Food Newsletter",
+          "description": "The Brain Food Newsletter is one of the most popular in the world. Every Sunday, the latest issue is sent to over 600,000. Each one contains insights you can apply to daily life and work.",
+          "author": "",
+          "siteName": "Farnam Street"
+        },
+        "http://fs.blog/clear/": {
+          "type": "url",
+          "url": "http://fs.blog/clear/",
+          "shortUrl": "https://t.co/qF3MFcmmS4",
+          "title": "Clear Thinking: Turning Ordinary Moments into Extraordinary Results",
+          "description": "Clear Thinking Turning Ordinary Moments into Extraordinary Results the instant worldwide bestseller Step 1: Get Your Copy of Clear Thinking … Step 2: Claim Your Free Bonuses … Order a copy of the New York Times bestseller Clear Thinking from your favorite bookseller and forward your purchase receipt to get the following bonuses. About the …",
+          "author": "",
+          "siteName": "Farnam Street"
+        },
+        "https://transitivebullsh.it": {
+          "type": "url",
+          "url": "https://transitivebullsh.it",
+          "shortUrl": "https://t.co/U7qFLMXw8R",
+          "title": "TransitiveBullsh.it",
+          "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+          "author": "",
+          "siteName": "Transitive Bullshit"
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "33104659": {
+          "id": "33104659",
+          "name": "Shane Parrish",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1641264347916763137/_xdzak-e_normal.jpg",
+          "location": "Join 600,000+ Subscribers →",
+          "description": "Sharing insights you can use in daily life & work. Author of Clear Thinking (http://fs.blog/clear/).",
+          "username": "ShaneAParrish"
+        },
+        "327034465": {
+          "id": "327034465",
+          "name": "Travis Fischer",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
+          "location": "HF0",
+          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕",
+          "username": "transitive_bs",
+          "pinned_tweet_id": "1643017583917174784"
+        }
+      },
+      "tweets": {
+        "1761390820630945880": {
+          "id": "1761390820630945880",
+          "author_id": "33104659",
+          "lang": "en",
+          "text": "“People think focus means saying yes to the thing you’ve got to focus on. But that’s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully.”  \n\n— Steve Jobs\n\nDiversity of focus leads to average results. \n\nOne way… https://twitter.com/i/web/status/1761390820630945880"
+        },
+        "1761416294530715895": {
+          "id": "1761416294530715895",
+          "referenced_tweets": [
+            {
+              "type": "replied_to",
+              "id": "1761390820630945880"
+            }
+          ],
+          "author_id": "327034465",
+          "lang": "qam",
+          "in_reply_to_user_id": "33104659",
+          "text": "@ShaneAParrish @AskDexa"
+        }
+      },
+      "urls": {
+        "https://twitter.com/i/web/status/1761390820630945880": {
+          "type": "url",
+          "url": "https://twitter.com/i/web/status/1761390820630945880",
+          "shortUrl": "https://t.co/oxXQPiqYo2",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://fs.blog/newsletter": {
+          "type": "url",
+          "url": "https://fs.blog/newsletter",
+          "shortUrl": "https://t.co/cn7tQz5016",
+          "title": "Brain Food Newsletter",
+          "description": "The Brain Food Newsletter is one of the most popular in the world. Every Sunday, the latest issue is sent to over 600,000. Each one contains insights you can apply to daily life and work.",
+          "author": "",
+          "siteName": "Farnam Street"
+        },
+        "http://fs.blog/clear/": {
+          "type": "url",
+          "url": "http://fs.blog/clear/",
+          "shortUrl": "https://t.co/qF3MFcmmS4",
+          "title": "Clear Thinking: Turning Ordinary Moments into Extraordinary Results",
+          "description": "Clear Thinking Turning Ordinary Moments into Extraordinary Results the instant worldwide bestseller Step 1: Get Your Copy of Clear Thinking … Step 2: Claim Your Free Bonuses … Order a copy of the New York Times bestseller Clear Thinking from your favorite bookseller and forward your purchase receipt to get the following bonuses. About the …",
+          "author": "",
+          "siteName": "Farnam Street"
+        },
+        "https://transitivebullsh.it": {
+          "type": "url",
+          "url": "https://transitivebullsh.it",
+          "shortUrl": "https://t.co/U7qFLMXw8R",
+          "title": "TransitiveBullsh.it",
+          "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+          "author": "",
+          "siteName": "Transitive Bullshit"
+        }
+      }
     }
   },
   {
@@ -1229,102 +1754,58 @@
       "promptUsername": "rileytomasek",
       "prompt": "what does he do after writing a bullet list outline?",
       "promptUrl": "https://twitter.com/rileytomasek/status/1759444274867802206",
-      "priorityScore": 9953.202,
-      "numFollowers": 2702,
+      "priorityScore": 9953.201,
+      "numFollowers": 2701,
       "isReply": true
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://t.co/r34osTOhDP https://t.co/NP33QfV7tW",
-        "name": "david_perell",
-        "entities": {
-          "tweetIds": [
-            "1759431722314158199"
-          ]
-        }
+        "name": "david_perell"
       },
       {
         "role": "user",
         "content": "what does he do after writing a bullet list outline?",
-        "name": "rileytomasek",
-        "entities": {
-          "tweetIds": [
-            "1759444274867802206"
-          ]
-        }
+        "name": "rileytomasek"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1759431722314158199\",\"author_id\":\"240049622\",\"attachments\":{\"media_keys\":[\"13_1759431643134054400\"]},\"lang\":\"en\",\"text\":\"When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://twitter.com/i/web/status/1759431722314158199 https://twitter.com/david_perell/status/1759431722314158199/video/1\"}",
+        "name": "david_perell"
+      },
+      {
+        "role": "user",
+        "content": "{\"id\":\"1759444274867802206\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1759431722314158199\"}],\"author_id\":\"2349038684\",\"lang\":\"en\",\"in_reply_to_user_id\":\"240049622\",\"text\":\"@david_perell @AskDexa what does he do after writing a bullet list outline?\"}",
+        "name": "rileytomasek"
       }
     ],
     "tweets": [
       {
-        "entities": {
-          "urls": [
-            {
-              "start": 279,
-              "end": 302,
-              "url": "https://t.co/r34osTOhDP",
-              "expanded_url": "https://twitter.com/i/web/status/1759431722314158199",
-              "display_url": "twitter.com/i/web/status/1…"
-            },
-            {
-              "start": 303,
-              "end": 326,
-              "url": "https://t.co/NP33QfV7tW",
-              "expanded_url": "https://twitter.com/david_perell/status/1759431722314158199/video/1",
-              "display_url": "pic.twitter.com/NP33QfV7tW",
-              "media_key": "13_1759431643134054400"
-            }
-          ]
-        },
+        "id": "1759431722314158199",
+        "author_id": "240049622",
         "attachments": {
           "media_keys": [
             "13_1759431643134054400"
           ]
         },
-        "public_metrics": {
-          "retweet_count": 89,
-          "reply_count": 18,
-          "like_count": 1107,
-          "quote_count": 14,
-          "bookmark_count": 996,
-          "impression_count": 257416
-        },
-        "text": "When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://t.co/r34osTOhDP https://t.co/NP33QfV7tW",
-        "possibly_sensitive": false,
-        "author_id": "240049622",
-        "created_at": "2024-02-19T04:16:25.000Z",
-        "id": "1759431722314158199",
         "lang": "en",
-        "conversation_id": "1759431722314158199"
+        "text": "When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://twitter.com/i/web/status/1759431722314158199 https://twitter.com/david_perell/status/1759431722314158199/video/1"
       },
       {
-        "in_reply_to_user_id": "240049622",
+        "id": "1759444274867802206",
         "referenced_tweets": [
           {
             "type": "replied_to",
             "id": "1759431722314158199"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 1,
-          "like_count": 3,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 2426
-        },
-        "text": "@david_perell @AskDexa what does he do after writing a bullet list outline?",
-        "possibly_sensitive": false,
         "author_id": "2349038684",
-        "created_at": "2024-02-19T05:06:18.000Z",
-        "id": "1759444274867802206",
         "lang": "en",
-        "conversation_id": "1759431722314158199",
-        "prompt": "what does he do after writing a bullet list outline?",
-        "isReply": true,
-        "promptUrl": "https://twitter.com/rileytomasek/status/1759444274867802206",
-        "numFollowers": 2702,
-        "priorityScore": 9953.202
+        "in_reply_to_user_id": "240049622",
+        "text": "@david_perell @AskDexa what does he do after writing a bullet list outline?"
       }
     ],
     "entityMap": {
@@ -1334,30 +1815,42 @@
           "name": "David Perell",
           "twitterId": "240049622",
           "twitterUsername": "david_perell",
-          "twitterBio": "\"The Writing Guy\" | Jesus-Follower | I tweet about writing and creativity | My writing school: https://t.co/bzeQ7VVyS0 | My writing: https://t.co/SOE9HtxXdi",
+          "twitterBio": "\"The Writing Guy\" | Jesus-Follower | I tweet about writing and creativity | My writing school: http://writeofpassage.school | My writing: http://perell.com",
           "twitterUrl": "https://linktr.ee/davidperell",
           "twitterPinnedTweetId": "1709546938079515122",
           "twitterLocation": "Austin, Texas",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1759062533078495232/-79hY8EP_normal.jpg",
-          "twitterNumFollowers": 430318,
-          "twitterNumFollowing": 788,
+          "twitterNumFollowers": 430382,
+          "twitterNumFollowing": 787,
           "twitterNumTweets": 31892,
-          "twitterNumLikes": 430318,
+          "twitterNumLikes": 430382,
           "urls": [
             {
               "type": "url",
               "url": "https://linktr.ee/davidperell",
-              "shortUrl": "https://t.co/4s24zGborR"
+              "shortUrl": "https://t.co/4s24zGborR",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             },
             {
               "type": "url",
               "url": "http://writeofpassage.school",
-              "shortUrl": "https://t.co/bzeQ7VVyS0"
+              "shortUrl": "https://t.co/bzeQ7VVyS0",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             },
             {
               "type": "url",
               "url": "http://perell.com",
-              "shortUrl": "https://t.co/SOE9HtxXdi"
+              "shortUrl": "https://t.co/SOE9HtxXdi",
+              "title": "Hi, I’m David Perell.",
+              "description": "I write, host a podcast, and run a writing school called Write of Passage.",
+              "author": "",
+              "siteName": "David Perell"
             }
           ]
         },
@@ -1371,76 +1864,24 @@
           "twitterPinnedTweetId": "1754637686701244628",
           "twitterLocation": "New York",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1580292707917987840/5wxoPaLd_normal.jpg",
-          "twitterNumFollowers": 2702,
+          "twitterNumFollowers": 2701,
           "twitterNumFollowing": 241,
-          "twitterNumTweets": 568,
-          "twitterNumLikes": 2702,
+          "twitterNumTweets": 570,
+          "twitterNumLikes": 2701,
           "urls": [
             {
               "type": "url",
               "url": "https://dexa.ai",
-              "shortUrl": "https://t.co/mJNxmz0Phd"
+              "shortUrl": "https://t.co/mJNxmz0Phd",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         }
       },
       "tweets": {
-        "1759431722314158199": {
-          "type": "tweet",
-          "id": "1759431722314158199",
-          "authorId": "240049622",
-          "text": "When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://t.co/r34osTOhDP https://t.co/NP33QfV7tW",
-          "lang": "en",
-          "numLikes": 1107,
-          "numRetweets": 89,
-          "numQuoteTweets": 14,
-          "numReplies": 18,
-          "numImpressions": 257416,
-          "urls": [
-            {
-              "type": "url",
-              "url": "https://twitter.com/i/web/status/1759431722314158199",
-              "shortUrl": "https://t.co/r34osTOhDP"
-            },
-            {
-              "type": "url",
-              "url": "https://twitter.com/david_perell/status/1759431722314158199/video/1",
-              "shortUrl": "https://t.co/NP33QfV7tW",
-              "mediaId": "13_1759431643134054400"
-            }
-          ],
-          "mediaIds": [
-            "13_1759431643134054400"
-          ]
-        },
-        "1709546938079515122": {
-          "type": "tweet",
-          "id": "1709546938079515122",
-          "authorId": "240049622",
-          "text": "Spent two hours with Marc Andreessen, who gave me a masterclass on how to think, learn, read, research, and write.\n\nHere's what I learned: \n\n1. Read, read, read... then read some more.\n\n2. Many of your best ideas will emerge in fits of rage or frustration. Channel the fury. Smash… https://t.co/dtvw5Ocvyb https://t.co/apjPvbD5ur",
-          "lang": "en",
-          "numLikes": 6589,
-          "numRetweets": 1071,
-          "numQuoteTweets": 130,
-          "numReplies": 160,
-          "numImpressions": 2310006,
-          "urls": [
-            {
-              "type": "url",
-              "url": "https://twitter.com/i/web/status/1709546938079515122",
-              "shortUrl": "https://t.co/dtvw5Ocvyb"
-            },
-            {
-              "type": "url",
-              "url": "https://twitter.com/david_perell/status/1709546938079515122/video/1",
-              "shortUrl": "https://t.co/apjPvbD5ur",
-              "mediaId": "13_1709544338571628544"
-            }
-          ],
-          "mediaIds": [
-            "13_1709544338571628544"
-          ]
-        },
         "1759444274867802206": {
           "type": "tweet",
           "id": "1759444274867802206",
@@ -1455,28 +1896,182 @@
           "numReplies": 1,
           "numImpressions": 2426
         },
-        "1754637686701244628": {
+        "1759431722314158199": {
           "type": "tweet",
-          "id": "1754637686701244628",
-          "authorId": "2349038684",
-          "text": "It's been an amazing journey from my Huberman AI prototype last year to a startup partnering with @hubermanlab, @foundmyfitness, @JordanHarbinger, and many others. https://t.co/UEMMPrzHOB",
+          "id": "1759431722314158199",
+          "authorId": "240049622",
+          "text": "When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://twitter.com/i/web/status/1759431722314158199 https://twitter.com/david_perell/status/1759431722314158199/video/1",
           "lang": "en",
-          "quotedTweetId": "1754634865373217229",
-          "numLikes": 13,
-          "numRetweets": 3,
-          "numQuoteTweets": 0,
-          "numReplies": 1,
-          "numImpressions": 1849,
+          "numLikes": 1107,
+          "numRetweets": 89,
+          "numQuoteTweets": 15,
+          "numReplies": 18,
+          "numImpressions": 257541,
           "urls": [
             {
               "type": "url",
-              "url": "https://twitter.com/dexa_ai/status/1754634865373217229",
-              "shortUrl": "https://t.co/UEMMPrzHOB"
+              "url": "https://twitter.com/i/web/status/1759431722314158199",
+              "shortUrl": "https://t.co/r34osTOhDP",
+              "title": "X",
+              "description": "Did someone say … cookies?",
+              "author": "",
+              "siteName": "X (formerly Twitter)"
+            },
+            {
+              "type": "url",
+              "url": "https://twitter.com/david_perell/status/1759431722314158199/video/1",
+              "shortUrl": "https://t.co/NP33QfV7tW",
+              "mediaId": "13_1759431643134054400"
             }
+          ],
+          "mediaIds": [
+            "13_1759431643134054400"
           ]
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/mJNxmz0Phd",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "http://perell.com": {
+          "type": "url",
+          "url": "http://perell.com",
+          "shortUrl": "https://t.co/SOE9HtxXdi",
+          "title": "Hi, I’m David Perell.",
+          "description": "I write, host a podcast, and run a writing school called Write of Passage.",
+          "author": "",
+          "siteName": "David Perell"
+        },
+        "http://writeofpassage.school": {
+          "type": "url",
+          "url": "http://writeofpassage.school",
+          "shortUrl": "https://t.co/bzeQ7VVyS0",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://linktr.ee/davidperell": {
+          "type": "url",
+          "url": "https://linktr.ee/davidperell",
+          "shortUrl": "https://t.co/4s24zGborR",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://twitter.com/i/web/status/1759431722314158199": {
+          "type": "url",
+          "url": "https://twitter.com/i/web/status/1759431722314158199",
+          "shortUrl": "https://t.co/r34osTOhDP",
+          "title": "X",
+          "description": "Did someone say … cookies?",
+          "author": "",
+          "siteName": "X (formerly Twitter)"
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "240049622": {
+          "id": "240049622",
+          "name": "David Perell",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1759062533078495232/-79hY8EP_normal.jpg",
+          "location": "Austin, Texas",
+          "description": "\"The Writing Guy\" | Jesus-Follower | I tweet about writing and creativity | My writing school: http://writeofpassage.school | My writing: http://perell.com",
+          "username": "david_perell",
+          "pinned_tweet_id": "1709546938079515122"
+        },
+        "2349038684": {
+          "id": "2349038684",
+          "name": "Riley Tomasek",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1580292707917987840/5wxoPaLd_normal.jpg",
+          "location": "New York",
+          "description": "Founder of @dexa_ai",
+          "username": "rileytomasek",
+          "pinned_tweet_id": "1754637686701244628"
+        }
+      },
+      "tweets": {
+        "1759444274867802206": {
+          "id": "1759444274867802206",
+          "referenced_tweets": [
+            {
+              "type": "replied_to",
+              "id": "1759431722314158199"
+            }
+          ],
+          "author_id": "2349038684",
+          "lang": "en",
+          "in_reply_to_user_id": "240049622",
+          "text": "@david_perell @AskDexa what does he do after writing a bullet list outline?"
+        },
+        "1759431722314158199": {
+          "id": "1759431722314158199",
+          "author_id": "240049622",
+          "attachments": {
+            "media_keys": [
+              "13_1759431643134054400"
+            ]
+          },
+          "lang": "en",
+          "text": "When Marc Andreessen is ready to write something, he makes an outline as fast as possible.\n\nBullet points are fine. His goal is to splatter the page with ideas while his mind is buzzing. Only later does he think about organizing what he’s written. \n\nHe says: “I’m trying to get… https://twitter.com/i/web/status/1759431722314158199 https://twitter.com/david_perell/status/1759431722314158199/video/1"
+        }
+      },
+      "urls": {
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/mJNxmz0Phd",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "http://perell.com": {
+          "type": "url",
+          "url": "http://perell.com",
+          "shortUrl": "https://t.co/SOE9HtxXdi",
+          "title": "Hi, I’m David Perell.",
+          "description": "I write, host a podcast, and run a writing school called Write of Passage.",
+          "author": "",
+          "siteName": "David Perell"
+        },
+        "http://writeofpassage.school": {
+          "type": "url",
+          "url": "http://writeofpassage.school",
+          "shortUrl": "https://t.co/bzeQ7VVyS0",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://linktr.ee/davidperell": {
+          "type": "url",
+          "url": "https://linktr.ee/davidperell",
+          "shortUrl": "https://t.co/4s24zGborR",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "https://twitter.com/i/web/status/1759431722314158199": {
+          "type": "url",
+          "url": "https://twitter.com/i/web/status/1759431722314158199",
+          "shortUrl": "https://t.co/r34osTOhDP",
+          "title": "X",
+          "description": "Did someone say … cookies?",
+          "author": "",
+          "siteName": "X (formerly Twitter)"
+        }
+      }
     }
   },
   {
@@ -1490,93 +2085,53 @@
       "promptUsername": "rileytomasek",
       "prompt": "summarize the episode",
       "promptUrl": "https://twitter.com/rileytomasek/status/1759572110324670916",
-      "priorityScore": 9953.166285714286,
-      "numFollowers": 2702,
+      "priorityScore": 9953.165285714285,
+      "numFollowers": 2701,
       "isReply": true
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://t.co/BQk5lOFuqA",
-        "name": "hubermanlab",
-        "entities": {
-          "tweetIds": [
-            "1759568894828933159"
-          ]
-        }
+        "name": "hubermanlab"
       },
       {
         "role": "user",
         "content": "summarize the episode",
-        "name": "rileytomasek",
-        "entities": {
-          "tweetIds": [
-            "1759572110324670916"
-          ]
-        }
+        "name": "rileytomasek"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1759568894828933159\",\"author_id\":\"4416456732\",\"lang\":\"en\",\"text\":\"New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health\"}",
+        "name": "hubermanlab"
+      },
+      {
+        "role": "user",
+        "content": "{\"id\":\"1759572110324670916\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1759568894828933159\"}],\"author_id\":\"2349038684\",\"lang\":\"en\",\"in_reply_to_user_id\":\"4416456732\",\"text\":\"@hubermanlab @AskDexa summarize the episode\"}",
+        "name": "rileytomasek"
       }
     ],
     "tweets": [
       {
-        "entities": {
-          "urls": [
-            {
-              "start": 240,
-              "end": 263,
-              "url": "https://t.co/BQk5lOFuqA",
-              "expanded_url": "https://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health",
-              "display_url": "hubermanlab.com/episode/dr-mar…",
-              "status": 200,
-              "title": "Dr. Mark D'esposito: How to Optimize Cognitive Function & Brain Health",
-              "description": "In this episode, my guest is Dr. Mark D'Esposito, M.D., a neurologist and professor of neuroscience and psychology at the University of California, Berkeley.",
-              "unwound_url": "https://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health"
-            }
-          ]
-        },
-        "public_metrics": {
-          "retweet_count": 112,
-          "reply_count": 49,
-          "like_count": 1057,
-          "quote_count": 11,
-          "bookmark_count": 295,
-          "impression_count": 136606
-        },
-        "text": "New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://t.co/BQk5lOFuqA",
-        "possibly_sensitive": false,
-        "author_id": "4416456732",
-        "created_at": "2024-02-19T13:21:30.000Z",
         "id": "1759568894828933159",
+        "author_id": "4416456732",
         "lang": "en",
-        "conversation_id": "1759568894828933159"
+        "text": "New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health"
       },
       {
-        "in_reply_to_user_id": "4416456732",
+        "id": "1759572110324670916",
         "referenced_tweets": [
           {
             "type": "replied_to",
             "id": "1759568894828933159"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 1,
-          "like_count": 5,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 877
-        },
-        "text": "@hubermanlab @AskDexa summarize the episode",
-        "possibly_sensitive": false,
         "author_id": "2349038684",
-        "created_at": "2024-02-19T13:34:17.000Z",
-        "id": "1759572110324670916",
         "lang": "en",
-        "conversation_id": "1759568894828933159",
-        "prompt": "summarize the episode",
-        "isReply": true,
-        "promptUrl": "https://twitter.com/rileytomasek/status/1759572110324670916",
-        "numFollowers": 2702,
-        "priorityScore": 9953.166285714286
+        "in_reply_to_user_id": "4416456732",
+        "text": "@hubermanlab @AskDexa summarize the episode"
       }
     ],
     "entityMap": {
@@ -1591,15 +2146,19 @@
           "twitterPinnedTweetId": "1754637686701244628",
           "twitterLocation": "New York",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1580292707917987840/5wxoPaLd_normal.jpg",
-          "twitterNumFollowers": 2702,
+          "twitterNumFollowers": 2701,
           "twitterNumFollowing": 241,
-          "twitterNumTweets": 568,
-          "twitterNumLikes": 2702,
+          "twitterNumTweets": 570,
+          "twitterNumLikes": 2701,
           "urls": [
             {
               "type": "url",
               "url": "https://dexa.ai",
-              "shortUrl": "https://t.co/mJNxmz0Phd"
+              "shortUrl": "https://t.co/mJNxmz0Phd",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         },
@@ -1613,15 +2172,19 @@
           "twitterPinnedTweetId": "1759568894828933159",
           "twitterLocation": "Stanford, CA",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1339713932085346306/jDTi4HKH_normal.jpg",
-          "twitterNumFollowers": 1260801,
+          "twitterNumFollowers": 1261024,
           "twitterNumFollowing": 1232,
           "twitterNumTweets": 8500,
-          "twitterNumLikes": 1260801,
+          "twitterNumLikes": 1261024,
           "urls": [
             {
               "type": "url",
               "url": "https://hubermanlab.com",
-              "shortUrl": "https://t.co/yvi41iI0ZH"
+              "shortUrl": "https://t.co/yvi41iI0ZH",
+              "title": "Huberman Lab",
+              "description": "The Huberman Lab podcast discusses science and science-based tools for everyday life. New episodes are released every Monday.",
+              "author": "54",
+              "siteName": "Huberman Lab"
             }
           ]
         }
@@ -1631,18 +2194,22 @@
           "type": "tweet",
           "id": "1759568894828933159",
           "authorId": "4416456732",
-          "text": "New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://t.co/BQk5lOFuqA",
+          "text": "New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health",
           "lang": "en",
-          "numLikes": 1057,
+          "numLikes": 1061,
           "numRetweets": 112,
           "numQuoteTweets": 11,
-          "numReplies": 49,
-          "numImpressions": 136606,
+          "numReplies": 50,
+          "numImpressions": 137645,
           "urls": [
             {
               "type": "url",
               "url": "https://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health",
-              "shortUrl": "https://t.co/BQk5lOFuqA"
+              "shortUrl": "https://t.co/BQk5lOFuqA",
+              "title": "Dr. Mark D’esposito: How to Optimize Cognitive Function & Brain Health",
+              "description": "In this episode, my guest is Dr. Mark D’Esposito, M.D., a neurologist and professor of neuroscience and psychology at the University of California, Berkeley.",
+              "author": "",
+              "siteName": "Home"
             }
           ]
         },
@@ -1658,30 +2225,111 @@
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 1,
-          "numImpressions": 877
-        },
-        "1754637686701244628": {
-          "type": "tweet",
-          "id": "1754637686701244628",
-          "authorId": "2349038684",
-          "text": "It's been an amazing journey from my Huberman AI prototype last year to a startup partnering with @hubermanlab, @foundmyfitness, @JordanHarbinger, and many others. https://t.co/UEMMPrzHOB",
-          "lang": "en",
-          "quotedTweetId": "1754634865373217229",
-          "numLikes": 13,
-          "numRetweets": 3,
-          "numQuoteTweets": 0,
-          "numReplies": 1,
-          "numImpressions": 1849,
-          "urls": [
-            {
-              "type": "url",
-              "url": "https://twitter.com/dexa_ai/status/1754634865373217229",
-              "shortUrl": "https://t.co/UEMMPrzHOB"
-            }
-          ]
+          "numImpressions": 885
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "https://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health": {
+          "type": "url",
+          "url": "https://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health",
+          "shortUrl": "https://t.co/BQk5lOFuqA",
+          "title": "Dr. Mark D’esposito: How to Optimize Cognitive Function & Brain Health",
+          "description": "In this episode, my guest is Dr. Mark D’Esposito, M.D., a neurologist and professor of neuroscience and psychology at the University of California, Berkeley.",
+          "author": "",
+          "siteName": "Home"
+        },
+        "https://hubermanlab.com": {
+          "type": "url",
+          "url": "https://hubermanlab.com",
+          "shortUrl": "https://t.co/yvi41iI0ZH",
+          "title": "Huberman Lab",
+          "description": "The Huberman Lab podcast discusses science and science-based tools for everyday life. New episodes are released every Monday.",
+          "author": "54",
+          "siteName": "Huberman Lab"
+        },
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/mJNxmz0Phd",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "2349038684": {
+          "id": "2349038684",
+          "name": "Riley Tomasek",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1580292707917987840/5wxoPaLd_normal.jpg",
+          "location": "New York",
+          "description": "Founder of @dexa_ai",
+          "username": "rileytomasek",
+          "pinned_tweet_id": "1754637686701244628"
+        },
+        "4416456732": {
+          "id": "4416456732",
+          "name": "Andrew D. Huberman, Ph.D.",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1339713932085346306/jDTi4HKH_normal.jpg",
+          "location": "Stanford, CA",
+          "description": "Professor of Neurobiology & Ophthalmology at Stanford Medicine • Host of the Huberman Lab podcast • Focused on science & health research & public education",
+          "username": "hubermanlab",
+          "pinned_tweet_id": "1759568894828933159"
+        }
+      },
+      "tweets": {
+        "1759568894828933159": {
+          "id": "1759568894828933159",
+          "author_id": "4416456732",
+          "lang": "en",
+          "text": "New Huberman Lab podcast out now: \nOPTIMIZE COGNITIVE FUNCTION &amp; BRAIN HEALTH w/Mark D’Esposito MD \n•Tools for Enhancing Cognitive Power\n•Protocols for Focus &amp; Attention \n•Offsetting &amp; Treating Dementia\n•Traumatic Brain Injury \nhttps://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health"
+        },
+        "1759572110324670916": {
+          "id": "1759572110324670916",
+          "referenced_tweets": [
+            {
+              "type": "replied_to",
+              "id": "1759568894828933159"
+            }
+          ],
+          "author_id": "2349038684",
+          "lang": "en",
+          "in_reply_to_user_id": "4416456732",
+          "text": "@hubermanlab @AskDexa summarize the episode"
+        }
+      },
+      "urls": {
+        "https://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health": {
+          "type": "url",
+          "url": "https://www.hubermanlab.com/episode/dr-mark-desposito-how-to-optimize-cognitive-function-brain-health",
+          "shortUrl": "https://t.co/BQk5lOFuqA",
+          "title": "Dr. Mark D’esposito: How to Optimize Cognitive Function & Brain Health",
+          "description": "In this episode, my guest is Dr. Mark D’Esposito, M.D., a neurologist and professor of neuroscience and psychology at the University of California, Berkeley.",
+          "author": "",
+          "siteName": "Home"
+        },
+        "https://hubermanlab.com": {
+          "type": "url",
+          "url": "https://hubermanlab.com",
+          "shortUrl": "https://t.co/yvi41iI0ZH",
+          "title": "Huberman Lab",
+          "description": "The Huberman Lab podcast discusses science and science-based tools for everyday life. New episodes are released every Monday.",
+          "author": "54",
+          "siteName": "Huberman Lab"
+        },
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/mJNxmz0Phd",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
     }
   },
   {
@@ -1698,100 +2346,49 @@
       "priorityScore": 9950.42857142857,
       "isReply": true
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. https://t.co/WKrszaQ1CO",
-        "name": "FastCompany",
-        "entities": {
-          "tweetIds": [
-            "1759471230531338248"
-          ]
-        }
+        "name": "FastCompany"
       },
       {
         "role": "user",
         "content": "what is note making?",
-        "name": "SamRCharles",
-        "entities": {
-          "tweetIds": [
-            "1759685127041343626"
-          ]
-        }
+        "name": "SamRCharles"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1759471230531338248\",\"author_id\":\"2735591\",\"lang\":\"en\",\"text\":\"Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. http://f-st.co/akeBBTG\"}",
+        "name": "FastCompany"
+      },
+      {
+        "role": "user",
+        "content": "{\"id\":\"1759685127041343626\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1759471230531338248\"}],\"author_id\":\"1386021646906048515\",\"lang\":\"en\",\"in_reply_to_user_id\":\"2735591\",\"text\":\"@FastCompany @AskDexa what is note making?\"}",
+        "name": "SamRCharles"
       }
     ],
     "tweets": [
       {
-        "entities": {
-          "urls": [
-            {
-              "start": 99,
-              "end": 122,
-              "url": "https://t.co/WKrszaQ1CO",
-              "expanded_url": "http://f-st.co/akeBBTG",
-              "display_url": "f-st.co/akeBBTG",
-              "images": [
-                {
-                  "url": "https://pbs.twimg.com/news_img/1759471235212132352/EaFlucoi?format=jpg&name=orig",
-                  "width": 1280,
-                  "height": 720
-                },
-                {
-                  "url": "https://pbs.twimg.com/news_img/1759471235212132352/EaFlucoi?format=jpg&name=150x150",
-                  "width": 150,
-                  "height": 150
-                }
-              ],
-              "status": 200,
-              "title": "3 surprisingly useful AI search alternatives to Google",
-              "description": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box.",
-              "unwound_url": "https://www.fastcompany.com/91031237/3-surprisingly-useful-ai-search-alternatives-to-google?utm_medium=social&utm_source=twitter"
-            }
-          ]
-        },
-        "public_metrics": {
-          "retweet_count": 6,
-          "reply_count": 3,
-          "like_count": 15,
-          "quote_count": 2,
-          "bookmark_count": 6,
-          "impression_count": 8078
-        },
-        "text": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. https://t.co/WKrszaQ1CO",
-        "possibly_sensitive": false,
-        "author_id": "2735591",
-        "created_at": "2024-02-19T06:53:25.000Z",
         "id": "1759471230531338248",
+        "author_id": "2735591",
         "lang": "en",
-        "conversation_id": "1759471230531338248"
+        "text": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. http://f-st.co/akeBBTG"
       },
       {
-        "in_reply_to_user_id": "2735591",
+        "id": "1759685127041343626",
         "referenced_tweets": [
           {
             "type": "replied_to",
             "id": "1759471230531338248"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 1,
-          "like_count": 2,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 13
-        },
-        "text": "@FastCompany @AskDexa what is note making?",
-        "possibly_sensitive": false,
         "author_id": "1386021646906048515",
-        "created_at": "2024-02-19T21:03:22.000Z",
-        "id": "1759685127041343626",
         "lang": "en",
-        "conversation_id": "1759471230531338248",
-        "prompt": "what is note making?",
-        "isReply": true,
-        "promptUrl": "https://twitter.com/SamRCharles/status/1759685127041343626",
-        "priorityScore": 9950.42857142857
+        "in_reply_to_user_id": "2735591",
+        "text": "@FastCompany @AskDexa what is note making?"
       }
     ],
     "entityMap": {
@@ -1801,24 +2398,32 @@
           "name": "Fast Company",
           "twitterId": "2735591",
           "twitterUsername": "FastCompany",
-          "twitterBio": "Inspiring readers to think beyond traditional boundaries & create the future of business. Subscribe to our daily newsletter: https://t.co/BpH3KmBae9",
+          "twitterBio": "Inspiring readers to think beyond traditional boundaries & create the future of business. Subscribe to our daily newsletter: http://fastcompany.com/newsletters",
           "twitterUrl": "http://www.fastcompany.com",
           "twitterLocation": "New York, NY",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1051826427837014017/v2TLU4mf_normal.jpg",
-          "twitterNumFollowers": 2281837,
+          "twitterNumFollowers": 2281838,
           "twitterNumFollowing": 4028,
-          "twitterNumTweets": 305888,
-          "twitterNumLikes": 2281837,
+          "twitterNumTweets": 305894,
+          "twitterNumLikes": 2281838,
           "urls": [
             {
               "type": "url",
               "url": "http://www.fastcompany.com",
-              "shortUrl": "https://t.co/TnX79ODnqf"
+              "shortUrl": "https://t.co/TnX79ODnqf",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             },
             {
               "type": "url",
               "url": "http://fastcompany.com/newsletters",
-              "shortUrl": "https://t.co/BpH3KmBae9"
+              "shortUrl": "https://t.co/BpH3KmBae9",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         },
@@ -1838,25 +2443,6 @@
         }
       },
       "tweets": {
-        "1759471230531338248": {
-          "type": "tweet",
-          "id": "1759471230531338248",
-          "authorId": "2735591",
-          "text": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. https://t.co/WKrszaQ1CO",
-          "lang": "en",
-          "numLikes": 15,
-          "numRetweets": 6,
-          "numQuoteTweets": 2,
-          "numReplies": 3,
-          "numImpressions": 8078,
-          "urls": [
-            {
-              "type": "url",
-              "url": "http://f-st.co/akeBBTG",
-              "shortUrl": "https://t.co/WKrszaQ1CO"
-            }
-          ]
-        },
         "1759685127041343626": {
           "type": "tweet",
           "id": "1759685127041343626",
@@ -1869,10 +2455,132 @@
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 1,
-          "numImpressions": 13
+          "numImpressions": 16
+        },
+        "1759471230531338248": {
+          "type": "tweet",
+          "id": "1759471230531338248",
+          "authorId": "2735591",
+          "text": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. http://f-st.co/akeBBTG",
+          "lang": "en",
+          "numLikes": 16,
+          "numRetweets": 6,
+          "numQuoteTweets": 2,
+          "numReplies": 3,
+          "numImpressions": 8097,
+          "urls": [
+            {
+              "type": "url",
+              "url": "http://f-st.co/akeBBTG",
+              "shortUrl": "https://t.co/WKrszaQ1CO",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
+            }
+          ]
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "http://fastcompany.com/newsletters": {
+          "type": "url",
+          "url": "http://fastcompany.com/newsletters",
+          "shortUrl": "https://t.co/BpH3KmBae9",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "http://www.fastcompany.com": {
+          "type": "url",
+          "url": "http://www.fastcompany.com",
+          "shortUrl": "https://t.co/TnX79ODnqf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "http://f-st.co/akeBBTG": {
+          "type": "url",
+          "url": "http://f-st.co/akeBBTG",
+          "shortUrl": "https://t.co/WKrszaQ1CO",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "2735591": {
+          "id": "2735591",
+          "name": "Fast Company",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1051826427837014017/v2TLU4mf_normal.jpg",
+          "location": "New York, NY",
+          "description": "Inspiring readers to think beyond traditional boundaries & create the future of business. Subscribe to our daily newsletter: http://fastcompany.com/newsletters",
+          "username": "FastCompany"
+        },
+        "1386021646906048515": {
+          "id": "1386021646906048515",
+          "name": "Sam Charles",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1386039678395109376/yc7Pwbkx_normal.jpg",
+          "location": "San Francisco",
+          "description": "Exploring LLMs and the new paradigms they enable.",
+          "username": "SamRCharles"
+        }
+      },
+      "tweets": {
+        "1759685127041343626": {
+          "id": "1759685127041343626",
+          "referenced_tweets": [
+            {
+              "type": "replied_to",
+              "id": "1759471230531338248"
+            }
+          ],
+          "author_id": "1386021646906048515",
+          "lang": "en",
+          "in_reply_to_user_id": "2735591",
+          "text": "@FastCompany @AskDexa what is note making?"
+        },
+        "1759471230531338248": {
+          "id": "1759471230531338248",
+          "author_id": "2735591",
+          "lang": "en",
+          "text": "Perplexity, Dexa, and Arc Search all offer good new alternatives to the classic Google search box. http://f-st.co/akeBBTG"
+        }
+      },
+      "urls": {
+        "http://fastcompany.com/newsletters": {
+          "type": "url",
+          "url": "http://fastcompany.com/newsletters",
+          "shortUrl": "https://t.co/BpH3KmBae9",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "http://www.fastcompany.com": {
+          "type": "url",
+          "url": "http://www.fastcompany.com",
+          "shortUrl": "https://t.co/TnX79ODnqf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        },
+        "http://f-st.co/akeBBTG": {
+          "type": "url",
+          "url": "http://f-st.co/akeBBTG",
+          "shortUrl": "https://t.co/WKrszaQ1CO",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
     }
   },
   {
@@ -1893,91 +2601,55 @@
       "responseTweetId": "1761034349632262157",
       "responseUrl": "https://twitter.com/LofiGrind/status/1761034349632262157"
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "\"cats have weird physics\" 😂💯 https://t.co/5st3YYXKJI",
-        "name": "transitive_bs",
-        "entities": {
-          "tweetIds": [
-            "1734782745799282820"
-          ]
-        }
+        "name": "transitive_bs"
       },
       {
         "role": "user",
         "content": "explain this 👀",
-        "name": "LofiGrind",
-        "entities": {
-          "tweetIds": [
-            "1760384146004996333"
-          ]
-        }
+        "name": "LofiGrind"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1734782745799282820\",\"referenced_tweets\":[{\"type\":\"quoted\",\"id\":\"1734779147623322066\"}],\"author_id\":\"327034465\",\"lang\":\"en\",\"text\":\"\\\"cats have weird physics\\\" 😂💯 https://twitter.com/willdepue/status/1734779147623322066\"}",
+        "name": "transitive_bs"
+      },
+      {
+        "role": "user",
+        "content": "{\"id\":\"1760384146004996333\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1734782745799282820\"}],\"author_id\":\"1235525929335689217\",\"lang\":\"en\",\"in_reply_to_user_id\":\"327034465\",\"text\":\"@transitive_bs @LofiGrind explain this 👀\"}",
+        "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
+        "id": "1734782745799282820",
         "referenced_tweets": [
           {
             "type": "quoted",
             "id": "1734779147623322066"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 1,
-          "like_count": 1,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 1339
-        },
-        "text": "\"cats have weird physics\" 😂💯 https://t.co/5st3YYXKJI",
-        "entities": {
-          "urls": [
-            {
-              "start": 29,
-              "end": 52,
-              "url": "https://t.co/5st3YYXKJI",
-              "expanded_url": "https://twitter.com/willdepue/status/1734779147623322066",
-              "display_url": "x.com/willdepue/stat…"
-            }
-          ]
-        },
-        "possibly_sensitive": false,
         "author_id": "327034465",
-        "created_at": "2023-12-13T03:50:11.000Z",
-        "id": "1734782745799282820",
         "lang": "en",
-        "conversation_id": "1734782745799282820"
+        "text": "\"cats have weird physics\" 😂💯 https://twitter.com/willdepue/status/1734779147623322066"
       },
       {
-        "in_reply_to_user_id": "327034465",
+        "id": "1760384146004996333",
         "referenced_tweets": [
           {
             "type": "replied_to",
             "id": "1734782745799282820"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 7,
-          "like_count": 0,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 24
-        },
-        "text": "@transitive_bs @LofiGrind explain this 👀",
-        "possibly_sensitive": false,
         "author_id": "1235525929335689217",
-        "created_at": "2024-02-21T19:21:01.000Z",
-        "id": "1760384146004996333",
         "lang": "en",
-        "conversation_id": "1734782745799282820",
-        "prompt": "explain this 👀",
-        "isReply": true,
-        "promptUrl": "https://twitter.com/LofiGrind/status/1760384146004996333",
-        "numFollowers": 16,
-        "priorityScore": 9950.373142857143
+        "in_reply_to_user_id": "327034465",
+        "text": "@transitive_bs @LofiGrind explain this 👀"
       }
     ],
     "entityMap": {
@@ -1992,15 +2664,19 @@
           "twitterPinnedTweetId": "1643017583917174784",
           "twitterLocation": "HF0",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "twitterNumFollowers": 18049,
+          "twitterNumFollowers": 18102,
           "twitterNumFollowing": 702,
           "twitterNumTweets": 7209,
-          "twitterNumLikes": 18049,
+          "twitterNumLikes": 18102,
           "urls": [
             {
               "type": "url",
               "url": "https://transitivebullsh.it",
-              "shortUrl": "https://t.co/U7qFLMXw8R"
+              "shortUrl": "https://t.co/U7qFLMXw8R",
+              "title": "TransitiveBullsh.it",
+              "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+              "author": "",
+              "siteName": "Transitive Bullshit"
             }
           ]
         },
@@ -2017,52 +2693,30 @@
           "twitterNumTweets": 440,
           "twitterNumLikes": 16,
           "urls": []
+        },
+        "998575387067142144": {
+          "type": "user",
+          "name": "will depue",
+          "twitterId": "998575387067142144",
+          "twitterUsername": "willdepue",
+          "twitterBio": "helping with video gen @ openai",
+          "twitterUrl": "http://depue.design",
+          "twitterLocation": "san francisco",
+          "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1619879636057595904/NdjEAqPm_normal.jpg",
+          "twitterNumFollowers": 27922,
+          "twitterNumFollowing": 1595,
+          "twitterNumTweets": 5442,
+          "twitterNumLikes": 27922,
+          "urls": [
+            {
+              "type": "url",
+              "url": "http://depue.design",
+              "shortUrl": "https://t.co/4EIQKrQ0zT"
+            }
+          ]
         }
       },
       "tweets": {
-        "1734782745799282820": {
-          "type": "tweet",
-          "id": "1734782745799282820",
-          "authorId": "327034465",
-          "text": "\"cats have weird physics\" 😂💯 https://t.co/5st3YYXKJI",
-          "lang": "en",
-          "quotedTweetId": "1734779147623322066",
-          "numLikes": 1,
-          "numRetweets": 0,
-          "numQuoteTweets": 0,
-          "numReplies": 1,
-          "numImpressions": 1339,
-          "urls": [
-            {
-              "type": "url",
-              "url": "https://twitter.com/willdepue/status/1734779147623322066",
-              "shortUrl": "https://t.co/5st3YYXKJI"
-            }
-          ]
-        },
-        "1643017583917174784": {
-          "type": "tweet",
-          "id": "1643017583917174784",
-          "authorId": "327034465",
-          "text": "A practical guide on how to use LLMs effectively: https://t.co/ysv4ZnbDAU",
-          "lang": "en",
-          "numLikes": 732,
-          "numRetweets": 130,
-          "numQuoteTweets": 23,
-          "numReplies": 32,
-          "numImpressions": 306482,
-          "urls": [
-            {
-              "type": "url",
-              "url": "https://twitter.com/transitive_bs/status/1643017583917174784/photo/1",
-              "shortUrl": "https://t.co/ysv4ZnbDAU",
-              "mediaId": "3_1643017577881546753"
-            }
-          ],
-          "mediaIds": [
-            "3_1643017577881546753"
-          ]
-        },
         "1760384146004996333": {
           "type": "tweet",
           "id": "1760384146004996333",
@@ -2076,9 +2730,147 @@
           "numQuoteTweets": 0,
           "numReplies": 7,
           "numImpressions": 24
+        },
+        "1734782745799282820": {
+          "type": "tweet",
+          "id": "1734782745799282820",
+          "authorId": "327034465",
+          "text": "\"cats have weird physics\" 😂💯 https://twitter.com/willdepue/status/1734779147623322066",
+          "lang": "en",
+          "quotedTweetId": "1734779147623322066",
+          "numLikes": 1,
+          "numRetweets": 0,
+          "numQuoteTweets": 0,
+          "numReplies": 1,
+          "numImpressions": 1339,
+          "urls": [
+            {
+              "type": "url",
+              "url": "https://twitter.com/willdepue/status/1734779147623322066",
+              "shortUrl": "https://t.co/5st3YYXKJI",
+              "title": "X",
+              "description": "Did someone say … cookies?",
+              "author": "",
+              "siteName": "X (formerly Twitter)"
+            }
+          ]
+        },
+        "1734779147623322066": {
+          "type": "tweet",
+          "id": "1734779147623322066",
+          "authorId": "998575387067142144",
+          "text": "I think a great eval for the Optimus robot is whether it can pet a cat. \n\n1. You can’t scare the cat.\n2. You have to be smooth and move in a friendly manner.\n3. Requires careful movement and control.\n4. Can’t have loud motors or mechanical noises.\n5. Cats have weird physics.",
+          "lang": "en",
+          "numLikes": 390,
+          "numRetweets": 14,
+          "numQuoteTweets": 6,
+          "numReplies": 31,
+          "numImpressions": 31698
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "https://transitivebullsh.it": {
+          "type": "url",
+          "url": "https://transitivebullsh.it",
+          "shortUrl": "https://t.co/U7qFLMXw8R",
+          "title": "TransitiveBullsh.it",
+          "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+          "author": "",
+          "siteName": "Transitive Bullshit"
+        },
+        "https://twitter.com/willdepue/status/1734779147623322066": {
+          "type": "url",
+          "url": "https://twitter.com/willdepue/status/1734779147623322066",
+          "shortUrl": "https://t.co/5st3YYXKJI",
+          "title": "X",
+          "description": "Did someone say … cookies?",
+          "author": "",
+          "siteName": "X (formerly Twitter)"
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "327034465": {
+          "id": "327034465",
+          "name": "Travis Fischer",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
+          "location": "HF0",
+          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕",
+          "username": "transitive_bs",
+          "pinned_tweet_id": "1643017583917174784"
+        },
+        "1235525929335689217": {
+          "id": "1235525929335689217",
+          "name": "Lofi Grind",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
+        },
+        "998575387067142144": {
+          "id": "998575387067142144",
+          "location": "san francisco",
+          "name": "will depue",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1619879636057595904/NdjEAqPm_normal.jpg",
+          "description": "helping with video gen @ openai",
+          "username": "willdepue"
+        }
+      },
+      "tweets": {
+        "1760384146004996333": {
+          "id": "1760384146004996333",
+          "referenced_tweets": [
+            {
+              "type": "replied_to",
+              "id": "1734782745799282820"
+            }
+          ],
+          "author_id": "1235525929335689217",
+          "lang": "en",
+          "in_reply_to_user_id": "327034465",
+          "text": "@transitive_bs @LofiGrind explain this 👀"
+        },
+        "1734782745799282820": {
+          "id": "1734782745799282820",
+          "referenced_tweets": [
+            {
+              "type": "quoted",
+              "id": "1734779147623322066"
+            }
+          ],
+          "author_id": "327034465",
+          "lang": "en",
+          "text": "\"cats have weird physics\" 😂💯 https://twitter.com/willdepue/status/1734779147623322066"
+        },
+        "1734779147623322066": {
+          "author_id": "998575387067142144",
+          "text": "I think a great eval for the Optimus robot is whether it can pet a cat. \n\n1. You can’t scare the cat.\n2. You have to be smooth and move in a friendly manner.\n3. Requires careful movement and control.\n4. Can’t have loud motors or mechanical noises.\n5. Cats have weird physics.",
+          "id": "1734779147623322066",
+          "lang": "en"
+        }
+      },
+      "urls": {
+        "https://transitivebullsh.it": {
+          "type": "url",
+          "url": "https://transitivebullsh.it",
+          "shortUrl": "https://t.co/U7qFLMXw8R",
+          "title": "TransitiveBullsh.it",
+          "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+          "author": "",
+          "siteName": "Transitive Bullshit"
+        },
+        "https://twitter.com/willdepue/status/1734779147623322066": {
+          "type": "url",
+          "url": "https://twitter.com/willdepue/status/1734779147623322066",
+          "shortUrl": "https://t.co/5st3YYXKJI",
+          "title": "X",
+          "description": "Did someone say … cookies?",
+          "author": "",
+          "siteName": "X (formerly Twitter)"
+        }
+      }
     }
   },
   {
@@ -2096,74 +2888,49 @@
       "numFollowers": 16,
       "isReply": true
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?",
-        "name": "transitive_bs",
-        "entities": {
-          "tweetIds": [
-            "1759532018956656921"
-          ]
-        }
+        "name": "transitive_bs"
       },
       {
         "role": "user",
         "content": "you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?",
-        "name": "LofiGrind",
-        "entities": {
-          "tweetIds": [
-            "1761406155056632088"
-          ]
-        }
+        "name": "LofiGrind"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1759532018956656921\",\"author_id\":\"327034465\",\"lang\":\"en\",\"text\":\"you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?\"}",
+        "name": "transitive_bs"
+      },
+      {
+        "role": "user",
+        "content": "{\"id\":\"1761406155056632088\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1759532018956656921\"}],\"author_id\":\"1235525929335689217\",\"lang\":\"qam\",\"in_reply_to_user_id\":\"327034465\",\"text\":\"@transitive_bs @AskDexa\"}",
+        "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
-        "public_metrics": {
-          "retweet_count": 1,
-          "reply_count": 2,
-          "like_count": 11,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 1384
-        },
-        "text": "you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?",
-        "possibly_sensitive": false,
-        "author_id": "327034465",
-        "created_at": "2024-02-19T10:54:58.000Z",
         "id": "1759532018956656921",
+        "author_id": "327034465",
         "lang": "en",
-        "conversation_id": "1759532018956656921"
+        "text": "you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?"
       },
       {
-        "in_reply_to_user_id": "327034465",
+        "id": "1761406155056632088",
         "referenced_tweets": [
           {
             "type": "replied_to",
             "id": "1759532018956656921"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 0,
-          "like_count": 0,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 23
-        },
-        "text": "@transitive_bs @AskDexa",
-        "possibly_sensitive": false,
         "author_id": "1235525929335689217",
-        "created_at": "2024-02-24T15:02:07.000Z",
-        "id": "1761406155056632088",
         "lang": "qam",
-        "conversation_id": "1759532018956656921",
-        "prompt": "you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?",
-        "isReply": true,
-        "promptUrl": "https://twitter.com/LofiGrind/status/1761406155056632088",
-        "numFollowers": 16,
-        "priorityScore": 9950.230285714286
+        "in_reply_to_user_id": "327034465",
+        "text": "@transitive_bs @AskDexa"
       }
     ],
     "entityMap": {
@@ -2178,15 +2945,19 @@
           "twitterPinnedTweetId": "1643017583917174784",
           "twitterLocation": "HF0",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "twitterNumFollowers": 18049,
+          "twitterNumFollowers": 18102,
           "twitterNumFollowing": 702,
           "twitterNumTweets": 7209,
-          "twitterNumLikes": 18049,
+          "twitterNumLikes": 18102,
           "urls": [
             {
               "type": "url",
               "url": "https://transitivebullsh.it",
-              "shortUrl": "https://t.co/U7qFLMXw8R"
+              "shortUrl": "https://t.co/U7qFLMXw8R",
+              "title": "TransitiveBullsh.it",
+              "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+              "author": "",
+              "siteName": "Transitive Bullshit"
             }
           ]
         },
@@ -2216,30 +2987,7 @@
           "numRetweets": 1,
           "numQuoteTweets": 0,
           "numReplies": 2,
-          "numImpressions": 1384
-        },
-        "1643017583917174784": {
-          "type": "tweet",
-          "id": "1643017583917174784",
-          "authorId": "327034465",
-          "text": "A practical guide on how to use LLMs effectively: https://t.co/ysv4ZnbDAU",
-          "lang": "en",
-          "numLikes": 732,
-          "numRetweets": 130,
-          "numQuoteTweets": 23,
-          "numReplies": 32,
-          "numImpressions": 306482,
-          "urls": [
-            {
-              "type": "url",
-              "url": "https://twitter.com/transitive_bs/status/1643017583917174784/photo/1",
-              "shortUrl": "https://t.co/ysv4ZnbDAU",
-              "mediaId": "3_1643017577881546753"
-            }
-          ],
-          "mediaIds": [
-            "3_1643017577881546753"
-          ]
+          "numImpressions": 1390
         },
         "1761406155056632088": {
           "type": "tweet",
@@ -2253,10 +3001,74 @@
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 0,
-          "numImpressions": 23
+          "numImpressions": 25
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "https://transitivebullsh.it": {
+          "type": "url",
+          "url": "https://transitivebullsh.it",
+          "shortUrl": "https://t.co/U7qFLMXw8R",
+          "title": "TransitiveBullsh.it",
+          "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+          "author": "",
+          "siteName": "Transitive Bullshit"
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "327034465": {
+          "id": "327034465",
+          "name": "Travis Fischer",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
+          "location": "HF0",
+          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕",
+          "username": "transitive_bs",
+          "pinned_tweet_id": "1643017583917174784"
+        },
+        "1235525929335689217": {
+          "id": "1235525929335689217",
+          "name": "Lofi Grind",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
+        }
+      },
+      "tweets": {
+        "1759532018956656921": {
+          "id": "1759532018956656921",
+          "author_id": "327034465",
+          "lang": "en",
+          "text": "you ever read a few lines of code and then just step back for a sec and think holy shit, this is beautiful?"
+        },
+        "1761406155056632088": {
+          "id": "1761406155056632088",
+          "referenced_tweets": [
+            {
+              "type": "replied_to",
+              "id": "1759532018956656921"
+            }
+          ],
+          "author_id": "1235525929335689217",
+          "lang": "qam",
+          "in_reply_to_user_id": "327034465",
+          "text": "@transitive_bs @AskDexa"
+        }
+      },
+      "urls": {
+        "https://transitivebullsh.it": {
+          "type": "url",
+          "url": "https://transitivebullsh.it",
+          "shortUrl": "https://t.co/U7qFLMXw8R",
+          "title": "TransitiveBullsh.it",
+          "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+          "author": "",
+          "siteName": "Transitive Bullshit"
+        }
+      }
     }
   },
   {
@@ -2274,91 +3086,55 @@
       "numFollowers": 16,
       "isReply": true
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://t.co/AXRnyy7hlT",
-        "name": "transitive_bs",
-        "entities": {
-          "tweetIds": [
-            "1731503835233837261"
-          ]
-        }
+        "name": "transitive_bs"
       },
       {
         "role": "user",
         "content": "what do you think?",
-        "name": "LofiGrind",
-        "entities": {
-          "tweetIds": [
-            "1761448641028370750"
-          ]
-        }
+        "name": "LofiGrind"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1731503835233837261\",\"referenced_tweets\":[{\"type\":\"quoted\",\"id\":\"1731443102857245086\"}],\"author_id\":\"327034465\",\"lang\":\"en\",\"text\":\"This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://twitter.com/hubermanlab/status/1731443102857245086\"}",
+        "name": "transitive_bs"
+      },
+      {
+        "role": "user",
+        "content": "{\"id\":\"1761448641028370750\",\"referenced_tweets\":[{\"type\":\"replied_to\",\"id\":\"1731503835233837261\"}],\"author_id\":\"1235525929335689217\",\"lang\":\"en\",\"in_reply_to_user_id\":\"327034465\",\"text\":\"@transitive_bs @AskDexa what do you think?\"}",
+        "name": "LofiGrind"
       }
     ],
     "tweets": [
       {
+        "id": "1731503835233837261",
         "referenced_tweets": [
           {
             "type": "quoted",
             "id": "1731443102857245086"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 1,
-          "reply_count": 2,
-          "like_count": 4,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 1894
-        },
-        "text": "This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://t.co/AXRnyy7hlT",
-        "entities": {
-          "urls": [
-            {
-              "start": 214,
-              "end": 237,
-              "url": "https://t.co/AXRnyy7hlT",
-              "expanded_url": "https://twitter.com/hubermanlab/status/1731443102857245086",
-              "display_url": "x.com/hubermanlab/st…"
-            }
-          ]
-        },
-        "possibly_sensitive": false,
         "author_id": "327034465",
-        "created_at": "2023-12-04T02:40:58.000Z",
-        "id": "1731503835233837261",
         "lang": "en",
-        "conversation_id": "1731503835233837261"
+        "text": "This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://twitter.com/hubermanlab/status/1731443102857245086"
       },
       {
-        "in_reply_to_user_id": "327034465",
+        "id": "1761448641028370750",
         "referenced_tweets": [
           {
             "type": "replied_to",
             "id": "1731503835233837261"
           }
         ],
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 0,
-          "like_count": 0,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 11
-        },
-        "text": "@transitive_bs @AskDexa what do you think?",
-        "possibly_sensitive": false,
         "author_id": "1235525929335689217",
-        "created_at": "2024-02-24T17:50:56.000Z",
-        "id": "1761448641028370750",
         "lang": "en",
-        "conversation_id": "1731503835233837261",
-        "prompt": "what do you think?",
-        "isReply": true,
-        "promptUrl": "https://twitter.com/LofiGrind/status/1761448641028370750",
-        "numFollowers": 16,
-        "priorityScore": 9950.087428571429
+        "in_reply_to_user_id": "327034465",
+        "text": "@transitive_bs @AskDexa what do you think?"
       }
     ],
     "entityMap": {
@@ -2373,15 +3149,19 @@
           "twitterPinnedTweetId": "1643017583917174784",
           "twitterLocation": "HF0",
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
-          "twitterNumFollowers": 18049,
+          "twitterNumFollowers": 18102,
           "twitterNumFollowing": 702,
           "twitterNumTweets": 7209,
-          "twitterNumLikes": 18049,
+          "twitterNumLikes": 18102,
           "urls": [
             {
               "type": "url",
               "url": "https://transitivebullsh.it",
-              "shortUrl": "https://t.co/U7qFLMXw8R"
+              "shortUrl": "https://t.co/U7qFLMXw8R",
+              "title": "TransitiveBullsh.it",
+              "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+              "author": "",
+              "siteName": "Transitive Bullshit"
             }
           ]
         },
@@ -2398,52 +3178,35 @@
           "twitterNumTweets": 440,
           "twitterNumLikes": 16,
           "urls": []
+        },
+        "4416456732": {
+          "type": "user",
+          "name": "Andrew D. Huberman, Ph.D.",
+          "twitterId": "4416456732",
+          "twitterUsername": "hubermanlab",
+          "twitterBio": "Professor of Neurobiology & Ophthalmology at Stanford Medicine • Host of the Huberman Lab podcast • Focused on science & health research & public education",
+          "twitterUrl": "https://hubermanlab.com",
+          "twitterPinnedTweetId": "1759568894828933159",
+          "twitterLocation": "Stanford, CA",
+          "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1339713932085346306/jDTi4HKH_normal.jpg",
+          "twitterNumFollowers": 1261024,
+          "twitterNumFollowing": 1232,
+          "twitterNumTweets": 8500,
+          "twitterNumLikes": 1261024,
+          "urls": [
+            {
+              "type": "url",
+              "url": "https://hubermanlab.com",
+              "shortUrl": "https://t.co/yvi41iI0ZH",
+              "title": "Huberman Lab",
+              "description": "The Huberman Lab podcast discusses science and science-based tools for everyday life. New episodes are released every Monday.",
+              "author": "54",
+              "siteName": "Huberman Lab"
+            }
+          ]
         }
       },
       "tweets": {
-        "1731503835233837261": {
-          "type": "tweet",
-          "id": "1731503835233837261",
-          "authorId": "327034465",
-          "text": "This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://t.co/AXRnyy7hlT",
-          "lang": "en",
-          "quotedTweetId": "1731443102857245086",
-          "numLikes": 4,
-          "numRetweets": 1,
-          "numQuoteTweets": 0,
-          "numReplies": 2,
-          "numImpressions": 1894,
-          "urls": [
-            {
-              "type": "url",
-              "url": "https://twitter.com/hubermanlab/status/1731443102857245086",
-              "shortUrl": "https://t.co/AXRnyy7hlT"
-            }
-          ]
-        },
-        "1643017583917174784": {
-          "type": "tweet",
-          "id": "1643017583917174784",
-          "authorId": "327034465",
-          "text": "A practical guide on how to use LLMs effectively: https://t.co/ysv4ZnbDAU",
-          "lang": "en",
-          "numLikes": 732,
-          "numRetweets": 130,
-          "numQuoteTweets": 23,
-          "numReplies": 32,
-          "numImpressions": 306482,
-          "urls": [
-            {
-              "type": "url",
-              "url": "https://twitter.com/transitive_bs/status/1643017583917174784/photo/1",
-              "shortUrl": "https://t.co/ysv4ZnbDAU",
-              "mediaId": "3_1643017577881546753"
-            }
-          ],
-          "mediaIds": [
-            "3_1643017577881546753"
-          ]
-        },
         "1761448641028370750": {
           "type": "tweet",
           "id": "1761448641028370750",
@@ -2456,10 +3219,196 @@
           "numRetweets": 0,
           "numQuoteTweets": 0,
           "numReplies": 0,
-          "numImpressions": 11
+          "numImpressions": 12
+        },
+        "1731503835233837261": {
+          "type": "tweet",
+          "id": "1731503835233837261",
+          "authorId": "327034465",
+          "text": "This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://twitter.com/hubermanlab/status/1731443102857245086",
+          "lang": "en",
+          "quotedTweetId": "1731443102857245086",
+          "numLikes": 4,
+          "numRetweets": 1,
+          "numQuoteTweets": 0,
+          "numReplies": 2,
+          "numImpressions": 1895,
+          "urls": [
+            {
+              "type": "url",
+              "url": "https://twitter.com/hubermanlab/status/1731443102857245086",
+              "shortUrl": "https://t.co/AXRnyy7hlT",
+              "title": "X",
+              "description": "Don’t miss what’s happening",
+              "author": "",
+              "siteName": "X (formerly Twitter)"
+            }
+          ]
+        },
+        "1731443102857245086": {
+          "type": "tweet",
+          "id": "1731443102857245086",
+          "authorId": "4416456732",
+          "text": "The data on alcohol seem clear: 0 is better than any and 2 drinks per week is the max (for adult non-alcoholics) beyond which some negative impact is observed. Whether this is direct or indirect via perturbed sleep/microbiome is unclear. Details: https://www.hubermanlab.com/episode/what-alcohol-does-to-your-body-brain-health",
+          "lang": "en",
+          "numLikes": 11278,
+          "numRetweets": 1285,
+          "numQuoteTweets": 222,
+          "numReplies": 443,
+          "numImpressions": 3107851,
+          "urls": [
+            {
+              "type": "url",
+              "url": "https://www.hubermanlab.com/episode/what-alcohol-does-to-your-body-brain-health",
+              "shortUrl": "https://t.co/dw7lbrvRrI",
+              "title": "What Alcohol Does to Your Body, Brain & Health - Huberman Lab",
+              "description": "In this episode, I discuss the physiological effects that drinking alcohol has on the brain and body at different levels of consumption and over time.",
+              "author": "",
+              "siteName": "Home"
+            }
+          ]
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "https://transitivebullsh.it": {
+          "type": "url",
+          "url": "https://transitivebullsh.it",
+          "shortUrl": "https://t.co/U7qFLMXw8R",
+          "title": "TransitiveBullsh.it",
+          "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+          "author": "",
+          "siteName": "Transitive Bullshit"
+        },
+        "https://hubermanlab.com": {
+          "type": "url",
+          "url": "https://hubermanlab.com",
+          "shortUrl": "https://t.co/yvi41iI0ZH",
+          "title": "Huberman Lab",
+          "description": "The Huberman Lab podcast discusses science and science-based tools for everyday life. New episodes are released every Monday.",
+          "author": "54",
+          "siteName": "Huberman Lab"
+        },
+        "https://www.hubermanlab.com/episode/what-alcohol-does-to-your-body-brain-health": {
+          "type": "url",
+          "url": "https://www.hubermanlab.com/episode/what-alcohol-does-to-your-body-brain-health",
+          "shortUrl": "https://t.co/dw7lbrvRrI",
+          "title": "What Alcohol Does to Your Body, Brain & Health - Huberman Lab",
+          "description": "In this episode, I discuss the physiological effects that drinking alcohol has on the brain and body at different levels of consumption and over time.",
+          "author": "",
+          "siteName": "Home"
+        },
+        "https://twitter.com/hubermanlab/status/1731443102857245086": {
+          "type": "url",
+          "url": "https://twitter.com/hubermanlab/status/1731443102857245086",
+          "shortUrl": "https://t.co/AXRnyy7hlT",
+          "title": "X",
+          "description": "Don’t miss what’s happening",
+          "author": "",
+          "siteName": "X (formerly Twitter)"
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "327034465": {
+          "id": "327034465",
+          "name": "Travis Fischer",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1347656662463766529/igIs8izN_normal.png",
+          "location": "HF0",
+          "description": "Building AI agents and OSS projects like @ChatGPTBot. Prev: @microsoft, @amazon, saasify. My heart is open source 💕",
+          "username": "transitive_bs",
+          "pinned_tweet_id": "1643017583917174784"
+        },
+        "1235525929335689217": {
+          "id": "1235525929335689217",
+          "name": "Lofi Grind",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1235530549067943937/6BQE9kbQ_normal.jpg",
+          "location": "Brooklyn, NY",
+          "description": "Chill ambient beats for when you wanna relax / study / grind.",
+          "username": "LofiGrind"
+        },
+        "4416456732": {
+          "id": "4416456732",
+          "name": "Andrew D. Huberman, Ph.D.",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1339713932085346306/jDTi4HKH_normal.jpg",
+          "location": "Stanford, CA",
+          "description": "Professor of Neurobiology & Ophthalmology at Stanford Medicine • Host of the Huberman Lab podcast • Focused on science & health research & public education",
+          "username": "hubermanlab",
+          "pinned_tweet_id": "1759568894828933159"
+        }
+      },
+      "tweets": {
+        "1761448641028370750": {
+          "id": "1761448641028370750",
+          "referenced_tweets": [
+            {
+              "type": "replied_to",
+              "id": "1731503835233837261"
+            }
+          ],
+          "author_id": "1235525929335689217",
+          "lang": "en",
+          "in_reply_to_user_id": "327034465",
+          "text": "@transitive_bs @AskDexa what do you think?"
+        },
+        "1731503835233837261": {
+          "id": "1731503835233837261",
+          "referenced_tweets": [
+            {
+              "type": "quoted",
+              "id": "1731443102857245086"
+            }
+          ],
+          "author_id": "327034465",
+          "lang": "en",
+          "text": "This may be true scientifically; we may even end up looking at alcohol in the future the way we look at cigarettes today. They exist but are mostly ostracized.\n\nBut bro this trend is going to make parties suckkkkk https://twitter.com/hubermanlab/status/1731443102857245086"
+        },
+        "1731443102857245086": {
+          "author_id": "4416456732",
+          "lang": "en",
+          "id": "1731443102857245086",
+          "text": "The data on alcohol seem clear: 0 is better than any and 2 drinks per week is the max (for adult non-alcoholics) beyond which some negative impact is observed. Whether this is direct or indirect via perturbed sleep/microbiome is unclear. Details: https://www.hubermanlab.com/episode/what-alcohol-does-to-your-body-brain-health"
+        }
+      },
+      "urls": {
+        "https://transitivebullsh.it": {
+          "type": "url",
+          "url": "https://transitivebullsh.it",
+          "shortUrl": "https://t.co/U7qFLMXw8R",
+          "title": "TransitiveBullsh.it",
+          "description": "Personal site of Travis Fischer aka Transitive Bullshit",
+          "author": "",
+          "siteName": "Transitive Bullshit"
+        },
+        "https://hubermanlab.com": {
+          "type": "url",
+          "url": "https://hubermanlab.com",
+          "shortUrl": "https://t.co/yvi41iI0ZH",
+          "title": "Huberman Lab",
+          "description": "The Huberman Lab podcast discusses science and science-based tools for everyday life. New episodes are released every Monday.",
+          "author": "54",
+          "siteName": "Huberman Lab"
+        },
+        "https://www.hubermanlab.com/episode/what-alcohol-does-to-your-body-brain-health": {
+          "type": "url",
+          "url": "https://www.hubermanlab.com/episode/what-alcohol-does-to-your-body-brain-health",
+          "shortUrl": "https://t.co/dw7lbrvRrI",
+          "title": "What Alcohol Does to Your Body, Brain & Health - Huberman Lab",
+          "description": "In this episode, I discuss the physiological effects that drinking alcohol has on the brain and body at different levels of consumption and over time.",
+          "author": "",
+          "siteName": "Home"
+        },
+        "https://twitter.com/hubermanlab/status/1731443102857245086": {
+          "type": "url",
+          "url": "https://twitter.com/hubermanlab/status/1731443102857245086",
+          "shortUrl": "https://t.co/AXRnyy7hlT",
+          "title": "X",
+          "description": "Don’t miss what’s happening",
+          "author": "",
+          "siteName": "X (formerly Twitter)"
+        }
+      }
     }
   },
   {
@@ -2476,40 +3425,27 @@
       "priorityScore": 0.10714285714285714,
       "isReply": false
     },
-    "answerEngineMessages": [
+    "chatMessages": [
       {
         "role": "user",
         "content": "what is the best anime?",
-        "name": "inquisitivecat5",
-        "entities": {
-          "tweetIds": [
-            "1761430343100371122"
-          ]
-        }
+        "name": "inquisitivecat5"
+      }
+    ],
+    "rawChatMessages": [
+      {
+        "role": "user",
+        "content": "{\"id\":\"1761430343100371122\",\"author_id\":\"1761425899994402816\",\"lang\":\"en\",\"in_reply_to_user_id\":\"1757989045383106560\",\"text\":\"@AskDexa what is the best anime?\"}",
+        "name": "inquisitivecat5"
       }
     ],
     "tweets": [
       {
-        "in_reply_to_user_id": "1757989045383106560",
-        "public_metrics": {
-          "retweet_count": 0,
-          "reply_count": 0,
-          "like_count": 0,
-          "quote_count": 0,
-          "bookmark_count": 0,
-          "impression_count": 2
-        },
-        "text": "@AskDexa what is the best anime?",
-        "possibly_sensitive": false,
-        "author_id": "1761425899994402816",
-        "created_at": "2024-02-24T16:38:14.000Z",
         "id": "1761430343100371122",
+        "author_id": "1761425899994402816",
         "lang": "en",
-        "conversation_id": "1761430343100371122",
-        "prompt": "what is the best anime?",
-        "isReply": false,
-        "promptUrl": "https://twitter.com/inquisitivecat5/status/1761430343100371122",
-        "priorityScore": 0.10714285714285714
+        "in_reply_to_user_id": "1757989045383106560",
+        "text": "@AskDexa what is the best anime?"
       }
     ],
     "entityMap": {
@@ -2525,13 +3461,17 @@
           "twitterProfileImageUrl": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
           "twitterNumFollowers": 30,
           "twitterNumFollowing": 1,
-          "twitterNumTweets": 20,
+          "twitterNumTweets": 22,
           "twitterNumLikes": 30,
           "urls": [
             {
               "type": "url",
               "url": "https://dexa.ai",
-              "shortUrl": "https://t.co/jz0ipgVGJf"
+              "shortUrl": "https://t.co/jz0ipgVGJf",
+              "title": "",
+              "description": "",
+              "author": "",
+              "siteName": ""
             }
           ]
         },
@@ -2564,7 +3504,57 @@
           "numImpressions": 2
         }
       },
-      "media": {}
+      "media": {},
+      "urls": {
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
+    },
+    "rawEntityMap": {
+      "users": {
+        "1757989045383106560": {
+          "id": "1757989045383106560",
+          "name": "Ask Dexa",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1758267166825062400/QcFyjKLS_normal.jpg",
+          "location": "🤖",
+          "description": "Bot powered by @dexa_ai.\nMention @AskDexa to get an answer from trusted experts.",
+          "username": "AskDexa"
+        },
+        "1761425899994402816": {
+          "id": "1761425899994402816",
+          "name": "Inquisitive kitten",
+          "profile_image_url": "https://pbs.twimg.com/profile_images/1761426314714624000/i6BsLoW-_normal.jpg",
+          "description": "anime 4 life",
+          "username": "inquisitivecat5"
+        }
+      },
+      "tweets": {
+        "1761430343100371122": {
+          "id": "1761430343100371122",
+          "author_id": "1761425899994402816",
+          "lang": "en",
+          "in_reply_to_user_id": "1757989045383106560",
+          "text": "@AskDexa what is the best anime?"
+        }
+      },
+      "urls": {
+        "https://dexa.ai": {
+          "type": "url",
+          "url": "https://dexa.ai",
+          "shortUrl": "https://t.co/jz0ipgVGJf",
+          "title": "",
+          "description": "",
+          "author": "",
+          "siteName": ""
+        }
+      }
     }
   }
 ]

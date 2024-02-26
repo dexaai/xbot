@@ -5,7 +5,7 @@ import type { AsyncReturnType, SetOptional, Simplify } from 'type-fest'
 
 import type { AnswerEngine } from './answer-engine.js'
 import type { BotErrorType } from './bot-error.js'
-import type { Entities, EntitiesMap } from './entities.js'
+import type { EntityMap, URLEntity } from './entities.js'
 
 export type { TwitterClient }
 
@@ -178,14 +178,33 @@ export type OpenAIModeration = Simplify<
 >
 
 export type AnswerEngineMessage = Prompt.Msg & {
-  entities?: Entities
+  tweetId: string
 }
 
 export type AnswerEngineQuery = {
+  // Source bot message
   message: Message
-  answerEngineMessages: AnswerEngineMessage[]
+
+  // OpenAI chat messages in the thread containing the tweet text
+  chatMessages: Prompt.Msg[]
+
+  // OpenAI chat messages containing the raw, pruned tweet JSON
+  rawChatMessages: Prompt.Msg[]
+
+  // Raw pruned tweets in the thread
   tweets: Partial<Tweet>[]
-  entityMap?: EntitiesMap
+
+  // Entity data mapped by type and ID
+  entityMap?: EntityMap
+
+  // Raw, pruned entity data mapped by type and ID
+  rawEntityMap?: RawEntityMap
+}
+
+export type RawEntityMap = {
+  users: Record<string, Partial<TwitterUser>>
+  tweets: Record<string, Partial<Tweet>>
+  urls: Record<string, URLEntity>
 }
 
 export type AnswerEngineContext = Pick<

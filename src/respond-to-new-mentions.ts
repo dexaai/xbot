@@ -229,6 +229,7 @@ export async function respondToNewMentions(ctx: types.Context) {
           delete message.errorStatus
           delete message.isErrorFinal
 
+          console.log()
           console.log('message', message)
           console.log()
 

@@ -82,16 +82,13 @@ Flags:
 ## TODO
 
 - understand why mentions from non-verified accounts aren't being reported by the twitter api
-- support quote tweet and retweet context
-- support user entity context
-- add test fixtures testing these different use cases
 - fix support for empty mentions
   - currently works but duplicates the previous tweet's contents
 - support `url` entities
   - expand them with metadata
 - support `media` entities
   - populate media entities
-  - openai use gpt-4-vision-preview
+  - for openai, use gpt-4-vision-preview
   - conditionally preprocess images using `sharp` to ensure they are supported by gpt4v
 - improve openai answer engine
   - dalle tool

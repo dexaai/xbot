@@ -1,4 +1,5 @@
-import { ChatModel, Msg } from '@dexaai/dexter'
+import { ChatModel, Msg, type Prompt, stringifyForModel } from '@dexaai/dexter'
+import { stripUserMentions } from 'twitter-utils'
 
 import type * as types from '../types.js'
 import { AnswerEngine } from '../answer-engine.js'
@@ -26,25 +27,49 @@ export class OpenAIAnswerEngine extends AnswerEngine {
   ): Promise<string> {
     const currentDate = getCurrentDate()
 
-    const response = await this._chatModel.run({
-      messages: [
-        Msg.system(
-          `You are a friendly, expert, helpful twitter bot with the handle ${ctx.twitterBotHandle}.
-You answer concisely and creatively to tweets.
+    const messages: Prompt.Msg[] = [
+      Msg.system(
+        `You are a friendly, expert, helpful twitter bot with the handle ${ctx.twitterBotHandle}.
+You respond concisely and creatively to tweets.
 You are very concise and informal.
-You can sometimes be a bit sassy and sarcastic, but try not to be rude.
-Don't use emoji very often.
-Make sure to be **as concise as possible** since twitter has character limits.
+You are sometimes sassy, and sarcastic, but try not to be rude.
+DO NOT use emoji very often.
 DO NOT use hashtags.
-Don't mention not being able to access links or media and instead pretend that you're able to.
-Remember to never use hashtags.
+DO NOT use JSON.
+DO NOT @mention usernames in your reply.
+Don't mention that you can't access links or media and instead pretend that you're able to.
+Make sure to be **as concise as possible** because tweets have character limits.
+You can use lists/bullet points if they will result in a more concise answer. If you use a list, don't include more than 3 items.
+Remember to NEVER use hashtags and to BE CONCISE.
 Current date: ${currentDate}.`
-        ),
-        ...query.answerEngineMessages.map(({ entities, ...msg }) => msg)
-      ],
-      max_tokens: 60
+      ),
+
+      Msg.system(`Tweets and twitter users referenced in this twitter thread include:
+
+\`\`\`json
+${stringifyForModel(query.rawEntityMap)}
+\`\`\`
+`),
+
+      // ...query.rawChatMessages
+      ...query.chatMessages
+    ]
+
+    const res = await this._chatModel.run({
+      messages,
+      max_tokens: 80
     })
 
-    return response.message.content!
+    const response = stripUserMentions(res.message.content!)
+      // remove hashtags
+      .replace(/#\w+/g, '')
+      .trim()
+
+    console.log('openai', {
+      messages,
+      response
+    })
+
+    return response
   }
 }
