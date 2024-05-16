@@ -1,5 +1,5 @@
 import { Nango } from '@nangohq/node'
-import { auth,Client as TwitterClient } from 'twitter-api-sdk'
+import { auth, Client as TwitterClient } from 'twitter-api-sdk'
 
 import * as config from '../config.js'
 import { assert } from '../utils.js'

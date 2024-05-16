@@ -76,7 +76,7 @@ if (config.redisUrl) {
   state = new Keyv({ namespace: config.redisNamespaceState })
 }
 
-export { messages, redis,state, tweets, users }
+export { messages, redis, state, tweets, users }
 
 export async function clearAllDataForUserId(twitterBotUserId: string) {
   console.warn('WARNING: clearing all data for user', twitterBotUserId)
