@@ -66,8 +66,8 @@ dependencies:
     specifier: ^1.2.1
     version: 1.2.1
   twitter-utils:
-    specifier: ^0.4.0
-    version: 0.4.0
+    specifier: ^0.4.1
+    version: 0.4.1
   type-fest:
     specifier: ^4.10.2
     version: 4.10.2
@@ -405,6 +405,14 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.1
+    dev: true
+
+  /@babel/runtime@7.24.5:
+    resolution: {integrity: sha512-Nms86NXrsaeU9vbBJKni6gXiEXZ4CVpYVzEjDH9Sb8vmZ3UljyA1GSOJl/6LGPO8EHLuSF9H+IxNXHPX8QHJ4g==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.14.1
+    dev: false
 
   /@babel/template@7.23.9:
     resolution: {integrity: sha512-+xrD2BWLpvHKNmX2QbpdpsBaWnRxahMwJjO+KZk2JOElj5nSmKezyS1B4u+QbHMTX69t4ukm6hh9lsYQ7GHCKA==}
@@ -4279,6 +4287,10 @@ packages:
     resolution: {integrity: sha512-AD5ih2NlSssTCwsMznbvwMZpJ1cbhkGd2uueNxzv2jDlEeZdU04JQfRnggJQ8DrcVBGjAsCKwFBbDlVNtEMlzw==}
     dev: false
 
+  /tiny-invariant@1.3.3:
+    resolution: {integrity: sha512-+FbBPE1o9QAYvviau/qC5SE3caw21q3xkvWKBtja5vgqOWIHHJ3ioaq1VPfn/Szqctz2bU/oYeKd9/z5BL+PVg==}
+    dev: false
+
   /tinybench@2.6.0:
     resolution: {integrity: sha512-N8hW3PG/3aOoZAN5V/NSAEDz0ZixDSSt5b/a05iqtpgfLWMSVuCo7w0k2vVvEjdrIoeGqZzweX2WlyioNIHchA==}
     dev: true
@@ -4365,17 +4377,17 @@ packages:
   /twitter-text@3.1.0:
     resolution: {integrity: sha512-nulfUi3FN6z0LUjYipJid+eiwXvOLb8Ass7Jy/6zsXmZK3URte043m8fL3FyDzrK+WLpyqhHuR/TcARTN/iuGQ==}
     dependencies:
-      '@babel/runtime': 7.23.9
+      '@babel/runtime': 7.24.5
       core-js: 2.6.12
       punycode: 1.4.1
       twemoji-parser: 11.0.2
     dev: false
 
-  /twitter-utils@0.4.0:
-    resolution: {integrity: sha512-9HBUW8NXiUZUHN3mXVzTMKeGtMeE3390eAOTvbberRNEkLPKEDFxGi4C00+dJyRo4MlyEla/dnqufH/Vuy/5Og==}
+  /twitter-utils@0.4.1:
+    resolution: {integrity: sha512-lDRn541w9ffRQXRXQjI5zDItv3HjI3FevYEwC6Mpln1qMKHlWkJqa7eyv+zC+owMAd3oF9yc6Twduk3DccUTTw==}
     engines: {node: '>=16'}
     dependencies:
-      tiny-invariant: 1.3.1
+      tiny-invariant: 1.3.3
       twitter-text: 3.1.0
       url-regex: 5.0.0
     dev: false
