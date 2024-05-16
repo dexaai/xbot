@@ -3,8 +3,8 @@ import pMemoize from 'p-memoize'
 import { z } from 'zod'
 
 import * as db from './db.js'
-import type * as types from './types.js'
 import { ScraperClient } from './services/scraper-client.js'
+import type * as types from './types.js'
 
 export const URLEntitySchema = z.object({
   type: z.literal('url'),

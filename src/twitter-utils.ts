@@ -1,5 +1,5 @@
-import type * as types from './types.js'
 import { BotError } from './bot-error.js'
+import type * as types from './types.js'
 import { omit } from './utils.js'
 
 export * from 'twitter-utils'

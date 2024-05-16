@@ -1,5 +1,6 @@
-import type * as types from './types.js'
 import './config.js'
+
+import type * as types from './types.js'
 
 const blockedRegexes = [
   /\bheil\s*hitler/gi,
@@ -12,7 +13,7 @@ const blockedRegexes = [
 ]
 
 export async function checkModeration(
-  input: string = '',
+  input = '',
   ctx: Pick<types.Context, 'openaiClient'>
 ): Promise<types.OpenAIModeration> {
   const inputL = input.toLowerCase().trim()

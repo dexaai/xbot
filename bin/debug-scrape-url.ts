@@ -1,6 +1,7 @@
+import '../src/config.js'
+
 import pMap from 'p-map'
 
-import '../src/config.js'
 import { ScraperClient } from '../src/services/scraper-client.js'
 import { omit } from '../src/utils.js'
 

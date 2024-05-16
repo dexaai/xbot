@@ -1,8 +1,8 @@
-import type * as types from './types.js'
-import type { AnswerEngine } from './answer-engine.js'
+import { type AnswerEngine } from './answer-engine.js'
 import { DexaAnswerEngine } from './answer-engines/dexa-answer-engine.js'
 import { OpenAIAnswerEngine } from './answer-engines/openai-answer-engine.js'
 import { PerplexityAnswerEngine } from './answer-engines/perplexity-answer-engine.js'
+import type * as types from './types.js'
 
 export function createAnswerEngine(
   answerEngineType: types.AnswerEngineType

@@ -1,8 +1,8 @@
+import { BotError } from './bot-error.js'
 import * as db from './db.js'
 import * as twitter from './twitter.js'
-import type * as types from './types.js'
-import { BotError } from './bot-error.js'
 import { handleKnownTwitterErrors, maxTwitterId } from './twitter-utils.js'
+import type * as types from './types.js'
 
 /**
  * Fetches the latest mentions of the given `userId` on Twitter.
@@ -19,7 +19,7 @@ export async function getTwitterUserIdMentions(
 ): Promise<types.TweetMentionFetchResult> {
   const originalSinceMentionId = opts.since_id
 
-  let result: types.TweetMentionFetchResult = {
+  const result: types.TweetMentionFetchResult = {
     mentions: [],
     users: {},
     tweets: {},

@@ -72,7 +72,7 @@ export function getDebugMention(
  *
  * Strips usernames at the front of a tweet and URLs (like for embedding images).
  */
-export function getPrompt(text: string = '', ctx?: types.Context): string {
+export function getPrompt(text = '', _?: types.Context): string {
   const prompt = text
     .trim()
     // strip leading usernames

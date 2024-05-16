@@ -1,11 +1,11 @@
 import pMap from 'p-map'
 
-import type * as types from '../src/types.js'
 import { createAnswerEngine } from '../src/create-answer-engine.js'
 import { parseCLIArgs } from '../src/parse-cli-args.js'
 import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
 import { openaiClient } from '../src/services/openai-client.js'
 import { getTwitterClient } from '../src/services/twitter-client.js'
+import type * as types from '../src/types.js'
 import { assert } from '../src/utils.js'
 
 /**
@@ -31,7 +31,7 @@ async function main() {
     argv.flags.answerEngine as types.AnswerEngineType
   )
 
-  let twitterClient = await getTwitterClient()
+  const twitterClient = await getTwitterClient()
   const { data: twitterBotUser } = await twitterClient.users.findMyUser()
   const twitterBotUserId = twitterBotUser?.id
 

@@ -2,12 +2,11 @@ import { Msg, stringifyForModel } from '@dexaai/dexter'
 import pMap from 'p-map'
 
 import * as config from '../src/config.js'
-import * as db from './db.js'
-import type * as types from './types.js'
 import { BotError } from './bot-error.js'
+import * as db from './db.js'
 import {
-  type EntityMap,
   convertTweetToEntityMap,
+  type EntityMap,
   mergeEntityMaps
 } from './entities.js'
 import {
@@ -16,6 +15,7 @@ import {
   sanitizeTweetText,
   stripUserMentions
 } from './twitter-utils.js'
+import type * as types from './types.js'
 import { assert, pick } from './utils.js'
 
 export abstract class AnswerEngine {
@@ -83,7 +83,7 @@ export abstract class AnswerEngine {
 
   /**
    * Resolves all of the bot-related messages from a twitter thread, starting
-   * from a leaf tweet, and traversing its parents – including any previous bot
+   * from a leaf tweet, and traversing its parents, including any previous bot
    * mentions and responses. Returns the thread in a format compatible with the
    * OpenAI chat-completions API.
    */
@@ -211,7 +211,7 @@ export abstract class AnswerEngine {
     }
 
     const chatMessages = answerEngineMessages.map(
-      ({ tweetId, ...message }) => message
+      ({ tweetId: _, ...message }) => message
     )
 
     // Resolve all entity maps for the tweets and messages in the thread and then

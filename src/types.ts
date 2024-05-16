@@ -1,11 +1,15 @@
-import type { Prompt } from '@dexaai/dexter'
-import type { OpenAI } from 'openai'
-import type { Client as TwitterClient } from 'twitter-api-sdk'
-import type { AsyncReturnType, SetOptional, Simplify } from 'type-fest'
+import { type Prompt } from '@dexaai/dexter'
+import { type OpenAI } from 'openai'
+import { type Client as TwitterClient } from 'twitter-api-sdk'
+import {
+  type AsyncReturnType,
+  type SetOptional,
+  type Simplify
+} from 'type-fest'
 
-import type { AnswerEngine } from './answer-engine.js'
-import type { BotErrorType } from './bot-error.js'
-import type { EntityMap, URLEntity } from './entities.js'
+import { type AnswerEngine } from './answer-engine.js'
+import { type BotErrorType } from './bot-error.js'
+import { type EntityMap, type URLEntity } from './entities.js'
 
 export type { TwitterClient }
 

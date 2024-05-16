@@ -1,9 +1,9 @@
 import pThrottle from 'p-throttle'
-import type { SetOptional, Simplify } from 'type-fest'
+import { type SetOptional, type Simplify } from 'type-fest'
 
 import * as config from './config.js'
-import type * as types from './types.js'
 import { handleKnownTwitterErrors } from './twitter-utils.js'
+import type * as types from './types.js'
 import { assert } from './utils.js'
 
 /**

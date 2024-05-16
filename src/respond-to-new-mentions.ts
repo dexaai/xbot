@@ -1,12 +1,12 @@
 import pMap from 'p-map'
 
 import * as db from '../src/db.js'
-import type * as types from './types.js'
 import { BotError } from './bot-error.js'
 import { getTweetMentionsBatch } from './mentions.js'
 import { checkModeration } from './moderations.js'
-import { getTweetUrl, maxTwitterId, minTwitterId } from './twitter-utils.js'
 import { createTweet } from './twitter.js'
+import { getTweetUrl, maxTwitterId, minTwitterId } from './twitter-utils.js'
+import type * as types from './types.js'
 import { assert, getDebugMention, pick } from './utils.js'
 
 /**

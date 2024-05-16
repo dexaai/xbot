@@ -3,7 +3,6 @@ import pMap from 'p-map'
 import * as config from './config.js'
 import * as db from './db.js'
 import * as twitter from './twitter.js'
-import type * as types from './types.js'
 import { isKnownTwitterBotUsername } from './twitter-known-bots.js'
 import { getTwitterUserIdMentions } from './twitter-mentions.js'
 import {
@@ -12,6 +11,7 @@ import {
   minTwitterId,
   tweetComparator
 } from './twitter-utils.js'
+import type * as types from './types.js'
 import { getDebugMention, getPrompt } from './utils.js'
 
 /**
@@ -274,7 +274,7 @@ export async function populateTweetMentionsBatch(
  * @TODO Add unit tests for this
  */
 export function getPrefixMentionsInText(
-  text: string = '',
+  text = '',
   ctx: types.Context,
   { isReply }: { isReply?: boolean } = {}
 ) {
@@ -357,7 +357,7 @@ export async function isValidMention(
     ? await db.tryGetTweetById(repliedToTweetRef.id, ctx)
     : null
   const isReply = !!repliedToTweetRef
-  let repliedToMention = repliedToTweet
+  const repliedToMention = repliedToTweet
     ? ({ ...repliedToTweet } as types.PartialTweetMention)
     : undefined
 

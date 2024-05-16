@@ -1,7 +1,7 @@
-import type { Prompt } from '@dexaai/dexter'
+import { type Prompt } from '@dexaai/dexter'
 import defaultKy, { type KyInstance } from 'ky'
 
-import type { EntityMap } from '../entities.js'
+import { type EntityMap } from '../entities.js'
 
 export class DexaClient {
   readonly apiKey: string

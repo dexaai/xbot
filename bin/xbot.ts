@@ -2,15 +2,15 @@ import delay from 'delay'
 import ms from 'ms'
 import random from 'random'
 
-import * as db from '../src/db.js'
-import type * as types from '../src/types.js'
 import { BotError } from '../src/bot-error.js'
 import { createAnswerEngine } from '../src/create-answer-engine.js'
+import * as db from '../src/db.js'
 import { parseCLIArgs } from '../src/parse-cli-args.js'
 import { respondToNewMentions } from '../src/respond-to-new-mentions.js'
 import { openaiClient } from '../src/services/openai-client.js'
 import { getTwitterClient } from '../src/services/twitter-client.js'
 import { maxTwitterId } from '../src/twitter-utils.js'
+import type * as types from '../src/types.js'
 import { pick } from '../src/utils.js'
 
 /**
@@ -34,7 +34,7 @@ async function main() {
   }
 
   const dbSinceMentionId = await db.getSinceMentionId({ twitterBotUserId })
-  let initialSinceMentionId =
+  const initialSinceMentionId =
     (argv.flags.resolveAllMentions
       ? undefined
       : argv.flags.sinceMentionId || dbSinceMentionId) ?? '0'

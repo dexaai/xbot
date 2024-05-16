@@ -7,12 +7,12 @@ import QuickLRU from 'quick-lru'
 
 import * as config from './config.js'
 import * as twitter from './twitter.js'
-import type * as types from './types.js'
 import {
   handleKnownTwitterErrors,
   maxTwitterId,
   tweetIdComparator
 } from './twitter-utils.js'
+import type * as types from './types.js'
 
 const DEFAULT_CONCURRENCY = 16
 
@@ -76,7 +76,7 @@ if (config.redisUrl) {
   state = new Keyv({ namespace: config.redisNamespaceState })
 }
 
-export { tweets, users, messages, state, redis }
+export { messages, redis,state, tweets, users }
 
 export async function clearAllDataForUserId(twitterBotUserId: string) {
   console.warn('WARNING: clearing all data for user', twitterBotUserId)
@@ -347,7 +347,7 @@ function pruneTweet(tweet: types.Tweet) {
     }
   }
 
-  delete (tweet as any)['edit_history_tweet_ids']
+  delete (tweet as any).edit_history_tweet_ids
 }
 
 /**

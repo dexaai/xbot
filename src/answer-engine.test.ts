@@ -1,12 +1,13 @@
+import './config.js'
+
 import { getTweetUrl } from 'twitter-utils'
 import { assert, describe, test } from 'vitest'
 
-import type * as types from './types.js'
 import { DexaAnswerEngine } from './answer-engines/dexa-answer-engine.js'
 import { OpenAIAnswerEngine } from './answer-engines/openai-answer-engine.js'
-import './config.js'
 import fixturesData from './fixtures.json'
 import { getTwitterClient } from './services/twitter-client.js'
+import type * as types from './types.js'
 import { rUrl } from './utils.js'
 
 const fixtures = fixturesData as unknown as types.AnswerEngineQuery[]

@@ -1,8 +1,8 @@
 import { ChatModel, Msg, type Prompt, stringifyForModel } from '@dexaai/dexter'
 import { stripUserMentions } from 'twitter-utils'
 
-import type * as types from '../types.js'
 import { AnswerEngine } from '../answer-engine.js'
+import type * as types from '../types.js'
 import { getCurrentDate } from '../utils.js'
 
 export class OpenAIAnswerEngine extends AnswerEngine {
