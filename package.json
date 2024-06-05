@@ -48,7 +48,7 @@
     "tiny-invariant": "^1.3.3",
     "twitter-api-sdk": "^1.2.1",
     "twitter-utils": "^0.4.1",
-    "type-fest": "^4.18.2",
+    "type-fest": "^4.19.0",
     "url-regex": "^5.0.0",
     "zod": "^3.23.8"
   },
@@ -84,7 +84,8 @@
       "no-console": "off",
       "import/order": "off",
       "no-process-env": "off",
-      "no-use-before-define": "off"
+      "no-use-before-define": "off",
+      "import/consistent-type-specifier-style": "off"
     }
   }
 }
