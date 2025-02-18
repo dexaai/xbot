@@ -1,4 +1,4 @@
-import { Msg, stringifyForModel } from '@dexaai/dexter'
+import { MsgUtil } from '@dexaai/dexter'
 import pMap from 'p-map'
 
 import * as config from '../src/config.js'
@@ -16,7 +16,7 @@ import {
   stripUserMentions
 } from './twitter-utils.js'
 import type * as types from './types.js'
-import { assert, pick } from './utils.js'
+import { assert, pick, stringifyForModel } from './utils.js'
 
 export abstract class AnswerEngine {
   readonly type: types.AnswerEngineType
@@ -169,7 +169,7 @@ export abstract class AnswerEngine {
         // TODO: unfurl quote tweets and retweets which likely have valuable
         // context
         ({
-          ...Msg.user(tweet.text, {
+          ...MsgUtil.user(tweet.text, {
             name: userIdToUsernameMap[tweet.author_id!]
           }),
           tweetId: tweet.id
@@ -180,7 +180,7 @@ export abstract class AnswerEngine {
       messages.flatMap<types.AnswerEngineMessage>((message) =>
         [
           {
-            ...Msg.user(message.prompt, {
+            ...MsgUtil.user(message.prompt, {
               name: userIdToUsernameMap[message.promptUserId]
             }),
             tweetId: message.promptTweetId
@@ -188,7 +188,7 @@ export abstract class AnswerEngine {
 
           message.response && message !== leafMessage
             ? {
-                ...Msg.assistant(message.response!, {
+                ...MsgUtil.assistant(message.response!, {
                   name: userIdToUsernameMap[ctx.twitterBotUserId]
                 }),
                 tweetId: message.responseTweetId!
@@ -248,10 +248,10 @@ export abstract class AnswerEngine {
 
     const rawChatMessages = tweets.map((tweet) =>
       tweet.author_id === ctx.twitterBotUserId
-        ? Msg.assistant(stringifyForModel(tweet), {
+        ? MsgUtil.assistant(stringifyForModel(tweet), {
             name: userIdToUsernameMap[tweet.author_id!]
           })
-        : Msg.user(stringifyForModel(tweet), {
+        : MsgUtil.user(stringifyForModel(tweet), {
             name: userIdToUsernameMap[tweet.author_id!]
           })
     )

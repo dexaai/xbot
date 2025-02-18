@@ -101,7 +101,7 @@ export type EntityMap = z.infer<typeof EntityMapSchema>
  * References to specific entities (users, tweets, and media objects) which may
  * be attached to a Message in order to provide additional, structured context.
  *
- * These entity referencers may be looked up in an accompanying `EntityMap`.
+ * These entity references may be looked up in an accompanying `EntityMap`.
  *
  * URLs are handled as local-only because they generally don't have platform-
  * specific IDs.

@@ -1,5 +1,6 @@
 import { customAlphabet, urlAlphabet } from 'nanoid'
 import invariant from 'tiny-invariant'
+import type { Jsonifiable } from 'type-fest'
 import urlRegex from 'url-regex'
 
 import type * as types from './types.js'
@@ -96,4 +97,21 @@ const currentDateFormatter = new Intl.DateTimeFormat('en-US', {
 
 export function getCurrentDate(): string {
   return currentDateFormatter.format(new Date())
+}
+
+/**
+ * Stringifies a JSON value in a way that's optimized for use with LLM prompts.
+ *
+ * This is intended to be used with `function` and `tool` arguments and responses.
+ */
+export function stringifyForModel(jsonObject: Jsonifiable | void): string {
+  if (jsonObject === undefined) {
+    return ''
+  }
+
+  if (typeof jsonObject === 'string') {
+    return jsonObject
+  }
+
+  return JSON.stringify(jsonObject, null, 0)
 }

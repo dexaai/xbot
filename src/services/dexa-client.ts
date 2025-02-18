@@ -1,4 +1,4 @@
-import { type Prompt } from '@dexaai/dexter'
+import { type Msg } from '@dexaai/dexter'
 import defaultKy, { type KyInstance } from 'ky'
 
 import { type EntityMap } from '../entities.js'
@@ -30,7 +30,7 @@ export class DexaClient {
     messages,
     entityMap
   }: {
-    messages: Prompt.Msg[]
+    messages: Msg[]
     entityMap?: EntityMap
   }) {
     return this.ky

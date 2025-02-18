@@ -43,10 +43,14 @@ async function main() {
   // console.log(user)
 
   // const lofiGrindTwitterUserId = '1235525929335689217'
-  // await db.clearAllDataForUserId(lofiGrindTwitterUserId)
+  // await db.clearAllCacheDataForUserId(lofiGrindTwitterUserId)
 
   const id = '1628578692707532800'
-  const res = await db.tryGetTweetById(id, { twitterClient })
+  const res = await db.tryGetTweetById(
+    id,
+    { twitterClient },
+    { fetchFromTwitter: true }
+  )
   console.log(JSON.stringify(res, null, 2))
 }
 

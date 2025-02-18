@@ -78,7 +78,7 @@ if (config.redisUrl) {
 
 export { messages, redis, state, tweets, users }
 
-export async function clearAllDataForUserId(twitterBotUserId: string) {
+export async function clearAllCacheDataForUserId(twitterBotUserId: string) {
   console.warn('WARNING: clearing all data for user', twitterBotUserId)
 
   // const keys = await redis.keys('*')
@@ -319,7 +319,7 @@ export async function tryGetTweetById(
           'ignoring error',
           [err.status, err.type, err.toString()].filter(Boolean).join(' ')
         )
-      } catch (err2: any) {
+      } catch {
         // Silently ignore
         console.warn(
           'ignoring error',

@@ -1,9 +1,9 @@
-import { ChatModel, Msg, type Prompt, stringifyForModel } from '@dexaai/dexter'
+import { ChatModel, type Msg, MsgUtil } from '@dexaai/dexter'
 import { stripUserMentions } from 'twitter-utils'
 
 import { AnswerEngine } from '../answer-engine.js'
 import type * as types from '../types.js'
-import { getCurrentDate } from '../utils.js'
+import { getCurrentDate, stringifyForModel } from '../utils.js'
 
 export class OpenAIAnswerEngine extends AnswerEngine {
   protected _chatModel: ChatModel
@@ -12,7 +12,7 @@ export class OpenAIAnswerEngine extends AnswerEngine {
     type = 'openai',
     chatModel = new ChatModel({
       params: {
-        model: 'gpt-4-0125-preview'
+        model: 'gpt-4o-mini'
       }
     })
   }: { type?: types.AnswerEngineType; chatModel?: ChatModel } = {}) {
@@ -27,8 +27,8 @@ export class OpenAIAnswerEngine extends AnswerEngine {
   ): Promise<string> {
     const currentDate = getCurrentDate()
 
-    const messages: Prompt.Msg[] = [
-      Msg.system(
+    const messages: Msg[] = [
+      MsgUtil.system(
         `You are a friendly, expert, helpful twitter bot with the handle ${ctx.twitterBotHandle}.
 You respond concisely and creatively to tweets.
 You are very concise and informal.
@@ -44,7 +44,7 @@ Remember to NEVER use hashtags and to BE CONCISE.
 Current date: ${currentDate}.`
       ),
 
-      Msg.system(`Tweets and twitter users referenced in this twitter thread include:
+      MsgUtil.system(`Tweets and twitter users referenced in this twitter thread include:
 
 \`\`\`json
 ${stringifyForModel(query.rawEntityMap)}
